@@ -1,27 +1,32 @@
 ---
-bio: My research interests include distributed robotics, mobile computing and programmable
-  matter.
+bio: My research interests include statistical modeling, large-scale assessments, psychometrics,and program evaluation.
 education:
   courses:
-  - course: PhD in Artificial Intelligence
-    institution: Stanford University
-    year: 2012
-  - course: MEng in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2009
-  - course: BSc in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
+  - course: PhD in Educational Psychology (Emphasis in Statistics and Measurement)
+    institution: University of Missouri
     year: 2008
+  - course: MA in Statistics
+    institution: University of Missouri
+    year: 2008
+  - course: MA in Educational Psychology (Emphasis Area in Statistics and Measurement)
+    institution: University of Missouri
+    year: 2005
+  - course: BS in English and Science
+    institution: University of Science and Technology of China
+    year: 2002
+  - course: BEng in Electronic Information and Engineering
+    institution: University of Science and Technology of China
+    year: 2002
 email: ""
 highlight_name: false
 interests:
-- Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
+- Statistical Modeling
+- Large-Scale Assessment Data in Education
+- Data Science
 organizations:
-- name: Stanford University
-  url: https://www.stanford.edu/
-role: Professor of Artificial Intelligence
+- name: University of Missouri
+  url: https://www.missouri.edu/
+role: Associate Professor of Statistics, Measurement, and Evaluation in Education
 social:
 - icon: envelope
   icon_pack: fas
@@ -31,22 +36,20 @@ social:
   icon: twitter
   icon_pack: fab
   label: Follow me on Twitter
-  link: https://twitter.com/GeorgeCushen
-- icon: graduation-cap
-  icon_pack: fas
-  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
+  link: https://twitter.com/DrZeWang
+#- icon: graduation-cap
+#  icon_pack: fas
+#  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
 - icon: github
   icon_pack: fab
-  link: https://github.com/gcushen
-- icon: linkedin
-  icon_pack: fab
-  link: https://www.linkedin.com/
+  link: https://github.com/ze-wang
+#- icon: linkedin
+#  icon_pack: fab
+#  link: https://www.linkedin.com/
 superuser: true
-title: Nelson Bighetti
+title: Ze Wang
 ---
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Dr. Ze Wang is an Associate Professor in the Department of Educational, School and Counseling Psychology at the University of Missouri. Dr. Wang’s research integrates substantive theories (e.g., expectancy-value theory, self-determination theory, social comparison theory) and state-of-the-art quantitative methods to understand student learning processes and outcomes. Her research interests include data science, statistical modeling using large-scale educational assessment data, measurement, scale development, and program evaluation. She has extensive experience in research design, applied statistical analysis, and statistical consulting. She co-developed the Classroom Engagement Inventory (CEI) and won multiple awards for excellence in teaching and student advising.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
-
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/demo_resume.pdf" "newtab" >}}resumé{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/resume.pdf" "newtab" >}}resumé{{< /staticref >}}.
