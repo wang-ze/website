@@ -3,15 +3,19 @@ title: Finally Started Building My Website
 author: 'Ze Wang'
 date: '2021-05-19'
 slug: finally-started-building-my-website
-categories: []
-tags: []
+categories: 
+- Random
+tags: 
+- GitHub
+- RStudio
+- Netlify
 subtitle: ''
 summary: ''
 authors: []
 lastmod: '2021-05-19T11:03:40-05:00'
-featured: no
+featured: false
 image:
-  caption: ''
+  caption: 'Image credit: [**rawpixel**] (https://www.rawpixel.com/image/558328/silhouette-skyline-illustration)'
   focal_point: ''
   preview_only: no
 projects: []

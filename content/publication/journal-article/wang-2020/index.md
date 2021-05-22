@@ -6,7 +6,7 @@ The programming language of R has useful data science tools that can automate an
 # - Equal contribution
 authors:
 - admin
-date: "2020-09-30T00:00:00Z"
+date: "2020-09-30T00:00:00Z" # date the article is published in a journal
 doi: ""
 featured: true
 image:
@@ -18,14 +18,13 @@ publication: '*Frontiers in Psychology, 11*(2427)'
 publication_short: ""
 publication_types:
 - "2"
-publishDate: "2020-09-30T00:00:00Z"
-slides: example
+publishDate: "2021-05-22T00:00:00Z" # date the page is published at website
+slides: ""
 summary: This article examined the big-fish-little-pond effect across countries and grades using the Trends in International Mathematics and Science Study (TIMSS) 2015 data.
 tags:
 - Big-Fish-Little-Pond
 - TIMSS
-title: When large-scale assessments meet data science
-subtitle: The big-fish-little-pond effect in fourth- and eighth-grade mathematics across nations
+title: "When large-scale assessments meet data science: The big-fish-little-pond effect in fourth- and eighth-grade mathematics across nations"
 url_code: "https://www.frontiersin.org/articles/10.3389/fpsyg.2020.579545/full"
 url_dataset: ""
 url_pdf:  ""
@@ -34,8 +33,8 @@ url_project: ""
 url_slides: ""
 url_source: ""
 url_video: ""
-url_custom:
-  name: "View Journal Article"
+links: 
+- name: "View Journal Article"
   url: "https://www.frontiersin.org/articles/10.3389/fpsyg.2020.579545/full"
 ---
 

@@ -1,6 +1,6 @@
 ---
 widget: hero
-active: true
+active: false
 headless: true
 weight: 10
 title: Ze Statistics 

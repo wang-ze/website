@@ -10,8 +10,9 @@ main:
   - name: Posts
     url: '#posts'
     weight: 20
-  - name: Publications
+  - name: Research
     url: '#featured'
+    identifier: "research"
     weight: 50
   - name: Courses
     url: courses/
@@ -19,3 +20,9 @@ main:
   - name: CV
     url: cv/
     weight: 65
+  - name: Publications
+    parent: "research"
+    url: publication
+  - name: Projects
+    parent: "research"
+    url: project
