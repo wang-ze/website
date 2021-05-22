@@ -52,4 +52,4 @@ title: Ze Wang
 
 Dr. Ze Wang is an Associate Professor in the Department of Educational, School and Counseling Psychology at the University of Missouri. Dr. Wang’s research integrates substantive theories (e.g., expectancy-value theory, self-determination theory, social comparison theory) and state-of-the-art quantitative methods to understand student learning processes and outcomes. Her research interests include data science, statistical modeling using large-scale educational assessment data, measurement, scale development, and program evaluation. She has extensive experience in research design, applied statistical analysis, and statistical consulting. She co-developed the Classroom Engagement Inventory (CEI) and won multiple awards for excellence in teaching and student advising.
 
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/resume.pdf" "newtab" >}}resumé{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "media/cv.pdf" "newtab" >}}cv{{< /staticref >}}.

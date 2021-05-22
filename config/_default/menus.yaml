@@ -16,6 +16,6 @@ main:
   - name: Courses
     url: courses/
     weight: 60
-  - name: Resume
-    url: resume/
+  - name: CV
+    url: cv/
     weight: 65
