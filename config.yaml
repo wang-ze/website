@@ -6,7 +6,8 @@ theme: "starter-academic"
 
 title: Ze Wang # Website name
 baseurl: 'https://ze-wang.netlify.app/' # Website URL
-copyright: '' # '© {2021} Ze Wang'
+
+copyright: 'Ze Wang @ {year}  '
 
 ############################
 ## LANGUAGE
