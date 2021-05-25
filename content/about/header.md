@@ -49,7 +49,7 @@ advanced:
  css_class: "mini"
 
 ---
-I am Associate Professor of Statistics, Measurement, and Evaluation in Education at the [University of Missouri](https://missouri.edu/).
+I am Associate Professor of Statistics, Measurement, and Evaluation in Education at the [University of Missouri :heart:](https://missouri.edu/).
 
 My research interests include data science, large-scale educational assessments and statistical modeling including latent variable modeling, psychometrics, and scale development. 
 

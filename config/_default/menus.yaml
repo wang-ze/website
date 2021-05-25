@@ -25,8 +25,8 @@ main:
     weight: 60
   - name: "Quant Foundations"
     parent: "courses"
-    url: "ESC_PS8850"
+    url: '/courses/ESC_PS8850'
   - name: "Structural Equation Modeling"
     parent: "courses"
-    url: "ESC_PS9710"
+    url: '/courses/ESC_PS9710'
 
