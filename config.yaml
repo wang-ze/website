@@ -14,7 +14,7 @@ copyright: '&copy; Ze Wang {year}  '
 ############################
 
 defaultContentLanguage: en
-hasCJKLanguage: false
+hasCJKLanguage: true
 defaultContentLanguageInSubdir: false
 removePathAccents: true
 
