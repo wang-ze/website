@@ -21,12 +21,13 @@ main:
     parent: "research"
     url: '/project'
   - name: Teaching
-    identifier: "courses"
+   # identifier: "courses"
+    url: "/courses"
     weight: 60
-  - name: "Quant Foundations"
-    parent: "courses"
-    url: '/courses/ESC_PS8850'
-  - name: "Structural Equation Modeling"
-    parent: "courses"
-    url: '/courses/ESC_PS9710'
+ # - name: "Quant Foundations"
+ #   parent: "courses"
+ #   url: '/courses/ESC_PS8850'
+ # - name: "Structural Equation Modeling"
+ #   parent: "courses"
+ #   url: '/courses/ESC_PS9710'
 

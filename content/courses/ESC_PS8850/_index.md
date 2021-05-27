@@ -1,28 +1,27 @@
 ---
-date: "2021-01-24"
+date: "2021-015-26"
 linkTitle: Quantitative Foundations
-summary: An example of using Wowchemy's Book layout for publishing online courses.
-title: "\U0001F4CA Quantitative Foundations in Educational Research"
+summary: ESC_PS 8850 Quantitative Foundations in Educational Research
+title: "\U0001F4C8 Quantitative Foundations in Educational Research"
 type: book
+
 ---
 
 {{< figure src="featured.jpg" >}}
 
 {{< toc hide_on="xl" >}}
 
-## What you will learn
+## Course objectives
 
-- Fundamental {{<hl>}}Python programming skills{{</hl>}}
-- {{<hl>}}Statistical concepts{{</hl>}} and how to apply them in practice
-- Gain experience with the {{<hl>}}Scikit{{</hl>}}, including data visualization with {{<hl>}}Plotly{{</hl>}} and data wrangling with {{<hl>}}Pandas{{</hl>}}
+- Select an appropriate statistical technique given a research question
+- Apply statistical models in {{<hl>}}R{{</hl>}}
+- Interpret and communicate results
 
-## Program overview
 
-The demand for skilled data science practitioners is rapidly growing. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi.
+## Course overview
 
-## Courses in this program
+This course will cover a number of quantitative topics that are fundamental to social science research. These topics include linear regression, ANOVA, ANCOVA, logistic regression, repeated-measures ANOVA, mixed-effects ANOVA, etc.
 
-{{< list_children >}}
 
 ## Meet your instructor
 
@@ -31,11 +30,11 @@ The demand for skilled data science practitioners is rapidly growing. Lorem ipsu
 ## FAQs
 
 {{< spoiler text="Are there prerequisites?" >}}
-There are no prerequisites for the first course.
+The prerequisite is ESC_PS 7710 Introduction to Applied Statistics.
 {{< /spoiler >}}
 
-{{< spoiler text="How often do the courses run?" >}}
-Continuously, at your own pace.
+{{< spoiler text="How often do we meet?" >}}
+Once a week.
 {{< /spoiler >}}
 
-{{< cta cta_text="Begin the course" cta_link="python" >}}
+{{< cta cta_text="Take the course" cta_link="lecture/" >}}

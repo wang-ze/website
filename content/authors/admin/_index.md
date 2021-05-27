@@ -33,7 +33,7 @@ role: Associate Professor of Statistics, Measurement, and Evaluation in Educatio
 social:
 - icon: envelope
   icon_pack: fas
-  link: /#contact
+  link: /about/#contact
 - icon: twitter
   icon_pack: fab
   label: Follow me on Twitter
@@ -63,4 +63,6 @@ title: Ze Wang
 I am an Associate Professor of Statistics, Measurement, and Evaluation in Education in the Department of Educational, School and Counseling Psychology at the [University of Missouri](https://www.missouri.edu/). My research integrates substantive theories (e.g., expectancy-value theory, self-determination theory, social comparison theory) and state-of-the-art quantitative methods to understand student learning processes and outcomes. My research interests include data science, statistical modeling using large-scale educational assessment data, measurement, scale development, and program evaluation. I have extensive experience in research design, applied statistical analysis, and statistical consulting. She co-developed the Classroom Engagement Inventory (CEI) and won multiple awards for excellence in teaching and student advising.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/cv.pdf" "newtab" >}}cv{{< /staticref >}}.
+
+
 
