@@ -10,8 +10,12 @@ image:
 links:
 - icon: door-open
   icon_pack: fas
-  name: website
+  name: coursesite
   url: "https://missouri.instructure.com/courses/50482"
+- icon: book-open
+  icon_pack: fas
+  name: booksite
+  url: "/books/sem/_book"
 # - icon: github
 #   icon_pack: fab
 #   name: materials

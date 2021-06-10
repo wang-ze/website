@@ -413,7 +413,7 @@ update_hugo(force = TRUE)</code></pre>
 <p>[build] publish = “public” command = “hugo” [context.production.environment] HUGO_VERSION = “0.83.1” HUGO_ENV = “production” HUGO_ENABLEGITINFO = “true” [context.branch-deploy.environment] HUGO_VERSION = “0.83.1” [context.deploy-preview.environment] HUGO_VERSION = “0.83.1”</p>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Update <code>.gitignore</code> file (<em>NO NEED? DOUBLE CHECK</em> add “public/ Thumbs.db” (no quotation marks. DOUBLE CHECK if this is the case as I did not find the “.Thumbs.db” in the “public” folder)</p></li>
-<li><p>Commit and Push to GitHub Check [here] (<a href="https://happygitwithr.com/troubleshooting.html" class="uri">https://happygitwithr.com/troubleshooting.html</a>) for troubleshooting regarding connecting RStudio, Git, and GitHub <em>Do not have a space in the directory or file name!</em> <em>Do not put the Git repo/RStudio Project inside a folder that is managed by Google Drive, DropBox, Microsoft OneDrive, or a network drive.</em> <em>Instead, put the repo/Project into a plain directory on your computer</em> (Ze’s comment: If no file was created in GitHub repository first, when committing the first time, the branch will be named “master”. If files such as a README was created in GitHub first, the branch is named “main” because GitHub replaced “master” with “main”)</p></li>
+<li><p>Commit and Push to GitHub Check [here] (<a href="https://happygitwithr.com/troubleshooting.html" class="uri">https://happygitwithr.com/troubleshooting.html</a>) for troubleshooting regarding connecting RStudio, Git, and GitHub <em>Do not have a space in the directory or file name!</em> <em>Do not put the Git repo/RStudio Project inside a folder that is managed by Google Drive, DropBox, Microsoft OneDrive, or a network drive.</em> This seems to be fine. <em>Instead, put the repo/Project into a plain directory on your computer</em> (Ze’s comment: If no file was created in GitHub repository first, when committing the first time, the branch will be named “master”. If files such as a README was created in GitHub first, the branch is named “main” because GitHub replaced “master” with “main”)</p></li>
 </ol>
 <p>To stage all via RStudio, ctrl-A to select all, then tick one box.</p>
 <p><em>RStudio can be slow to stage a lot of files. Use the Terminal windown in the lower left pane of RStudio and use <code>git add -A</code> to stage all changes</em></p>
@@ -433,7 +433,7 @@ update_hugo(force = TRUE)</code></pre>
 <pre class="r"><code># remotes::install_github(&quot;rstudio/blogdown&quot;)
 library(blogdown)
 usethis::create_project()
-blogdown::new_site(theme = &quot;wowchemy/starter-academic&quot;)yy
+blogdown::new_site(theme = &quot;wowchemy/starter-academic&quot;)
 blogdown::serve_site()
 blogdown::new_post(title = &quot;Hi Hugo&quot;, 
                      ext = &#39;.Rmarkdown&#39;, 
@@ -452,7 +452,7 @@ blogdown::check_site() # run all check_*() functions</code></pre>
 <div id="find-free-imagesicons" class="section level4">
 <h4>Find free images/icons</h4>
 <p><a href="https://unsplash.com/">Unsplash</a> <a href="https://www.rawpixel.com/category/53/public-domain">rawpixel</a> <a href="https://www.flaticon.com/">falticon</a> [icons in “fab” pack] (<a href="https://fontawesome.com/icons?d=gallery&amp;p=2&amp;s=brands" class="uri">https://fontawesome.com/icons?d=gallery&amp;p=2&amp;s=brands</a>) [icons in “fas” or “far” pack] (<a href="https://fontawesome.com/icons?d=gallery&amp;p=2&amp;s=regular,solid" class="uri">https://fontawesome.com/icons?d=gallery&amp;p=2&amp;s=regular,solid</a>) [icons in “ai” pack] (<a href="https://jpswalsh.github.io/academicons/" class="uri">https://jpswalsh.github.io/academicons/</a>) <a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md">emoji icons “emoji” pack</a></p>
-<p>[difference between &quot;_index.md&quot; and “index.md”] (<a href="https://discourse.gohugo.io/t/what-is-the-difference-between-index-md-and-index-md/10330/11" class="uri">https://discourse.gohugo.io/t/what-is-the-difference-between-index-md-and-index-md/10330/11</a>) **_index.md is for when you have multiple pages under a folder like post or when you wantt o add metadata to a taxonomy term**.</p>
+<p>[difference between &quot;_index.md&quot; and “index.md”] (<a href="https://discourse.gohugo.io/t/what-is-the-difference-between-index-md-and-index-md/10330/11" class="uri">https://discourse.gohugo.io/t/what-is-the-difference-between-index-md-and-index-md/10330/11</a>) **_index.md is for when you have multiple pages under a folder like post or when you want to add metadata to a taxonomy term**.</p>
 </div>
 </div>
 

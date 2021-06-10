@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Structural Equation Modeling Using R and Mplus</title>
+  <meta name="description" content="This is for course ESC_PS 9710 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Structural Equation Modeling Using R and Mplus" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is for course ESC_PS 9710 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="ze-wang/sem" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Structural Equation Modeling Using R and Mplus" />
+  
+  <meta name="twitter:description" content="This is for course ESC_PS 9710 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Ze Wang" />
+
+
+<meta name="date" content="2021-06-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="author.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contents"><i class="fa fa-check"></i>Contents</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#the-r-language"><i class="fa fa-check"></i><b>1.1</b> The R Language</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#install-r"><i class="fa fa-check"></i><b>1.2</b> Install R</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#install-rstudio"><i class="fa fa-check"></i><b>1.3</b> Install RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#use-rstudio"><i class="fa fa-check"></i><b>1.4</b> Use RStudio</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#basic-operations"><i class="fa fa-check"></i><b>1.4.1</b> Basic operations</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#data-types-in-r"><i class="fa fa-check"></i><b>1.4.2</b> Data types in R</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#data-structures-in-r"><i class="fa fa-check"></i><b>1.4.3</b> Data structures in R</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#packages"><i class="fa fa-check"></i><b>1.4.4</b> R Packages</a></li>
+<li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#rstudio-projects"><i class="fa fa-check"></i><b>1.4.5</b> RStudio Projects</a></li>
+<li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#import-and-export-data"><i class="fa fa-check"></i><b>1.4.6</b> Import and Export Data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#mplus"><i class="fa fa-check"></i><b>1.5</b> Mplus</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html"><i class="fa fa-check"></i><b>2</b> Review of Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#calculating-variance-and-covariance"><i class="fa fa-check"></i><b>2.1</b> Calculating Variance and Covariance</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#covariance"><i class="fa fa-check"></i><b>2.1.1</b> Covariance</a></li>
+<li class="chapter" data-level="2.1.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#correlation"><i class="fa fa-check"></i><b>2.1.2</b> Correlation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#using-matrix-algebra"><i class="fa fa-check"></i><b>2.1.3</b> Using Matrix Algebra</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#correlation-and-causation"><i class="fa fa-check"></i><b>2.2</b> Correlation and Causation</a></li>
+<li class="chapter" data-level="2.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#data-issues"><i class="fa fa-check"></i><b>2.3</b> Data Issues</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#what-form-should-the-data-be-in"><i class="fa fa-check"></i><b>2.3.1</b> What form should the data be in?</a></li>
+<li class="chapter" data-level="2.3.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#what-form-should-the-data-be-in-1"><i class="fa fa-check"></i><b>2.3.2</b> What form should the data be in?</a></li>
+<li class="chapter" data-level="2.3.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#missing-data"><i class="fa fa-check"></i><b>2.3.3</b> Missing Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#multicollinearity"><i class="fa fa-check"></i><b>2.3.4</b> Multicollinearity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="path-analysis.html"><a href="path-analysis.html"><i class="fa fa-check"></i><b>3</b> Path Analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="path-analysis.html"><a href="path-analysis.html#syntax---r"><i class="fa fa-check"></i><b>3.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="path-analysis.html"><a href="path-analysis.html#use-a-sample-covariance-matrix-an-input"><i class="fa fa-check"></i><b>3.1.1</b> Use a sample covariance matrix an input</a></li>
+<li class="chapter" data-level="3.1.2" data-path="path-analysis.html"><a href="path-analysis.html#use-sample-correlation-matrix-and-sds-as-input"><i class="fa fa-check"></i><b>3.1.2</b> Use sample correlation matrix and SDs as input</a></li>
+<li class="chapter" data-level="3.1.3" data-path="path-analysis.html"><a href="path-analysis.html#path-analysis-model---wheaton-et-al.-1977-example"><i class="fa fa-check"></i><b>3.1.3</b> Path analysis model - Wheaton et al. (1977) example</a></li>
+<li class="chapter" data-level="3.1.4" data-path="path-analysis.html"><a href="path-analysis.html#use-raw-data-as-input"><i class="fa fa-check"></i><b>3.1.4</b> Use raw data as input</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="path-analysis.html"><a href="path-analysis.html#syntax---mplus"><i class="fa fa-check"></i><b>3.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="path-analysis.html"><a href="path-analysis.html#regression-of-y-on-x1-and-x2---sample-covariance-matrix"><i class="fa fa-check"></i><b>3.2.1</b> Regression of Y on X1 and X2 - sample covariance matrix</a></li>
+<li class="chapter" data-level="3.2.2" data-path="path-analysis.html"><a href="path-analysis.html#regression-of-y-on-x1-and-x2---sample-correlation-matrix-and-sds-as-input"><i class="fa fa-check"></i><b>3.2.2</b> Regression of Y on X1 and X2 - sample correlation matrix and SDs as input</a></li>
+<li class="chapter" data-level="3.2.3" data-path="path-analysis.html"><a href="path-analysis.html#path-analysis-model---wheaton-et-al.-1977-example-1"><i class="fa fa-check"></i><b>3.2.3</b> Path analysis model - Wheaton et al. (1977) example</a></li>
+<li class="chapter" data-level="3.2.4" data-path="path-analysis.html"><a href="path-analysis.html#use-raw-data-as-input-1"><i class="fa fa-check"></i><b>3.2.4</b> Use raw data as input</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html"><i class="fa fa-check"></i><b>4</b> Confirmatory Factor Analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---r---one-factor-cfa"><i class="fa fa-check"></i><b>4.1</b> Syntax - R - One-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#use-a-sample-covariance-matrix-an-input-1"><i class="fa fa-check"></i><b>4.1.1</b> Use a sample covariance matrix an input</a></li>
+<li class="chapter" data-level="4.1.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#calculate-coefficient-omega-omega-_u"><i class="fa fa-check"></i><b>4.1.2</b> Calculate coefficient omega <span class="math inline">\({\omega _u}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---r---two-factor-cfa"><i class="fa fa-check"></i><b>4.2</b> Syntax - R - Two-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#an-exmaple"><i class="fa fa-check"></i><b>4.2.1</b> An exmaple</a></li>
+<li class="chapter" data-level="4.2.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#model-comparison-example---two-factor-cfa-model-across-time"><i class="fa fa-check"></i><b>4.2.2</b> Model comparison example - two-factor CFA model across time</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---mplus---one-factor-cfa"><i class="fa fa-check"></i><b>4.3</b> Syntax - Mplus - One-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#use-a-sample-covariance-matrix-an-input-2"><i class="fa fa-check"></i><b>4.3.1</b> Use a sample covariance matrix an input</a></li>
+<li class="chapter" data-level="4.3.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#calculate-coefficient-omega-omega-_u-1"><i class="fa fa-check"></i><b>4.3.2</b> Calculate coefficient omega <span class="math inline">\({\omega _u}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---mplus---two-factor-cfa"><i class="fa fa-check"></i><b>4.4</b> Syntax - Mplus - TWo-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#an-example"><i class="fa fa-check"></i><b>4.4.1</b> An example</a></li>
+<li class="chapter" data-level="4.4.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#model-comparison-example---two-factor-cfa-model-across-time-1"><i class="fa fa-check"></i><b>4.4.2</b> Model comparison example - two-factor CFA model across time</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#model-respecification"><i class="fa fa-check"></i><b>4.5</b> Model Respecification</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#lagrange-multiplier-test-for-adding-paths"><i class="fa fa-check"></i><b>4.5.1</b> Lagrange Multiplier test for adding paths</a></li>
+<li class="chapter" data-level="4.5.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#wald-test-for-dropping-paths"><i class="fa fa-check"></i><b>4.5.2</b> Wald test for dropping paths</a></li>
+<li class="chapter" data-level="4.5.3" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#higher-order-factor-models"><i class="fa fa-check"></i><b>4.5.3</b> Higher-order factor models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html"><i class="fa fa-check"></i><b>5</b> Full Structural Equation Models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#syntax---r-1"><i class="fa fa-check"></i><b>5.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#one-step-sem"><i class="fa fa-check"></i><b>5.1.1</b> One-step SEM</a></li>
+<li class="chapter" data-level="5.1.2" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#two-step-sem-process"><i class="fa fa-check"></i><b>5.1.2</b> Two-step SEM process</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#syntax---mplus-1"><i class="fa fa-check"></i><b>5.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#one-step-sem-1"><i class="fa fa-check"></i><b>5.2.1</b> One-step SEM</a></li>
+<li class="chapter" data-level="5.2.2" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#two-step-sem-process-1"><i class="fa fa-check"></i><b>5.2.2</b> Two-step SEM process</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html"><i class="fa fa-check"></i><b>6</b> Multigroup Confirmatory Factor Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#syntax---r-2"><i class="fa fa-check"></i><b>6.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-single-groups"><i class="fa fa-check"></i><b>6.1.1</b> Analysis with data from single groups</a></li>
+<li class="chapter" data-level="6.1.2" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-both-groups"><i class="fa fa-check"></i><b>6.1.2</b> Analysis with data from both groups</a></li>
+<li class="chapter" data-level="6.1.3" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#cfa-with-ordered-categorical-variables-an-example-from-wang-su-2013"><i class="fa fa-check"></i><b>6.1.3</b> CFA with Ordered Categorical Variables – An example from Wang &amp; Su (2013)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#syntax---mplus-2"><i class="fa fa-check"></i><b>6.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-single-groups-1"><i class="fa fa-check"></i><b>6.2.1</b> Analysis with data from single groups</a></li>
+<li class="chapter" data-level="6.2.2" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-both-groups-1"><i class="fa fa-check"></i><b>6.2.2</b> Analysis with data from both groups</a></li>
+<li class="chapter" data-level="6.2.3" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#cfa-with-ordered-categorical-variables-an-example-from-wang-su-2013-1"><i class="fa fa-check"></i><b>6.2.3</b> CFA with Ordered Categorical Variables – An example from Wang &amp; Su (2013)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html"><i class="fa fa-check"></i><b>7</b> Models with Mean Structures</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---r---mimic-model"><i class="fa fa-check"></i><b>7.1</b> Syntax - R - MIMIC model</a></li>
+<li class="chapter" data-level="7.2" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---r---structured-means-modeling"><i class="fa fa-check"></i><b>7.2</b> Syntax - R - Structured Means Modeling</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#configural-invariance-model"><i class="fa fa-check"></i><b>7.2.1</b> Configural invariance model</a></li>
+<li class="chapter" data-level="7.2.2" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#metric-invariancefactor-loading-invariance"><i class="fa fa-check"></i><b>7.2.2</b> Metric invariance/factor loading invariance</a></li>
+<li class="chapter" data-level="7.2.3" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#scalar-invarianceintercept-invariance-model"><i class="fa fa-check"></i><b>7.2.3</b> Scalar invariance/intercept invariance model</a></li>
+<li class="chapter" data-level="7.2.4" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#partial-invariance-model"><i class="fa fa-check"></i><b>7.2.4</b> Partial invariance model</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---mplus---mimic-model"><i class="fa fa-check"></i><b>7.3</b> Syntax - Mplus - MIMIC model</a></li>
+<li class="chapter" data-level="7.4" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---mplus---structured-means-modeling"><i class="fa fa-check"></i><b>7.4</b> Syntax - Mplus - Structured Means Modeling</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#configural-invariance-model-1"><i class="fa fa-check"></i><b>7.4.1</b> Configural invariance model</a></li>
+<li class="chapter" data-level="7.4.2" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#metric-invariancefactor-loading-invariance-1"><i class="fa fa-check"></i><b>7.4.2</b> Metric invariance/factor loading invariance</a></li>
+<li class="chapter" data-level="7.4.3" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#scalar-invarianceintercept-invariance-model-1"><i class="fa fa-check"></i><b>7.4.3</b> Scalar invariance/intercept invariance model</a></li>
+<li class="chapter" data-level="7.4.4" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#partial-invariance-model-1"><i class="fa fa-check"></i><b>7.4.4</b> Partial invariance model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="latent-growth-models.html"><a href="latent-growth-models.html"><i class="fa fa-check"></i><b>8</b> Latent Growth Models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="latent-growth-models.html"><a href="latent-growth-models.html#syntax---r-3"><i class="fa fa-check"></i><b>8.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-without-means"><i class="fa fa-check"></i><b>8.1.1</b> Linear latent growth models without means</a></li>
+<li class="chapter" data-level="8.1.2" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-means"><i class="fa fa-check"></i><b>8.1.2</b> Linear latent growth models with means</a></li>
+<li class="chapter" data-level="8.1.3" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-predictors"><i class="fa fa-check"></i><b>8.1.3</b> Linear latent growth models with predictors</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="latent-growth-models.html"><a href="latent-growth-models.html#syntax---mplus-3"><i class="fa fa-check"></i><b>8.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-without-means-1"><i class="fa fa-check"></i><b>8.2.1</b> Linear latent growth models without means</a></li>
+<li class="chapter" data-level="8.2.2" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-means-1"><i class="fa fa-check"></i><b>8.2.2</b> Linear latent growth models with means</a></li>
+<li class="chapter" data-level="8.2.3" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-predictors-1"><i class="fa fa-check"></i><b>8.2.3</b> Linear latent growth models with predictors</a></li>
+<li class="chapter" data-level="8.2.4" data-path="latent-growth-models.html"><a href="latent-growth-models.html#from-wang-su-2013"><i class="fa fa-check"></i><b>8.2.4</b> From Wang &amp; Su (2013)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="multilevel-models.html"><a href="multilevel-models.html"><i class="fa fa-check"></i><b>9</b> Multilevel Models</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="multilevel-models.html"><a href="multilevel-models.html#syntax---r-4"><i class="fa fa-check"></i><b>9.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="multilevel-models.html"><a href="multilevel-models.html#a-complex-multilevel-model-example"><i class="fa fa-check"></i><b>9.1.1</b> A complex multilevel model example</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="multilevel-models.html"><a href="multilevel-models.html#syntax---mplus-4"><i class="fa fa-check"></i><b>9.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="multilevel-models.html"><a href="multilevel-models.html#a-complex-multilevel-model-example-1"><i class="fa fa-check"></i><b>9.2.1</b> A complex multilevel model example</a></li>
+<li class="chapter" data-level="9.2.2" data-path="multilevel-models.html"><a href="multilevel-models.html#an-example-of-multilevel-modeling-model-2-in-wang-bergin-2017"><i class="fa fa-check"></i><b>9.2.2</b> An example of multilevel modeling – model 2 in Wang &amp; Bergin (2017)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Structural Equation Modeling Using R and Mplus</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Structural Equation Modeling Using R and Mplus</h1>
+<p class="author"><em>Ze Wang</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-06-10</em></p>
+</div>
+<div id="preface" class="section level1 unnumbered" number="">
+<h1>Preface</h1>
+<p>This short book is a working document and prepared as supplementary material for the Structural Equation Modeling (SEM) course I teach at the <a href="https://www.missouri.edu">University of Missouri</a> (MU). I have taught the SEM course since Fall 2008. Over the years, I have used different software packages (e.g., Amos, Mplus, and R) to illustrate and apply SEM techniques. This supplementary material focuses on R and Mplus syntax.</p>
+<p>To cite this book, use the following:</p>
+<p>Wang, Z. (2021). Structural Equation Modeling Using R and Mplus. Retrievable from <a href="https://zewang.netlify.app/books/sem/_book" class="uri">https://zewang.netlify.app/books/sem/_book</a></p>
+<div id="contents" class="section level2 unnumbered" number="">
+<h2>Contents</h2>
+<p>The contents of the book roughly follow the order of lecture notes used in class.</p>
+<ul>
+<li>Chapter 1. Introduction to R and RStudio</li>
+<li>Chapter 2. Review of Basic Statistics</li>
+<li>Chapter 3. Path Analysis</li>
+<li>Chapter 4. Confirmatory Factor Analysis</li>
+<li>Chapter 5. Full Structural Equation Models</li>
+<li>Chapter 6. Multiple-Group Confirmatory Factor Analysis</li>
+<li>Chapter 7. Models with Mean Structures</li>
+<li>Chapter 8. Latent Growth Models</li>
+<li>Chapter 9. Multilevel Level Models</li>
+</ul>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="author.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["structural-equation-modeling.pdf", "structural-equation-modeling.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
