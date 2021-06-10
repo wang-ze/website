@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ze Wang</title>
+    <link>https://zewang.netlify.app/post/</link>
+      <atom:link href="https://zewang.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
+    <description>Ze Wang</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Ze Wang 2021  </copyright><lastBuildDate>Wed, 19 May 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://zewang.netlify.app/media/icon_hu33f02c10d55b12e4a3eade2cdd89b676_20759_512x512_fill_lanczos_center_2.png</url>
+      <title>Ze Wang</title>
+      <link>https://zewang.netlify.app/post/</link>
+    </image>
+    
+    <item>
+      <title>Finally Started Building My Website</title>
+      <link>https://zewang.netlify.app/post/finally-started-building-my-website/</link>
+      <pubDate>Wed, 19 May 2021 00:00:00 +0000</pubDate>
+      <guid>https://zewang.netlify.app/post/finally-started-building-my-website/</guid>
+      <description>&lt;p&gt;I finally started building my website using GitHub, RStudio, and Netlify! Before today, I have written a few html pages and hosted them at a server at the University of Missouri.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

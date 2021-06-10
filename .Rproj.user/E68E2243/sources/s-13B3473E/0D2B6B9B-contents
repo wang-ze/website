@@ -1,0 +1,139 @@
+---
+title: "Steps"
+author: "Ze Wang"
+date: "5/17/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+
+## Use Blogdown, GitHub, and Netlify (Older)
+
+[summer of Blogdown by Alison Hill](https://summer-of-blogdown.netlify.app/)
+
+### Use the [New Project, GitHub First approach](https://happygitwithr.com/new-github-first.html)
+
+1. Create a reposity on GitHub
+2. Make a new RStudio project via git clone
+3. Make changes locally, save, and commit
+4. Push local changes to GitHub (remember to pull changes from GitHub before attempting to push)
+5. Deploy on Netlify. Create a new sit from Git on Netlify. *Using GitHub account when signing up for Netlify*.
+
+
+### After cloning GitHub repository as an RStudio prject
+
+1. Install and load `blogdown` package
+2. Create a new site
+
+```{r, eval = FALSE}
+library(blogdown)
+blogdown::new_site(# theme = "wowchemy/starter-academic",  #<< "theme" is a GitHub repository
+	 theme = "gcushen/hugo-academic",
+         sample = TRUE, 
+         theme_example = TRUE, 
+         empty_dirs = TRUE)
+       #  to_yaml = TRUE) # Ze commented out this line
+blogdown::build_site() # build the website
+blogdown::serve_site() # serve the website locally
+```
+3. Check Hugo version (may need to restart R after updating)
+```{r, eval= FALSE}
+# is your version less than the minimum version? Version 0.55
+hugo_version() 
+# if yes, then do this
+update_hugo(force = TRUE)
+```
+
+4. Add a `netlify.toml` file (*this file is already created with the `new_site` function)
+```{r, eval = FALSE}
+file.create("netlify.toml")
+```
+
+5. Open, and put the following in the `netlify.toml` file (*no need*)
+
+[build]
+  publish = "public"
+  command = "hugo"
+[context.production.environment]
+  HUGO_VERSION = "0.83.1"
+  HUGO_ENV = "production"
+  HUGO_ENABLEGITINFO = "true"
+[context.branch-deploy.environment]
+  HUGO_VERSION = "0.83.1"
+[context.deploy-preview.environment]
+  HUGO_VERSION = "0.83.1"
+
+
+5. Update `.gitignore` file (*NO NEED? DOUBLE CHECK*
+add 
+"public/
+Thumbs.db"
+(no quotation marks. DOUBLE CHECK if this is the case as I did not find the ".Thumbs.db" in the "public" folder)
+
+6. Commit and Push to GitHub
+Check [here] (https://happygitwithr.com/troubleshooting.html) for troubleshooting regarding connecting RStudio, Git, and GitHub
+*Do not have a space in the directory or file name!*
+*Do not put the Git repo/RStudio Project inside a folder that is managed by Google Drive, DropBox, Microsoft OneDrive, or a network drive.* This seems to be fine.
+*Instead, put the repo/Project into a plain directory on your computer*
+(Ze's comment: If no file was created in GitHub repository first, when committing the first time, the branch will be named "master". 
+If files such as a README was created in GitHub first, the branch is named "main" because GitHub replaced "master" with "main")
+
+To stage all via RStudio, ctrl-A to select all, then tick one box.
+
+*RStudio can be slow to stage a lot of files. Use the Terminal windown in the lower left pane of RStudio and use `git add -A` to stage all changes*
+
+*Remember to serve site before committing to GitHub* because Hugo does not understand R or R Markdown.
+
+7. Link to GitHub in Netlify
+In Netlify, click on "New site from Git" --> Continuous Deployment
+
+### Edit Content
+`content` folder
+see [an example](https://github.com/apreshill/kellykapowski/tree/master/content)
+
+
+
+## Newer (May 2021)
+**Check [Alison Hill's post](https://alison.rbind.io/post/new-year-new-blogdown/)**
+
+```{r, eval = FALSE}
+# remotes::install_github("rstudio/blogdown")
+library(blogdown)
+usethis::create_project()
+blogdown::new_site(theme = "wowchemy/starter-academic")
+blogdown::serve_site()
+blogdown::new_post(title = "Hi Hugo", 
+                     ext = '.Rmarkdown', 
+                     subdir = "post")
+usethis::use_git()
+usethis::use_github() # requires a GitHub PAT
+```
+
+```{r, eval = FALSE}
+blogdown::check_gitignore()  # Do Not commit the public directory to GitHub for publishing. add the public folder to .gitignore
+blogdown::check_content()
+blogdown::check_netlify()
+rstudioapi::navigateToFile("config.yaml", line = 3) # then change the baseurl
+blogdown::check_hugo()
+blogdown::check_config()
+rstudioapi::navigateToFile("config/_default/menus.toml")
+rstudioapi::navigateToFile("content/authors/admin/_index.md")
+blogdown::check_site() # run all check_*() functions
+```
+
+#### Find free images/icons
+[Unsplash](https://unsplash.com/)
+[rawpixel](https://www.rawpixel.com/category/53/public-domain)
+[falticon](https://www.flaticon.com/)
+[icons in "fab" pack] (https://fontawesome.com/icons?d=gallery&p=2&s=brands)
+[icons in "fas" or "far" pack] (https://fontawesome.com/icons?d=gallery&p=2&s=regular,solid)
+[icons in "ai" pack] (https://jpswalsh.github.io/academicons/)
+[emoji icons "emoji" pack](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
+
+
+[difference between "_index.md" and "index.md"] (https://discourse.gohugo.io/t/what-is-the-difference-between-index-md-and-index-md/10330/11)
+**_index.md is for when you have multiple pages under a folder like post or when you want to add metadata to a taxonomy term**.
+

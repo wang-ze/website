@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introduction to R and RStudio | Structural Equation Modeling Using R and Mplus</title>
+  <meta name="description" content="This is for course ESC_PS 9710 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Introduction to R and RStudio | Structural Equation Modeling Using R and Mplus" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is for course ESC_PS 9710 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="ze-wang/sem" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Introduction to R and RStudio | Structural Equation Modeling Using R and Mplus" />
+  
+  <meta name="twitter:description" content="This is for course ESC_PS 9710 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Ze Wang" />
+
+
+<meta name="date" content="2021-06-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="author.html"/>
+<link rel="next" href="review-of-basic-statistics.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contents"><i class="fa fa-check"></i>Contents</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#the-r-language"><i class="fa fa-check"></i><b>1.1</b> The R Language</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#install-r"><i class="fa fa-check"></i><b>1.2</b> Install R</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#install-rstudio"><i class="fa fa-check"></i><b>1.3</b> Install RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#use-rstudio"><i class="fa fa-check"></i><b>1.4</b> Use RStudio</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#basic-operations"><i class="fa fa-check"></i><b>1.4.1</b> Basic operations</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#data-types-in-r"><i class="fa fa-check"></i><b>1.4.2</b> Data types in R</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#data-structures-in-r"><i class="fa fa-check"></i><b>1.4.3</b> Data structures in R</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#packages"><i class="fa fa-check"></i><b>1.4.4</b> R Packages</a></li>
+<li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#rstudio-projects"><i class="fa fa-check"></i><b>1.4.5</b> RStudio Projects</a></li>
+<li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#import-and-export-data"><i class="fa fa-check"></i><b>1.4.6</b> Import and Export Data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#mplus"><i class="fa fa-check"></i><b>1.5</b> Mplus</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html"><i class="fa fa-check"></i><b>2</b> Review of Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#calculating-variance-and-covariance"><i class="fa fa-check"></i><b>2.1</b> Calculating Variance and Covariance</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#covariance"><i class="fa fa-check"></i><b>2.1.1</b> Covariance</a></li>
+<li class="chapter" data-level="2.1.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#correlation"><i class="fa fa-check"></i><b>2.1.2</b> Correlation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#using-matrix-algebra"><i class="fa fa-check"></i><b>2.1.3</b> Using Matrix Algebra</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#correlation-and-causation"><i class="fa fa-check"></i><b>2.2</b> Correlation and Causation</a></li>
+<li class="chapter" data-level="2.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#data-issues"><i class="fa fa-check"></i><b>2.3</b> Data Issues</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#what-form-should-the-data-be-in"><i class="fa fa-check"></i><b>2.3.1</b> What form should the data be in?</a></li>
+<li class="chapter" data-level="2.3.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#what-form-should-the-data-be-in-1"><i class="fa fa-check"></i><b>2.3.2</b> What form should the data be in?</a></li>
+<li class="chapter" data-level="2.3.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#missing-data"><i class="fa fa-check"></i><b>2.3.3</b> Missing Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#multicollinearity"><i class="fa fa-check"></i><b>2.3.4</b> Multicollinearity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="path-analysis.html"><a href="path-analysis.html"><i class="fa fa-check"></i><b>3</b> Path Analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="path-analysis.html"><a href="path-analysis.html#syntax---r"><i class="fa fa-check"></i><b>3.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="path-analysis.html"><a href="path-analysis.html#use-a-sample-covariance-matrix-an-input"><i class="fa fa-check"></i><b>3.1.1</b> Use a sample covariance matrix an input</a></li>
+<li class="chapter" data-level="3.1.2" data-path="path-analysis.html"><a href="path-analysis.html#use-sample-correlation-matrix-and-sds-as-input"><i class="fa fa-check"></i><b>3.1.2</b> Use sample correlation matrix and SDs as input</a></li>
+<li class="chapter" data-level="3.1.3" data-path="path-analysis.html"><a href="path-analysis.html#path-analysis-model---wheaton-et-al.-1977-example"><i class="fa fa-check"></i><b>3.1.3</b> Path analysis model - Wheaton et al. (1977) example</a></li>
+<li class="chapter" data-level="3.1.4" data-path="path-analysis.html"><a href="path-analysis.html#use-raw-data-as-input"><i class="fa fa-check"></i><b>3.1.4</b> Use raw data as input</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="path-analysis.html"><a href="path-analysis.html#syntax---mplus"><i class="fa fa-check"></i><b>3.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="path-analysis.html"><a href="path-analysis.html#regression-of-y-on-x1-and-x2---sample-covariance-matrix"><i class="fa fa-check"></i><b>3.2.1</b> Regression of Y on X1 and X2 - sample covariance matrix</a></li>
+<li class="chapter" data-level="3.2.2" data-path="path-analysis.html"><a href="path-analysis.html#regression-of-y-on-x1-and-x2---sample-correlation-matrix-and-sds-as-input"><i class="fa fa-check"></i><b>3.2.2</b> Regression of Y on X1 and X2 - sample correlation matrix and SDs as input</a></li>
+<li class="chapter" data-level="3.2.3" data-path="path-analysis.html"><a href="path-analysis.html#path-analysis-model---wheaton-et-al.-1977-example-1"><i class="fa fa-check"></i><b>3.2.3</b> Path analysis model - Wheaton et al. (1977) example</a></li>
+<li class="chapter" data-level="3.2.4" data-path="path-analysis.html"><a href="path-analysis.html#use-raw-data-as-input-1"><i class="fa fa-check"></i><b>3.2.4</b> Use raw data as input</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html"><i class="fa fa-check"></i><b>4</b> Confirmatory Factor Analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---r---one-factor-cfa"><i class="fa fa-check"></i><b>4.1</b> Syntax - R - One-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#use-a-sample-covariance-matrix-an-input-1"><i class="fa fa-check"></i><b>4.1.1</b> Use a sample covariance matrix an input</a></li>
+<li class="chapter" data-level="4.1.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#calculate-coefficient-omega-omega-_u"><i class="fa fa-check"></i><b>4.1.2</b> Calculate coefficient omega <span class="math inline">\({\omega _u}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---r---two-factor-cfa"><i class="fa fa-check"></i><b>4.2</b> Syntax - R - Two-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#an-exmaple"><i class="fa fa-check"></i><b>4.2.1</b> An exmaple</a></li>
+<li class="chapter" data-level="4.2.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#model-comparison-example---two-factor-cfa-model-across-time"><i class="fa fa-check"></i><b>4.2.2</b> Model comparison example - two-factor CFA model across time</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---mplus---one-factor-cfa"><i class="fa fa-check"></i><b>4.3</b> Syntax - Mplus - One-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#use-a-sample-covariance-matrix-an-input-2"><i class="fa fa-check"></i><b>4.3.1</b> Use a sample covariance matrix an input</a></li>
+<li class="chapter" data-level="4.3.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#calculate-coefficient-omega-omega-_u-1"><i class="fa fa-check"></i><b>4.3.2</b> Calculate coefficient omega <span class="math inline">\({\omega _u}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---mplus---two-factor-cfa"><i class="fa fa-check"></i><b>4.4</b> Syntax - Mplus - TWo-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#an-example"><i class="fa fa-check"></i><b>4.4.1</b> An example</a></li>
+<li class="chapter" data-level="4.4.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#model-comparison-example---two-factor-cfa-model-across-time-1"><i class="fa fa-check"></i><b>4.4.2</b> Model comparison example - two-factor CFA model across time</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#model-respecification"><i class="fa fa-check"></i><b>4.5</b> Model Respecification</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#lagrange-multiplier-test-for-adding-paths"><i class="fa fa-check"></i><b>4.5.1</b> Lagrange Multiplier test for adding paths</a></li>
+<li class="chapter" data-level="4.5.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#wald-test-for-dropping-paths"><i class="fa fa-check"></i><b>4.5.2</b> Wald test for dropping paths</a></li>
+<li class="chapter" data-level="4.5.3" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#higher-order-factor-models"><i class="fa fa-check"></i><b>4.5.3</b> Higher-order factor models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html"><i class="fa fa-check"></i><b>5</b> Full Structural Equation Models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#syntax---r-1"><i class="fa fa-check"></i><b>5.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#one-step-sem"><i class="fa fa-check"></i><b>5.1.1</b> One-step SEM</a></li>
+<li class="chapter" data-level="5.1.2" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#two-step-sem-process"><i class="fa fa-check"></i><b>5.1.2</b> Two-step SEM process</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#syntax---mplus-1"><i class="fa fa-check"></i><b>5.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#one-step-sem-1"><i class="fa fa-check"></i><b>5.2.1</b> One-step SEM</a></li>
+<li class="chapter" data-level="5.2.2" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#two-step-sem-process-1"><i class="fa fa-check"></i><b>5.2.2</b> Two-step SEM process</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html"><i class="fa fa-check"></i><b>6</b> Multigroup Confirmatory Factor Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#syntax---r-2"><i class="fa fa-check"></i><b>6.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-single-groups"><i class="fa fa-check"></i><b>6.1.1</b> Analysis with data from single groups</a></li>
+<li class="chapter" data-level="6.1.2" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-both-groups"><i class="fa fa-check"></i><b>6.1.2</b> Analysis with data from both groups</a></li>
+<li class="chapter" data-level="6.1.3" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#cfa-with-ordered-categorical-variables-an-example-from-wang-su-2013"><i class="fa fa-check"></i><b>6.1.3</b> CFA with Ordered Categorical Variables – An example from Wang &amp; Su (2013)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#syntax---mplus-2"><i class="fa fa-check"></i><b>6.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-single-groups-1"><i class="fa fa-check"></i><b>6.2.1</b> Analysis with data from single groups</a></li>
+<li class="chapter" data-level="6.2.2" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-both-groups-1"><i class="fa fa-check"></i><b>6.2.2</b> Analysis with data from both groups</a></li>
+<li class="chapter" data-level="6.2.3" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#cfa-with-ordered-categorical-variables-an-example-from-wang-su-2013-1"><i class="fa fa-check"></i><b>6.2.3</b> CFA with Ordered Categorical Variables – An example from Wang &amp; Su (2013)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html"><i class="fa fa-check"></i><b>7</b> Models with Mean Structures</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---r---mimic-model"><i class="fa fa-check"></i><b>7.1</b> Syntax - R - MIMIC model</a></li>
+<li class="chapter" data-level="7.2" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---r---structured-means-modeling"><i class="fa fa-check"></i><b>7.2</b> Syntax - R - Structured Means Modeling</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#configural-invariance-model"><i class="fa fa-check"></i><b>7.2.1</b> Configural invariance model</a></li>
+<li class="chapter" data-level="7.2.2" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#metric-invariancefactor-loading-invariance"><i class="fa fa-check"></i><b>7.2.2</b> Metric invariance/factor loading invariance</a></li>
+<li class="chapter" data-level="7.2.3" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#scalar-invarianceintercept-invariance-model"><i class="fa fa-check"></i><b>7.2.3</b> Scalar invariance/intercept invariance model</a></li>
+<li class="chapter" data-level="7.2.4" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#partial-invariance-model"><i class="fa fa-check"></i><b>7.2.4</b> Partial invariance model</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---mplus---mimic-model"><i class="fa fa-check"></i><b>7.3</b> Syntax - Mplus - MIMIC model</a></li>
+<li class="chapter" data-level="7.4" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---mplus---structured-means-modeling"><i class="fa fa-check"></i><b>7.4</b> Syntax - Mplus - Structured Means Modeling</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#configural-invariance-model-1"><i class="fa fa-check"></i><b>7.4.1</b> Configural invariance model</a></li>
+<li class="chapter" data-level="7.4.2" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#metric-invariancefactor-loading-invariance-1"><i class="fa fa-check"></i><b>7.4.2</b> Metric invariance/factor loading invariance</a></li>
+<li class="chapter" data-level="7.4.3" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#scalar-invarianceintercept-invariance-model-1"><i class="fa fa-check"></i><b>7.4.3</b> Scalar invariance/intercept invariance model</a></li>
+<li class="chapter" data-level="7.4.4" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#partial-invariance-model-1"><i class="fa fa-check"></i><b>7.4.4</b> Partial invariance model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="latent-growth-models.html"><a href="latent-growth-models.html"><i class="fa fa-check"></i><b>8</b> Latent Growth Models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="latent-growth-models.html"><a href="latent-growth-models.html#syntax---r-3"><i class="fa fa-check"></i><b>8.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-without-means"><i class="fa fa-check"></i><b>8.1.1</b> Linear latent growth models without means</a></li>
+<li class="chapter" data-level="8.1.2" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-means"><i class="fa fa-check"></i><b>8.1.2</b> Linear latent growth models with means</a></li>
+<li class="chapter" data-level="8.1.3" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-predictors"><i class="fa fa-check"></i><b>8.1.3</b> Linear latent growth models with predictors</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="latent-growth-models.html"><a href="latent-growth-models.html#syntax---mplus-3"><i class="fa fa-check"></i><b>8.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-without-means-1"><i class="fa fa-check"></i><b>8.2.1</b> Linear latent growth models without means</a></li>
+<li class="chapter" data-level="8.2.2" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-means-1"><i class="fa fa-check"></i><b>8.2.2</b> Linear latent growth models with means</a></li>
+<li class="chapter" data-level="8.2.3" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-predictors-1"><i class="fa fa-check"></i><b>8.2.3</b> Linear latent growth models with predictors</a></li>
+<li class="chapter" data-level="8.2.4" data-path="latent-growth-models.html"><a href="latent-growth-models.html#from-wang-su-2013"><i class="fa fa-check"></i><b>8.2.4</b> From Wang &amp; Su (2013)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="multilevel-models.html"><a href="multilevel-models.html"><i class="fa fa-check"></i><b>9</b> Multilevel Models</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="multilevel-models.html"><a href="multilevel-models.html#syntax---r-4"><i class="fa fa-check"></i><b>9.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="multilevel-models.html"><a href="multilevel-models.html#a-complex-multilevel-model-example"><i class="fa fa-check"></i><b>9.1.1</b> A complex multilevel model example</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="multilevel-models.html"><a href="multilevel-models.html#syntax---mplus-4"><i class="fa fa-check"></i><b>9.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="multilevel-models.html"><a href="multilevel-models.html#a-complex-multilevel-model-example-1"><i class="fa fa-check"></i><b>9.2.1</b> A complex multilevel model example</a></li>
+<li class="chapter" data-level="9.2.2" data-path="multilevel-models.html"><a href="multilevel-models.html#an-example-of-multilevel-modeling-model-2-in-wang-bergin-2017"><i class="fa fa-check"></i><b>9.2.2</b> An example of multilevel modeling – model 2 in Wang &amp; Bergin (2017)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Structural Equation Modeling Using R and Mplus</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction to R and RStudio</h1>
+<div id="the-r-language" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> The R Language</h2>
+<p>R is a free, open-source programming language developed for statistical computing and graphics. It is open source meaning that everyone can access and contribute to its development. R was born out of S, which was intended to be a programming language focused on data analysis, and has evolved into a system used not only by computer programmers and data analysts but also by physical scientists, psychologists, journalists, etc. The first publicly available version of R was released in 2000. The latest version of R, released on 2021-05-18, is R-4.1.0.</p>
+<p>For scholarly articles published in 2018 found on Google Scholar, R is the second most frequently used data science software following SPSS. <img src="https://i1.wp.com/r4stats.com/wp-content/uploads/2019/03/Fig_2a_ScholarlyImpact2018-1.png" /></p>
+</div>
+<div id="install-r" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Install R</h2>
+<p>R is available for Windows, Mac, and Linux operating systems. To install R, go to the <a href="https://cran.r-project.org">Comprehensive R Archive Network (CRAN)</a>, download the version compatible with your operating system. For Windows or MacOS users, you probably want to download the precompiled binary distributions (i.e., ready-to-run applications) linked at the top of the CRAN webpage.</p>
+<p>The version downloaded includes the base R package. Often times, it is necessary to install other R packages to perform analysis. For example, for this course, we will use the <a href="https://lavaan.ugent.be"><code>lavaan</code> package</a>. I will show how to install that package in <a href="intro.html#packages">1.4.4</a></p>
+</div>
+<div id="install-rstudio" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Install RStudio</h2>
+<p>RStudio is an integrated development environment (IDE) for R. It uses R to develop codes and analysis that can be executed and has greater usability than R itself. Essentially RStudio is an interface between the user and R (there are other interfaces for R, e.g., <a href="https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/">R Commander</a>). It depends on and adds onto R, which means that <em>the R program has to be installed before RStudio</em> for RStudio to implement R. Any R package or function can be used in RStudio.</p>
+<p>To install RStudio, go to the <a href="https://www.rstudio.com/products/rstudio/download/">RStudio download</a> page, and download and install the free RStudio Desktop.</p>
+<p>Open R Studio and you will see a window with four panes.</p>
+<ul>
+<li>R script</li>
+<li>R console</li>
+<li>Environment/History/Connections/Tutorial</li>
+<li>Files/Plots/Packages…</li>
+</ul>
+<p>You can change the appearances and layout of the panes. Go to <em>Tools -&gt; Global Options -&gt; Appearance</em> to change the appearance.</p>
+</div>
+<div id="use-rstudio" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Use RStudio</h2>
+<p>There are two basic ways for RStudio to execute your R syntax: (1) type your code directly in the R console and (2) write R script. If you type your code directly in the R console, the code will no longer be accessible after you close your R session. Writing R script is recommended if you would like to save the code (with “.R” extension).</p>
+<div id="basic-operations" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Basic operations</h3>
+<div id="entering-data" class="section level4" number="1.4.1.1">
+<h4><span class="header-section-number">1.4.1.1</span> entering data</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1"></a><span class="dv">2</span><span class="op">+</span><span class="dv">2</span> <span class="co">#press cmd/ctrol enter</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1"></a><span class="dv">1</span><span class="op">:</span><span class="dv">20</span> <span class="co">#sequence</span></span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1"></a><span class="kw">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello World!&quot;</code></pre>
+</div>
+<div id="assign-value" class="section level4" number="1.4.1.2">
+<h4><span class="header-section-number">1.4.1.2</span> assign value</h4>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1"></a>a &lt;-<span class="st"> </span><span class="dv">5</span> <span class="co">#use &lt;-, not =</span></span>
+<span id="cb7-2"><a href="intro.html#cb7-2"></a><span class="dv">3</span> -&gt;<span class="st"> </span>b <span class="co">#can go other way, but silly</span></span>
+<span id="cb7-3"><a href="intro.html#cb7-3"></a>c &lt;-<span class="st"> </span>d &lt;-<span class="st"> </span>e &lt;-<span class="st"> </span><span class="dv">2</span> <span class="co">#multiple assignments</span></span></code></pre></div>
+</div>
+<div id="multiple-values" class="section level4" number="1.4.1.3">
+<h4><span class="header-section-number">1.4.1.3</span> multiple values</h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span> (<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>) <span class="co">#c means combine or concatenate</span></span>
+<span id="cb8-2"><a href="intro.html#cb8-2"></a>x</span></code></pre></div>
+<pre><code>## [1] 5 3 6 9</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1"></a>(y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">10</span>)) <span class="co">#surround command with parentheses to also print</span></span></code></pre></div>
+<pre><code>## [1]  1  3  0 10</code></pre>
+</div>
+<div id="sequences" class="section level4" number="1.4.1.4">
+<h4><span class="header-section-number">1.4.1.4</span> sequences</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1"></a><span class="dv">0</span><span class="op">:</span><span class="dv">5</span> <span class="co">#0 through 5</span></span></code></pre></div>
+<pre><code>## [1] 0 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="intro.html#cb14-1"></a><span class="dv">5</span><span class="op">:</span><span class="dv">0</span> <span class="co">#5 through 0</span></span></code></pre></div>
+<pre><code>## [1] 5 4 3 2 1 0</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro.html#cb16-1"></a><span class="kw">seq</span>(<span class="dv">5</span>) <span class="co">#1 to 5</span></span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1"></a><span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="dt">by =</span> <span class="dv">-2</span>) <span class="co">#count down by 2 </span></span></code></pre></div>
+<pre><code>## [1] 5 3 1</code></pre>
+</div>
+<div id="math" class="section level4" number="1.4.1.5">
+<h4><span class="header-section-number">1.4.1.5</span> math</h4>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1"></a>x <span class="op">+</span><span class="st"> </span>y       <span class="co">#adds corresponding elements in x and y</span></span></code></pre></div>
+<pre><code>## [1]  6  6  6 19</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1"></a>x <span class="op">*</span><span class="st"> </span><span class="dv">2</span>       <span class="co">#multiplies each element in x by 2</span></span></code></pre></div>
+<pre><code>## [1] 10  6 12 18</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1"></a><span class="dv">2</span><span class="op">^</span><span class="dv">4</span>         <span class="co">#powers/exponents</span></span></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1"></a><span class="kw">sqrt</span>(<span class="dv">36</span>)    <span class="co">#squareroot</span></span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1"></a><span class="kw">log</span>(<span class="dv">100</span>)    <span class="co">#natural log: base e (2.71828...)</span></span></code></pre></div>
+<pre><code>## [1] 4.60517</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1"></a><span class="kw">log10</span>(<span class="dv">100</span>)  <span class="co">#base 10 log</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+</div>
+</div>
+<div id="data-types-in-r" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Data types in R</h3>
+<div id="numeric" class="section level4" number="1.4.2.1">
+<h4><span class="header-section-number">1.4.2.1</span> numeric</h4>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1"></a>(n1 &lt;-<span class="st"> </span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1"></a><span class="kw">typeof</span>(n1)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intro.html#cb36-1"></a>(n2 &lt;-<span class="st"> </span><span class="fl">2.5</span>)</span></code></pre></div>
+<pre><code>## [1] 2.5</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="intro.html#cb38-1"></a><span class="kw">typeof</span>(n2)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+</div>
+<div id="character" class="section level4" number="1.4.2.2">
+<h4><span class="header-section-number">1.4.2.2</span> character</h4>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="intro.html#cb40-1"></a>(c1 &lt;-<span class="st"> &quot;c&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="intro.html#cb42-1"></a><span class="kw">typeof</span>(c1)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="intro.html#cb44-1"></a>(c2 &lt;-<span class="st"> &quot;a string of text&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;a string of text&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="intro.html#cb46-1"></a><span class="kw">typeof</span>(c2)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="logical" class="section level4" number="1.4.2.3">
+<h4><span class="header-section-number">1.4.2.3</span> logical</h4>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="intro.html#cb48-1"></a>(l1 &lt;-<span class="st"> </span><span class="ot">TRUE</span>) <span class="co">#must use uppercase</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="intro.html#cb50-1"></a><span class="kw">typeof</span>(l1)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="intro.html#cb52-1"></a>(l2 &lt;-<span class="st"> </span>F) <span class="co">#must use uppercase</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="intro.html#cb54-1"></a><span class="kw">typeof</span>(l2)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+</div>
+</div>
+<div id="data-structures-in-r" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Data structures in R</h3>
+<div id="vector" class="section level4" number="1.4.3.1">
+<h4><span class="header-section-number">1.4.3.1</span> vector</h4>
+<p>A vector has elements of the same data type.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="intro.html#cb56-1"></a>(v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="intro.html#cb58-1"></a><span class="kw">is.vector</span>(v1)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="intro.html#cb60-1"></a>(v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="intro.html#cb62-1"></a><span class="kw">is.vector</span>(v2)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="intro.html#cb64-1"></a>(v3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE FALSE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="intro.html#cb66-1"></a><span class="kw">is.vector</span>(v3)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="matrix" class="section level4" number="1.4.3.2">
+<h4><span class="header-section-number">1.4.3.2</span> matrix</h4>
+<p>A matrix is two-dimensional and has elements of the same type.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="intro.html#cb68-1"></a>(m1 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(T, T, F, F, T, F), <span class="dt">nrow =</span> <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##      [,1]  [,2]  [,3]
+## [1,] TRUE FALSE  TRUE
+## [2,] TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="intro.html#cb70-1"></a>(m2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb70-2"><a href="intro.html#cb70-2"></a>               <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>), </span>
+<span id="cb70-3"><a href="intro.html#cb70-3"></a>               <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb70-4"><a href="intro.html#cb70-4"></a>               <span class="dt">byrow =</span> T)) <span class="co">#default is FALSE</span></span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,] &quot;a&quot;  &quot;b&quot; 
+## [2,] &quot;c&quot;  &quot;d&quot;</code></pre>
+</div>
+<div id="array" class="section level4" number="1.4.3.3">
+<h4><span class="header-section-number">1.4.3.3</span> array</h4>
+<p>An array can be more than two dimensions</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="intro.html#cb72-1"></a>(a1 &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="kw">c</span>( <span class="dv">1</span><span class="op">:</span><span class="dv">24</span>), <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>))) <span class="co">#four rows, three columns, and two tables</span></span></code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3]
+## [1,]   13   17   21
+## [2,]   14   18   22
+## [3,]   15   19   23
+## [4,]   16   20   24</code></pre>
+</div>
+<div id="data-frame" class="section level4" number="1.4.3.4">
+<h4><span class="header-section-number">1.4.3.4</span> data frame</h4>
+<p>A data frame combines vectors of the same length.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="intro.html#cb74-1"></a>Numeric   &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb74-2"><a href="intro.html#cb74-2"></a>Character &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb74-3"><a href="intro.html#cb74-3"></a>Logical   &lt;-<span class="st"> </span><span class="kw">c</span>(T, F, T)</span>
+<span id="cb74-4"><a href="intro.html#cb74-4"></a>(df1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(Numeric, Character, Logical))  <span class="co">#coerces all values to most basic data type</span></span></code></pre></div>
+<pre><code>##      Numeric Character Logical
+## [1,] &quot;1&quot;     &quot;a&quot;       &quot;TRUE&quot; 
+## [2,] &quot;2&quot;     &quot;b&quot;       &quot;FALSE&quot;
+## [3,] &quot;3&quot;     &quot;c&quot;       &quot;TRUE&quot;</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="intro.html#cb76-1"></a>(df2 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">cbind</span>(Numeric, Character, Logical))) <span class="co">#makes a data frame with three different data types</span></span></code></pre></div>
+<pre><code>##   Numeric Character Logical
+## 1       1         a    TRUE
+## 2       2         b   FALSE
+## 3       3         c    TRUE</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="intro.html#cb78-1"></a>(df3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(Numeric, Character, Logical)) <span class="co">#the right way!</span></span></code></pre></div>
+<pre><code>##   Numeric Character Logical
+## 1       1         a    TRUE
+## 2       2         b   FALSE
+## 3       3         c    TRUE</code></pre>
+</div>
+<div id="list" class="section level4" number="1.4.3.5">
+<h4><span class="header-section-number">1.4.3.5</span> list</h4>
+<p>A list can have anything.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="intro.html#cb80-1"></a>o1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb80-2"><a href="intro.html#cb80-2"></a>o2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb80-3"><a href="intro.html#cb80-3"></a>o3 &lt;-<span class="st"> </span><span class="kw">c</span>(T, F, T, T, F)</span>
+<span id="cb80-4"><a href="intro.html#cb80-4"></a>(list1 &lt;-<span class="st"> </span><span class="kw">list</span>(o1, o2, o3))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;
+## 
+## [[3]]
+## [1]  TRUE FALSE  TRUE  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="intro.html#cb82-1"></a>(list2 &lt;-<span class="st"> </span><span class="kw">list</span>(o1, o2, o3, list1))  <span class="co">#lists within lists!</span></span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;
+## 
+## [[3]]
+## [1]  TRUE FALSE  TRUE  TRUE FALSE
+## 
+## [[4]]
+## [[4]][[1]]
+## [1] 1 2 3
+## 
+## [[4]][[2]]
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;
+## 
+## [[4]][[3]]
+## [1]  TRUE FALSE  TRUE  TRUE FALSE</code></pre>
+</div>
+<div id="a-few-notes-on-r-data-structures" class="section level4" number="1.4.3.6">
+<h4><span class="header-section-number">1.4.3.6</span> a few notes on R data structures</h4>
+<ul>
+<li><p><strong>matrices</strong> and <strong>arrays</strong> are vectors with the <code>dim</code> attribute.</p></li>
+<li><p>Factors are integer vectors with the<code>class</code> and <code>levels</code> attributes.<br/>
+A <strong>factor</strong> is a vector that can contain only predefined values.</p></li>
+<li><p><strong>data frames</strong> are built on top of lists and therefore have the <code>list</code> type.</p></li>
+<li><p><strong>vectors</strong> are the most important family of data types in R. <strong>list</strong> are sometimes called generic vectors and the regular vectors are sometimes called atomic vectors.</p></li>
+<li><p>Hadley Wickham had a good description of the relationships between different types<br/>
+in his <a href="https://adv-r.hadley.nz/"><strong>Advanced R</strong> book</a>.</p></li>
+</ul>
+</div>
+</div>
+<div id="packages" class="section level3" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> R Packages</h3>
+<p>When you install R, the <code>base</code> package is installed. The <code>datasets</code> package with example datasets is also ready to use. Type <code>plot(iris)</code> in Rstudio Console, or type it in an R script file and run the syntax. The iris flower data set is a multivariate data set introduced by the British statistician Ronald Fisher.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="intro.html#cb84-1"></a><span class="kw">plot</span>(iris)</span></code></pre></div>
+<p>For this class, we will use the <code>lavaan</code> package. Type <code>install.packages("lavaan")</code> to install the package. You only need to install the package once on your computer.</p>
+<p>To use the package, type either <code>library(lavaan)</code> or <code>require(lavaan)</code>. You need to load the package everytime you start a new R session.</p>
+</div>
+<div id="rstudio-projects" class="section level3" number="1.4.5">
+<h3><span class="header-section-number">1.4.5</span> RStudio Projects</h3>
+<p>An RStudio project saves a relative base. When you create a R Studio project, a folder is created and all the file paths are relative to this folder. You can copy and paste this folder to another place without having to change file paths. For example, you can create a <code>data</code> folder inside the RStudio project for this class and keep all data in this folder. And then you can import a dataset to R.</p>
+</div>
+<div id="import-and-export-data" class="section level3" number="1.4.6">
+<h3><span class="header-section-number">1.4.6</span> Import and Export Data</h3>
+<p>There are several different packages (e.g., <code>foreign</code> and <code>haven</code>) than can help import and export data in different statistical formats (e.g., SPSS, SAS, Stata, Excel). The one that I particularly like is the [<code>rio</code>] (<a href="https://cran.r-project.org/web/packages/rio/index.html" class="uri">https://cran.r-project.org/web/packages/rio/index.html</a>) package. Its <code>import()</code> and <code>export()</code> functions work with different data types. Install and load <code>rio</code>.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="intro.html#cb85-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;rio&quot;</span>)</span>
+<span id="cb85-2"><a href="intro.html#cb85-2"></a><span class="kw">library</span>(rio)</span></code></pre></div>
+<p>Import an SPSS data from the <code>data</code> folder within the RStudio project.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="intro.html#cb86-1"></a>mydata &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;data/example.sav&quot;</span>)</span>
+<span id="cb86-2"><a href="intro.html#cb86-2"></a><span class="kw">head</span>(mydata) <span class="co"># view first 6 observations</span></span></code></pre></div>
+<pre><code>##   IDSTUD ITSEX BSMMAT01  BSBGHER
+## 1  10301     1 514.4249 10.91822
+## 2  10302     2 587.6541 11.62212
+## 3  10303     2 582.5530  8.97690
+## 4  10304     2 507.9202 10.91822
+## 5  10305     2 534.9643 11.62212
+## 6  10306     2 465.7001 10.91822</code></pre>
+<div id="a-few-functions-for-checking-data" class="section level4" number="1.4.6.1">
+<h4><span class="header-section-number">1.4.6.1</span> a few functions for checking data</h4>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="intro.html#cb88-1"></a><span class="kw">str</span>(mydata) </span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    10221 obs. of  4 variables:
+##  $ IDSTUD  : num  10301 10302 10303 10304 10305 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;Student ID&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F8.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num 1e+08
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Omitted or invalid&quot;
+##  $ ITSEX   : num  1 2 2 2 2 2 1 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;Sex of Students&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Female&quot; &quot;Male&quot; &quot;Omitted or invalid&quot;
+##  $ BSMMAT01: num  514 588 583 508 535 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;1ST PLAUSIBLE VALUE MATHEMATICS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F6.2&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num 999
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Omitted or invalid&quot;
+##  $ BSBGHER : num  10.92 11.62 8.98 10.92 11.62 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;Home Educational Resources/SCL&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F12.5&quot;
+##   ..- attr(*, &quot;display_width&quot;)= int 12
+##   ..- attr(*, &quot;labels&quot;)= Named num 1e+06
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Omitted or invalid&quot;</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="intro.html#cb90-1"></a><span class="kw">typeof</span>(mydata)</span></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="intro.html#cb92-1"></a><span class="kw">class</span>(mydata)</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="intro.html#cb94-1"></a><span class="kw">dim</span>(mydata) <span class="co"># alternatively, use `nrow()` and `ncol()`</span></span></code></pre></div>
+<pre><code>## [1] 10221     4</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="intro.html#cb96-1"></a><span class="kw">length</span>(mydata) <span class="co"># number of variables in a data frame; information output by`length()` function depends on the data structure </span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="several-functions-for-basic-data-management-and-descriptive-statistics" class="section level4" number="1.4.6.2">
+<h4><span class="header-section-number">1.4.6.2</span> several functions for basic data management and descriptive statistics</h4>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="intro.html#cb98-1"></a><span class="kw">names</span>(mydata) <span class="co"># list variable names</span></span></code></pre></div>
+<pre><code>## [1] &quot;IDSTUD&quot;   &quot;ITSEX&quot;    &quot;BSMMAT01&quot; &quot;BSBGHER&quot;</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="intro.html#cb100-1"></a><span class="kw">names</span>(mydata)[<span class="kw">names</span>(mydata) <span class="op">==</span><span class="st"> &quot;ITSEX&quot;</span>] &lt;-<span class="st"> &quot;gender&quot;</span> <span class="co">#rename a variable</span></span>
+<span id="cb100-2"><a href="intro.html#cb100-2"></a><span class="kw">names</span>(mydata)[<span class="kw">names</span>(mydata) <span class="op">==</span><span class="st"> &quot;BSMMAT01&quot;</span>] &lt;-<span class="st"> &quot;math&quot;</span> <span class="co">#rename another variable</span></span>
+<span id="cb100-3"><a href="intro.html#cb100-3"></a>var &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;gender&quot;</span>, <span class="st">&quot;math&quot;</span>, <span class="st">&quot;BSBGHER&quot;</span>)</span>
+<span id="cb100-4"><a href="intro.html#cb100-4"></a>dat1 &lt;-<span class="st"> </span>mydata[, var] <span class="co">#subset data</span></span>
+<span id="cb100-5"><a href="intro.html#cb100-5"></a>dat2 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(dat1) <span class="co">#listwise deletion</span></span>
+<span id="cb100-6"><a href="intro.html#cb100-6"></a>dat1<span class="op">$</span>gender_c &lt;-<span class="st"> </span><span class="kw">factor</span>(dat1<span class="op">$</span>gender) <span class="co">#create a categorical variable for `gender`</span></span>
+<span id="cb100-7"><a href="intro.html#cb100-7"></a><span class="kw">levels</span>(dat1<span class="op">$</span>gender_c) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>) <span class="co">#change levels for `gender` variable</span></span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="intro.html#cb101-1"></a><span class="kw">summary</span>(dat1) </span></code></pre></div>
+<pre><code>##      gender           math          BSBGHER       gender_c   
+##  Min.   :1.000   Min.   :248.2   Min.   : 4.232   f   :5119  
+##  1st Qu.:1.000   1st Qu.:459.0   1st Qu.: 9.623   m   :5098  
+##  Median :1.000   Median :518.9   Median :10.918   NA&#39;s:   4  
+##  Mean   :1.499   Mean   :515.8   Mean   :10.793              
+##  3rd Qu.:2.000   3rd Qu.:574.7   3rd Qu.:11.622              
+##  Max.   :2.000   Max.   :762.2   Max.   :13.884              
+##  NA&#39;s   :4                       NA&#39;s   :103</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="intro.html#cb103-1"></a><span class="kw">table</span>(dat1<span class="op">$</span>gender_c) <span class="co">#compute frequencies for categorical variables</span></span></code></pre></div>
+<pre><code>## 
+##    f    m 
+## 5119 5098</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="intro.html#cb105-1"></a>psych<span class="op">::</span><span class="kw">describe</span>(dat1) <span class="co">#compute descriptives for quantitative variables. Need to install and load the `psych` package</span></span></code></pre></div>
+<pre><code>##           vars     n   mean    sd median trimmed   mad    min    max  range
+## gender       1 10217   1.50  0.50   1.00    1.50  0.00   1.00   2.00   1.00
+## math         2 10221 515.82 82.36 518.93  516.81 86.02 248.22 762.23 514.01
+## BSBGHER      3 10118  10.79  1.67  10.92   10.77  1.83   4.23  13.88   9.65
+## gender_c*    4 10217   1.50  0.50   1.00    1.50  0.00   1.00   2.00   1.00
+##            skew kurtosis   se
+## gender     0.00    -2.00 0.00
+## math      -0.10    -0.28 0.81
+## BSBGHER   -0.07    -0.03 0.02
+## gender_c*  0.00    -2.00 0.00</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="intro.html#cb107-1"></a><span class="kw">attach</span>(dat1) <span class="co"># save some typing. Alternatively, `math &lt;- dat1$BSMMAT01` to create a separate vector.</span></span>
+<span id="cb107-2"><a href="intro.html#cb107-2"></a><span class="kw">mean</span>(math, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 515.8243</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="intro.html#cb109-1"></a><span class="kw">median</span>(math, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 518.9269</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="intro.html#cb111-1"></a><span class="kw">var</span>(math, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 6782.527</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="intro.html#cb113-1"></a><span class="kw">sd</span>(math, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 82.3561</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="intro.html#cb115-1"></a><span class="kw">quantile</span>(math, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>##       0%      25%      50%      75%     100% 
+## 248.2235 458.9607 518.9269 574.6662 762.2316</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="intro.html#cb117-1"></a><span class="kw">detach</span>(dat1)</span></code></pre></div>
+</div>
+<div id="pearsons-product-moment-correlation" class="section level4" number="1.4.6.3">
+<h4><span class="header-section-number">1.4.6.3</span> Pearson’s product moment correlation</h4>
+<p>Correlation between two variables, hypothesis test, and confidence interval.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="intro.html#cb118-1"></a><span class="kw">cor.test</span>(dat1<span class="op">$</span>BSBGHER, dat1<span class="op">$</span>math)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  dat1$BSBGHER and dat1$math
+## t = 42.923, df = 10116, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.3759021 0.4088708
+## sample estimates:
+##       cor 
+## 0.3925126</code></pre>
+<p>All pairwise correlations.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="intro.html#cb120-1"></a>var &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;gender&quot;</span>, <span class="st">&quot;math&quot;</span>, <span class="st">&quot;BSBGHER&quot;</span>) </span>
+<span id="cb120-2"><a href="intro.html#cb120-2"></a><span class="kw">cor</span>(dat1[,var], <span class="dt">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span>) <span class="co">#for numeric variables only; &quot;gender&quot; is still a numeric variable!</span></span></code></pre></div>
+<pre><code>##              gender       math    BSBGHER
+## gender   1.00000000 0.01305597 -0.0281559
+## math     0.01305597 1.00000000  0.3925126
+## BSBGHER -0.02815590 0.39251256  1.0000000</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="intro.html#cb122-1"></a><span class="kw">round</span>(<span class="kw">cor</span>(dat1[,var], <span class="dt">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span>), <span class="dv">2</span>) <span class="co">#round to 2 decimal places</span></span></code></pre></div>
+<pre><code>##         gender math BSBGHER
+## gender    1.00 0.01   -0.03
+## math      0.01 1.00    0.39
+## BSBGHER  -0.03 0.39    1.00</code></pre>
+<p>Correlations and significance levels for correlation matrix.
+Need to install and load the <code>Hmisc</code> package.
+Need to coerce from dataframe to matrix to get both a correlation matrix and p-values.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="intro.html#cb124-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;Hmisc&quot;</span>)</span>
+<span id="cb124-2"><a href="intro.html#cb124-2"></a><span class="kw">library</span>(Hmisc)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="intro.html#cb125-1"></a>df &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(dat1[,var]) <span class="co"># numeric variables only</span></span>
+<span id="cb125-2"><a href="intro.html#cb125-2"></a><span class="kw">rcorr</span>(df)</span></code></pre></div>
+<pre><code>##         gender math BSBGHER
+## gender    1.00 0.01   -0.03
+## math      0.01 1.00    0.39
+## BSBGHER  -0.03 0.39    1.00
+## 
+## n
+##         gender  math BSBGHER
+## gender   10217 10217   10117
+## math     10217 10221   10118
+## BSBGHER  10117 10118   10118
+## 
+## P
+##         gender math   BSBGHER
+## gender         0.1870 0.0046 
+## math    0.1870        0.0000 
+## BSBGHER 0.0046 0.0000</code></pre>
+</div>
+</div>
+</div>
+<div id="mplus" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Mplus</h2>
+<p><a href="https://statmodel.com/">Mplus</a> is a latent variable modeling program with a wide variety of analysis capabilities. There is a free <a href="https://www.statmodel.com/demo.shtml">Mplus demo version</a> (with certain limitations) available for download. I find the <a href="https://www.statmodel.com/ugexcerpts.shtml">Mplus User’s Guide</a> is particularly helpful.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="author.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="review-of-basic-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["structural-equation-modeling.pdf", "structural-equation-modeling.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

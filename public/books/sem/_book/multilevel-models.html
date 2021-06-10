@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Multilevel Models | Structural Equation Modeling Using R and Mplus</title>
+  <meta name="description" content="This is for course ESC_PS 9710 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Multilevel Models | Structural Equation Modeling Using R and Mplus" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is for course ESC_PS 9710 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="ze-wang/sem" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Multilevel Models | Structural Equation Modeling Using R and Mplus" />
+  
+  <meta name="twitter:description" content="This is for course ESC_PS 9710 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Ze Wang" />
+
+
+<meta name="date" content="2021-06-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="latent-growth-models.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contents"><i class="fa fa-check"></i>Contents</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#the-r-language"><i class="fa fa-check"></i><b>1.1</b> The R Language</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#install-r"><i class="fa fa-check"></i><b>1.2</b> Install R</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#install-rstudio"><i class="fa fa-check"></i><b>1.3</b> Install RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#use-rstudio"><i class="fa fa-check"></i><b>1.4</b> Use RStudio</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#basic-operations"><i class="fa fa-check"></i><b>1.4.1</b> Basic operations</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#data-types-in-r"><i class="fa fa-check"></i><b>1.4.2</b> Data types in R</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#data-structures-in-r"><i class="fa fa-check"></i><b>1.4.3</b> Data structures in R</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#packages"><i class="fa fa-check"></i><b>1.4.4</b> R Packages</a></li>
+<li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#rstudio-projects"><i class="fa fa-check"></i><b>1.4.5</b> RStudio Projects</a></li>
+<li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#import-and-export-data"><i class="fa fa-check"></i><b>1.4.6</b> Import and Export Data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#mplus"><i class="fa fa-check"></i><b>1.5</b> Mplus</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html"><i class="fa fa-check"></i><b>2</b> Review of Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#calculating-variance-and-covariance"><i class="fa fa-check"></i><b>2.1</b> Calculating Variance and Covariance</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#covariance"><i class="fa fa-check"></i><b>2.1.1</b> Covariance</a></li>
+<li class="chapter" data-level="2.1.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#correlation"><i class="fa fa-check"></i><b>2.1.2</b> Correlation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#using-matrix-algebra"><i class="fa fa-check"></i><b>2.1.3</b> Using Matrix Algebra</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#correlation-and-causation"><i class="fa fa-check"></i><b>2.2</b> Correlation and Causation</a></li>
+<li class="chapter" data-level="2.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#data-issues"><i class="fa fa-check"></i><b>2.3</b> Data Issues</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#what-form-should-the-data-be-in"><i class="fa fa-check"></i><b>2.3.1</b> What form should the data be in?</a></li>
+<li class="chapter" data-level="2.3.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#what-form-should-the-data-be-in-1"><i class="fa fa-check"></i><b>2.3.2</b> What form should the data be in?</a></li>
+<li class="chapter" data-level="2.3.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#missing-data"><i class="fa fa-check"></i><b>2.3.3</b> Missing Data</a></li>
+<li class="chapter" data-level="2.3.4" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#multicollinearity"><i class="fa fa-check"></i><b>2.3.4</b> Multicollinearity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="path-analysis.html"><a href="path-analysis.html"><i class="fa fa-check"></i><b>3</b> Path Analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="path-analysis.html"><a href="path-analysis.html#syntax---r"><i class="fa fa-check"></i><b>3.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="path-analysis.html"><a href="path-analysis.html#use-a-sample-covariance-matrix-an-input"><i class="fa fa-check"></i><b>3.1.1</b> Use a sample covariance matrix an input</a></li>
+<li class="chapter" data-level="3.1.2" data-path="path-analysis.html"><a href="path-analysis.html#use-sample-correlation-matrix-and-sds-as-input"><i class="fa fa-check"></i><b>3.1.2</b> Use sample correlation matrix and SDs as input</a></li>
+<li class="chapter" data-level="3.1.3" data-path="path-analysis.html"><a href="path-analysis.html#path-analysis-model---wheaton-et-al.-1977-example"><i class="fa fa-check"></i><b>3.1.3</b> Path analysis model - Wheaton et al. (1977) example</a></li>
+<li class="chapter" data-level="3.1.4" data-path="path-analysis.html"><a href="path-analysis.html#use-raw-data-as-input"><i class="fa fa-check"></i><b>3.1.4</b> Use raw data as input</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="path-analysis.html"><a href="path-analysis.html#syntax---mplus"><i class="fa fa-check"></i><b>3.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="path-analysis.html"><a href="path-analysis.html#regression-of-y-on-x1-and-x2---sample-covariance-matrix"><i class="fa fa-check"></i><b>3.2.1</b> Regression of Y on X1 and X2 - sample covariance matrix</a></li>
+<li class="chapter" data-level="3.2.2" data-path="path-analysis.html"><a href="path-analysis.html#regression-of-y-on-x1-and-x2---sample-correlation-matrix-and-sds-as-input"><i class="fa fa-check"></i><b>3.2.2</b> Regression of Y on X1 and X2 - sample correlation matrix and SDs as input</a></li>
+<li class="chapter" data-level="3.2.3" data-path="path-analysis.html"><a href="path-analysis.html#path-analysis-model---wheaton-et-al.-1977-example-1"><i class="fa fa-check"></i><b>3.2.3</b> Path analysis model - Wheaton et al. (1977) example</a></li>
+<li class="chapter" data-level="3.2.4" data-path="path-analysis.html"><a href="path-analysis.html#use-raw-data-as-input-1"><i class="fa fa-check"></i><b>3.2.4</b> Use raw data as input</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html"><i class="fa fa-check"></i><b>4</b> Confirmatory Factor Analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---r---one-factor-cfa"><i class="fa fa-check"></i><b>4.1</b> Syntax - R - One-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#use-a-sample-covariance-matrix-an-input-1"><i class="fa fa-check"></i><b>4.1.1</b> Use a sample covariance matrix an input</a></li>
+<li class="chapter" data-level="4.1.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#calculate-coefficient-omega-omega-_u"><i class="fa fa-check"></i><b>4.1.2</b> Calculate coefficient omega <span class="math inline">\({\omega _u}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---r---two-factor-cfa"><i class="fa fa-check"></i><b>4.2</b> Syntax - R - Two-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#an-exmaple"><i class="fa fa-check"></i><b>4.2.1</b> An exmaple</a></li>
+<li class="chapter" data-level="4.2.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#model-comparison-example---two-factor-cfa-model-across-time"><i class="fa fa-check"></i><b>4.2.2</b> Model comparison example - two-factor CFA model across time</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---mplus---one-factor-cfa"><i class="fa fa-check"></i><b>4.3</b> Syntax - Mplus - One-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#use-a-sample-covariance-matrix-an-input-2"><i class="fa fa-check"></i><b>4.3.1</b> Use a sample covariance matrix an input</a></li>
+<li class="chapter" data-level="4.3.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#calculate-coefficient-omega-omega-_u-1"><i class="fa fa-check"></i><b>4.3.2</b> Calculate coefficient omega <span class="math inline">\({\omega _u}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#syntax---mplus---two-factor-cfa"><i class="fa fa-check"></i><b>4.4</b> Syntax - Mplus - TWo-Factor CFA</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#an-example"><i class="fa fa-check"></i><b>4.4.1</b> An example</a></li>
+<li class="chapter" data-level="4.4.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#model-comparison-example---two-factor-cfa-model-across-time-1"><i class="fa fa-check"></i><b>4.4.2</b> Model comparison example - two-factor CFA model across time</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#model-respecification"><i class="fa fa-check"></i><b>4.5</b> Model Respecification</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#lagrange-multiplier-test-for-adding-paths"><i class="fa fa-check"></i><b>4.5.1</b> Lagrange Multiplier test for adding paths</a></li>
+<li class="chapter" data-level="4.5.2" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#wald-test-for-dropping-paths"><i class="fa fa-check"></i><b>4.5.2</b> Wald test for dropping paths</a></li>
+<li class="chapter" data-level="4.5.3" data-path="confirmatory-factor-analysis.html"><a href="confirmatory-factor-analysis.html#higher-order-factor-models"><i class="fa fa-check"></i><b>4.5.3</b> Higher-order factor models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html"><i class="fa fa-check"></i><b>5</b> Full Structural Equation Models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#syntax---r-1"><i class="fa fa-check"></i><b>5.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#one-step-sem"><i class="fa fa-check"></i><b>5.1.1</b> One-step SEM</a></li>
+<li class="chapter" data-level="5.1.2" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#two-step-sem-process"><i class="fa fa-check"></i><b>5.1.2</b> Two-step SEM process</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#syntax---mplus-1"><i class="fa fa-check"></i><b>5.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#one-step-sem-1"><i class="fa fa-check"></i><b>5.2.1</b> One-step SEM</a></li>
+<li class="chapter" data-level="5.2.2" data-path="full-structural-equation-models.html"><a href="full-structural-equation-models.html#two-step-sem-process-1"><i class="fa fa-check"></i><b>5.2.2</b> Two-step SEM process</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html"><i class="fa fa-check"></i><b>6</b> Multigroup Confirmatory Factor Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#syntax---r-2"><i class="fa fa-check"></i><b>6.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-single-groups"><i class="fa fa-check"></i><b>6.1.1</b> Analysis with data from single groups</a></li>
+<li class="chapter" data-level="6.1.2" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-both-groups"><i class="fa fa-check"></i><b>6.1.2</b> Analysis with data from both groups</a></li>
+<li class="chapter" data-level="6.1.3" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#cfa-with-ordered-categorical-variables-an-example-from-wang-su-2013"><i class="fa fa-check"></i><b>6.1.3</b> CFA with Ordered Categorical Variables – An example from Wang &amp; Su (2013)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#syntax---mplus-2"><i class="fa fa-check"></i><b>6.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-single-groups-1"><i class="fa fa-check"></i><b>6.2.1</b> Analysis with data from single groups</a></li>
+<li class="chapter" data-level="6.2.2" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#analysis-with-data-from-both-groups-1"><i class="fa fa-check"></i><b>6.2.2</b> Analysis with data from both groups</a></li>
+<li class="chapter" data-level="6.2.3" data-path="multigroup-confirmatory-factor-analysis.html"><a href="multigroup-confirmatory-factor-analysis.html#cfa-with-ordered-categorical-variables-an-example-from-wang-su-2013-1"><i class="fa fa-check"></i><b>6.2.3</b> CFA with Ordered Categorical Variables – An example from Wang &amp; Su (2013)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html"><i class="fa fa-check"></i><b>7</b> Models with Mean Structures</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---r---mimic-model"><i class="fa fa-check"></i><b>7.1</b> Syntax - R - MIMIC model</a></li>
+<li class="chapter" data-level="7.2" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---r---structured-means-modeling"><i class="fa fa-check"></i><b>7.2</b> Syntax - R - Structured Means Modeling</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#configural-invariance-model"><i class="fa fa-check"></i><b>7.2.1</b> Configural invariance model</a></li>
+<li class="chapter" data-level="7.2.2" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#metric-invariancefactor-loading-invariance"><i class="fa fa-check"></i><b>7.2.2</b> Metric invariance/factor loading invariance</a></li>
+<li class="chapter" data-level="7.2.3" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#scalar-invarianceintercept-invariance-model"><i class="fa fa-check"></i><b>7.2.3</b> Scalar invariance/intercept invariance model</a></li>
+<li class="chapter" data-level="7.2.4" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#partial-invariance-model"><i class="fa fa-check"></i><b>7.2.4</b> Partial invariance model</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---mplus---mimic-model"><i class="fa fa-check"></i><b>7.3</b> Syntax - Mplus - MIMIC model</a></li>
+<li class="chapter" data-level="7.4" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#syntax---mplus---structured-means-modeling"><i class="fa fa-check"></i><b>7.4</b> Syntax - Mplus - Structured Means Modeling</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#configural-invariance-model-1"><i class="fa fa-check"></i><b>7.4.1</b> Configural invariance model</a></li>
+<li class="chapter" data-level="7.4.2" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#metric-invariancefactor-loading-invariance-1"><i class="fa fa-check"></i><b>7.4.2</b> Metric invariance/factor loading invariance</a></li>
+<li class="chapter" data-level="7.4.3" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#scalar-invarianceintercept-invariance-model-1"><i class="fa fa-check"></i><b>7.4.3</b> Scalar invariance/intercept invariance model</a></li>
+<li class="chapter" data-level="7.4.4" data-path="models-with-mean-structures.html"><a href="models-with-mean-structures.html#partial-invariance-model-1"><i class="fa fa-check"></i><b>7.4.4</b> Partial invariance model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="latent-growth-models.html"><a href="latent-growth-models.html"><i class="fa fa-check"></i><b>8</b> Latent Growth Models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="latent-growth-models.html"><a href="latent-growth-models.html#syntax---r-3"><i class="fa fa-check"></i><b>8.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-without-means"><i class="fa fa-check"></i><b>8.1.1</b> Linear latent growth models without means</a></li>
+<li class="chapter" data-level="8.1.2" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-means"><i class="fa fa-check"></i><b>8.1.2</b> Linear latent growth models with means</a></li>
+<li class="chapter" data-level="8.1.3" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-predictors"><i class="fa fa-check"></i><b>8.1.3</b> Linear latent growth models with predictors</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="latent-growth-models.html"><a href="latent-growth-models.html#syntax---mplus-3"><i class="fa fa-check"></i><b>8.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-without-means-1"><i class="fa fa-check"></i><b>8.2.1</b> Linear latent growth models without means</a></li>
+<li class="chapter" data-level="8.2.2" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-means-1"><i class="fa fa-check"></i><b>8.2.2</b> Linear latent growth models with means</a></li>
+<li class="chapter" data-level="8.2.3" data-path="latent-growth-models.html"><a href="latent-growth-models.html#linear-latent-growth-models-with-predictors-1"><i class="fa fa-check"></i><b>8.2.3</b> Linear latent growth models with predictors</a></li>
+<li class="chapter" data-level="8.2.4" data-path="latent-growth-models.html"><a href="latent-growth-models.html#from-wang-su-2013"><i class="fa fa-check"></i><b>8.2.4</b> From Wang &amp; Su (2013)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="multilevel-models.html"><a href="multilevel-models.html"><i class="fa fa-check"></i><b>9</b> Multilevel Models</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="multilevel-models.html"><a href="multilevel-models.html#syntax---r-4"><i class="fa fa-check"></i><b>9.1</b> Syntax - R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="multilevel-models.html"><a href="multilevel-models.html#a-complex-multilevel-model-example"><i class="fa fa-check"></i><b>9.1.1</b> A complex multilevel model example</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="multilevel-models.html"><a href="multilevel-models.html#syntax---mplus-4"><i class="fa fa-check"></i><b>9.2</b> Syntax - Mplus</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="multilevel-models.html"><a href="multilevel-models.html#a-complex-multilevel-model-example-1"><i class="fa fa-check"></i><b>9.2.1</b> A complex multilevel model example</a></li>
+<li class="chapter" data-level="9.2.2" data-path="multilevel-models.html"><a href="multilevel-models.html#an-example-of-multilevel-modeling-model-2-in-wang-bergin-2017"><i class="fa fa-check"></i><b>9.2.2</b> An example of multilevel modeling – model 2 in Wang &amp; Bergin (2017)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Structural Equation Modeling Using R and Mplus</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multilevel-models" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Multilevel Models</h1>
+<div id="syntax---r-4" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Syntax - R</h2>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="multilevel-models.html#cb392-1"></a><span class="kw">library</span>(lavaan); <span class="kw">library</span>(rio)</span></code></pre></div>
+<div id="a-complex-multilevel-model-example" class="section level3" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> A complex multilevel model example</h3>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="multilevel-models.html#cb393-1"></a>complex<span class="fl">.2</span>level.dat &lt;-<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;data/P4_STUDENT11US_reduceddatasetPV1.sav&quot;</span>)</span>
+<span id="cb393-2"><a href="multilevel-models.html#cb393-2"></a><span class="kw">head</span>(complex<span class="fl">.2</span>level.dat)</span></code></pre></div>
+<pre><code>##   IDCNTRY IDSCHOOL IDCLASS IDSTUD ITSEX   HOUWGT   TOTWGT   SENWGT  WGTADJ1
+## 1     840        1     101  10101     1 2.376047 670.8743 0.093354 1.357143
+## 2     840        1     101  10102     0 2.376047 670.8743 0.093354 1.357143
+## 3     840        1     101  10103     0 2.376047 670.8743 0.093354 1.357143
+## 4     840        1     101  10104     0 2.376047 670.8743 0.093354 1.357143
+## 5     840        1     101  10105     0 2.376047 670.8743 0.093354 1.357143
+## 6     840        1     101  10107     0 2.376047 670.8743 0.093354 1.357143
+##   WGTADJ2  WGTADJ3  WGTFAC1 WGTFAC2 WGTFAC3 ASRREA01 ASRLIT01 ASRINF01 ASRIIE01
+## 1       1 1.047619 235.9295       2       1 623.0440 616.2586 684.2183 611.2626
+## 2       1 1.047619 235.9295       2       1 567.8146 531.5564 537.5982 551.6583
+## 3       1 1.047619 235.9295       2       1 526.2780 541.2821 508.9297 512.5652
+## 4       1 1.047619 235.9295       2       1 462.7912 510.8852 486.9025 467.2205
+## 5       1 1.047619 235.9295       2       1 466.4158 447.5467 494.9719 517.2582
+## 6       1 1.047619 235.9295       2       1 614.8899 615.3620 605.4589 512.6821
+##   ASRRSI01  ASBGSBS  ASBGSLR  ASBGSMR  ASBGSCR  ASBGERL ASDG05S ASBG03N ASNG03B
+## 1 601.7178 13.28372  9.88980  8.78118 12.25876 10.51137       2       2       2
+## 2 546.1009  8.29063 10.61953 12.36856 10.12500  8.64503       2       1       1
+## 3 510.4456  9.56564  9.31239  8.78118  8.37394  9.45792       2       1       1
+## 4 470.2884       NA  8.74575  8.31489  8.67056  7.39451       1       1      NA
+## 5 516.4948 13.15502  6.89835  6.78134  8.98289  8.64503       2       3       2
+## 6 490.1887  8.55138 11.09533 12.36856 11.29688 10.51137       2       2       2
+##   ASNG04A ASNG04B ASNG04C ASNG09A ASNG09B ASNG09C ASNG09D ASNG10 MSRACE2
+## 1       1       1       1       2       1       2       2      2       5
+## 2       1       1       1       1       2       1       1      1       2
+## 3       1       2       1       1       2       1       2      5       3
+## 4       1       1       1       2       2       1       2      2       3
+## 5       1       1       1       1       2       2       2      4       3
+## 6       2       2       1       1       2       2       2      2       2</code></pre>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="multilevel-models.html#cb395-1"></a><span class="co">#calcuate total missing values in each column</span></span>
+<span id="cb395-2"><a href="multilevel-models.html#cb395-2"></a><span class="kw">colSums</span>(<span class="kw">is.na</span>(complex<span class="fl">.2</span>level.dat))</span></code></pre></div>
+<pre><code>##  IDCNTRY IDSCHOOL  IDCLASS   IDSTUD    ITSEX   HOUWGT   TOTWGT   SENWGT 
+##        0        0        0        0        0        0        0        0 
+##  WGTADJ1  WGTADJ2  WGTADJ3  WGTFAC1  WGTFAC2  WGTFAC3 ASRREA01 ASRLIT01 
+##        0        0        0        0        0        0        0        0 
+## ASRINF01 ASRIIE01 ASRRSI01  ASBGSBS  ASBGSLR  ASBGSMR  ASBGSCR  ASBGERL 
+##        0        0        0      299      104      345      323      303 
+##  ASDG05S  ASBG03N  ASNG03B  ASNG04A  ASNG04B  ASNG04C  ASNG09A  ASNG09B 
+##      237      240     7412      398      426      216      170      270 
+##  ASNG09C  ASNG09D   ASNG10  MSRACE2 
+##      372      318      303      268</code></pre>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="multilevel-models.html#cb397-1"></a>complex<span class="fl">.2</span>level.dat<span class="op">$</span>read &lt;-<span class="st"> </span>complex<span class="fl">.2</span>level.dat<span class="op">$</span>ASRREA01<span class="op">/</span><span class="dv">50</span> <span class="co">#rescale variable for reading achievement</span></span>
+<span id="cb397-2"><a href="multilevel-models.html#cb397-2"></a>complex<span class="fl">.2</span>level.model &lt;-<span class="st"> &#39;</span></span>
+<span id="cb397-3"><a href="multilevel-models.html#cb397-3"></a><span class="st">        level: 1</span></span>
+<span id="cb397-4"><a href="multilevel-models.html#cb397-4"></a><span class="st">            read ~ b1*ASBGSBS + b2*ASBGSLR + b3*ASBGSMR + b4*ASBGSCR + b5*ASBGERL</span></span>
+<span id="cb397-5"><a href="multilevel-models.html#cb397-5"></a><span class="st">            read ~~ read</span></span>
+<span id="cb397-6"><a href="multilevel-models.html#cb397-6"></a><span class="st">            ASBGSBS ~~ ASBGSBS</span></span>
+<span id="cb397-7"><a href="multilevel-models.html#cb397-7"></a><span class="st">            ASBGSLR ~~ ASBGSLR</span></span>
+<span id="cb397-8"><a href="multilevel-models.html#cb397-8"></a><span class="st">            ASBGSMR ~~ ASBGSMR</span></span>
+<span id="cb397-9"><a href="multilevel-models.html#cb397-9"></a><span class="st">            ASBGSCR ~~ ASBGSCR</span></span>
+<span id="cb397-10"><a href="multilevel-models.html#cb397-10"></a><span class="st">            ASBGERL ~~ ASBGERL</span></span>
+<span id="cb397-11"><a href="multilevel-models.html#cb397-11"></a><span class="st">            ASBGSBS ~~ ASBGSLR + ASBGSMR + ASBGSCR + ASBGERL</span></span>
+<span id="cb397-12"><a href="multilevel-models.html#cb397-12"></a><span class="st">            ASBGSLR ~~ ASBGSMR + ASBGSCR + ASBGERL</span></span>
+<span id="cb397-13"><a href="multilevel-models.html#cb397-13"></a><span class="st">            ASBGSMR ~~ ASBGSCR + ASBGERL</span></span>
+<span id="cb397-14"><a href="multilevel-models.html#cb397-14"></a><span class="st">            ASBGSCR ~~ ASBGERL</span></span>
+<span id="cb397-15"><a href="multilevel-models.html#cb397-15"></a><span class="st">        level: 2</span></span>
+<span id="cb397-16"><a href="multilevel-models.html#cb397-16"></a><span class="st">            read ~ bb1*ASBGSBS + bb2*ASBGSLR + bb3*ASBGSMR + bb4*ASBGSCR + bb5*ASBGERL</span></span>
+<span id="cb397-17"><a href="multilevel-models.html#cb397-17"></a><span class="st">            read ~~ read</span></span>
+<span id="cb397-18"><a href="multilevel-models.html#cb397-18"></a><span class="st">            ASBGSBS ~~ ASBGSBS</span></span>
+<span id="cb397-19"><a href="multilevel-models.html#cb397-19"></a><span class="st">            ASBGSLR ~~ ASBGSLR</span></span>
+<span id="cb397-20"><a href="multilevel-models.html#cb397-20"></a><span class="st">            ASBGSMR ~~ ASBGSMR</span></span>
+<span id="cb397-21"><a href="multilevel-models.html#cb397-21"></a><span class="st">            ASBGSCR ~~ ASBGSCR</span></span>
+<span id="cb397-22"><a href="multilevel-models.html#cb397-22"></a><span class="st">            ASBGERL ~~ ASBGERL</span></span>
+<span id="cb397-23"><a href="multilevel-models.html#cb397-23"></a><span class="st">            ASBGSBS ~~ ASBGSLR + ASBGSMR + ASBGSCR + ASBGERL</span></span>
+<span id="cb397-24"><a href="multilevel-models.html#cb397-24"></a><span class="st">            ASBGSLR ~~ ASBGSMR + ASBGSCR + ASBGERL</span></span>
+<span id="cb397-25"><a href="multilevel-models.html#cb397-25"></a><span class="st">            ASBGSMR ~~ ASBGSCR + ASBGERL</span></span>
+<span id="cb397-26"><a href="multilevel-models.html#cb397-26"></a><span class="st">            ASBGSCR ~~ ASBGERL</span></span>
+<span id="cb397-27"><a href="multilevel-models.html#cb397-27"></a><span class="st">        effect1 := bb1-b1</span></span>
+<span id="cb397-28"><a href="multilevel-models.html#cb397-28"></a><span class="st">        effect2 := bb2-b2</span></span>
+<span id="cb397-29"><a href="multilevel-models.html#cb397-29"></a><span class="st">        effect3 := bb3-b3</span></span>
+<span id="cb397-30"><a href="multilevel-models.html#cb397-30"></a><span class="st">        effect4 := bb4-b4</span></span>
+<span id="cb397-31"><a href="multilevel-models.html#cb397-31"></a><span class="st">        effect5 := bb5-b5&#39;</span>  </span>
+<span id="cb397-32"><a href="multilevel-models.html#cb397-32"></a>complex<span class="fl">.2</span>level.fit &lt;-<span class="st"> </span><span class="kw">sem</span>(<span class="dt">model =</span> complex<span class="fl">.2</span>level.model, <span class="dt">data =</span> complex<span class="fl">.2</span>level.dat, <span class="dt">cluster =</span> <span class="st">&quot;IDCLASS&quot;</span>)</span>
+<span id="cb397-33"><a href="multilevel-models.html#cb397-33"></a><span class="kw">summary</span>(complex<span class="fl">.2</span>level.fit, <span class="dt">fit.measures =</span> <span class="ot">TRUE</span>, <span class="dt">standardized =</span> <span class="ot">TRUE</span>, <span class="dt">rsquare =</span> <span class="ot">TRUE</span>) </span></code></pre></div>
+<pre><code>## lavaan 0.6-8 ended normally after 128 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        48
+##                                                       
+##                                                   Used       Total
+##   Number of observations                         12057       12726
+##   Number of clusters [IDCLASS]                     618            
+##                                                                   
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                             13993.766
+##   Degrees of freedom                                30
+##   P-value                                        0.000
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    1.000
+##   Tucker-Lewis Index (TLI)                       1.000
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)            -142454.898
+##   Loglikelihood unrestricted model (H1)    -142454.899
+##                                                       
+##   Akaike (AIC)                              285005.797
+##   Bayesian (BIC)                            285360.872
+##   Sample-size adjusted Bayesian (BIC)       285208.334
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.000
+##   90 Percent confidence interval - lower         0.000
+##   90 Percent confidence interval - upper         0.000
+##   P-value RMSEA &lt;= 0.05                             NA
+## 
+## Standardized Root Mean Square Residual (corr metric):
+## 
+##   SRMR (within covariance matrix)                0.000
+##   SRMR (between covariance matrix)               0.000
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Observed
+##   Observed information based on                Hessian
+## 
+## 
+## Level 1 [within]:
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##   read ~                                                                
+##     ASBGSBS   (b1)    0.051    0.005    9.666    0.000    0.051    0.083
+##     ASBGSLR   (b2)    0.100    0.006   15.918    0.000    0.100    0.171
+##     ASBGSMR   (b3)   -0.096    0.007  -14.576    0.000   -0.096   -0.151
+##     ASBGSCR   (b4)    0.236    0.006   41.372    0.000    0.236    0.379
+##     ASBGERL   (b5)   -0.003    0.007   -0.439    0.660   -0.003   -0.004
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##   ASBGSBS ~~                                                            
+##     ASBGSLR           0.176    0.041    4.324    0.000    0.176    0.040
+##     ASBGSMR           0.134    0.037    3.578    0.000    0.134    0.033
+##     ASBGSCR           0.431    0.039   11.179    0.000    0.431    0.105
+##     ASBGERL           0.722    0.037   19.662    0.000    0.722    0.187
+##   ASBGSLR ~~                                                            
+##     ASBGSMR           2.272    0.045   50.448    0.000    2.272    0.535
+##     ASBGSCR           1.652    0.044   37.956    0.000    1.652    0.380
+##     ASBGERL           1.925    0.042   45.469    0.000    1.925    0.470
+##   ASBGSMR ~~                                                            
+##     ASBGSCR           1.124    0.039   28.948    0.000    1.124    0.281
+##     ASBGERL           1.739    0.039   44.850    0.000    1.739    0.462
+##   ASBGSCR ~~                                                            
+##     ASBGERL           1.072    0.037   28.640    0.000    1.072    0.278
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##    .read              0.000                               0.000    0.000
+##     ASBGSBS           0.000                               0.000    0.000
+##     ASBGSLR           0.000                               0.000    0.000
+##     ASBGSMR           0.000                               0.000    0.000
+##     ASBGSCR           0.000                               0.000    0.000
+##     ASBGERL           0.000                               0.000    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##    .read              1.271    0.017   75.620    0.000    1.271    0.802
+##     ASBGSBS           4.108    0.054   75.648    0.000    4.108    1.000
+##     ASBGSLR           4.626    0.061   75.671    0.000    4.626    1.000
+##     ASBGSMR           3.904    0.052   75.666    0.000    3.904    1.000
+##     ASBGSCR           4.090    0.054   75.588    0.000    4.090    1.000
+##     ASBGERL           3.631    0.048   75.591    0.000    3.631    1.000
+## 
+## R-Square:
+##                    Estimate
+##     read              0.198
+## 
+## 
+## Level 2 [IDCLASS]:
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##   read ~                                                                
+##     ASBGSBS  (bb1)    0.080    0.135    0.593    0.553    0.080    0.050
+##     ASBGSLR  (bb2)    0.959    0.171    5.619    0.000    0.959    0.752
+##     ASBGSMR  (bb3)   -1.086    0.212   -5.121    0.000   -1.086   -0.658
+##     ASBGSCR  (bb4)    0.508    0.146    3.473    0.001    0.508    0.297
+##     ASBGERL  (bb5)   -0.023    0.144   -0.163    0.871   -0.023   -0.018
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##   ASBGSBS ~~                                                            
+##     ASBGSLR           0.138    0.021    6.605    0.000    0.138    0.525
+##     ASBGSMR           0.034    0.017    1.989    0.047    0.034    0.165
+##     ASBGSCR           0.067    0.017    3.902    0.000    0.067    0.342
+##     ASBGERL           0.116    0.020    5.866    0.000    0.116    0.460
+##   ASBGSLR ~~                                                            
+##     ASBGSMR           0.170    0.023    7.484    0.000    0.170    0.660
+##     ASBGSCR           0.128    0.021    5.992    0.000    0.128    0.517
+##     ASBGERL           0.236    0.026    9.183    0.000    0.236    0.742
+##   ASBGSMR ~~                                                            
+##     ASBGSCR           0.021    0.017    1.258    0.208    0.021    0.109
+##     ASBGERL           0.172    0.021    8.111    0.000    0.172    0.697
+##   ASBGSCR ~~                                                            
+##     ASBGERL           0.100    0.019    5.168    0.000    0.100    0.421
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##    .read              6.707    2.055    3.264    0.001    6.707    9.112
+##     ASBGSBS          10.169    0.026  387.428    0.000   10.169   22.252
+##     ASBGSLR           9.725    0.031  317.934    0.000    9.725   16.861
+##     ASBGSMR           9.774    0.026  381.719    0.000    9.774   21.914
+##     ASBGSCR          10.177    0.025  399.648    0.000   10.177   23.636
+##     ASBGERL          10.058    0.028  353.999    0.000   10.058   18.217
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##    .read              0.188    0.026    7.218    0.000    0.188    0.346
+##     ASBGSBS           0.209    0.024    8.540    0.000    0.209    1.000
+##     ASBGSLR           0.333    0.033   10.112    0.000    0.333    1.000
+##     ASBGSMR           0.199    0.023    8.628    0.000    0.199    1.000
+##     ASBGSCR           0.185    0.023    7.983    0.000    0.185    1.000
+##     ASBGERL           0.305    0.029   10.614    0.000    0.305    1.000
+## 
+## R-Square:
+##                    Estimate
+##     read              0.654
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##     effect1           0.029    0.135    0.211    0.833    0.029   -0.033
+##     effect2           0.859    0.171    5.020    0.000    0.859    0.581
+##     effect3          -0.990    0.213   -4.656    0.000   -0.990   -0.507
+##     effect4           0.272    0.147    1.851    0.064    0.272   -0.082
+##     effect5          -0.020    0.144   -0.142    0.887   -0.020   -0.013</code></pre>
+</div>
+</div>
+<div id="syntax---mplus-4" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Syntax - Mplus</h2>
+<div id="a-complex-multilevel-model-example-1" class="section level3" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> A complex multilevel model example</h3>
+<pre class="mplus"><code>TITLE:
+DATA: FILE IS &quot;data\P4_STUDENT11US_reduceddatasetPV1.dat&quot;;
+      FORMAT IS F3 F4 F6 F8 F1 F9 F12 4F9 F12 F9 F6 5F10 5F13 12F1;
+VARIABLE: NAMES ARE IDCNTRY IDSCHOOL IDCLASS IDSTUD ITSEX
+HOUWGT TOTWGT SENWGT WGTADJ1 WGTADJ2 WGTADJ3 WGTFAC1 WGTFAC2 WGTFAC3
+ASRREA  ASRLIT ASRINF ASRIIE ASRRSI  
+ASBGSBS ASBGSLR ASBGSMR ASBGSCR ASBGERL ASDG05S ASBG03N ASNG03B
+ASNG04A ASNG04B ASNG04C ASNG09A ASNG09B ASNG09C ASNG09D ASNG10 MSRACE2;
+    MISSING = BLANK;
+USEVARIABLES ARE ASBGSBS ASBGSLR ASBGSMR ASBGSCR ASBGERL           
+read wt1 wt2; 
+    AUXILIARY ARE IDCNTRY IDSTUD ITSEX;
+    CLUSTER = IDSCHOOL IDCLASS;
+    WEIGHT IS wt1;
+    WTSCALE IS CLUSTER;
+    BWEIGHT IS wt2;
+    BWTSCALE IS SAMPLE;
+DEFINE: 
+        read=ASRREA/50; 
+        wt1 = WGTADJ3*WGTFAC3;
+        wt2 = WGTADJ1*WGTFAC1*WGTADJ2*WGTFAC2;
+ANALYSIS: TYPE = COMPLEX TWOLEVEL;
+OUTPUT: SAMPSTAT STANDARDIZED MODINDICES;
+MODEL: %WITHIN%
+       read on ASBGSBS (b1)
+                 ASBGSLR (b2)
+                 ASBGSMR (b3)
+                 ASBGSCR (b4)
+                 ASBGERL (b5);
+      read (var1);
+      ASBGSBS (var2);
+      ASBGSLR (var3);
+      ASBGSMR (var4);
+      ASBGSCR (var5);
+      ASBGERL (var6);
+      ASBGSBS with ASBGSLR (cov1);
+      ASBGSBS with ASBGSMR (cov2);
+      ASBGSBS with ASBGSCR (cov3);
+      ASBGSBS with ASBGERL (cov4);
+      ASBGSLR with ASBGSMR (cov5);
+      ASBGSLR with ASBGSCR (cov6);
+      ASBGSLR with ASBGERL (cov7);
+      ASBGSMR with ASBGSCR (cov8);
+      ASBGSMR with ASBGERL (cov9);
+      ASBGSCR with ASBGERL (cov10);
+       %BETWEEN%
+       read on ASBGSBS (bb1)
+                 ASBGSLR (bb2)
+                 ASBGSMR (bb3)
+                 ASBGSCR (bb4)
+                 ASBGERL (bb5);
+      read (vvar1);
+      ASBGSBS (vvar2);
+      ASBGSLR (vvar3);
+      ASBGSMR (vvar4);
+      ASBGSCR (vvar5);
+      ASBGERL (vvar6);
+      ASBGSBS with ASBGSLR (ccov1);
+      ASBGSBS with ASBGSMR (ccov2);
+      ASBGSBS with ASBGSCR (ccov3);
+      ASBGSBS with ASBGERL (ccov4);
+      ASBGSLR with ASBGSMR (ccov5);
+      ASBGSLR with ASBGSCR (ccov6);
+      ASBGSLR with ASBGERL (ccov7);
+      ASBGSMR with ASBGSCR (ccov8);
+      ASBGSMR with ASBGERL (ccov9);
+      ASBGSCR with ASBGERL (ccov10);
+MODEL CONSTRAINT:
+  NEW(effect1);
+  NEW(effect2);
+  NEW(effect3);
+  NEW(effect4);
+  NEW(effect5);
+  effect1=bb1-b1;
+  effect2=bb2-b2;
+  effect3=bb3-b3;
+  effect4=bb4-b4;
+  effect5=bb5-b5;
+MODEL TEST:
+    effect1=0;
+    effect2=0;
+    effect3=0;
+    effect4=0;
+    effect5=0;</code></pre>
+<pre><code>## Mplus VERSION 8.4
+## MUTHEN &amp; MUTHEN
+## 06/10/2021  12:20 PM
+## 
+## INPUT INSTRUCTIONS
+## 
+##   TITLE:
+##   DATA: FILE IS &quot;data\P4_STUDENT11US_reduceddatasetPV1.dat&quot;;
+##         FORMAT IS F3 F4 F6 F8 F1 F9 F12 4F9 F12 F9 F6 5F10 5F13 12F1;
+##   VARIABLE: NAMES ARE IDCNTRY IDSCHOOL IDCLASS IDSTUD ITSEX
+##   HOUWGT TOTWGT SENWGT WGTADJ1 WGTADJ2 WGTADJ3 WGTFAC1 WGTFAC2 WGTFAC3
+##   ASRREA  ASRLIT ASRINF ASRIIE ASRRSI
+##   ASBGSBS ASBGSLR ASBGSMR ASBGSCR ASBGERL ASDG05S ASBG03N ASNG03B
+##   ASNG04A ASNG04B ASNG04C ASNG09A ASNG09B ASNG09C ASNG09D ASNG10 MSRACE2;
+##       MISSING = BLANK;
+##   USEVARIABLES ARE ASBGSBS ASBGSLR ASBGSMR ASBGSCR ASBGERL
+##   read wt1 wt2;
+##       AUXILIARY ARE IDCNTRY IDSTUD ITSEX;
+##       CLUSTER = IDSCHOOL IDCLASS;
+##       WEIGHT IS wt1;
+##       WTSCALE IS CLUSTER;
+##       BWEIGHT IS wt2;
+##       BWTSCALE IS SAMPLE;
+##   DEFINE:
+##           read=ASRREA/50;
+##           wt1 = WGTADJ3*WGTFAC3;
+##           wt2 = WGTADJ1*WGTFAC1*WGTADJ2*WGTFAC2;
+##   ANALYSIS: TYPE = COMPLEX TWOLEVEL;
+##   OUTPUT: SAMPSTAT STANDARDIZED MODINDICES;
+##   MODEL: %WITHIN%
+##          read on ASBGSBS (b1)
+##                    ASBGSLR (b2)
+##                    ASBGSMR (b3)
+##                    ASBGSCR (b4)
+##                    ASBGERL (b5);
+##         read (var1);
+##         ASBGSBS (var2);
+##         ASBGSLR (var3);
+##         ASBGSMR (var4);
+##         ASBGSCR (var5);
+##         ASBGERL (var6);
+##         ASBGSBS with ASBGSLR (cov1);
+##         ASBGSBS with ASBGSMR (cov2);
+##         ASBGSBS with ASBGSCR (cov3);
+##         ASBGSBS with ASBGERL (cov4);
+##         ASBGSLR with ASBGSMR (cov5);
+##         ASBGSLR with ASBGSCR (cov6);
+##         ASBGSLR with ASBGERL (cov7);
+##         ASBGSMR with ASBGSCR (cov8);
+##         ASBGSMR with ASBGERL (cov9);
+##         ASBGSCR with ASBGERL (cov10);
+##          %BETWEEN%
+##          read on ASBGSBS (bb1)
+##                    ASBGSLR (bb2)
+##                    ASBGSMR (bb3)
+##                    ASBGSCR (bb4)
+##                    ASBGERL (bb5);
+##         read (vvar1);
+##         ASBGSBS (vvar2);
+##         ASBGSLR (vvar3);
+##         ASBGSMR (vvar4);
+##         ASBGSCR (vvar5);
+##         ASBGERL (vvar6);
+##         ASBGSBS with ASBGSLR (ccov1);
+##         ASBGSBS with ASBGSMR (ccov2);
+##         ASBGSBS with ASBGSCR (ccov3);
+##         ASBGSBS with ASBGERL (ccov4);
+##         ASBGSLR with ASBGSMR (ccov5);
+##         ASBGSLR with ASBGSCR (ccov6);
+##         ASBGSLR with ASBGERL (ccov7);
+##         ASBGSMR with ASBGSCR (ccov8);
+##         ASBGSMR with ASBGERL (ccov9);
+##         ASBGSCR with ASBGERL (ccov10);
+##   MODEL CONSTRAINT:
+##     NEW(effect1);
+##     NEW(effect2);
+##     NEW(effect3);
+##     NEW(effect4);
+##     NEW(effect5);
+##     effect1=bb1-b1;
+##     effect2=bb2-b2;
+##     effect3=bb3-b3;
+##     effect4=bb4-b4;
+##     effect5=bb5-b5;
+##   MODEL TEST:
+##       effect1=0;
+##       effect2=0;
+##       effect3=0;
+##       effect4=0;
+##       effect5=0;
+## 
+## 
+## 
+## *** WARNING in OUTPUT command
+##   MODINDICES option is not available in conjunction with nonlinear constraints
+##   through the use of MODEL CONSTRAINT.  Request for MODINDICES is ignored.
+##    1 ERROR(S) FOUND IN THE INPUT INSTRUCTIONS
+##    1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+## 
+## 
+## 
+## 
+## SUMMARY OF ANALYSIS
+## 
+## Number of groups                                                 1
+## Number of observations                                       12726
+## 
+## Number of dependent variables                                    1
+## Number of independent variables                                  5
+## Number of continuous latent variables                            0
+## 
+## Observed dependent variables
+## 
+##   Continuous
+##    READ
+## 
+## Observed independent variables
+##    ASBGSBS     ASBGSLR     ASBGSMR     ASBGSCR     ASBGERL
+## 
+## Observed auxiliary variables
+##    IDCNTRY     IDSTUD      ITSEX
+## 
+## Variables with special functions
+## 
+##   Cluster variables     IDSCHOOL  IDCLASS
+##   Weight variable (cluster-size scaling)
+##     WT1
+##   Between weight variable (sample-size scaling)
+##     WT2
+## 
+## Estimator                                                      MLR
+## Information matrix                                        OBSERVED
+## Maximum number of iterations                                   100
+## Convergence criterion                                    0.100D-05
+## Maximum number of EM iterations                                500
+## Convergence criteria for the EM algorithm
+##   Loglikelihood change                                   0.100D-02
+##   Relative loglikelihood change                          0.100D-05
+##   Derivative                                             0.100D-03
+## Minimum variance                                         0.100D-03
+## Maximum number of steepest descent iterations                   20
+## Maximum number of iterations for H1                           2000
+## Convergence criterion for H1                             0.100D-03
+## Optimization algorithm                                         EMA
+## 
+## Input data file(s)
+##   data\P4_STUDENT11US_reduceddatasetPV1.dat
+## Input data format
+##   (F3 F4 F6 F8 F1 F9 F12 4F9 F12 F9 F6 5F10 5F13 12F1)
+## 
+## 
+## SUMMARY OF DATA
+## 
+##      Number of missing data patterns            25
+##      Number of IDSCHOOL clusters               370
+##      Number of IDCLASS clusters                618
+## 
+## 
+## COVARIANCE COVERAGE OF DATA
+## 
+## Minimum covariance coverage value   0.100
+## 
+## 
+##      PROPORTION OF DATA PRESENT
+## 
+## 
+##            Covariance Coverage
+##               READ          ASBGSBS       ASBGSLR       ASBGSMR       ASBGSCR
+##               ________      ________      ________      ________      ________
+##  READ           1.000
+##  ASBGSBS        0.977         0.977
+##  ASBGSLR        0.992         0.976         0.992
+##  ASBGSMR        0.973         0.962         0.972         0.973
+##  ASBGSCR        0.975         0.964         0.974         0.965         0.975
+##  ASBGERL        0.976         0.966         0.976         0.964         0.967
+## 
+## 
+##            Covariance Coverage
+##               ASBGERL
+##               ________
+##  ASBGERL        0.976
+## 
+## 
+## SAMPLE STATISTICS
+## 
+## NOTE:  The sample statistics for within and between refer to the
+##        maximum-likelihood estimated within and between covariance
+##        matrices, respectively.
+## 
+## 
+##      ESTIMATED SAMPLE STATISTICS FOR WITHIN
+## 
+## 
+##            Means
+##               READ          ASBGSBS       ASBGSLR       ASBGSMR       ASBGSCR
+##               ________      ________      ________      ________      ________
+##                 0.000         0.000         0.000         0.000         0.000
+## 
+## 
+##            Means
+##               ASBGERL
+##               ________
+##                 0.000
+## 
+## 
+##            Covariances
+##               READ          ASBGSBS       ASBGSLR       ASBGSMR       ASBGSCR
+##               ________      ________      ________      ________      ________
+##  READ           1.604
+##  ASBGSBS        0.330         4.106
+##  ASBGSLR        0.645         0.166         4.701
+##  ASBGSMR        0.116         0.134         2.289         3.888
+##  ASBGSCR        1.026         0.445         1.606         1.111         4.023
+##  ASBGERL        0.305         0.718         1.913         1.730         1.038
+## 
+## 
+##            Covariances
+##               ASBGERL
+##               ________
+##  ASBGERL        3.594
+## 
+## 
+##            Correlations
+##               READ          ASBGSBS       ASBGSLR       ASBGSMR       ASBGSCR
+##               ________      ________      ________      ________      ________
+##  READ           1.000
+##  ASBGSBS        0.128         1.000
+##  ASBGSLR        0.235         0.038         1.000
+##  ASBGSMR        0.047         0.034         0.535         1.000
+##  ASBGSCR        0.404         0.110         0.369         0.281         1.000
+##  ASBGERL        0.127         0.187         0.465         0.463         0.273
+## 
+## 
+##            Correlations
+##               ASBGERL
+##               ________
+##  ASBGERL        1.000
+## 
+## 
+##      ESTIMATED SAMPLE STATISTICS FOR BETWEEN
+## 
+## 
+##            Means
+##               READ          ASBGSBS       ASBGSLR       ASBGSMR       ASBGSCR
+##               ________      ________      ________      ________      ________
+##                11.134        10.164         9.716         9.737        10.153
+## 
+## 
+##            Means
+##               ASBGERL
+##               ________
+##                10.046
+## 
+## 
+##            Covariances
+##               READ          ASBGSBS       ASBGSLR       ASBGSMR       ASBGSCR
+##               ________      ________      ________      ________      ________
+##  READ           0.566
+##  ASBGSBS        0.159         0.232
+##  ASBGSLR        0.218         0.157         0.333
+##  ASBGSMR       -0.044         0.039         0.169         0.201
+##  ASBGSCR        0.212         0.061         0.133         0.024         0.193
+##  ASBGERL        0.104         0.108         0.220         0.155         0.103
+## 
+## 
+##            Covariances
+##               ASBGERL
+##               ________
+##  ASBGERL        0.288
+## 
+## 
+##            Correlations
+##               READ          ASBGSBS       ASBGSLR       ASBGSMR       ASBGSCR
+##               ________      ________      ________      ________      ________
+##  READ           1.000
+##  ASBGSBS        0.440         1.000
+##  ASBGSLR        0.502         0.565         1.000
+##  ASBGSMR       -0.131         0.181         0.652         1.000
+##  ASBGSCR        0.640         0.290         0.524         0.120         1.000
+##  ASBGERL        0.258         0.417         0.712         0.646         0.438
+## 
+## 
+##            Correlations
+##               ASBGERL
+##               ________
+##  ASBGERL        1.000
+## 
+## 
+##      MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -147892.013
+## 
+## 
+## UNIVARIATE SAMPLE STATISTICS
+## 
+## 
+##      UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+## 
+##          Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+##         Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+## 
+##      READ                 11.140      -0.224       5.493    0.01%       9.914     10.835     11.203
+##            12726.000       2.149       0.008      16.347    0.01%      11.564     12.371
+##      ASBGSBS              10.173      -0.168       3.759    1.25%       8.551      9.403     10.147
+##            12427.000       4.331      -0.074      13.284   19.94%      10.668     13.013
+##      ASBGSLR               9.725       0.152       2.546    0.90%       8.123      9.055      9.591
+##            12622.000       5.028       0.896      14.956    5.88%       9.947     11.095
+##      ASBGSMR               9.739      -0.219       2.453    0.53%       7.935      8.781      9.402
+##            12381.000       4.094      -0.313      12.369   28.99%      10.350     12.369
+##      ASBGSCR              10.169       0.538       1.979    0.03%       8.374      9.320      9.697
+##            12403.000       4.200      -0.039      14.359   11.51%      10.641     11.297
+##      ASBGERL              10.050       0.368       2.071    0.07%       8.298      9.458      9.945
+##            12423.000       3.878       0.315      14.323    8.77%      10.511     11.210
+## 
+## 
+## THE MODEL ESTIMATION TERMINATED NORMALLY
+## 
+## 
+## 
+## MODEL FIT INFORMATION
+## 
+## Number of Free Parameters                       48
+## 
+## Loglikelihood
+## 
+##           H0 Value                     -147892.012
+##           H0 Scaling Correction Factor      1.5963
+##             for MLR
+##           H1 Value                     -147892.013
+##           H1 Scaling Correction Factor      1.5963
+##             for MLR
+## 
+## Information Criteria
+## 
+##           Akaike (AIC)                  295880.025
+##           Bayesian (BIC)                296237.692
+##           Sample-Size Adjusted BIC      296085.153
+##             (n* = (n + 2) / 24)
+## 
+## Chi-Square Test of Model Fit
+## 
+##           Value                              0.000*
+##           Degrees of Freedom                     0
+##           P-Value                           1.0000
+##           Scaling Correction Factor         1.0000
+##             for MLR
+## 
+## *   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+##     for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+##     chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+##     and ULSMV difference testing is done using the DIFFTEST option.
+## 
+## RMSEA (Root Mean Square Error Of Approximation)
+## 
+##           Estimate                           0.000
+## 
+## CFI/TLI
+## 
+##           CFI                                1.000
+##           TLI                                1.000
+## 
+## Chi-Square Test of Model Fit for the Baseline Model
+## 
+##           Value                           9153.483
+##           Degrees of Freedom                    30
+##           P-Value                           0.0000
+## 
+## SRMR (Standardized Root Mean Square Residual)
+## 
+##           Value for Within                   0.000
+##           Value for Between                  0.000
+## 
+## Wald Test of Parameter Constraints
+## 
+##           Value                            102.281
+##           Degrees of Freedom                     5
+##           P-Value                           0.0000
+## 
+## 
+## 
+## MODEL RESULTS
+## 
+##                                                     Two-Tailed
+##                     Estimate       S.E.  Est./S.E.    P-Value
+## 
+## Within Level
+## 
+##  READ       ON
+##     ASBGSBS            0.054      0.006      8.313      0.000
+##     ASBGSLR            0.104      0.007     14.140      0.000
+##     ASBGSMR           -0.100      0.008    -12.776      0.000
+##     ASBGSCR            0.236      0.006     38.895      0.000
+##     ASBGERL           -0.001      0.008     -0.164      0.870
+## 
+##  ASBGSBS  WITH
+##     ASBGSLR            0.166      0.049      3.396      0.001
+##     ASBGSMR            0.134      0.046      2.942      0.003
+##     ASBGSCR            0.445      0.041     10.862      0.000
+##     ASBGERL            0.718      0.044     16.426      0.000
+## 
+##  ASBGSLR  WITH
+##     ASBGSMR            2.289      0.066     34.561      0.000
+##     ASBGSCR            1.606      0.058     27.751      0.000
+##     ASBGERL            1.913      0.062     31.003      0.000
+## 
+##  ASBGSMR  WITH
+##     ASBGSCR            1.111      0.052     21.320      0.000
+##     ASBGERL            1.730      0.053     32.824      0.000
+## 
+##  ASBGSCR  WITH
+##     ASBGERL            1.038      0.049     21.171      0.000
+## 
+##  Variances
+##     ASBGSBS            4.106      0.064     64.092      0.000
+##     ASBGSLR            4.701      0.105     44.710      0.000
+##     ASBGSMR            3.888      0.065     59.959      0.000
+##     ASBGSCR            4.023      0.072     55.682      0.000
+##     ASBGERL            3.594      0.065     55.493      0.000
+## 
+##  Residual Variances
+##     READ               1.289      0.022     57.418      0.000
+## 
+## Between Level
+## 
+##  READ       ON
+##     ASBGSBS            0.077      0.165      0.468      0.640
+##     ASBGSLR            0.962      0.227      4.240      0.000
+##     ASBGSMR           -1.107      0.240     -4.618      0.000
+##     ASBGSCR            0.545      0.173      3.159      0.002
+##     ASBGERL           -0.001      0.155     -0.008      0.994
+## 
+##  ASBGSBS  WITH
+##     ASBGSLR            0.157      0.021      7.378      0.000
+##     ASBGSMR            0.039      0.019      2.051      0.040
+##     ASBGSCR            0.061      0.021      2.919      0.004
+##     ASBGERL            0.108      0.023      4.627      0.000
+## 
+##  ASBGSLR  WITH
+##     ASBGSMR            0.169      0.026      6.444      0.000
+##     ASBGSCR            0.133      0.026      5.181      0.000
+##     ASBGERL            0.220      0.025      8.721      0.000
+## 
+##  ASBGSMR  WITH
+##     ASBGSCR            0.024      0.021      1.124      0.261
+##     ASBGERL            0.155      0.021      7.310      0.000
+## 
+##  ASBGSCR  WITH
+##     ASBGERL            0.103      0.020      5.131      0.000
+## 
+##  Means
+##     ASBGSBS           10.164      0.035    292.331      0.000
+##     ASBGSLR            9.716      0.037    263.533      0.000
+##     ASBGSMR            9.737      0.031    312.511      0.000
+##     ASBGSCR           10.153      0.032    322.181      0.000
+##     ASBGERL           10.046      0.032    315.028      0.000
+## 
+##  Intercepts
+##     READ               6.259      2.438      2.568      0.010
+## 
+##  Variances
+##     ASBGSBS            0.232      0.030      7.650      0.000
+##     ASBGSLR            0.333      0.033     10.048      0.000
+##     ASBGSMR            0.201      0.027      7.502      0.000
+##     ASBGSCR            0.193      0.029      6.741      0.000
+##     ASBGERL            0.288      0.033      8.871      0.000
+## 
+##  Residual Variances
+##     READ               0.180      0.031      5.903      0.000
+## 
+## New/Additional Parameters
+##     EFFECT1            0.023      0.166      0.139      0.889
+##     EFFECT2            0.858      0.228      3.768      0.000
+##     EFFECT3           -1.007      0.240     -4.194      0.000
+##     EFFECT4            0.309      0.173      1.792      0.073
+##     EFFECT5            0.000      0.156      0.001      0.999
+## 
+## 
+## STANDARDIZED MODEL RESULTS
+## 
+## 
+## STDYX Standardization
+## 
+##                                                     Two-Tailed
+##                     Estimate       S.E.  Est./S.E.    P-Value
+## 
+## Within Level
+## 
+##  READ       ON
+##     ASBGSBS            0.086      0.010      8.277      0.000
+##     ASBGSLR            0.178      0.013     14.000      0.000
+##     ASBGSMR           -0.155      0.012    -13.031      0.000
+##     ASBGSCR            0.373      0.009     41.817      0.000
+##     ASBGERL           -0.002      0.012     -0.164      0.870
+## 
+##  ASBGSBS  WITH
+##     ASBGSLR            0.038      0.011      3.392      0.001
+##     ASBGSMR            0.034      0.011      2.936      0.003
+##     ASBGSCR            0.110      0.010     10.763      0.000
+##     ASBGERL            0.187      0.011     17.031      0.000
+## 
+##  ASBGSLR  WITH
+##     ASBGSMR            0.535      0.009     60.873      0.000
+##     ASBGSCR            0.369      0.012     31.613      0.000
+##     ASBGERL            0.465      0.010     46.207      0.000
+## 
+##  ASBGSMR  WITH
+##     ASBGSCR            0.281      0.012     24.054      0.000
+##     ASBGERL            0.463      0.010     46.828      0.000
+## 
+##  ASBGSCR  WITH
+##     ASBGERL            0.273      0.012     23.633      0.000
+## 
+##  Variances
+##     ASBGSBS            1.000      0.000    999.000    999.000
+##     ASBGSLR            1.000      0.000    999.000    999.000
+##     ASBGSMR            1.000      0.000    999.000    999.000
+##     ASBGSCR            1.000      0.000    999.000    999.000
+##     ASBGERL            1.000      0.000    999.000    999.000
+## 
+##  Residual Variances
+##     READ               0.804      0.007    110.332      0.000
+## 
+## Between Level
+## 
+##  READ       ON
+##     ASBGSBS            0.049      0.105      0.470      0.638
+##     ASBGSLR            0.738      0.177      4.179      0.000
+##     ASBGSMR           -0.659      0.142     -4.625      0.000
+##     ASBGSCR            0.318      0.096      3.303      0.001
+##     ASBGERL           -0.001      0.111     -0.008      0.994
+## 
+##  ASBGSBS  WITH
+##     ASBGSLR            0.566      0.064      8.903      0.000
+##     ASBGSMR            0.180      0.085      2.111      0.035
+##     ASBGSCR            0.290      0.096      3.019      0.003
+##     ASBGERL            0.417      0.081      5.152      0.000
+## 
+##  ASBGSLR  WITH
+##     ASBGSMR            0.653      0.054     12.076      0.000
+##     ASBGSCR            0.524      0.080      6.561      0.000
+##     ASBGERL            0.712      0.044     16.315      0.000
+## 
+##  ASBGSMR  WITH
+##     ASBGSCR            0.120      0.105      1.146      0.252
+##     ASBGERL            0.646      0.055     11.854      0.000
+## 
+##  ASBGSCR  WITH
+##     ASBGERL            0.438      0.064      6.803      0.000
+## 
+##  Means
+##     ASBGSBS           21.107      1.390     15.187      0.000
+##     ASBGSLR           16.840      0.844     19.960      0.000
+##     ASBGSMR           21.742      1.468     14.806      0.000
+##     ASBGSCR           23.107      1.711     13.507      0.000
+##     ASBGERL           18.710      1.058     17.689      0.000
+## 
+##  Intercepts
+##     READ               8.319      3.312      2.512      0.012
+## 
+##  Variances
+##     ASBGSBS            1.000      0.000    999.000    999.000
+##     ASBGSLR            1.000      0.000    999.000    999.000
+##     ASBGSMR            1.000      0.000    999.000    999.000
+##     ASBGSCR            1.000      0.000    999.000    999.000
+##     ASBGERL            1.000      0.000    999.000    999.000
+## 
+##  Residual Variances
+##     READ               0.319      0.055      5.828      0.000
+## 
+## 
+## STDY Standardization
+## 
+##                                                     Two-Tailed
+##                     Estimate       S.E.  Est./S.E.    P-Value
+## 
+## Within Level
+## 
+##  READ       ON
+##     ASBGSBS            0.086      0.010      8.277      0.000
+##     ASBGSLR            0.178      0.013     14.000      0.000
+##     ASBGSMR           -0.155      0.012    -13.031      0.000
+##     ASBGSCR            0.373      0.009     41.817      0.000
+##     ASBGERL           -0.002      0.012     -0.164      0.870
+## 
+##  ASBGSBS  WITH
+##     ASBGSLR            0.038      0.011      3.392      0.001
+##     ASBGSMR            0.034      0.011      2.936      0.003
+##     ASBGSCR            0.110      0.010     10.763      0.000
+##     ASBGERL            0.187      0.011     17.031      0.000
+## 
+##  ASBGSLR  WITH
+##     ASBGSMR            0.535      0.009     60.873      0.000
+##     ASBGSCR            0.369      0.012     31.613      0.000
+##     ASBGERL            0.465      0.010     46.207      0.000
+## 
+##  ASBGSMR  WITH
+##     ASBGSCR            0.281      0.012     24.054      0.000
+##     ASBGERL            0.463      0.010     46.828      0.000
+## 
+##  ASBGSCR  WITH
+##     ASBGERL            0.273      0.012     23.633      0.000
+## 
+##  Variances
+##     ASBGSBS            1.000      0.000    999.000    999.000
+##     ASBGSLR            1.000      0.000    999.000    999.000
+##     ASBGSMR            1.000      0.000    999.000    999.000
+##     ASBGSCR            1.000      0.000    999.000    999.000
+##     ASBGERL            1.000      0.000    999.000    999.000
+## 
+##  Residual Variances
+##     READ               0.804      0.007    110.332      0.000
+## 
+## Between Level
+## 
+##  READ       ON
+##     ASBGSBS            0.049      0.105      0.470      0.638
+##     ASBGSLR            0.738      0.177      4.179      0.000
+##     ASBGSMR           -0.659      0.142     -4.625      0.000
+##     ASBGSCR            0.318      0.096      3.303      0.001
+##     ASBGERL           -0.001      0.111     -0.008      0.994
+## 
+##  ASBGSBS  WITH
+##     ASBGSLR            0.566      0.064      8.903      0.000
+##     ASBGSMR            0.180      0.085      2.111      0.035
+##     ASBGSCR            0.290      0.096      3.019      0.003
+##     ASBGERL            0.417      0.081      5.152      0.000
+## 
+##  ASBGSLR  WITH
+##     ASBGSMR            0.653      0.054     12.076      0.000
+##     ASBGSCR            0.524      0.080      6.561      0.000
+##     ASBGERL            0.712      0.044     16.315      0.000
+## 
+##  ASBGSMR  WITH
+##     ASBGSCR            0.120      0.105      1.146      0.252
+##     ASBGERL            0.646      0.055     11.854      0.000
+## 
+##  ASBGSCR  WITH
+##     ASBGERL            0.438      0.064      6.803      0.000
+## 
+##  Means
+##     ASBGSBS           21.107      1.390     15.187      0.000
+##     ASBGSLR           16.840      0.844     19.960      0.000
+##     ASBGSMR           21.742      1.468     14.806      0.000
+##     ASBGSCR           23.107      1.711     13.507      0.000
+##     ASBGERL           18.710      1.058     17.689      0.000
+## 
+##  Intercepts
+##     READ               8.319      3.312      2.512      0.012
+## 
+##  Variances
+##     ASBGSBS            1.000      0.000    999.000    999.000
+##     ASBGSLR            1.000      0.000    999.000    999.000
+##     ASBGSMR            1.000      0.000    999.000    999.000
+##     ASBGSCR            1.000      0.000    999.000    999.000
+##     ASBGERL            1.000      0.000    999.000    999.000
+## 
+##  Residual Variances
+##     READ               0.319      0.055      5.828      0.000
+## 
+## 
+## STD Standardization
+## 
+##                                                     Two-Tailed
+##                     Estimate       S.E.  Est./S.E.    P-Value
+## 
+## Within Level
+## 
+##  READ       ON
+##     ASBGSBS            0.054      0.006      8.313      0.000
+##     ASBGSLR            0.104      0.007     14.140      0.000
+##     ASBGSMR           -0.100      0.008    -12.776      0.000
+##     ASBGSCR            0.236      0.006     38.895      0.000
+##     ASBGERL           -0.001      0.008     -0.164      0.870
+## 
+##  ASBGSBS  WITH
+##     ASBGSLR            0.166      0.049      3.396      0.001
+##     ASBGSMR            0.134      0.046      2.942      0.003
+##     ASBGSCR            0.445      0.041     10.862      0.000
+##     ASBGERL            0.718      0.044     16.426      0.000
+## 
+##  ASBGSLR  WITH
+##     ASBGSMR            2.289      0.066     34.561      0.000
+##     ASBGSCR            1.606      0.058     27.751      0.000
+##     ASBGERL            1.913      0.062     31.003      0.000
+## 
+##  ASBGSMR  WITH
+##     ASBGSCR            1.111      0.052     21.320      0.000
+##     ASBGERL            1.730      0.053     32.824      0.000
+## 
+##  ASBGSCR  WITH
+##     ASBGERL            1.038      0.049     21.171      0.000
+## 
+##  Variances
+##     ASBGSBS            4.106      0.064     64.092      0.000
+##     ASBGSLR            4.701      0.105     44.710      0.000
+##     ASBGSMR            3.888      0.065     59.959      0.000
+##     ASBGSCR            4.023      0.072     55.682      0.000
+##     ASBGERL            3.594      0.065     55.493      0.000
+## 
+##  Residual Variances
+##     READ               1.289      0.022     57.418      0.000
+## 
+## Between Level
+## 
+##  READ       ON
+##     ASBGSBS            0.077      0.165      0.468      0.640
+##     ASBGSLR            0.962      0.227      4.240      0.000
+##     ASBGSMR           -1.107      0.240     -4.618      0.000
+##     ASBGSCR            0.545      0.173      3.159      0.002
+##     ASBGERL           -0.001      0.155     -0.008      0.994
+## 
+##  ASBGSBS  WITH
+##     ASBGSLR            0.157      0.021      7.378      0.000
+##     ASBGSMR            0.039      0.019      2.051      0.040
+##     ASBGSCR            0.061      0.021      2.919      0.004
+##     ASBGERL            0.108      0.023      4.627      0.000
+## 
+##  ASBGSLR  WITH
+##     ASBGSMR            0.169      0.026      6.444      0.000
+##     ASBGSCR            0.133      0.026      5.181      0.000
+##     ASBGERL            0.220      0.025      8.721      0.000
+## 
+##  ASBGSMR  WITH
+##     ASBGSCR            0.024      0.021      1.124      0.261
+##     ASBGERL            0.155      0.021      7.310      0.000
+## 
+##  ASBGSCR  WITH
+##     ASBGERL            0.103      0.020      5.131      0.000
+## 
+##  Means
+##     ASBGSBS           10.164      0.035    292.331      0.000
+##     ASBGSLR            9.716      0.037    263.533      0.000
+##     ASBGSMR            9.737      0.031    312.511      0.000
+##     ASBGSCR           10.153      0.032    322.181      0.000
+##     ASBGERL           10.046      0.032    315.028      0.000
+## 
+##  Intercepts
+##     READ               6.259      2.438      2.568      0.010
+## 
+##  Variances
+##     ASBGSBS            0.232      0.030      7.650      0.000
+##     ASBGSLR            0.333      0.033     10.048      0.000
+##     ASBGSMR            0.201      0.027      7.502      0.000
+##     ASBGSCR            0.193      0.029      6.741      0.000
+##     ASBGERL            0.288      0.033      8.871      0.000
+## 
+##  Residual Variances
+##     READ               0.180      0.031      5.903      0.000
+## 
+## 
+## R-SQUARE
+## 
+## Within Level
+## 
+##     Observed                                        Two-Tailed
+##     Variable        Estimate       S.E.  Est./S.E.    P-Value
+## 
+##     READ               0.196      0.007     26.920      0.000
+## 
+## Between Level
+## 
+##     Observed                                        Two-Tailed
+##     Variable        Estimate       S.E.  Est./S.E.    P-Value
+## 
+##     READ               0.681      0.055     12.464      0.000
+## 
+## 
+## QUALITY OF NUMERICAL RESULTS
+## 
+##      Condition Number for the Information Matrix              0.326E-08
+##        (ratio of smallest to largest eigenvalue)
+## 
+## 
+##      Beginning Time:  12:20:36
+##         Ending Time:  12:20:38
+##        Elapsed Time:  00:00:02
+## 
+## 
+## 
+## MUTHEN &amp; MUTHEN
+## 3463 Stoner Ave.
+## Los Angeles, CA  90066
+## 
+## Tel: (310) 391-9971
+## Fax: (310) 391-8971
+## Web: www.StatModel.com
+## Support: Support@StatModel.com
+## 
+## Copyright (c) 1998-2019 Muthen &amp; Muthen</code></pre>
+</div>
+<div id="an-example-of-multilevel-modeling-model-2-in-wang-bergin-2017" class="section level3" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> An example of multilevel modeling – model 2 in Wang &amp; Bergin (2017)</h3>
+<pre class="mplus"><code>TITLE:  Model2
+DATA:   FILE IS &quot;data\zUSAmath.dat&quot;;
+! The file has the names of five imputed datasets.
+        TYPE IS IMPUTATION;
+VARIABLE: NAMES ARE IDCNTRY IDSCHOOL IDCLASS IDSTUD ITSEX
+          zBSBM16A zBSBM16B zBSBM16C zBSBM16D zBSBM16E zBSBM16F 
+          zBSBM16G zBSBM16H zBSBM16I zmath 
+          TOTWGT HOUWGT SENWGT WGTADJ1 WGTADJ2 WGTADJ3 WGTFAC1 WGTFAC2
+          WGTFAC3 JKZONE JKREP;
+            ! wgtfac1 and wgtadj1 are school weighting factor and adjustment
+            ! wgtfac2 and wgtadj2 are class weighting factor and adjustment
+            ! wgtfac3 and wgtadj3 are student weighting factor and adjustment
+    USEVARIABLES ARE IDSCHOOL IDCLASS zBSBM16A zBSBM16C zBSBM16D zmath wt1 wt2 zmathsq;
+    MISSING ARE ITSEX(9) zBSBM16A-zBSBM16I(9) TOTWGT-WGTFAC3 (999999.000000)
+                JKZONE(99) JKREP(9);
+    AUXILIARY ARE IDCNTRY IDSTUD ITSEX;
+    WITHIN = zmathsq;
+    CLUSTER = IDSCHOOL IDCLASS;
+    WEIGHT IS wt1;
+    ! within-level weight;
+    WTSCALE IS CLUSTER;
+    ! CLUSTER is default; it rescales within level weights so that 
+    ! they sum to cluster size;
+    ! ECLUSTER rescales within level weights so that they sum to
+    ! effective cluster sample size;
+    BWEIGHT IS wt2;
+    ! between-level weight;
+    BWTSCALE IS SAMPLE;
+    ! SAMPLE is default; it adjusts the between weights so that the product
+    ! of the between and within weights sums to the total sample size.
+DEFINE: wt1 = WGTADJ3*WGTFAC3;
+        wt2 = WGTADJ1*WGTFAC1*WGTADJ2*WGTFAC2;
+        zmathsq=zmath*zmath;
+ANALYSIS:  TYPE = TWOLEVEL COMPLEX;
+MODEL: %WITHIN%
+       scw BY zBSBM16A (1)
+              zBSBM16C (3)
+              zBSBM16D (4);
+       scw ON zmathsq (bb)
+              zmath (b1);
+       scw (var1);
+       zmath (var2);
+       zmathsq (var5);
+       zmath with zmathsq (cov1);
+       %BETWEEN%
+       scb BY zBSBM16A (1)
+              zBSBM16C (3)
+              zBSBM16D (4);
+       scb on 
+           zmath (b2);
+       scb (var3);
+       zmath (var4);
+       ! covariate math1 is decomposed into two unrelated latent variables
+       ! math1ij = math1wij + math1bj (within and between)
+       ! math1ij is used on the within level and math1bj is used on the 
+       ! between level;
+MODEL CONSTRAINT:
+  NEW(ESw);
+  NEW(ESb);
+  NEW(ESBFLPE);
+  ESw=2*b1*sqrt(var2)/sqrt(b1**2*var2+bb**2*var5+2*b1*bb*cov1+var1+b2**2*var4+var3);
+  ESb=2*b2*sqrt(var4)/sqrt(b1**2*var2+bb**2*var5+2*b1*bb*cov1+var1+b2**2*var4+var3);
+ESBFLPE=2*(b2-b1)*sqrt(var4)/sqrt(b1**2*var2+bb**2*var5+2*b1*bb*cov1+var1+b2**2*var4+var3);
+! ESw is the size of within-level linear effect of math ability on sc
+! ESb is the size of between-level effect of math ability on sc
+! ESBFLPE is the size of contextual effect (i.e., BELPE)
+MODEL TEST:
+  ESw=0;
+  ESb=0;
+  ESBFLPE=0;
+OUTPUT: STANDARDIZED;</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="latent-growth-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["structural-equation-modeling.pdf", "structural-equation-modeling.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

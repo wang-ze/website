@@ -1,0 +1,6 @@
+# Netlify redirects
+# Automatically generated
+# Documentation: http://bit.ly/netlify-deployment
+/quant_foundations /courses/esc_ps8850/lecture/
+/bio /about/
+/sem /courses/esc_ps9710/lecture/

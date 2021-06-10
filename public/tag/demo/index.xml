@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Demo | Ze Wang</title>
+    <link>https://ze-wang.netlify.app/tag/demo/</link>
+      <atom:link href="https://ze-wang.netlify.app/tag/demo/index.xml" rel="self" type="application/rss+xml" />
+    <description>Demo</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://ze-wang.netlify.app/media/icon_hu9523cc97d0589a484886fff8e93c8460_568653_512x512_fill_lanczos_center_2.png</url>
+      <title>Demo</title>
+      <link>https://ze-wang.netlify.app/tag/demo/</link>
+    </image>
+    
+    <item>
+      <title>External Project</title>
+      <link>https://ze-wang.netlify.app/project/external-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>https://ze-wang.netlify.app/project/external-project/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

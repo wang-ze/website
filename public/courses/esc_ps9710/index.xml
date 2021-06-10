@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>👩🏻‍🎓 Structural Equation Moldeing | Ze Wang</title>
+    <link>https://zewang.netlify.app/courses/esc_ps9710/</link>
+      <atom:link href="https://zewang.netlify.app/courses/esc_ps9710/index.xml" rel="self" type="application/rss+xml" />
+    <description>👩🏻‍🎓 Structural Equation Moldeing</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Ze Wang 2021  </copyright><lastBuildDate>Wed, 26 May 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://zewang.netlify.app/courses/esc_ps9710/featured.png</url>
+      <title>👩🏻‍🎓 Structural Equation Moldeing</title>
+      <link>https://zewang.netlify.app/courses/esc_ps9710/</link>
+    </image>
+    
+    <item>
+      <title>Structural Equation Modeling</title>
+      <link>https://zewang.netlify.app/courses/esc_ps9710/lecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://zewang.netlify.app/courses/esc_ps9710/lecture/</guid>
+      <description>&lt;p&gt;This is a course I teach annually at &lt;a href=&#34;https://www.missouri.edu&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;the University of Missouri&lt;/a&gt;. 😄&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

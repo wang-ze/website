@@ -4,5 +4,7 @@
 .Ruserdata
 /blogdown/
 /public/
-/content/books/
 Thumbs.db
+notes.Rmd
+notes.html
+
