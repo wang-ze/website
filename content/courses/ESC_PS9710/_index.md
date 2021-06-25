@@ -2,7 +2,7 @@
 date: "2021-05-26"
 linkTitle: Structural Equation Modeling
 summary: ESC_PS 9710 Structural Equation Modeling course taught at the University of Missouri.
-title: "👩🏻‍🎓 Structural Equation Moldeing"
+title: "👩🏻‍🎓 Structural Equation Modeling"
 type: book
 courses: ESC_PS9710
 ---
