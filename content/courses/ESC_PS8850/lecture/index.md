@@ -13,6 +13,10 @@ links:
   icon_pack: fas
   name: website
   url: "https://missouri.instructure.com/courses/40825"
+- icon: book-open
+  icon_pack: fas
+  name: booksite
+  url: "/books/quant-foundations/_book"
 # - icon: github
 #   icon_pack: fab
 #   name: materials
