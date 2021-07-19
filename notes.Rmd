@@ -67,7 +67,7 @@ file.create("netlify.toml")
   HUGO_VERSION = "0.83.1"
 
 
-5. Update `.gitignore` file (*NO NEED? DOUBLE CHECK*
+5. Update `.gitignore` file
 add 
 "public/
 Thumbs.db"
