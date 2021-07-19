@@ -66,5 +66,5 @@ I am an Associate Professor of Statistics, Measurement, and Evaluation in Educat
 
 {{<icon name="book-reader" pack="fas" >}} Read my open book for {{< staticref "https://zewang.netlify.app/books/sem/_book" "newtab" >}}Structural Equation Modeling Using R and Mplus{{< /staticref >}}. 
 
-{{<icon name="book-reader" pack="fas" >}} Read my open book for {{< staticref "https://zewang.netlify.app/books/quant-foundations/_book" "newtab" >}}Quantitative Foundations in Educational Research{{< /staticref >}}. 
+{{<icon name="book-reader" pack="fas" >}} Read my open book for {{< ref "books/quant-foundations/_book" "newtab" >}}Quantitative Foundations in Educational Research{{< /ref >}}. 
 
