@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Review of Basic Statistics | Quantitative Foundations in Educational Research</title>
+  <meta name="description" content="This is for course ESC_PS 8850 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Review of Basic Statistics | Quantitative Foundations in Educational Research" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is for course ESC_PS 8850 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="ze-wang/quant-foundations" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Review of Basic Statistics | Quantitative Foundations in Educational Research" />
+  
+  <meta name="twitter:description" content="This is for course ESC_PS 8850 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Ze Wang" />
+
+
+<meta name="date" content="2021-07-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="correlation-1.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contents"><i class="fa fa-check"></i>Contents</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#the-r-language"><i class="fa fa-check"></i><b>1.1</b> The R Language</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#why-r"><i class="fa fa-check"></i><b>1.1.1</b> Why R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#statistical-analysis-software-for-data-modeling"><i class="fa fa-check"></i><b>1.1.2</b> Statistical analysis software for data modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#install-r"><i class="fa fa-check"></i><b>1.2</b> Install R</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#install-rstudio"><i class="fa fa-check"></i><b>1.3</b> Install RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#use-rstudio"><i class="fa fa-check"></i><b>1.4</b> Use RStudio</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#basic-operations"><i class="fa fa-check"></i><b>1.4.1</b> Basic operations</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#data-types-in-r"><i class="fa fa-check"></i><b>1.4.2</b> Data types in R</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#data-structures-in-r"><i class="fa fa-check"></i><b>1.4.3</b> Data structures in R</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#packages"><i class="fa fa-check"></i><b>1.4.4</b> R packages</a></li>
+<li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#rstudio-projects"><i class="fa fa-check"></i><b>1.4.5</b> RStudio projects</a></li>
+<li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#import-and-export-data"><i class="fa fa-check"></i><b>1.4.6</b> Import and export Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html"><i class="fa fa-check"></i><b>2</b> Review of Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#calculating-variance-and-covariance"><i class="fa fa-check"></i><b>2.1</b> Calculating Variance and Covariance</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#covariance"><i class="fa fa-check"></i><b>2.1.1</b> Covariance</a></li>
+<li class="chapter" data-level="2.1.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#correlation"><i class="fa fa-check"></i><b>2.1.2</b> Correlation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#using-matrix-algebra"><i class="fa fa-check"></i><b>2.1.3</b> Using Matrix Algebra</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#basic"><i class="fa fa-check"></i><b>2.2</b> Use R for Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#import-and-export-data-1"><i class="fa fa-check"></i><b>2.2.1</b> Import and export data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#several-functions-for-basic-data-management"><i class="fa fa-check"></i><b>2.2.2</b> Several functions for basic data management</a></li>
+<li class="chapter" data-level="2.2.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#some-descriptive-statistics"><i class="fa fa-check"></i><b>2.2.3</b> Some descriptive statistics</a></li>
+<li class="chapter" data-level="2.2.4" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#check-normality"><i class="fa fa-check"></i><b>2.2.4</b> Check normality</a></li>
+<li class="chapter" data-level="2.2.5" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#check-linearity"><i class="fa fa-check"></i><b>2.2.5</b> Check linearity</a></li>
+<li class="chapter" data-level="2.2.6" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#pearsons-product-moment-correlation"><i class="fa fa-check"></i><b>2.2.6</b> Pearson’s product moment correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-r-for-graphing-data"><i class="fa fa-check"></i><b>2.3</b> Use R for Graphing Data</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-plot"><i class="fa fa-check"></i><b>2.3.1</b> Use <code>plot()</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-ggplot2-package"><i class="fa fa-check"></i><b>2.3.2</b> Use <code>ggplot2</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-r-to-graph-a-correlation-matrix"><i class="fa fa-check"></i><b>2.4</b> Use R to Graph a Correlation Matrix</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-plot-1"><i class="fa fa-check"></i><b>2.4.1</b> Use <code>plot()</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-ggplot"><i class="fa fa-check"></i><b>2.4.2</b> Use <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-r-to-generate-random-data"><i class="fa fa-check"></i><b>2.5</b> Use R to Generate Random Data</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#sampling-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Sampling distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#simulate-data-from-a-model"><i class="fa fa-check"></i><b>2.5.2</b> Simulate data from a model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="correlation-1.html"><a href="correlation-1.html"><i class="fa fa-check"></i><b>3</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="correlation-1.html"><a href="correlation-1.html#variance-and-covariance"><i class="fa fa-check"></i><b>3.1</b> Variance and Covariance</a></li>
+<li class="chapter" data-level="3.2" data-path="correlation-1.html"><a href="correlation-1.html#pearson-product-moment-correlation-pearson-correlation"><i class="fa fa-check"></i><b>3.2</b> Pearson Product-Moment Correlation (Pearson Correlation)</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="correlation-1.html"><a href="correlation-1.html#test-that-the-population-correlation-equals-zero"><i class="fa fa-check"></i><b>3.2.1</b> Test that the population correlation equals zero</a></li>
+<li class="chapter" data-level="3.2.2" data-path="correlation-1.html"><a href="correlation-1.html#check-normality-1"><i class="fa fa-check"></i><b>3.2.2</b> Check normality</a></li>
+<li class="chapter" data-level="3.2.3" data-path="correlation-1.html"><a href="correlation-1.html#check-for-linearity-with-scatterplot"><i class="fa fa-check"></i><b>3.2.3</b> Check for linearity with scatterplot</a></li>
+<li class="chapter" data-level="3.2.4" data-path="correlation-1.html"><a href="correlation-1.html#factors-that-affect-the-pearson-correlation"><i class="fa fa-check"></i><b>3.2.4</b> Factors that affect the Pearson Correlation</a></li>
+<li class="chapter" data-level="3.2.5" data-path="correlation-1.html"><a href="correlation-1.html#test-that-the-population-correlation-equals-a-certain-value"><i class="fa fa-check"></i><b>3.2.5</b> Test that the population correlation equals a certain value</a></li>
+<li class="chapter" data-level="3.2.6" data-path="correlation-1.html"><a href="correlation-1.html#test-that-two-population-correlations-are-equal"><i class="fa fa-check"></i><b>3.2.6</b> Test that two population correlations are equal</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="correlation-1.html"><a href="correlation-1.html#variations-of-the-pearson-product-moment-correlation"><i class="fa fa-check"></i><b>3.3</b> Variations of the Pearson Product-Moment Correlation</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="correlation-1.html"><a href="correlation-1.html#point-biserial-correlation"><i class="fa fa-check"></i><b>3.3.1</b> Point Biserial Correlation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="correlation-1.html"><a href="correlation-1.html#biserial-correlation"><i class="fa fa-check"></i><b>3.3.2</b> Biserial Correlation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="correlation-1.html"><a href="correlation-1.html#spearmans-rankspearmans-correlationspearmans-rho"><i class="fa fa-check"></i><b>3.3.3</b> Spearman’s Rank/Spearman’s Correlation/Spearman’s rho</a></li>
+<li class="chapter" data-level="3.3.4" data-path="correlation-1.html"><a href="correlation-1.html#phi-coefficient"><i class="fa fa-check"></i><b>3.3.4</b> Phi Coefficient</a></li>
+<li class="chapter" data-level="3.3.5" data-path="correlation-1.html"><a href="correlation-1.html#tetrachoric-correlation"><i class="fa fa-check"></i><b>3.3.5</b> Tetrachoric Correlation</a></li>
+<li class="chapter" data-level="3.3.6" data-path="correlation-1.html"><a href="correlation-1.html#polychoric-correlation"><i class="fa fa-check"></i><b>3.3.6</b> Polychoric Correlation</a></li>
+<li class="chapter" data-level="3.3.7" data-path="correlation-1.html"><a href="correlation-1.html#chi-square"><i class="fa fa-check"></i><b>3.3.7</b> Chi-Square</a></li>
+<li class="chapter" data-level="3.3.8" data-path="correlation-1.html"><a href="correlation-1.html#summary-of-measures-of-association"><i class="fa fa-check"></i><b>3.3.8</b> Summary of measures of association</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="correlation-1.html"><a href="correlation-1.html#an-example"><i class="fa fa-check"></i><b>3.4</b> An Example</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data"><i class="fa fa-check"></i><b>4.1</b> Plot the Data</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#using-plot"><i class="fa fa-check"></i><b>4.1.1</b> Using <code>plot()</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#using-ggplot"><i class="fa fa-check"></i><b>4.1.2</b> Using <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#the-regression-equation"><i class="fa fa-check"></i><b>4.2</b> The Regression Equation</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#variance-explained"><i class="fa fa-check"></i><b>4.2.1</b> Variance explained</a></li>
+<li class="chapter" data-level="4.2.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#relationship-with-pearson-correlation"><i class="fa fa-check"></i><b>4.2.2</b> Relationship with Pearson correlation</a></li>
+<li class="chapter" data-level="4.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#coefficient-of-determination-r2"><i class="fa fa-check"></i><b>4.2.3</b> Coefficient of Determination (<span class="math inline">\({{R}^{2}}\)</span>)</a></li>
+<li class="chapter" data-level="4.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#r-syntax"><i class="fa fa-check"></i><b>4.2.4</b> R Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#test-of-significance-and-confidence-interval"><i class="fa fa-check"></i><b>4.3</b> Test of Significance and Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#testing-the-regression-of-y-on-x"><i class="fa fa-check"></i><b>4.3.1</b> Testing the regression of Y on X</a></li>
+<li class="chapter" data-level="4.3.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#testing-the-regression-coefficient-slope-and-the-confidence-interval"><i class="fa fa-check"></i><b>4.3.2</b> Testing the regression coefficient (slope) and the confidence interval</a></li>
+<li class="chapter" data-level="4.3.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#r-syntax-1"><i class="fa fa-check"></i><b>4.3.3</b> R Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#summary-of-important-statistics"><i class="fa fa-check"></i><b>4.4</b> Summary of Important Statistics</a></li>
+<li class="chapter" data-level="4.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-hypothesis-testing-and-prediction-intervals"><i class="fa fa-check"></i><b>4.5</b> Confidence Intervals, Hypothesis Testing, and Prediction Intervals</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#prediction-intervals-for-new-observations"><i class="fa fa-check"></i><b>4.5.1</b> Prediction Intervals for New Observations</a></li>
+<li class="chapter" data-level="4.5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#r-syntax-2"><i class="fa fa-check"></i><b>4.5.2</b> R Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#a-complete-example"><i class="fa fa-check"></i><b>4.6</b> A Complete Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html"><i class="fa fa-check"></i><b>5</b> Multiple Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#f-test-and-partial-f-test"><i class="fa fa-check"></i><b>5.1</b> F Test and Partial F Test</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#overall-test-f-test"><i class="fa fa-check"></i><b>5.1.1</b> Overall test (F Test)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#partial-f-test-for-additional-variables"><i class="fa fa-check"></i><b>5.1.2</b> Partial F test for additional variable(s)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#testing-the-partial-regression-coefficients"><i class="fa fa-check"></i><b>5.2</b> Testing the Partial Regression Coefficients</a></li>
+<li class="chapter" data-level="5.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#partial-and-semi-paritial-part-correlations"><i class="fa fa-check"></i><b>5.3</b> Partial and Semi-paritial (Part) Correlations</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#r-syntax-3"><i class="fa fa-check"></i><b>5.3.1</b> R Syntax</a></li>
+<li class="chapter" data-level="5.3.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#sum-up"><i class="fa fa-check"></i><b>5.3.2</b> Sum up</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#a-complete-example-1"><i class="fa fa-check"></i><b>5.4</b> A Complete Example</a></li>
+<li class="chapter" data-level="5.5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#types-of-multiple-regression"><i class="fa fa-check"></i><b>5.5</b> Types of Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#regression-model-selection-based-on-statistics"><i class="fa fa-check"></i><b>5.5.1</b> Regression model selection based on statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#a-few-assumptions-in-regression"><i class="fa fa-check"></i><b>5.6</b> (A Few) Assumptions in Regression</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#linearity"><i class="fa fa-check"></i><b>5.6.1</b> Linearity</a></li>
+<li class="chapter" data-level="5.6.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#homoscedasticity-constant-variance-assumption"><i class="fa fa-check"></i><b>5.6.2</b> Homoscedasticity (Constant Variance Assumption)</a></li>
+<li class="chapter" data-level="5.6.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#normality"><i class="fa fa-check"></i><b>5.6.3</b> Normality</a></li>
+<li class="chapter" data-level="5.6.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#independence-of-residuals"><i class="fa fa-check"></i><b>5.6.4</b> Independence of Residuals</a></li>
+<li class="chapter" data-level="5.6.5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#multicollinearity"><i class="fa fa-check"></i><b>5.6.5</b> Multicollinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#multiple-regression-and-patterns-of-association"><i class="fa fa-check"></i><b>5.7</b> Multiple Regression and Patterns of Association</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#complete-independence"><i class="fa fa-check"></i><b>5.7.1</b> Complete independence</a></li>
+<li class="chapter" data-level="5.7.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#partial-redundancy"><i class="fa fa-check"></i><b>5.7.2</b> Partial redundancy</a></li>
+<li class="chapter" data-level="5.7.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#complete-redundancy"><i class="fa fa-check"></i><b>5.7.3</b> Complete redundancy</a></li>
+<li class="chapter" data-level="5.7.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#suppression-in-multiple-regression"><i class="fa fa-check"></i><b>5.7.4</b> Suppression in multiple regression</a></li>
+<li class="chapter" data-level="5.7.5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#summary-of-patterns-of-association"><i class="fa fa-check"></i><b>5.7.5</b> Summary of patterns of association</a></li>
+<li class="chapter" data-level="5.7.6" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#statistical-paradoxes"><i class="fa fa-check"></i><b>5.7.6</b> Statistical paradoxes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#regression-diagnostics"><i class="fa fa-check"></i><b>5.8</b> Regression Diagnostics</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#leverage"><i class="fa fa-check"></i><b>5.8.1</b> Leverage</a></li>
+<li class="chapter" data-level="5.8.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#discrepancy"><i class="fa fa-check"></i><b>5.8.2</b> Discrepancy</a></li>
+<li class="chapter" data-level="5.8.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#influence"><i class="fa fa-check"></i><b>5.8.3</b> Influence</a></li>
+<li class="chapter" data-level="5.8.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#sources-of-outliers-and-remedies"><i class="fa fa-check"></i><b>5.8.4</b> Sources of Outliers and Remedies</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#curvilinear-regression"><i class="fa fa-check"></i><b>5.9</b> Curvilinear Regression</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#polynomial-regression"><i class="fa fa-check"></i><b>5.9.1</b> Polynomial regression</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#useful-functions-and-symbols-commonly-used-in-r-when-fitting-linear-models"><i class="fa fa-check"></i><b>5.10</b> Useful Functions and Symbols Commonly Used in R When Fitting Linear Models</a></li>
+<li class="chapter" data-level="5.11" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#interactions-in-regression"><i class="fa fa-check"></i><b>5.11</b> Interactions in Regression</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#an-example-1"><i class="fa fa-check"></i><b>5.11.1</b> An example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#categorical-independent-variables"><i class="fa fa-check"></i><b>5.12</b> Categorical Independent Variables</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#binary-independent-variables"><i class="fa fa-check"></i><b>5.12.1</b> Binary independent variables</a></li>
+<li class="chapter" data-level="5.12.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#categorical-independent-variables-with-more-than-two-categories"><i class="fa fa-check"></i><b>5.12.2</b> Categorical independent variables with more than two categories</a></li>
+<li class="chapter" data-level="5.12.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#an-example-2"><i class="fa fa-check"></i><b>5.12.3</b> An example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#interactions-between-categorical-and-continuous-variables"><i class="fa fa-check"></i><b>5.13</b> Interactions Between Categorical and Continuous Variables</a></li>
+<li class="chapter" data-level="5.14" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#an-open-book-on-regression"><i class="fa fa-check"></i><b>5.14</b> An Open Book on Regression</a></li>
+<li class="chapter" data-level="5.15" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#create-apa-tables-with-apatables-package"><i class="fa fa-check"></i><b>5.15</b> Create APA Tables with <code>apaTables</code> Package</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Binary Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#some-definitions"><i class="fa fa-check"></i><b>6.1</b> Some Definitions</a></li>
+<li class="chapter" data-level="6.2" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#logarithm-rules"><i class="fa fa-check"></i><b>6.2</b> Logarithm Rules</a></li>
+<li class="chapter" data-level="6.3" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#logistic-regression-equation"><i class="fa fa-check"></i><b>6.3</b> Logistic Regression Equation</a></li>
+<li class="chapter" data-level="6.4" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#run-logistic-regression"><i class="fa fa-check"></i><b>6.4</b> Run Logistic Regression</a></li>
+<li class="chapter" data-level="6.5" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#logistic-regression-coefficients"><i class="fa fa-check"></i><b>6.5</b> Logistic Regression Coefficients</a></li>
+<li class="chapter" data-level="6.6" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#similarities-and-differences-between-binary-logistic-regression-and-ols-regression"><i class="fa fa-check"></i><b>6.6</b> Similarities and Differences Between Binary Logistic Regression and OLS Regression</a></li>
+<li class="chapter" data-level="6.7" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#empirical-example"><i class="fa fa-check"></i><b>6.7</b> Empirical Example</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assess-the-model---model-chi-square"><i class="fa fa-check"></i><b>6.7.1</b> Assess the model - model chi-square</a></li>
+<li class="chapter" data-level="6.7.2" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assess-the-model---r2"><i class="fa fa-check"></i><b>6.7.2</b> Assess the model - <span class="math inline">\({R^2}\)</span></a></li>
+<li class="chapter" data-level="6.7.3" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#diagnostics"><i class="fa fa-check"></i><b>6.7.3</b> Diagnostics</a></li>
+<li class="chapter" data-level="6.7.4" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assumptions---linearity"><i class="fa fa-check"></i><b>6.7.4</b> Assumptions - Linearity</a></li>
+<li class="chapter" data-level="6.7.5" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assumptions---independence-of-errors"><i class="fa fa-check"></i><b>6.7.5</b> Assumptions - Independence of errors</a></li>
+<li class="chapter" data-level="6.7.6" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#use-more-predictors"><i class="fa fa-check"></i><b>6.7.6</b> Use more predictors</a></li>
+<li class="chapter" data-level="6.7.7" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#check-multicollinearity-among-ivs"><i class="fa fa-check"></i><b>6.7.7</b> Check Multicollinearity Among IVs</a></li>
+<li class="chapter" data-level="6.7.8" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#interprete-results"><i class="fa fa-check"></i><b>6.7.8</b> Interprete results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>7</b> Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#historical-background"><i class="fa fa-check"></i><b>7.1</b> Historical Background</a></li>
+<li class="chapter" data-level="7.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-general-linear-model-glm"><i class="fa fa-check"></i><b>7.2</b> The General Linear Model (GLM)</a></li>
+<li class="chapter" data-level="7.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-anova-for-single-factor-designs"><i class="fa fa-check"></i><b>7.3</b> One-Way ANOVA (for Single Factor Designs)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#statistical-hypotheses"><i class="fa fa-check"></i><b>7.3.1</b> Statistical hypotheses</a></li>
+<li class="chapter" data-level="7.3.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#basic-idea-of-anova"><i class="fa fa-check"></i><b>7.3.2</b> Basic idea of ANOVA</a></li>
+<li class="chapter" data-level="7.3.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#empirical-example-1"><i class="fa fa-check"></i><b>7.3.3</b> Empirical example</a></li>
+<li class="chapter" data-level="7.3.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#pairwise-comparisons"><i class="fa fa-check"></i><b>7.3.4</b> Pairwise comparisons</a></li>
+<li class="chapter" data-level="7.3.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#planned-comparisons"><i class="fa fa-check"></i><b>7.3.5</b> Planned comparisons</a></li>
+<li class="chapter" data-level="7.3.6" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-pairwise-comparisons"><i class="fa fa-check"></i><b>7.3.6</b> Post-hoc pairwise comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#anova-assumptions"><i class="fa fa-check"></i><b>7.4</b> ANOVA Assumptions</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#robustness"><i class="fa fa-check"></i><b>7.4.1</b> Robustness</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-anova-using-glm-approach"><i class="fa fa-check"></i><b>7.5</b> One-way ANOVA Using GLM approach</a></li>
+<li class="chapter" data-level="7.6" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#factorial-analysis-of-variance-factorial-anova"><i class="fa fa-check"></i><b>7.6</b> Factorial Analysis of Variance (Factorial ANOVA)</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#numerical-calcuations-for-two-way-anova"><i class="fa fa-check"></i><b>7.6.1</b> Numerical calcuations for two-way ANOVA</a></li>
+<li class="chapter" data-level="7.6.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#partitioning-the-total-sum-of-squares"><i class="fa fa-check"></i><b>7.6.2</b> Partitioning the total sum of squares</a></li>
+<li class="chapter" data-level="7.6.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#empirical-example---two-way-anova"><i class="fa fa-check"></i><b>7.6.3</b> Empirical example - Two-way ANOVA</a></li>
+<li class="chapter" data-level="7.6.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#assumptions-for-factorial-anova-see-refanova-assumptions"><i class="fa fa-check"></i><b>7.6.4</b> Assumptions for factorial ANOVA (see @ref(anova-assumptions))</a></li>
+<li class="chapter" data-level="7.6.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#contrasts-using-the-multcomp-package"><i class="fa fa-check"></i><b>7.6.5</b> Contrasts using the <code>multcomp</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#factorial-anova-as-multiple-regression"><i class="fa fa-check"></i><b>7.7</b> Factorial ANOVA as Multiple Regression</a></li>
+<li class="chapter" data-level="7.8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-blog-on-anova-in-r"><i class="fa fa-check"></i><b>7.8</b> A Blog on ANOVA in R</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html"><i class="fa fa-check"></i><b>8</b> Analysis of Covariance</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#purposes-of-ancova"><i class="fa fa-check"></i><b>8.1</b> Purposes of ANCOVA</a></li>
+<li class="chapter" data-level="8.2" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#choice-of-covariates-to-use"><i class="fa fa-check"></i><b>8.2</b> Choice of covariates to use</a></li>
+<li class="chapter" data-level="8.3" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#statistical-model-for-ancova"><i class="fa fa-check"></i><b>8.3</b> Statistical Model for ANCOVA</a></li>
+<li class="chapter" data-level="8.4" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#ancova-assumptions"><i class="fa fa-check"></i><b>8.4</b> ANCOVA Assumptions</a></li>
+<li class="chapter" data-level="8.5" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#empirical-example-2"><i class="fa fa-check"></i><b>8.5</b> Empirical Example</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---normality"><i class="fa fa-check"></i><b>8.5.1</b> Assumptions - Normality</a></li>
+<li class="chapter" data-level="8.5.2" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---homogeneity-of-variance"><i class="fa fa-check"></i><b>8.5.2</b> Assumptions - Homogeneity of Variance</a></li>
+<li class="chapter" data-level="8.5.3" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---independence-of-the-covariate-and-the-independent-variable"><i class="fa fa-check"></i><b>8.5.3</b> Assumptions - Independence of the covariate and the independent variable</a></li>
+<li class="chapter" data-level="8.5.4" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---homogeneity-of-regression-slopes"><i class="fa fa-check"></i><b>8.5.4</b> Assumptions - Homogeneity of regression slopes</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#post-hoc-tests-using-the-multcomp-package"><i class="fa fa-check"></i><b>8.6</b> Post-hoc Tests using the <code>multcomp</code> package</a></li>
+<li class="chapter" data-level="8.7" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#ancova-as-a-glm"><i class="fa fa-check"></i><b>8.7</b> ANCOVA as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html"><i class="fa fa-check"></i><b>9</b> Repeated Measures ANOVA and Mixed Designs</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#repeated-measures-anova"><i class="fa fa-check"></i><b>9.1</b> Repeated-Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#advantages-of-repeated-measures-design"><i class="fa fa-check"></i><b>9.1.1</b> Advantages of repeated-measures design</a></li>
+<li class="chapter" data-level="9.1.2" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#disadvantages-of-repeated-measures-design"><i class="fa fa-check"></i><b>9.1.2</b> Disadvantages of repeated-measures design</a></li>
+<li class="chapter" data-level="9.1.3" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#variance-partitioning-in-one-way-repeated-measures-design"><i class="fa fa-check"></i><b>9.1.3</b> Variance partitioning in one-way repeated measures design</a></li>
+<li class="chapter" data-level="9.1.4" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#assumptions-in-repeated-measures-analysis"><i class="fa fa-check"></i><b>9.1.4</b> Assumptions in repeated measures analysis</a></li>
+<li class="chapter" data-level="9.1.5" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#alternative-specification-of-the-variance-covariance-matrix"><i class="fa fa-check"></i><b>9.1.5</b> Alternative Specification of the Variance-Covariance Matrix</a></li>
+<li class="chapter" data-level="9.1.6" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#empirical-example-3"><i class="fa fa-check"></i><b>9.1.6</b> Empirical example</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#mixed-designs"><i class="fa fa-check"></i><b>9.2</b> Mixed Designs</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#one-between-and-one-within-factor-design"><i class="fa fa-check"></i><b>9.2.1</b> One between and one within factor design</a></li>
+<li class="chapter" data-level="9.2.2" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#a-few-online-resources"><i class="fa fa-check"></i><b>9.2.2</b> A few online resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="power-analysis.html"><a href="power-analysis.html"><i class="fa fa-check"></i><b>10</b> Power Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="power-analysis.html"><a href="power-analysis.html#components-of-power-analysis"><i class="fa fa-check"></i><b>10.1</b> Components of Power Analysis</a></li>
+<li class="chapter" data-level="10.2" data-path="power-analysis.html"><a href="power-analysis.html#effect-sizes"><i class="fa fa-check"></i><b>10.2</b> Effect Sizes</a></li>
+<li class="chapter" data-level="10.3" data-path="power-analysis.html"><a href="power-analysis.html#types-of-power-analysis"><i class="fa fa-check"></i><b>10.3</b> Types of Power Analysis</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="power-analysis.html"><a href="power-analysis.html#a-priori-power-analysis"><i class="fa fa-check"></i><b>10.3.1</b> A priori power analysis</a></li>
+<li class="chapter" data-level="10.3.2" data-path="power-analysis.html"><a href="power-analysis.html#post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.3.2</b> Post-hoc power analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="power-analysis.html"><a href="power-analysis.html#a-two-tailed-t-test-for-independent-samples-power-example"><i class="fa fa-check"></i><b>10.4</b> a Two-Tailed <em>t Test</em> for Independent Samples Power Example</a></li>
+<li class="chapter" data-level="10.5" data-path="power-analysis.html"><a href="power-analysis.html#software"><i class="fa fa-check"></i><b>10.5</b> Software</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Foundations in Educational Research</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="review-of-basic-statistics" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Review of Basic Statistics</h1>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="review-of-basic-statistics.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio); <span class="fu">library</span>(psych); <span class="fu">library</span>(Hmisc); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(reshape2); <span class="fu">library</span>(QuantPsyc); <span class="fu">library</span>(MASS); <span class="fu">library</span>(lavaan)</span></code></pre></div>
+<div id="calculating-variance-and-covariance" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Calculating Variance and Covariance</h2>
+<div id="covariance" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Covariance</h3>
+<p><strong>population</strong>:
+<span class="math display">\[{{\sigma }_{\text{XY}}}=\frac{\sum{(X-{{\mu }_{\text{X}}})(Y-{{\mu }_{\text{Y}}})}}{{{N}_{pop}}}\]</span>
+<strong>sample</strong>: <span class="math display">\[{{s}_{XY}}={{\hat{\sigma }}_{XY}}=Cov(X,Y)=\frac{\sum{(X-\bar{X})(Y-\bar{Y})}}{(n-1)}\]</span></p>
+</div>
+<div id="correlation" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Correlation</h3>
+<p><strong>population</strong>: <span class="math display">\[{{\rho }_{\text{XY}}}=\frac{{{\sigma }_{\text{XY}}}}{\sqrt{{{\sigma }_{\text{X}}}^{2}{{\sigma }_{\text{Y}}}^{2}}}\]</span></p>
+<p><strong>sample</strong>: <span class="math display">\[{{r}_{\text{XY}}}={{\hat{\rho }}_{\text{XY}}}=\frac{Cov(X,Y)}{\sqrt{{{s}_{\text{X}}}^{2}{{s}_{\text{Y}}}^{2}}}\]</span></p>
+</div>
+<div id="using-matrix-algebra" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Using Matrix Algebra</h3>
+<p>Suppose we have a 5 by 2 data matrix <strong>X</strong> (2 variables and 5 participants, for example).
+$${} = $$</p>
+<p>First, we calculate the deviation score matrix <span class="math inline">\({{\bf{X}}_{\bf{d}}}\)</span>.</p>
+<p><span class="math display">\[{{\mathbf{X}}_{d}}\text{=}\mathbf{X-\bar{X}}=\left[ \begin{matrix}
+   1 &amp; 3  \\
+   4 &amp; -5  \\
+   1 &amp; 7  \\
+   3 &amp; 2  \\
+   7 &amp; -1  \\
+\end{matrix} \right]-\left[ \begin{matrix}
+   3.2 &amp; 1.2  \\
+   3.2 &amp; 1.2  \\
+   3.2 &amp; 1.2  \\
+   3.2 &amp; 1.2  \\
+   3.2 &amp; 1.2  \\
+\end{matrix} \right]=\left[ \begin{matrix}
+   -2.2 &amp; 1.8  \\
+   0.8 &amp; -6.2  \\
+   -2.2 &amp; 5.8  \\
+   -0.2 &amp; 0.8  \\
+   3.8 &amp; -2.2  \\
+\end{matrix} \right]\]</span></p>
+<p>Next, we multiple the transpose of <span class="math inline">\({{\bf{X}}_{\bf{d}}}\)</span> ( <span class="math inline">\({{\bf{X}}_{\bf{d}}}^{\bf{&#39;}}\)</span> ) by <span class="math inline">\({{\bf{X}}_{\bf{d}}}\)</span> itself using matrix operations. We will get the deviation SSCP (sums of squares and cross products) matrix.</p>
+<p><strong>Deviation SSCP matrix:</strong><br />
+<span class="math display">\[{{\mathbf{X}}_{\mathbf{d}}}&#39;{{\mathbf{X}}_{\mathbf{d}}}=\sum{{{x}_{i}}{{x}_{j}}=\left[ \begin{matrix}
+   \sum{x_{1}^{2}} &amp; \sum{{{x}_{1}}{{x}_{2}}}  \\
+   \sum{{{x}_{2}}{{x}_{1}}} &amp; \sum{x_{2}^{2}}  \\
+\end{matrix} \right]}=\left[ \begin{matrix}
+   24.8 &amp; -30.2  \\
+   -30.2 &amp; 80.8  \\
+\end{matrix} \right]\]</span>
+(Note: Lower case <span class="math inline">\({{x}_{i}}\)</span>’s represent deviation scores.)</p>
+<p>Since variance of of the first variable <span class="math inline">\(X_1\)</span> is <span class="math inline">\(\frac{1}{N-1}\sum{x_{1}^{2}}\)</span> and the covariance between <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> is <span class="math inline">\(\frac{1}{N-1}\sum{{{x}_{1}}{{x}_{2}}}\)</span>, the variance and covariance matrix (usually denoted by S) can be obtained by multiplying <span class="math inline">\(\frac{1}{N-1}\)</span> to the deviation score <strong>SSCP</strong>:</p>
+<p>Variance and Covariance matrix:
+<span class="math display">\[\mathbf{S}=\frac{1}{5-1}\left[ \begin{matrix}
+   24.8 &amp; -30.2  \\
+   -30.2 &amp; 80.8  \\
+\end{matrix} \right]=\left[ \begin{matrix}
+   6.2 &amp; -7.55  \\
+   -7.55 &amp; 20.2  \\
+\end{matrix} \right]\]</span></p>
+<p>$${}$$</p>
+<p><strong>Sample Covariance Matrix S</strong></p>
+<p>$${}$$</p>
+<p><strong>Sample Correlation R</strong>
+$${}$$</p>
+<p>Elements in sample covariance matrix divided by <span class="math inline">\({s_i}{s_j}\)</span> would result in the sample correlation matrix.</p>
+<p>Elements in sample correlation matrix multiplied by <span class="math inline">\({s_i}{s_j}\)</span> would result in the sample covariance matrix.</p>
+</div>
+</div>
+<div id="basic" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Use R for Basic Statistics</h2>
+<div id="import-and-export-data-1" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Import and export data</h3>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="review-of-basic-statistics.html#cb102-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/example.sav&quot;</span>)</span>
+<span id="cb102-2"><a href="review-of-basic-statistics.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="co"># head(mydata) # view first 6 observations</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="review-of-basic-statistics.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(mydata, <span class="at">file =</span> <span class="st">&quot;data/dataset_example.csv&quot;</span>)</span>
+<span id="cb103-2"><a href="review-of-basic-statistics.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(mydata, <span class="at">file =</span> <span class="st">&quot;data/dataset_example.xlsx&quot;</span>)</span></code></pre></div>
+</div>
+<div id="several-functions-for-basic-data-management" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Several functions for basic data management</h3>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="review-of-basic-statistics.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mydata)[<span class="fu">names</span>(mydata) <span class="sc">==</span> <span class="st">&quot;ITSEX&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;gender&quot;</span> <span class="co">#rename a variable</span></span>
+<span id="cb104-2"><a href="review-of-basic-statistics.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mydata)[<span class="fu">names</span>(mydata) <span class="sc">==</span> <span class="st">&quot;BSMMAT01&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;math&quot;</span> <span class="co">#rename another variable for math score</span></span>
+<span id="cb104-3"><a href="review-of-basic-statistics.html#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mydata)[<span class="fu">names</span>(mydata) <span class="sc">==</span> <span class="st">&quot;BSBGHER&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;resource&quot;</span> <span class="co">#education resource</span></span>
+<span id="cb104-4"><a href="review-of-basic-statistics.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mydata)[<span class="fu">names</span>(mydata) <span class="sc">==</span> <span class="st">&quot;BSBGSCM&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;confidence&quot;</span> <span class="co">#confidence in math</span></span>
+<span id="cb104-5"><a href="review-of-basic-statistics.html#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mydata)[<span class="fu">names</span>(mydata) <span class="sc">==</span> <span class="st">&quot;BSBGSVM&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;value&quot;</span> <span class="co">#valuing math</span></span>
+<span id="cb104-6"><a href="review-of-basic-statistics.html#cb104-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mydata)[<span class="fu">names</span>(mydata) <span class="sc">==</span> <span class="st">&quot;BSBGSSB&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;belonging&quot;</span> <span class="co">#sense of belonging</span></span>
+<span id="cb104-7"><a href="review-of-basic-statistics.html#cb104-7" aria-hidden="true" tabindex="-1"></a>var <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;gender&quot;</span>, <span class="st">&quot;math&quot;</span>, <span class="st">&quot;resource&quot;</span>, <span class="st">&quot;confidence&quot;</span>, <span class="st">&quot;value&quot;</span>, <span class="st">&quot;belonging&quot;</span>)</span>
+<span id="cb104-8"><a href="review-of-basic-statistics.html#cb104-8" aria-hidden="true" tabindex="-1"></a>dat1 <span class="ot">&lt;-</span> mydata[, var] <span class="co">#subset data</span></span>
+<span id="cb104-9"><a href="review-of-basic-statistics.html#cb104-9" aria-hidden="true" tabindex="-1"></a>dat2 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(dat1) <span class="co">#listwise deletion</span></span>
+<span id="cb104-10"><a href="review-of-basic-statistics.html#cb104-10" aria-hidden="true" tabindex="-1"></a>dat1<span class="sc">$</span>gender_c <span class="ot">&lt;-</span> <span class="fu">factor</span>(dat1<span class="sc">$</span>gender) <span class="co">#create a categorical variable for `gender`</span></span>
+<span id="cb104-11"><a href="review-of-basic-statistics.html#cb104-11" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(dat1<span class="sc">$</span>gender_c) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>) <span class="co">#change levels for `gender` variable</span></span></code></pre></div>
+</div>
+<div id="some-descriptive-statistics" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Some descriptive statistics</h3>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="review-of-basic-statistics.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dat1) </span>
+<span id="cb105-2"><a href="review-of-basic-statistics.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat1<span class="sc">$</span>gender_c) <span class="co">#compute frequencies for categorical variables</span></span>
+<span id="cb105-3"><a href="review-of-basic-statistics.html#cb105-3" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(dat1) <span class="co">#compute descriptives for quantitative variables. Need to install and load the `psych` package</span></span>
+<span id="cb105-4"><a href="review-of-basic-statistics.html#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(dat1) <span class="co"># save some typing. Alternatively, `math &lt;- dat1$BSMMAT01` to create a separate vector.</span></span></code></pre></div>
+<pre><code>## The following object is masked _by_ .GlobalEnv:
+## 
+##     gender</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="review-of-basic-statistics.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(math, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb107-2"><a href="review-of-basic-statistics.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(math, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb107-3"><a href="review-of-basic-statistics.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(math, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb107-4"><a href="review-of-basic-statistics.html#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(math, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb107-5"><a href="review-of-basic-statistics.html#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(math, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb107-6"><a href="review-of-basic-statistics.html#cb107-6" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(dat1)</span></code></pre></div>
+</div>
+<div id="check-normality" class="section level3" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Check normality</h3>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="review-of-basic-statistics.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dat1<span class="sc">$</span>math)</span></code></pre></div>
+<p>You got an error message. <br/>
+The Shapiro-Wilk test is for small to moderate samples.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="review-of-basic-statistics.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>) <span class="co">#for reproducibility</span></span>
+<span id="cb109-2"><a href="review-of-basic-statistics.html#cb109-2" aria-hidden="true" tabindex="-1"></a>selected <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(dat1), <span class="dv">100</span>) <span class="co">#randomly selection 100 numbers from 1 through the sample size</span></span>
+<span id="cb109-3"><a href="review-of-basic-statistics.html#cb109-3" aria-hidden="true" tabindex="-1"></a>dat1_small <span class="ot">&lt;-</span> dat1[selected,] <span class="co">#create a smaller dataset of 100 students</span></span>
+<span id="cb109-4"><a href="review-of-basic-statistics.html#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dat1_small<span class="sc">$</span>math)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  dat1_small$math
+## W = 0.97872, p-value = 0.1056</code></pre>
+</div>
+<div id="check-linearity" class="section level3" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Check linearity</h3>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="review-of-basic-statistics.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat2<span class="sc">$</span>confidence, dat2<span class="sc">$</span>math)</span>
+<span id="cb111-2"><a href="review-of-basic-statistics.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(math <span class="sc">~</span> confidence, <span class="at">data =</span>dat2), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+</div>
+<div id="pearsons-product-moment-correlation" class="section level3" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Pearson’s product moment correlation</h3>
+<p>Correlation between two variables, hypothesis test, and confidence interval.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="review-of-basic-statistics.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(dat1<span class="sc">$</span>resource, dat1<span class="sc">$</span>math)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  dat1$resource and dat1$math
+## t = 42.923, df = 10116, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.3759021 0.4088708
+## sample estimates:
+##       cor 
+## 0.3925126</code></pre>
+<p>All pairwise correlations.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="review-of-basic-statistics.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(dat1[,var], <span class="at">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span>) <span class="co">#for numeric variables only; &quot;gender&quot; is still a numeric variable!</span></span></code></pre></div>
+<pre><code>##                  gender       math   resource confidence      value   belonging
+## gender      1.000000000 0.01305597 -0.0281559  0.0719095 0.03690314 0.007168246
+## math        0.013055968 1.00000000  0.3925126  0.4280530 0.16511215 0.221113350
+## resource   -0.028155898 0.39251256  1.0000000  0.1512655 0.10208246 0.152041678
+## confidence  0.071909498 0.42805300  0.1512655  1.0000000 0.37535602 0.280950896
+## value       0.036903141 0.16511215  0.1020825  0.3753560 1.00000000 0.366637734
+## belonging   0.007168246 0.22111335  0.1520417  0.2809509 0.36663773 1.000000000</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="review-of-basic-statistics.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(dat1[,var], <span class="at">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span>), <span class="dv">2</span>) <span class="co">#round to 2 decimal places</span></span></code></pre></div>
+<pre><code>##            gender math resource confidence value belonging
+## gender       1.00 0.01    -0.03       0.07  0.04      0.01
+## math         0.01 1.00     0.39       0.43  0.17      0.22
+## resource    -0.03 0.39     1.00       0.15  0.10      0.15
+## confidence   0.07 0.43     0.15       1.00  0.38      0.28
+## value        0.04 0.17     0.10       0.38  1.00      0.37
+## belonging    0.01 0.22     0.15       0.28  0.37      1.00</code></pre>
+<p>Correlations and significance levels for the correlation matrix.
+Need to install and load the <code>Hmisc</code> package.
+Need to coerce from dataframe to matrix to get both a correlation matrix and p-values.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="review-of-basic-statistics.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;Hmisc&quot;</span>)</span>
+<span id="cb118-2"><a href="review-of-basic-statistics.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="review-of-basic-statistics.html#cb119-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(dat1[,var]) <span class="co"># numeric variables only</span></span>
+<span id="cb119-2"><a href="review-of-basic-statistics.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(df)</span></code></pre></div>
+<pre><code>##            gender math resource confidence value belonging
+## gender       1.00 0.01    -0.03       0.07  0.04      0.01
+## math         0.01 1.00     0.39       0.43  0.17      0.22
+## resource    -0.03 0.39     1.00       0.15  0.10      0.15
+## confidence   0.07 0.43     0.15       1.00  0.38      0.28
+## value        0.04 0.17     0.10       0.38  1.00      0.37
+## belonging    0.01 0.22     0.15       0.28  0.37      1.00
+## 
+## n
+##            gender  math resource confidence value belonging
+## gender      10217 10217    10117      10052 10014     10111
+## math        10217 10221    10118      10053 10015     10112
+## resource    10117 10118    10118      10017  9978     10073
+## confidence  10052 10053    10017      10053 10010     10035
+## value       10014 10015     9978      10010 10015      9998
+## belonging   10111 10112    10073      10035  9998     10112
+## 
+## P
+##            gender math   resource confidence value  belonging
+## gender            0.1870 0.0046   0.0000     0.0002 0.4711   
+## math       0.1870        0.0000   0.0000     0.0000 0.0000   
+## resource   0.0046 0.0000          0.0000     0.0000 0.0000   
+## confidence 0.0000 0.0000 0.0000              0.0000 0.0000   
+## value      0.0002 0.0000 0.0000   0.0000            0.0000   
+## belonging  0.4711 0.0000 0.0000   0.0000     0.0000</code></pre>
+</div>
+</div>
+<div id="use-r-for-graphing-data" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Use R for Graphing Data</h2>
+<div id="use-plot" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Use <code>plot()</code></h3>
+<p>Use <code>browseURL("https://datalab.cc/rcolors")</code> to view different colors and methods to refer to them.
+Use <code>?palette</code> for palettes in R; use <code>palette()</code> for current palette</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="review-of-basic-statistics.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat1<span class="sc">$</span>value, dat1<span class="sc">$</span>math)</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="review-of-basic-statistics.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat1<span class="sc">$</span>value, <span class="fu">jitter</span>(dat1<span class="sc">$</span>math)) <span class="co"># add some random noise to Y</span></span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-36-2.png" width="672" /></p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="review-of-basic-statistics.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat1<span class="sc">$</span>value, <span class="fu">jitter</span>(dat1<span class="sc">$</span>math), <span class="at">xlab =</span> <span class="st">&quot;Valuing Math&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Math Score&quot;</span>) <span class="co"># change labels</span></span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-36-3.png" width="672" /></p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="review-of-basic-statistics.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat1<span class="sc">$</span>value, <span class="fu">jitter</span>(dat1<span class="sc">$</span>math), <span class="at">xlab =</span> <span class="st">&quot;Valuing Math&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Math Score&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>) <span class="co"># change color</span></span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-36-4.png" width="672" /></p>
+</div>
+<div id="use-ggplot2-package" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Use <code>ggplot2</code> package</h3>
+<p>Read Chapter 4 of textbook Field, Miles, Field (2012).</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="review-of-basic-statistics.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb125-2"><a href="review-of-basic-statistics.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="review-of-basic-statistics.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat1, <span class="fu">aes</span>(math)) <span class="sc">+</span></span>
+<span id="cb126-2"><a href="review-of-basic-statistics.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb126-3"><a href="review-of-basic-statistics.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb126-4"><a href="review-of-basic-statistics.html#cb126-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Math&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb126-5"><a href="review-of-basic-statistics.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="fu">mean</span>(dat1<span class="sc">$</span>math, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd =</span> <span class="fu">sd</span>(dat1<span class="sc">$</span>math, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="book_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+</div>
+</div>
+<div id="use-r-to-graph-a-correlation-matrix" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Use R to Graph a Correlation Matrix</h2>
+<div id="use-plot-1" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Use <code>plot()</code></h3>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="review-of-basic-statistics.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat1[,var])</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+</div>
+<div id="use-ggplot" class="section level3" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Use <code>ggplot()</code></h3>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="review-of-basic-statistics.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;reshape2&quot;</span>)</span>
+<span id="cb129-2"><a href="review-of-basic-statistics.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="review-of-basic-statistics.html#cb130-1" aria-hidden="true" tabindex="-1"></a>(cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(dat1[,var], <span class="at">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span>))</span></code></pre></div>
+<pre><code>##                  gender       math   resource confidence      value   belonging
+## gender      1.000000000 0.01305597 -0.0281559  0.0719095 0.03690314 0.007168246
+## math        0.013055968 1.00000000  0.3925126  0.4280530 0.16511215 0.221113350
+## resource   -0.028155898 0.39251256  1.0000000  0.1512655 0.10208246 0.152041678
+## confidence  0.071909498 0.42805300  0.1512655  1.0000000 0.37535602 0.280950896
+## value       0.036903141 0.16511215  0.1020825  0.3753560 1.00000000 0.366637734
+## belonging   0.007168246 0.22111335  0.1520417  0.2809509 0.36663773 1.000000000</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="review-of-basic-statistics.html#cb132-1" aria-hidden="true" tabindex="-1"></a>(melt_cor_matrix <span class="ot">&lt;-</span> <span class="fu">melt</span>(cor_matrix))</span></code></pre></div>
+<pre><code>## Warning in type.convert.default(X[[i]], ...): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+## Warning in type.convert.default(X[[i]], ...): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
+<pre><code>##            X1         X2        value
+## 1      gender     gender  1.000000000
+## 2        math     gender  0.013055968
+## 3    resource     gender -0.028155898
+## 4  confidence     gender  0.071909498
+## 5       value     gender  0.036903141
+## 6   belonging     gender  0.007168246
+## 7      gender       math  0.013055968
+## 8        math       math  1.000000000
+## 9    resource       math  0.392512564
+## 10 confidence       math  0.428053003
+## 11      value       math  0.165112146
+## 12  belonging       math  0.221113350
+## 13     gender   resource -0.028155898
+## 14       math   resource  0.392512564
+## 15   resource   resource  1.000000000
+## 16 confidence   resource  0.151265456
+## 17      value   resource  0.102082458
+## 18  belonging   resource  0.152041678
+## 19     gender confidence  0.071909498
+## 20       math confidence  0.428053003
+## 21   resource confidence  0.151265456
+## 22 confidence confidence  1.000000000
+## 23      value confidence  0.375356020
+## 24  belonging confidence  0.280950896
+## 25     gender      value  0.036903141
+## 26       math      value  0.165112146
+## 27   resource      value  0.102082458
+## 28 confidence      value  0.375356020
+## 29      value      value  1.000000000
+## 30  belonging      value  0.366637734
+## 31     gender  belonging  0.007168246
+## 32       math  belonging  0.221113350
+## 33   resource  belonging  0.152041678
+## 34 confidence  belonging  0.280950896
+## 35      value  belonging  0.366637734
+## 36  belonging  belonging  1.000000000</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="review-of-basic-statistics.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> melt_cor_matrix,</span>
+<span id="cb135-2"><a href="review-of-basic-statistics.html#cb135-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">fill =</span> value)) <span class="sc">+</span> <span class="fu">geom_tile</span>()</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+</div>
+</div>
+<div id="use-r-to-generate-random-data" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Use R to Generate Random Data</h2>
+<div id="sampling-distribution" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Sampling distribution</h3>
+<p>Generate data.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="review-of-basic-statistics.html#cb136-1" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb136-2"><a href="review-of-basic-statistics.html#cb136-2" aria-hidden="true" tabindex="-1"></a>sample_means <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb136-3"><a href="review-of-basic-statistics.html#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb136-4"><a href="review-of-basic-statistics.html#cb136-4" aria-hidden="true" tabindex="-1"></a>  samp <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(size, <span class="dv">10</span>, <span class="dv">5</span>)</span>
+<span id="cb136-5"><a href="review-of-basic-statistics.html#cb136-5" aria-hidden="true" tabindex="-1"></a>  sample_means[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(samp)</span>
+<span id="cb136-6"><a href="review-of-basic-statistics.html#cb136-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Calculate the mean and SD of the sampling distribution.</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="review-of-basic-statistics.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sample_means) <span class="co"># population mean is 10</span></span></code></pre></div>
+<pre><code>## [1] 10.007</code></pre>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="review-of-basic-statistics.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sample_means)  <span class="co"># SD of the sampling distribution</span></span></code></pre></div>
+<pre><code>## [1] 0.708293</code></pre>
+<p>Use <code>hist()</code> to graph the sample means for sampling distribution.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="review-of-basic-statistics.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample_means, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">main =</span> <span class="st">&quot;N= 50&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Sample Means&quot;</span>, <span class="at">probability =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p>Use <code>ggplot()</code> to graph the sample means for sampling distribution.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="review-of-basic-statistics.html#cb142-1" aria-hidden="true" tabindex="-1"></a>df_sample_means <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, sample_means) <span class="co"># data for ggplot has to be a data frame.</span></span>
+<span id="cb142-2"><a href="review-of-basic-statistics.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sample_means, <span class="fu">aes</span>(<span class="at">x =</span> sample_means)) <span class="sc">+</span></span>
+<span id="cb142-3"><a href="review-of-basic-statistics.html#cb142-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb142-4"><a href="review-of-basic-statistics.html#cb142-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Sample Means&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb142-5"><a href="review-of-basic-statistics.html#cb142-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="fu">mean</span>(df_sample_means<span class="sc">$</span>sample_means, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd =</span> <span class="fu">sd</span>(df_sample_means<span class="sc">$</span>sample_means, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="book_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+</div>
+<div id="simulate-data-from-a-model" class="section level3" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Simulate data from a model</h3>
+<p>####Simulate data based on a regression model####</p>
+<p><strong>Simple Linear Regression</strong> with 0.7 correlation between x and y</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="review-of-basic-statistics.html#cb144-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
+<span id="cb144-2"><a href="review-of-basic-statistics.html#cb144-2" aria-hidden="true" tabindex="-1"></a>Zx <span class="ot">&lt;-</span> <span class="fu">scale</span>(x)</span>
+<span id="cb144-3"><a href="review-of-basic-statistics.html#cb144-3" aria-hidden="true" tabindex="-1"></a>Zy <span class="ot">&lt;-</span> .<span class="dv">7</span><span class="sc">*</span>Zx <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">-</span>(.<span class="dv">7</span><span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb144-4"><a href="review-of-basic-statistics.html#cb144-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">*</span>Zy <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb144-5"><a href="review-of-basic-statistics.html#cb144-5" aria-hidden="true" tabindex="-1"></a>dat1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,y)</span>
+<span id="cb144-6"><a href="review-of-basic-statistics.html#cb144-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x,y)</span></code></pre></div>
+<pre><code>##          [,1]
+## [1,] 0.693814</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="review-of-basic-statistics.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(Zy <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> Zx))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Zy ~ 0 + Zx)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.93796 -0.49421 -0.01251  0.51644  2.37284 
+## 
+## Coefficients:
+##    Estimate Std. Error t value Pr(&gt;|t|)    
+## Zx  0.71276    0.02341   30.44   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.74 on 999 degrees of freedom
+## Multiple R-squared:  0.4813, Adjusted R-squared:  0.4807 
+## F-statistic: 926.8 on 1 and 999 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="review-of-basic-statistics.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y <span class="sc">~</span>x))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.7646 -1.4334  0.0117  1.5986  7.1678 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -5.85417    0.36189  -16.18   &lt;2e-16 ***
+## x            1.07541    0.03533   30.44   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.221 on 998 degrees of freedom
+## Multiple R-squared:  0.4814, Adjusted R-squared:  0.4809 
+## F-statistic: 926.3 on 1 and 998 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="review-of-basic-statistics.html#cb150-1" aria-hidden="true" tabindex="-1"></a>QuantPsyc<span class="sc">::</span><span class="fu">lm.beta</span>(<span class="fu">lm</span>(y <span class="sc">~</span>x))</span></code></pre></div>
+<pre><code>##        x 
+## 0.693814</code></pre>
+<p><strong>Multiple Linear Regression</strong> with with known population standardized regression coefficients</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="review-of-basic-statistics.html#cb152-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
+<span id="cb152-2"><a href="review-of-basic-statistics.html#cb152-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">5</span>, <span class="dv">1</span>)</span>
+<span id="cb152-3"><a href="review-of-basic-statistics.html#cb152-3" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> x1<span class="sc">*</span>x2</span>
+<span id="cb152-4"><a href="review-of-basic-statistics.html#cb152-4" aria-hidden="true" tabindex="-1"></a>Zx1 <span class="ot">&lt;-</span> <span class="fu">scale</span>(x1)</span>
+<span id="cb152-5"><a href="review-of-basic-statistics.html#cb152-5" aria-hidden="true" tabindex="-1"></a>Zx2 <span class="ot">&lt;-</span> <span class="fu">scale</span>(x2)</span>
+<span id="cb152-6"><a href="review-of-basic-statistics.html#cb152-6" aria-hidden="true" tabindex="-1"></a>Zx3 <span class="ot">&lt;-</span> <span class="fu">scale</span>(x3)</span>
+<span id="cb152-7"><a href="review-of-basic-statistics.html#cb152-7" aria-hidden="true" tabindex="-1"></a>Zy <span class="ot">&lt;-</span> .<span class="dv">7</span><span class="sc">*</span>Zx1 <span class="sc">+</span> .<span class="dv">5</span><span class="sc">*</span>Zx2 <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>Zx3 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">-</span>(.<span class="dv">49</span><span class="fl">+.25+.04</span>)))</span>
+<span id="cb152-8"><a href="review-of-basic-statistics.html#cb152-8" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">*</span>Zy <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb152-9"><a href="review-of-basic-statistics.html#cb152-9" aria-hidden="true" tabindex="-1"></a>dat2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x1, x2, x3, y)</span>
+<span id="cb152-10"><a href="review-of-basic-statistics.html#cb152-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(dat2)</span></code></pre></div>
+<pre><code>##             x1          x2        x3         y
+## x1  1.00000000 -0.04286003 0.6913052 0.7157652
+## x2 -0.04286003  1.00000000 0.6791463 0.6401593
+## x3  0.69130517  0.67914628 1.0000000 0.9848538
+## y   0.71576517  0.64015925 0.9848538 1.0000000</code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="review-of-basic-statistics.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(Zy <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Zy ~ 0 + x1 + x2 + x3)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.66804 -0.42986 -0.03501  0.40424  2.11467 
+## 
+## Coefficients:
+##     Estimate Std. Error t value Pr(&gt;|t|)    
+## x1 -0.964805   0.011053  -87.29   &lt;2e-16 ***
+## x2 -2.076678   0.021641  -95.96   &lt;2e-16 ***
+## x3  0.402948   0.003071  131.20   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6679 on 997 degrees of freedom
+## Multiple R-squared:  0.9463, Adjusted R-squared:  0.9462 
+## F-statistic:  5859 on 3 and 997 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="review-of-basic-statistics.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.7735 -1.0049 -0.0068  0.9343  4.8428 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -35.01244    1.26879 -27.595  &lt; 2e-16 ***
+## x1            0.98700    0.12530   7.877 8.72e-15 ***
+## x2            1.39397    0.24608   5.665 1.93e-08 ***
+## x3            0.46847    0.02437  19.227  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.418 on 996 degrees of freedom
+## Multiple R-squared:  0.9731, Adjusted R-squared:  0.9731 
+## F-statistic: 1.203e+04 on 3 and 996 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="review-of-basic-statistics.html#cb158-1" aria-hidden="true" tabindex="-1"></a>QuantPsyc<span class="sc">::</span><span class="fu">lm.beta</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3))</span></code></pre></div>
+<pre><code>##        x1        x2        x3 
+## 0.2191362 0.1551256 0.7280108</code></pre>
+<p><strong>Multiple Linear Regression</strong> with known population unstandardized regression coefficients</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="review-of-basic-statistics.html#cb160-1" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb160-2"><a href="review-of-basic-statistics.html#cb160-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">3</span></span>
+<span id="cb160-3"><a href="review-of-basic-statistics.html#cb160-3" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb160-4"><a href="review-of-basic-statistics.html#cb160-4" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># sd for the error distribution</span></span>
+<span id="cb160-5"><a href="review-of-basic-statistics.html#cb160-5" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
+<span id="cb160-6"><a href="review-of-basic-statistics.html#cb160-6" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">5</span>, <span class="dv">1</span>)</span>
+<span id="cb160-7"><a href="review-of-basic-statistics.html#cb160-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span>x1 <span class="sc">+</span> b2<span class="sc">*</span>x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">0</span>, sd)</span>
+<span id="cb160-8"><a href="review-of-basic-statistics.html#cb160-8" aria-hidden="true" tabindex="-1"></a>dat3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x1, x2, y)</span>
+<span id="cb160-9"><a href="review-of-basic-statistics.html#cb160-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.0986 -1.3831  0.0726  1.3308  6.0776 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  5.75496    0.46551   12.36   &lt;2e-16 ***
+## x1          -2.93915    0.03371  -87.19   &lt;2e-16 ***
+## x2           3.92356    0.06521   60.17   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.034 on 997 degrees of freedom
+## Multiple R-squared:  0.916,  Adjusted R-squared:  0.9159 
+## F-statistic:  5439 on 2 and 997 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p><strong>MUltivariate Data Structure</strong> with known correlations</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="review-of-basic-statistics.html#cb162-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">1.0</span>, <span class="fl">0.7</span>, <span class="fl">0.5</span>, <span class="fl">0.3</span>,</span>
+<span id="cb162-2"><a href="review-of-basic-statistics.html#cb162-2" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.7</span>, <span class="fl">1.0</span>, <span class="fl">0.4</span>, <span class="fl">0.4</span>,</span>
+<span id="cb162-3"><a href="review-of-basic-statistics.html#cb162-3" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.5</span>, <span class="fl">0.4</span>, <span class="fl">1.0</span>, <span class="fl">0.5</span>,</span>
+<span id="cb162-4"><a href="review-of-basic-statistics.html#cb162-4" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>), <span class="at">nrow =</span> <span class="dv">4</span>)</span>
+<span id="cb162-5"><a href="review-of-basic-statistics.html#cb162-5" aria-hidden="true" tabindex="-1"></a>dat4 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">4</span>), <span class="at">Sigma =</span> sigma, <span class="at">empirical =</span> <span class="cn">TRUE</span>)) <span class="co">#replicate the exact correlations among the simulated variables</span></span>
+<span id="cb162-6"><a href="review-of-basic-statistics.html#cb162-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dat4)</span></code></pre></div>
+<pre><code>##        X1                 X2                 X3                 X4          
+##  Min.   :-2.92187   Min.   :-3.12370   Min.   :-3.24050   Min.   :-3.65926  
+##  1st Qu.:-0.67253   1st Qu.:-0.69337   1st Qu.:-0.68981   1st Qu.:-0.65546  
+##  Median :-0.06499   Median :-0.02844   Median : 0.04108   Median :-0.03206  
+##  Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.00000  
+##  3rd Qu.: 0.69003   3rd Qu.: 0.67110   3rd Qu.: 0.68982   3rd Qu.: 0.67722  
+##  Max.   : 3.45489   Max.   : 2.97990   Max.   : 3.14553   Max.   : 3.55700</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="review-of-basic-statistics.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(dat4)</span></code></pre></div>
+<pre><code>##     X1  X2  X3  X4
+## X1 1.0 0.7 0.5 0.3
+## X2 0.7 1.0 0.4 0.4
+## X3 0.5 0.4 1.0 0.5
+## X4 0.3 0.4 0.5 1.0</code></pre>
+<p><strong>Confirmatory Factor Analysis Model</strong></p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="review-of-basic-statistics.html#cb166-1" aria-hidden="true" tabindex="-1"></a>pop.model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb166-2"><a href="review-of-basic-statistics.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="st">      f1 =~ 0.9*x1 + .7*x2 + .5*x3 + .3*x4</span></span>
+<span id="cb166-3"><a href="review-of-basic-statistics.html#cb166-3" aria-hidden="true" tabindex="-1"></a><span class="st">      f2 =~ 0.9*x5 + .7*x6 + .5*x7 + .3*x8</span></span>
+<span id="cb166-4"><a href="review-of-basic-statistics.html#cb166-4" aria-hidden="true" tabindex="-1"></a><span class="st">      f1 ~~ 1*f1</span></span>
+<span id="cb166-5"><a href="review-of-basic-statistics.html#cb166-5" aria-hidden="true" tabindex="-1"></a><span class="st">      f1 ~~ 0.5*f2&#39;</span></span>
+<span id="cb166-6"><a href="review-of-basic-statistics.html#cb166-6" aria-hidden="true" tabindex="-1"></a>dat5 <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">simulateData</span>(<span class="at">model =</span> pop.model, <span class="at">sample.nobs =</span> <span class="dv">1000</span>)</span>
+<span id="cb166-7"><a href="review-of-basic-statistics.html#cb166-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dat5)</span></code></pre></div>
+<pre><code>##        x1                 x2                 x3                 x4                 x5                 x6                  x7           
+##  Min.   :-3.83863   Min.   :-3.81556   Min.   :-3.54199   Min.   :-3.28999   Min.   :-4.03083   Min.   :-4.670419   Min.   :-3.666570  
+##  1st Qu.:-0.81480   1st Qu.:-0.77514   1st Qu.:-0.68091   1st Qu.:-0.72620   1st Qu.:-0.83746   1st Qu.:-0.809362   1st Qu.:-0.761440  
+##  Median : 0.04831   Median : 0.04984   Median : 0.06221   Median : 0.03548   Median :-0.01814   Median :-0.009423   Median : 0.001263  
+##  Mean   : 0.07755   Mean   : 0.04314   Mean   : 0.05840   Mean   : 0.01341   Mean   : 0.06853   Mean   :-0.018588   Mean   : 0.025038  
+##  3rd Qu.: 0.96484   3rd Qu.: 0.84818   3rd Qu.: 0.83818   3rd Qu.: 0.71464   3rd Qu.: 1.04531   3rd Qu.: 0.858382   3rd Qu.: 0.777438  
+##  Max.   : 5.03915   Max.   : 4.15661   Max.   : 3.56051   Max.   : 3.22474   Max.   : 4.73594   Max.   : 3.801685   Max.   : 4.878669  
+##        x8           
+##  Min.   :-3.797992  
+##  1st Qu.:-0.682778  
+##  Median : 0.018717  
+##  Mean   :-0.005384  
+##  3rd Qu.: 0.680474  
+##  Max.   : 3.741254</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="review-of-basic-statistics.html#cb168-1" aria-hidden="true" tabindex="-1"></a>analysis.model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb168-2"><a href="review-of-basic-statistics.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="st">      f1 =~ x1 + x2 + x3 + x4</span></span>
+<span id="cb168-3"><a href="review-of-basic-statistics.html#cb168-3" aria-hidden="true" tabindex="-1"></a><span class="st">      f2 =~ x5 + x6 + x7 +x8</span></span>
+<span id="cb168-4"><a href="review-of-basic-statistics.html#cb168-4" aria-hidden="true" tabindex="-1"></a><span class="st">      f1 ~~ f2&#39;</span></span>
+<span id="cb168-5"><a href="review-of-basic-statistics.html#cb168-5" aria-hidden="true" tabindex="-1"></a>fit.model <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(<span class="at">model =</span> analysis.model, <span class="at">data =</span> dat5, <span class="at">std.lv =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb168-6"><a href="review-of-basic-statistics.html#cb168-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit.model)</span></code></pre></div>
+<pre><code>## lavaan 0.6-8 ended normally after 24 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        17
+##                                                       
+##   Number of observations                          1000
+##                                                       
+## Model Test User Model:
+##                                                       
+##   Test statistic                                24.440
+##   Degrees of freedom                                19
+##   P-value (Chi-square)                           0.180
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   f1 =~                                               
+##     x1                0.886    0.057   15.663    0.000
+##     x2                0.629    0.049   12.919    0.000
+##     x3                0.482    0.045   10.754    0.000
+##     x4                0.337    0.043    7.883    0.000
+##   f2 =~                                               
+##     x5                0.943    0.054   17.552    0.000
+##     x6                0.734    0.048   15.264    0.000
+##     x7                0.566    0.043   13.047    0.000
+##     x8                0.310    0.040    7.817    0.000
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   f1 ~~                                               
+##     f2                0.445    0.046    9.780    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .x1                0.915    0.087   10.485    0.000
+##    .x2                1.062    0.063   16.767    0.000
+##    .x3                1.056    0.055   19.259    0.000
+##    .x4                1.057    0.051   20.908    0.000
+##    .x5                0.938    0.084   11.122    0.000
+##    .x6                1.042    0.066   15.827    0.000
+##    .x7                1.008    0.054   18.581    0.000
+##    .x8                0.985    0.046   21.259    0.000
+##     f1                1.000                           
+##     f2                1.000</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="correlation-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["book.pdf", "book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

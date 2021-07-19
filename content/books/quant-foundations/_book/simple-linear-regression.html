@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Simple Linear Regression | Quantitative Foundations in Educational Research</title>
+  <meta name="description" content="This is for course ESC_PS 8850 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Simple Linear Regression | Quantitative Foundations in Educational Research" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is for course ESC_PS 8850 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="ze-wang/quant-foundations" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Simple Linear Regression | Quantitative Foundations in Educational Research" />
+  
+  <meta name="twitter:description" content="This is for course ESC_PS 8850 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Ze Wang" />
+
+
+<meta name="date" content="2021-07-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="correlation-1.html"/>
+<link rel="next" href="multiple-regression-analysis.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contents"><i class="fa fa-check"></i>Contents</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#the-r-language"><i class="fa fa-check"></i><b>1.1</b> The R Language</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#why-r"><i class="fa fa-check"></i><b>1.1.1</b> Why R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#statistical-analysis-software-for-data-modeling"><i class="fa fa-check"></i><b>1.1.2</b> Statistical analysis software for data modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#install-r"><i class="fa fa-check"></i><b>1.2</b> Install R</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#install-rstudio"><i class="fa fa-check"></i><b>1.3</b> Install RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#use-rstudio"><i class="fa fa-check"></i><b>1.4</b> Use RStudio</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#basic-operations"><i class="fa fa-check"></i><b>1.4.1</b> Basic operations</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#data-types-in-r"><i class="fa fa-check"></i><b>1.4.2</b> Data types in R</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#data-structures-in-r"><i class="fa fa-check"></i><b>1.4.3</b> Data structures in R</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#packages"><i class="fa fa-check"></i><b>1.4.4</b> R packages</a></li>
+<li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#rstudio-projects"><i class="fa fa-check"></i><b>1.4.5</b> RStudio projects</a></li>
+<li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#import-and-export-data"><i class="fa fa-check"></i><b>1.4.6</b> Import and export Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html"><i class="fa fa-check"></i><b>2</b> Review of Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#calculating-variance-and-covariance"><i class="fa fa-check"></i><b>2.1</b> Calculating Variance and Covariance</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#covariance"><i class="fa fa-check"></i><b>2.1.1</b> Covariance</a></li>
+<li class="chapter" data-level="2.1.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#correlation"><i class="fa fa-check"></i><b>2.1.2</b> Correlation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#using-matrix-algebra"><i class="fa fa-check"></i><b>2.1.3</b> Using Matrix Algebra</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#basic"><i class="fa fa-check"></i><b>2.2</b> Use R for Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#import-and-export-data-1"><i class="fa fa-check"></i><b>2.2.1</b> Import and export data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#several-functions-for-basic-data-management"><i class="fa fa-check"></i><b>2.2.2</b> Several functions for basic data management</a></li>
+<li class="chapter" data-level="2.2.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#some-descriptive-statistics"><i class="fa fa-check"></i><b>2.2.3</b> Some descriptive statistics</a></li>
+<li class="chapter" data-level="2.2.4" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#check-normality"><i class="fa fa-check"></i><b>2.2.4</b> Check normality</a></li>
+<li class="chapter" data-level="2.2.5" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#check-linearity"><i class="fa fa-check"></i><b>2.2.5</b> Check linearity</a></li>
+<li class="chapter" data-level="2.2.6" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#pearsons-product-moment-correlation"><i class="fa fa-check"></i><b>2.2.6</b> Pearson’s product moment correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-r-for-graphing-data"><i class="fa fa-check"></i><b>2.3</b> Use R for Graphing Data</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-plot"><i class="fa fa-check"></i><b>2.3.1</b> Use <code>plot()</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-ggplot2-package"><i class="fa fa-check"></i><b>2.3.2</b> Use <code>ggplot2</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-r-to-graph-a-correlation-matrix"><i class="fa fa-check"></i><b>2.4</b> Use R to Graph a Correlation Matrix</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-plot-1"><i class="fa fa-check"></i><b>2.4.1</b> Use <code>plot()</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-ggplot"><i class="fa fa-check"></i><b>2.4.2</b> Use <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-r-to-generate-random-data"><i class="fa fa-check"></i><b>2.5</b> Use R to Generate Random Data</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#sampling-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Sampling distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#simulate-data-from-a-model"><i class="fa fa-check"></i><b>2.5.2</b> Simulate data from a model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="correlation-1.html"><a href="correlation-1.html"><i class="fa fa-check"></i><b>3</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="correlation-1.html"><a href="correlation-1.html#variance-and-covariance"><i class="fa fa-check"></i><b>3.1</b> Variance and Covariance</a></li>
+<li class="chapter" data-level="3.2" data-path="correlation-1.html"><a href="correlation-1.html#pearson-product-moment-correlation-pearson-correlation"><i class="fa fa-check"></i><b>3.2</b> Pearson Product-Moment Correlation (Pearson Correlation)</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="correlation-1.html"><a href="correlation-1.html#test-that-the-population-correlation-equals-zero"><i class="fa fa-check"></i><b>3.2.1</b> Test that the population correlation equals zero</a></li>
+<li class="chapter" data-level="3.2.2" data-path="correlation-1.html"><a href="correlation-1.html#check-normality-1"><i class="fa fa-check"></i><b>3.2.2</b> Check normality</a></li>
+<li class="chapter" data-level="3.2.3" data-path="correlation-1.html"><a href="correlation-1.html#check-for-linearity-with-scatterplot"><i class="fa fa-check"></i><b>3.2.3</b> Check for linearity with scatterplot</a></li>
+<li class="chapter" data-level="3.2.4" data-path="correlation-1.html"><a href="correlation-1.html#factors-that-affect-the-pearson-correlation"><i class="fa fa-check"></i><b>3.2.4</b> Factors that affect the Pearson Correlation</a></li>
+<li class="chapter" data-level="3.2.5" data-path="correlation-1.html"><a href="correlation-1.html#test-that-the-population-correlation-equals-a-certain-value"><i class="fa fa-check"></i><b>3.2.5</b> Test that the population correlation equals a certain value</a></li>
+<li class="chapter" data-level="3.2.6" data-path="correlation-1.html"><a href="correlation-1.html#test-that-two-population-correlations-are-equal"><i class="fa fa-check"></i><b>3.2.6</b> Test that two population correlations are equal</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="correlation-1.html"><a href="correlation-1.html#variations-of-the-pearson-product-moment-correlation"><i class="fa fa-check"></i><b>3.3</b> Variations of the Pearson Product-Moment Correlation</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="correlation-1.html"><a href="correlation-1.html#point-biserial-correlation"><i class="fa fa-check"></i><b>3.3.1</b> Point Biserial Correlation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="correlation-1.html"><a href="correlation-1.html#biserial-correlation"><i class="fa fa-check"></i><b>3.3.2</b> Biserial Correlation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="correlation-1.html"><a href="correlation-1.html#spearmans-rankspearmans-correlationspearmans-rho"><i class="fa fa-check"></i><b>3.3.3</b> Spearman’s Rank/Spearman’s Correlation/Spearman’s rho</a></li>
+<li class="chapter" data-level="3.3.4" data-path="correlation-1.html"><a href="correlation-1.html#phi-coefficient"><i class="fa fa-check"></i><b>3.3.4</b> Phi Coefficient</a></li>
+<li class="chapter" data-level="3.3.5" data-path="correlation-1.html"><a href="correlation-1.html#tetrachoric-correlation"><i class="fa fa-check"></i><b>3.3.5</b> Tetrachoric Correlation</a></li>
+<li class="chapter" data-level="3.3.6" data-path="correlation-1.html"><a href="correlation-1.html#polychoric-correlation"><i class="fa fa-check"></i><b>3.3.6</b> Polychoric Correlation</a></li>
+<li class="chapter" data-level="3.3.7" data-path="correlation-1.html"><a href="correlation-1.html#chi-square"><i class="fa fa-check"></i><b>3.3.7</b> Chi-Square</a></li>
+<li class="chapter" data-level="3.3.8" data-path="correlation-1.html"><a href="correlation-1.html#summary-of-measures-of-association"><i class="fa fa-check"></i><b>3.3.8</b> Summary of measures of association</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="correlation-1.html"><a href="correlation-1.html#an-example"><i class="fa fa-check"></i><b>3.4</b> An Example</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data"><i class="fa fa-check"></i><b>4.1</b> Plot the Data</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#using-plot"><i class="fa fa-check"></i><b>4.1.1</b> Using <code>plot()</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#using-ggplot"><i class="fa fa-check"></i><b>4.1.2</b> Using <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#the-regression-equation"><i class="fa fa-check"></i><b>4.2</b> The Regression Equation</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#variance-explained"><i class="fa fa-check"></i><b>4.2.1</b> Variance explained</a></li>
+<li class="chapter" data-level="4.2.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#relationship-with-pearson-correlation"><i class="fa fa-check"></i><b>4.2.2</b> Relationship with Pearson correlation</a></li>
+<li class="chapter" data-level="4.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#coefficient-of-determination-r2"><i class="fa fa-check"></i><b>4.2.3</b> Coefficient of Determination (<span class="math inline">\({{R}^{2}}\)</span>)</a></li>
+<li class="chapter" data-level="4.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#r-syntax"><i class="fa fa-check"></i><b>4.2.4</b> R Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#test-of-significance-and-confidence-interval"><i class="fa fa-check"></i><b>4.3</b> Test of Significance and Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#testing-the-regression-of-y-on-x"><i class="fa fa-check"></i><b>4.3.1</b> Testing the regression of Y on X</a></li>
+<li class="chapter" data-level="4.3.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#testing-the-regression-coefficient-slope-and-the-confidence-interval"><i class="fa fa-check"></i><b>4.3.2</b> Testing the regression coefficient (slope) and the confidence interval</a></li>
+<li class="chapter" data-level="4.3.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#r-syntax-1"><i class="fa fa-check"></i><b>4.3.3</b> R Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#summary-of-important-statistics"><i class="fa fa-check"></i><b>4.4</b> Summary of Important Statistics</a></li>
+<li class="chapter" data-level="4.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-hypothesis-testing-and-prediction-intervals"><i class="fa fa-check"></i><b>4.5</b> Confidence Intervals, Hypothesis Testing, and Prediction Intervals</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#prediction-intervals-for-new-observations"><i class="fa fa-check"></i><b>4.5.1</b> Prediction Intervals for New Observations</a></li>
+<li class="chapter" data-level="4.5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#r-syntax-2"><i class="fa fa-check"></i><b>4.5.2</b> R Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#a-complete-example"><i class="fa fa-check"></i><b>4.6</b> A Complete Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html"><i class="fa fa-check"></i><b>5</b> Multiple Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#f-test-and-partial-f-test"><i class="fa fa-check"></i><b>5.1</b> F Test and Partial F Test</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#overall-test-f-test"><i class="fa fa-check"></i><b>5.1.1</b> Overall test (F Test)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#partial-f-test-for-additional-variables"><i class="fa fa-check"></i><b>5.1.2</b> Partial F test for additional variable(s)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#testing-the-partial-regression-coefficients"><i class="fa fa-check"></i><b>5.2</b> Testing the Partial Regression Coefficients</a></li>
+<li class="chapter" data-level="5.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#partial-and-semi-paritial-part-correlations"><i class="fa fa-check"></i><b>5.3</b> Partial and Semi-paritial (Part) Correlations</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#r-syntax-3"><i class="fa fa-check"></i><b>5.3.1</b> R Syntax</a></li>
+<li class="chapter" data-level="5.3.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#sum-up"><i class="fa fa-check"></i><b>5.3.2</b> Sum up</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#a-complete-example-1"><i class="fa fa-check"></i><b>5.4</b> A Complete Example</a></li>
+<li class="chapter" data-level="5.5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#types-of-multiple-regression"><i class="fa fa-check"></i><b>5.5</b> Types of Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#regression-model-selection-based-on-statistics"><i class="fa fa-check"></i><b>5.5.1</b> Regression model selection based on statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#a-few-assumptions-in-regression"><i class="fa fa-check"></i><b>5.6</b> (A Few) Assumptions in Regression</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#linearity"><i class="fa fa-check"></i><b>5.6.1</b> Linearity</a></li>
+<li class="chapter" data-level="5.6.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#homoscedasticity-constant-variance-assumption"><i class="fa fa-check"></i><b>5.6.2</b> Homoscedasticity (Constant Variance Assumption)</a></li>
+<li class="chapter" data-level="5.6.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#normality"><i class="fa fa-check"></i><b>5.6.3</b> Normality</a></li>
+<li class="chapter" data-level="5.6.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#independence-of-residuals"><i class="fa fa-check"></i><b>5.6.4</b> Independence of Residuals</a></li>
+<li class="chapter" data-level="5.6.5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#multicollinearity"><i class="fa fa-check"></i><b>5.6.5</b> Multicollinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#multiple-regression-and-patterns-of-association"><i class="fa fa-check"></i><b>5.7</b> Multiple Regression and Patterns of Association</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#complete-independence"><i class="fa fa-check"></i><b>5.7.1</b> Complete independence</a></li>
+<li class="chapter" data-level="5.7.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#partial-redundancy"><i class="fa fa-check"></i><b>5.7.2</b> Partial redundancy</a></li>
+<li class="chapter" data-level="5.7.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#complete-redundancy"><i class="fa fa-check"></i><b>5.7.3</b> Complete redundancy</a></li>
+<li class="chapter" data-level="5.7.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#suppression-in-multiple-regression"><i class="fa fa-check"></i><b>5.7.4</b> Suppression in multiple regression</a></li>
+<li class="chapter" data-level="5.7.5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#summary-of-patterns-of-association"><i class="fa fa-check"></i><b>5.7.5</b> Summary of patterns of association</a></li>
+<li class="chapter" data-level="5.7.6" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#statistical-paradoxes"><i class="fa fa-check"></i><b>5.7.6</b> Statistical paradoxes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#regression-diagnostics"><i class="fa fa-check"></i><b>5.8</b> Regression Diagnostics</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#leverage"><i class="fa fa-check"></i><b>5.8.1</b> Leverage</a></li>
+<li class="chapter" data-level="5.8.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#discrepancy"><i class="fa fa-check"></i><b>5.8.2</b> Discrepancy</a></li>
+<li class="chapter" data-level="5.8.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#influence"><i class="fa fa-check"></i><b>5.8.3</b> Influence</a></li>
+<li class="chapter" data-level="5.8.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#sources-of-outliers-and-remedies"><i class="fa fa-check"></i><b>5.8.4</b> Sources of Outliers and Remedies</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#curvilinear-regression"><i class="fa fa-check"></i><b>5.9</b> Curvilinear Regression</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#polynomial-regression"><i class="fa fa-check"></i><b>5.9.1</b> Polynomial regression</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#useful-functions-and-symbols-commonly-used-in-r-when-fitting-linear-models"><i class="fa fa-check"></i><b>5.10</b> Useful Functions and Symbols Commonly Used in R When Fitting Linear Models</a></li>
+<li class="chapter" data-level="5.11" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#interactions-in-regression"><i class="fa fa-check"></i><b>5.11</b> Interactions in Regression</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#an-example-1"><i class="fa fa-check"></i><b>5.11.1</b> An example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#categorical-independent-variables"><i class="fa fa-check"></i><b>5.12</b> Categorical Independent Variables</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#binary-independent-variables"><i class="fa fa-check"></i><b>5.12.1</b> Binary independent variables</a></li>
+<li class="chapter" data-level="5.12.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#categorical-independent-variables-with-more-than-two-categories"><i class="fa fa-check"></i><b>5.12.2</b> Categorical independent variables with more than two categories</a></li>
+<li class="chapter" data-level="5.12.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#an-example-2"><i class="fa fa-check"></i><b>5.12.3</b> An example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#interactions-between-categorical-and-continuous-variables"><i class="fa fa-check"></i><b>5.13</b> Interactions Between Categorical and Continuous Variables</a></li>
+<li class="chapter" data-level="5.14" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#an-open-book-on-regression"><i class="fa fa-check"></i><b>5.14</b> An Open Book on Regression</a></li>
+<li class="chapter" data-level="5.15" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#create-apa-tables-with-apatables-package"><i class="fa fa-check"></i><b>5.15</b> Create APA Tables with <code>apaTables</code> Package</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Binary Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#some-definitions"><i class="fa fa-check"></i><b>6.1</b> Some Definitions</a></li>
+<li class="chapter" data-level="6.2" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#logarithm-rules"><i class="fa fa-check"></i><b>6.2</b> Logarithm Rules</a></li>
+<li class="chapter" data-level="6.3" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#logistic-regression-equation"><i class="fa fa-check"></i><b>6.3</b> Logistic Regression Equation</a></li>
+<li class="chapter" data-level="6.4" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#run-logistic-regression"><i class="fa fa-check"></i><b>6.4</b> Run Logistic Regression</a></li>
+<li class="chapter" data-level="6.5" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#logistic-regression-coefficients"><i class="fa fa-check"></i><b>6.5</b> Logistic Regression Coefficients</a></li>
+<li class="chapter" data-level="6.6" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#similarities-and-differences-between-binary-logistic-regression-and-ols-regression"><i class="fa fa-check"></i><b>6.6</b> Similarities and Differences Between Binary Logistic Regression and OLS Regression</a></li>
+<li class="chapter" data-level="6.7" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#empirical-example"><i class="fa fa-check"></i><b>6.7</b> Empirical Example</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assess-the-model---model-chi-square"><i class="fa fa-check"></i><b>6.7.1</b> Assess the model - model chi-square</a></li>
+<li class="chapter" data-level="6.7.2" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assess-the-model---r2"><i class="fa fa-check"></i><b>6.7.2</b> Assess the model - <span class="math inline">\({R^2}\)</span></a></li>
+<li class="chapter" data-level="6.7.3" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#diagnostics"><i class="fa fa-check"></i><b>6.7.3</b> Diagnostics</a></li>
+<li class="chapter" data-level="6.7.4" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assumptions---linearity"><i class="fa fa-check"></i><b>6.7.4</b> Assumptions - Linearity</a></li>
+<li class="chapter" data-level="6.7.5" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assumptions---independence-of-errors"><i class="fa fa-check"></i><b>6.7.5</b> Assumptions - Independence of errors</a></li>
+<li class="chapter" data-level="6.7.6" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#use-more-predictors"><i class="fa fa-check"></i><b>6.7.6</b> Use more predictors</a></li>
+<li class="chapter" data-level="6.7.7" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#check-multicollinearity-among-ivs"><i class="fa fa-check"></i><b>6.7.7</b> Check Multicollinearity Among IVs</a></li>
+<li class="chapter" data-level="6.7.8" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#interprete-results"><i class="fa fa-check"></i><b>6.7.8</b> Interprete results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>7</b> Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#historical-background"><i class="fa fa-check"></i><b>7.1</b> Historical Background</a></li>
+<li class="chapter" data-level="7.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-general-linear-model-glm"><i class="fa fa-check"></i><b>7.2</b> The General Linear Model (GLM)</a></li>
+<li class="chapter" data-level="7.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-anova-for-single-factor-designs"><i class="fa fa-check"></i><b>7.3</b> One-Way ANOVA (for Single Factor Designs)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#statistical-hypotheses"><i class="fa fa-check"></i><b>7.3.1</b> Statistical hypotheses</a></li>
+<li class="chapter" data-level="7.3.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#basic-idea-of-anova"><i class="fa fa-check"></i><b>7.3.2</b> Basic idea of ANOVA</a></li>
+<li class="chapter" data-level="7.3.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#empirical-example-1"><i class="fa fa-check"></i><b>7.3.3</b> Empirical example</a></li>
+<li class="chapter" data-level="7.3.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#pairwise-comparisons"><i class="fa fa-check"></i><b>7.3.4</b> Pairwise comparisons</a></li>
+<li class="chapter" data-level="7.3.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#planned-comparisons"><i class="fa fa-check"></i><b>7.3.5</b> Planned comparisons</a></li>
+<li class="chapter" data-level="7.3.6" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-pairwise-comparisons"><i class="fa fa-check"></i><b>7.3.6</b> Post-hoc pairwise comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#anova-assumptions"><i class="fa fa-check"></i><b>7.4</b> ANOVA Assumptions</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#robustness"><i class="fa fa-check"></i><b>7.4.1</b> Robustness</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-anova-using-glm-approach"><i class="fa fa-check"></i><b>7.5</b> One-way ANOVA Using GLM approach</a></li>
+<li class="chapter" data-level="7.6" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#factorial-analysis-of-variance-factorial-anova"><i class="fa fa-check"></i><b>7.6</b> Factorial Analysis of Variance (Factorial ANOVA)</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#numerical-calcuations-for-two-way-anova"><i class="fa fa-check"></i><b>7.6.1</b> Numerical calcuations for two-way ANOVA</a></li>
+<li class="chapter" data-level="7.6.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#partitioning-the-total-sum-of-squares"><i class="fa fa-check"></i><b>7.6.2</b> Partitioning the total sum of squares</a></li>
+<li class="chapter" data-level="7.6.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#empirical-example---two-way-anova"><i class="fa fa-check"></i><b>7.6.3</b> Empirical example - Two-way ANOVA</a></li>
+<li class="chapter" data-level="7.6.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#assumptions-for-factorial-anova-see-refanova-assumptions"><i class="fa fa-check"></i><b>7.6.4</b> Assumptions for factorial ANOVA (see @ref(anova-assumptions))</a></li>
+<li class="chapter" data-level="7.6.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#contrasts-using-the-multcomp-package"><i class="fa fa-check"></i><b>7.6.5</b> Contrasts using the <code>multcomp</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#factorial-anova-as-multiple-regression"><i class="fa fa-check"></i><b>7.7</b> Factorial ANOVA as Multiple Regression</a></li>
+<li class="chapter" data-level="7.8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-blog-on-anova-in-r"><i class="fa fa-check"></i><b>7.8</b> A Blog on ANOVA in R</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html"><i class="fa fa-check"></i><b>8</b> Analysis of Covariance</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#purposes-of-ancova"><i class="fa fa-check"></i><b>8.1</b> Purposes of ANCOVA</a></li>
+<li class="chapter" data-level="8.2" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#choice-of-covariates-to-use"><i class="fa fa-check"></i><b>8.2</b> Choice of covariates to use</a></li>
+<li class="chapter" data-level="8.3" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#statistical-model-for-ancova"><i class="fa fa-check"></i><b>8.3</b> Statistical Model for ANCOVA</a></li>
+<li class="chapter" data-level="8.4" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#ancova-assumptions"><i class="fa fa-check"></i><b>8.4</b> ANCOVA Assumptions</a></li>
+<li class="chapter" data-level="8.5" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#empirical-example-2"><i class="fa fa-check"></i><b>8.5</b> Empirical Example</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---normality"><i class="fa fa-check"></i><b>8.5.1</b> Assumptions - Normality</a></li>
+<li class="chapter" data-level="8.5.2" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---homogeneity-of-variance"><i class="fa fa-check"></i><b>8.5.2</b> Assumptions - Homogeneity of Variance</a></li>
+<li class="chapter" data-level="8.5.3" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---independence-of-the-covariate-and-the-independent-variable"><i class="fa fa-check"></i><b>8.5.3</b> Assumptions - Independence of the covariate and the independent variable</a></li>
+<li class="chapter" data-level="8.5.4" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---homogeneity-of-regression-slopes"><i class="fa fa-check"></i><b>8.5.4</b> Assumptions - Homogeneity of regression slopes</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#post-hoc-tests-using-the-multcomp-package"><i class="fa fa-check"></i><b>8.6</b> Post-hoc Tests using the <code>multcomp</code> package</a></li>
+<li class="chapter" data-level="8.7" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#ancova-as-a-glm"><i class="fa fa-check"></i><b>8.7</b> ANCOVA as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html"><i class="fa fa-check"></i><b>9</b> Repeated Measures ANOVA and Mixed Designs</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#repeated-measures-anova"><i class="fa fa-check"></i><b>9.1</b> Repeated-Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#advantages-of-repeated-measures-design"><i class="fa fa-check"></i><b>9.1.1</b> Advantages of repeated-measures design</a></li>
+<li class="chapter" data-level="9.1.2" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#disadvantages-of-repeated-measures-design"><i class="fa fa-check"></i><b>9.1.2</b> Disadvantages of repeated-measures design</a></li>
+<li class="chapter" data-level="9.1.3" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#variance-partitioning-in-one-way-repeated-measures-design"><i class="fa fa-check"></i><b>9.1.3</b> Variance partitioning in one-way repeated measures design</a></li>
+<li class="chapter" data-level="9.1.4" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#assumptions-in-repeated-measures-analysis"><i class="fa fa-check"></i><b>9.1.4</b> Assumptions in repeated measures analysis</a></li>
+<li class="chapter" data-level="9.1.5" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#alternative-specification-of-the-variance-covariance-matrix"><i class="fa fa-check"></i><b>9.1.5</b> Alternative Specification of the Variance-Covariance Matrix</a></li>
+<li class="chapter" data-level="9.1.6" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#empirical-example-3"><i class="fa fa-check"></i><b>9.1.6</b> Empirical example</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#mixed-designs"><i class="fa fa-check"></i><b>9.2</b> Mixed Designs</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#one-between-and-one-within-factor-design"><i class="fa fa-check"></i><b>9.2.1</b> One between and one within factor design</a></li>
+<li class="chapter" data-level="9.2.2" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#a-few-online-resources"><i class="fa fa-check"></i><b>9.2.2</b> A few online resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="power-analysis.html"><a href="power-analysis.html"><i class="fa fa-check"></i><b>10</b> Power Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="power-analysis.html"><a href="power-analysis.html#components-of-power-analysis"><i class="fa fa-check"></i><b>10.1</b> Components of Power Analysis</a></li>
+<li class="chapter" data-level="10.2" data-path="power-analysis.html"><a href="power-analysis.html#effect-sizes"><i class="fa fa-check"></i><b>10.2</b> Effect Sizes</a></li>
+<li class="chapter" data-level="10.3" data-path="power-analysis.html"><a href="power-analysis.html#types-of-power-analysis"><i class="fa fa-check"></i><b>10.3</b> Types of Power Analysis</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="power-analysis.html"><a href="power-analysis.html#a-priori-power-analysis"><i class="fa fa-check"></i><b>10.3.1</b> A priori power analysis</a></li>
+<li class="chapter" data-level="10.3.2" data-path="power-analysis.html"><a href="power-analysis.html#post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.3.2</b> Post-hoc power analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="power-analysis.html"><a href="power-analysis.html#a-two-tailed-t-test-for-independent-samples-power-example"><i class="fa fa-check"></i><b>10.4</b> a Two-Tailed <em>t Test</em> for Independent Samples Power Example</a></li>
+<li class="chapter" data-level="10.5" data-path="power-analysis.html"><a href="power-analysis.html#software"><i class="fa fa-check"></i><b>10.5</b> Software</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Foundations in Educational Research</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="simple-linear-regression" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Simple Linear Regression</h1>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="simple-linear-regression.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio); <span class="fu">library</span>(psych); <span class="fu">library</span>(Hmisc); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(QuantPsyc)</span></code></pre></div>
+<p>Regression is one of the most flexible, most powerful, and most frequently used methods for modeling data, both in standard data analysis, and in advanced data science. Make sure you know how to do it. Use it as a baseline for comparing your models.</p>
+<p>The simplest functional relationship between two variables X and Y can be expressed by the linear model (population): <span class="math inline">\({{Y}_{i}}=\alpha +\beta {{X}_{i}}+{{\varepsilon }_{i}}\)</span>, where</p>
+<p><span class="math inline">\({{Y}_{i}}\)</span>= the score for person <em>i</em> on the dependent variable <em>Y</em>;</p>
+<p><span class="math inline">\(\alpha\)</span> = the Y-intercept and is equal to the Y value when the value of X = 0 (where the line intersects the Y-axis);</p>
+<p><span class="math inline">\(\beta\)</span> = the slope of the line and indicates the change in Y as the X value increases (or decreases) by 1 point (the steepness of the line) (Also called a regression coefficient);</p>
+<p><span class="math inline">\({{X}_{i}}\)</span> = the value of the independent variable X for person <em>i</em>;</p>
+<p><span class="math inline">\({{\varepsilon }_{i}}\)</span> = random error for person <em>i</em>.</p>
+<p>For a sample: <span class="math inline">\(Y=a+bX+e\)</span>, where</p>
+<p><em>a</em> is an estimate of <span class="math inline">\(\alpha\)</span>; <em>b</em> is an estimate of <span class="math inline">\(\beta\)</span>; and <em>e</em> is an estimate of <span class="math inline">\({{\varepsilon }_{i}}\)</span>.</p>
+<p>Y cannot be perfectly predicted from X. Other sources of variability will not be measured (represented by <em>e</em>).</p>
+<p>Because <em>e</em> is unobservable or is unable to be measured, we rewrite the equation to indicate that we are unable to measure all sources of error: <span class="math inline">\(\hat Y = a + bX\)</span>, where <span class="math inline">\({\hat Y}\)</span> is the predicted Y value determined from a knowledge of X values.</p>
+<p>Prediction Error (called Residuals) is represented as the difference between observed Y values and the predicted Y values: <span class="math inline">\(e = Y - \hat Y\)</span></p>
+<p>Ultimately, we want to find a solution for a and b that will minimize error as much as possible so that we can explain as much of Y as possible. Anything unexplained by X is leftover error (again, represented by e).</p>
+<p>Ordinary Least Squares Regression minimizes the sum of squared residuals ( <span class="math inline">\(SS_{res}\)</span> ): <span class="math inline">\(\sum{{{(Y-{\hat Y})}^{2}}=\sum{{{e}^{2}}}}\)</span></p>
+<p>The linear regression equation, <span class="math inline">\({\hat Y}=a+bX\)</span>, will produce a line that will fit the data most accurately in the sense that it will minimize the residual sum of squares ( <span class="math inline">\(SS_{res}\)</span> ) (Ordinary Least Squares).</p>
+<p>Intercept: <span class="math inline">\(a=\bar{Y}-b\bar{X}\)</span></p>
+<p>Slope: <span class="math inline">\(b=\frac{\sum{xy}}{\sum{{{x}^{2}}}}=\frac{\sum{(X-\bar{X})(Y-\bar{Y})}}{\sum{{{(X-\bar{X})}^{2}}}}\)</span></p>
+<!-- the same data table in the "Correlation" chapter; reuse the same chunk; the chunk content below should be empty. -->
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(X\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(Y\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(X-\bar X\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(Y-\bar Y\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\((X - \bar X)^2\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\((Y - \bar Y)^2\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\((X - \bar X)(Y - \bar Y)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+-3.57
+</td>
+<td style="text-align:right;">
+-2.86
+</td>
+<td style="text-align:right;">
+12.74
+</td>
+<td style="text-align:right;">
+8.18
+</td>
+<td style="text-align:right;">
+10.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-3.57
+</td>
+<td style="text-align:right;">
+-0.86
+</td>
+<td style="text-align:right;">
+12.74
+</td>
+<td style="text-align:right;">
+0.74
+</td>
+<td style="text-align:right;">
+3.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.57
+</td>
+<td style="text-align:right;">
+-1.86
+</td>
+<td style="text-align:right;">
+2.46
+</td>
+<td style="text-align:right;">
+3.46
+</td>
+<td style="text-align:right;">
+2.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-0.57
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+-0.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1.43
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+2.04
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2.43
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+5.90
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+2.77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid">
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+10
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+7
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+5.43
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+3.14
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+29.48
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+9.86
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+17.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+65.68
+</td>
+<td style="text-align:right;">
+24.86
+</td>
+<td style="text-align:right;">
+35.57
+</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\bar X = 4.57\)</span>, <span class="math inline">\(\bar Y = 3.86\)</span>, <span class="math inline">\(s_x = 3.31\)</span>, <span class="math inline">\(s_y = 2.03\)</span></p>
+<p>Calculate slope: <span class="math inline">\(b=\frac{\sum{xy}}{\sum{{{x}^{2}}}}=\frac{\sum{(X-\bar{X})(Y-\bar{Y})}}{\sum{{{(X-\bar{X})}^{2}}}}=\frac{35.57}{65.68}=.54\)</span></p>
+<p>Calculate intercept: <span class="math inline">\(a=\bar{Y}-b\bar{X}=3.85-(.54)(4.57)=3.85-2.47=1.38\)</span></p>
+<p><img src="book_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p>Our linear regression equation: <span class="math inline">\({\hat Y}=1.38+.54X\)</span>. This equation can be used to predict Y using X for other samples.</p>
+<p>What if we wanted to predict Y for a certain value of X (e.g., X = 8)? Just plug in the value 8 for X in the equation: <span class="math inline">\({\hat Y}=1.38+.54X=1.38+(.54)(8)=1.38+4.32=5.7\)</span></p>
+<div id="plot-the-data" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Plot the Data</h2>
+<div id="using-plot" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Using <code>plot()</code></h3>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="simple-linear-regression.html#cb197-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">10</span>)</span>
+<span id="cb197-2"><a href="simple-linear-regression.html#cb197-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="simple-linear-regression.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
+<span id="cb198-2"><a href="simple-linear-regression.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x))</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+</div>
+<div id="using-ggplot" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Using <code>ggplot()</code></h3>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="simple-linear-regression.html#cb199-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,y)</span>
+<span id="cb199-2"><a href="simple-linear-regression.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb199-3"><a href="simple-linear-regression.html#cb199-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb199-4"><a href="simple-linear-regression.html#cb199-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)  </span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="book_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+</div>
+</div>
+<div id="the-regression-equation" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> The Regression Equation</h2>
+<p>Note that the intercept (<em>a</em> = 1.38) is where the line intersects the Y axis on the scatterplot. Also, look at the slope value (b = .54) which indicates that as X increases by 1 point, Y increases about a half of a point.</p>
+<p>Recall that <span class="math inline">\({\hat Y}=a+bX\)</span> and that <span class="math inline">\(a=\bar{Y}-b\bar{X}\)</span>.</p>
+<p><span class="math display">\[{\hat Y}=(\bar{Y}-b\bar{X})+bX=\bar{Y}+b(X-\bar{X})=\bar{Y}+bx\]</span></p>
+<p><span class="math display">\[b=\frac{\sum{xy}}{\sum{{{x}^{2}}}}=\frac{\sum{(X-\bar{X})(Y-\bar{Y})}}{\sum{{{(X-\bar{X})}^{2}}}}\]</span></p>
+<p>Thus, if X does not affect Y or covary with Y, b = 0 and the predicted Y value will be equal to the mean of Y: <span class="math inline">\({\hat Y}=\bar{Y}+bx=\bar{Y}+(0)(x)=\bar{Y}\)</span>. Without any useful information, the mean will be the best predicted value.</p>
+<p>Plugging in each person’s X value into our regression equation will yield predicted Y scores for every person: <span class="math inline">\({\hat Y}=1.38+.54X\)</span></p>
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(X\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(Y\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(\hat Y\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3.54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4.62
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid">
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+10
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+7
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+6.78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+26.94
+</td>
+</tr>
+</tbody>
+</table>
+<div id="variance-explained" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Variance explained</h3>
+<p>How much of the variance in Y is due to X and how much is due to error?</p>
+<p><span class="math inline">\(\sum{{{y}^{2}}=\sum{{{({\hat Y}-\bar{Y})}^{2}}+\sum{{{(Y-{\hat Y})}^{2}}}}}\)</span> which can be expressed as <span class="math inline">\(\sum{{{y}^{2}}=S{{S}_{reg}}+S{{S}_{res}}}\)</span> where
+the deviation sum of squares of the dependent variable Y ( <span class="math inline">\(S{S_{total}}\)</span> ) is a function of two components: sum of squares due to regression ( <span class="math inline">\(S{{S}_{reg}}\)</span> ) and sum of squares due to error ( <span class="math inline">\(S{S_{res}}\)</span> ): <span class="math inline">\(S{{S}_{total}}=S{{S}_{reg}}+S{{S}_{res}}\)</span>.</p>
+<p>Dividing by the total sum of squares, we can determine the proportion of variance due to the regression of Y on X and the proportion of variance due to error.</p>
+<p><span class="math inline">\(\frac{\sum{{{y}^{2}}}}{\sum{{{y}^{2}}}}=\frac{S{{S}_{reg}}}{\sum{{{y}^{2}}}}+\frac{S{{S}_{res}}}{\sum{{{y}^{2}}}}\)</span> OR <span class="math inline">\(\frac{S{{S}_{total}}}{S{{S}_{total}}}=\frac{S{{S}_{reg}}}{S{{S}_{total}}}+\frac{S{{S}_{res}}}{S{{S}_{total}}}\)</span></p>
+<p>Different notations in textbook: <span class="math inline">\(SS_T\)</span> is the total sum of squares; <span class="math inline">\(SS_M\)</span> is the model sum of squares (i.e., sum of squares due to the regression model), <span class="math inline">\(SS_R\)</span> is the residual sum of squares.</p>
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(X\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(Y\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(\hat Y\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(\hat Y-\bar Y\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\((\hat Y-\bar Y)^2\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(Y - \hat Y\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\((Y - \hat Y)^2\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\((Y - \bar Y)^2\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+<td style="text-align:right;">
+-1.94
+</td>
+<td style="text-align:right;">
+3.75
+</td>
+<td style="text-align:right;">
+-0.92
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+8.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+<td style="text-align:right;">
+-1.94
+</td>
+<td style="text-align:right;">
+3.75
+</td>
+<td style="text-align:right;">
+1.08
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+0.73
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+-0.86
+</td>
+<td style="text-align:right;">
+0.73
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+3.45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3.54
+</td>
+<td style="text-align:right;">
+-0.32
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+1.46
+</td>
+<td style="text-align:right;">
+2.13
+</td>
+<td style="text-align:right;">
+1.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4.62
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+<td style="text-align:right;">
+0.58
+</td>
+<td style="text-align:right;">
+-0.62
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5.16
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+1.70
+</td>
+<td style="text-align:right;">
+-0.16
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+1.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid">
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+10
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+7
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+6.78
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+2.92
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+8.54
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+0.22
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+0.05
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+9.88
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+26.94
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+<td style="text-align:right;">
+19.15
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+5.61
+</td>
+<td style="text-align:right;">
+24.86
+</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\bar X = 4.57\)</span>, <span class="math inline">\(\bar Y = 3.86\)</span></p>
+<p><span class="math inline">\(\sum y^2 = \sum {(\hat Y - \bar Y)^2} + \sum {(Y - \hat Y)^2} = SS_{reg} + SS_{res} = 19.15 + 5.61 = 24.76\)</span></p>
+<p><span class="math inline">\({{\sum y^2} \over {\sum y^2}} = {SS_{reg} \over {\sum y^2 }} + {SS_{res} \over {\sum y^2}}\)</span> OR</p>
+<p><span class="math inline">\({SS_{total} \over {SS_{total}}} = {{SS_{reg}} \over {SS_{total}}} + {{SS_{res}} \over {SS_{total}}} = {{19.15} \over {24.76}} + {{5.61} \over {24.76}} = .77 + .23\)</span></p>
+<p>About 77% of the variance in <em>Y</em> is due to <em>X</em> whereas about 23% of the variance is due to error.</p>
+</div>
+<div id="relationship-with-pearson-correlation" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Relationship with Pearson correlation</h3>
+<!-- the same data table in the "Correlation" chapter; reuse the same chunk; the chunk content below should be empty. -->
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(X\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(Y\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(X-\bar X\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(Y-\bar Y\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\((X - \bar X)^2\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\((Y - \bar Y)^2\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\((X - \bar X)(Y - \bar Y)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+-3.57
+</td>
+<td style="text-align:right;">
+-2.86
+</td>
+<td style="text-align:right;">
+12.74
+</td>
+<td style="text-align:right;">
+8.18
+</td>
+<td style="text-align:right;">
+10.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-3.57
+</td>
+<td style="text-align:right;">
+-0.86
+</td>
+<td style="text-align:right;">
+12.74
+</td>
+<td style="text-align:right;">
+0.74
+</td>
+<td style="text-align:right;">
+3.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.57
+</td>
+<td style="text-align:right;">
+-1.86
+</td>
+<td style="text-align:right;">
+2.46
+</td>
+<td style="text-align:right;">
+3.46
+</td>
+<td style="text-align:right;">
+2.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-0.57
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+-0.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1.43
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+2.04
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2.43
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+5.90
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+2.77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid">
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+10
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+7
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+5.43
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+3.14
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+29.48
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+9.86
+</td>
+<td style="text-align:right;border-bottom: 1px solid">
+17.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\Sigma\)</span>
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+65.68
+</td>
+<td style="text-align:right;">
+24.86
+</td>
+<td style="text-align:right;">
+35.57
+</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[{{r}_{xy}}=\frac{\sum{(X-\bar{X})(Y-\bar{Y})/(N-1)}}{{{s}_{x}}{{s}_{y}}}=\frac{35.57/(7-1)}{(3.31)(2.03)}=\frac{5.93}{6.72}=.88\]</span>
+<span class="math inline">\(r_{xy}^{2}={{.88}^{2}}=.77\)</span> which represents the proportion of variance in Y accounted for by X. Recall that this is the same value as dividing <span class="math inline">\(S{{S}_{reg}}\)</span> by <span class="math inline">\(S{{S}_{total}}\)</span>: <span class="math inline">\(\frac{S{{S}_{reg}}}{S{{S}_{total}}}=\frac{19.15}{24.86}=.77\)</span>.</p>
+</div>
+<div id="coefficient-of-determination-r2" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Coefficient of Determination (<span class="math inline">\({{R}^{2}}\)</span>)</h3>
+<p>The Squared multiple correlation, or R Square ( <span class="math inline">\({{R}^{2}}\)</span> ), is interpreted as the proportion of variance in the outcome variable Y that can be explained by the predictor variable X. The adjusted R Square is an adjustment to better reflect the fit of the model in the population.</p>
+<p><span class="math display">\[{{R}^{2}}=1-\frac{S{{S}_{res}}}{S{{S}_{total}}}\]</span> where <span class="math inline">\(S{{S}_{res}}\)</span> = <span class="math inline">\(\sum{{{(Y-{\hat Y})}^{2}}=\sum{{{e}^{2}}}}\)</span> and <span class="math inline">\(S{{S}_{total}}\)</span> = <span class="math inline">\(\sum{{{(Y-\bar{Y})}^{2}}}\)</span>.</p>
+<p><span class="math display">\[R_{adj}^{2}={{R}^{2}}-\frac{(1-{{R}^{2}})k}{n-k-1}\]</span> where <em>n</em> = sample size and <em>k</em> = the number of independent variables included in the model.</p>
+<p><span class="math inline">\({{R}^{2}}\)</span> is the correlation between observed and predicted/fitted values squared.</p>
+<p>In <strong>simple linear</strong> regression, <span class="math inline">\({{R}^{2}}\)</span> is the square of the correlation between the predictor and outcome variables.</p>
+</div>
+<div id="r-syntax" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> R Syntax</h3>
+<p>Use the <code>lm()</code> function to run the regression model.</p>
+<!-- Embed the "xy-data" chunk in the chunk below.  -->
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="simple-linear-regression.html#cb201-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">10</span>)</span>
+<span id="cb201-2"><a href="simple-linear-regression.html#cb201-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
+<span id="cb201-3"><a href="simple-linear-regression.html#cb201-3" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb201-4"><a href="simple-linear-regression.html#cb201-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model)</span></code></pre></div>
+<pre><code>## (Intercept)           x 
+##   1.3826087   0.5413043</code></pre>
+<p>To get the predicted values: <span class="math inline">\({\hat Y}=1.38+.54X\)</span>.</p>
+<p>To get the residuals: <span class="math inline">\(e = Y - {\hat Y}\)</span></p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="simple-linear-regression.html#cb203-1" aria-hidden="true" tabindex="-1"></a>y.pred <span class="ot">&lt;-</span> <span class="fu">fitted</span>(model)</span>
+<span id="cb203-2"><a href="simple-linear-regression.html#cb203-2" aria-hidden="true" tabindex="-1"></a>y.res <span class="ot">&lt;-</span> <span class="fu">resid</span>(model)</span>
+<span id="cb203-3"><a href="simple-linear-regression.html#cb203-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(x, y, y.pred, y.res)</span></code></pre></div>
+<pre><code>##    x y   y.pred      y.res
+## 1  1 1 1.923913 -0.9239130
+## 2  1 3 1.923913  1.0760870
+## 3  3 2 3.006522 -1.0065217
+## 4  4 5 3.547826  1.4521739
+## 5  6 4 4.630435 -0.6304348
+## 6  7 5 5.171739 -0.1717391
+## 7 10 7 6.795652  0.2043478</code></pre>
+<p>Coefficient of Determination (<span class="math inline">\({{R}^{2}}\)</span>)</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="simple-linear-regression.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##       1       2       3       4       5       6       7 
+## -0.9239  1.0761 -1.0065  1.4522 -0.6304 -0.1717  0.2043 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)   1.3826     0.7186   1.924  0.11234   
+## x             0.5413     0.1306   4.146  0.00895 **
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.059 on 5 degrees of freedom
+## Multiple R-squared:  0.7746, Adjusted R-squared:  0.7296 
+## F-statistic: 17.19 on 1 and 5 DF,  p-value: 0.008949</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="simple-linear-regression.html#cb207-1" aria-hidden="true" tabindex="-1"></a>SS_total  <span class="ot">&lt;-</span> <span class="fu">sum</span>((y<span class="sc">-</span><span class="fu">mean</span>(y))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb207-2"><a href="simple-linear-regression.html#cb207-2" aria-hidden="true" tabindex="-1"></a>SS_reg <span class="ot">&lt;-</span> <span class="fu">sum</span>((<span class="fu">fitted</span>(model)<span class="sc">-</span><span class="fu">mean</span>(y))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb207-3"><a href="simple-linear-regression.html#cb207-3" aria-hidden="true" tabindex="-1"></a>SS_res <span class="ot">&lt;-</span> <span class="fu">sum</span>((y <span class="sc">-</span> <span class="fu">fitted</span>(model))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb207-4"><a href="simple-linear-regression.html#cb207-4" aria-hidden="true" tabindex="-1"></a>SS_reg<span class="sc">/</span>SS_total</span></code></pre></div>
+<pre><code>## [1] 0.7746252</code></pre>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="simple-linear-regression.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> SS_res<span class="sc">/</span>SS_total</span></code></pre></div>
+<pre><code>## [1] 0.7746252</code></pre>
+<p><span class="math inline">\({{R}^{2}}\)</span> is the correlation between observed and predicted/fitted values squared</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="simple-linear-regression.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(y, <span class="fu">fitted</span>(model))<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 0.7746252</code></pre>
+<p>In <strong>simple linear</strong> regression, <span class="math inline">\({{R}^{2}}\)</span> is the square of the correlation between the predictor and outcome variables.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="simple-linear-regression.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
+<pre><code>## [1] 0.8801279</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="simple-linear-regression.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 0.7746252</code></pre>
+</div>
+</div>
+<div id="test-of-significance-and-confidence-interval" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Test of Significance and Confidence Interval</h2>
+<ul>
+<li><p>Formula for the Slope (Regression Coefficient): <span class="math inline">\(b=\frac{\sum{xy}}{\sum{{{x}^{2}}}}=\frac{\sum{(X-\bar{X})(Y-\bar{Y})}}{\sum{{{(X-\bar{X})}^{2}}}}\)</span></p></li>
+<li><p>Alternate Formula for the Slope (Regression Coefficient): <span class="math inline">\(b=r\frac{{{s}_{y}}}{{{s}_{x}}}\)</span>, where <em>r</em> is the correlation coefficient between the independent and dependent variable, <span class="math inline">\({s_y}\)</span> is the standard deviation of the dependent variable, and <span class="math inline">\({s_x}\)</span> is the standard deviation of the independent variable.</p>
+<ul>
+<li><strong>Standardized Regression Coefficients</strong>: Unstandardized regression coefficients we have been discussing are calculated using the raw scores of our variables (X and Y) in which they are still in their units of measurement (e.g., time in years, money in dollars). If we had standardized X and Y scores, in which the raw score units of X and Y were changed into z scores, the regression coefficients we would calculate would no longer be unstandardized, but would be called standardized regression coefficients. They are called standardized because they are the slopes of an equation using standardized scores (i.e., z scores). When using standardized scores, our regression equation would then be: <span class="math inline">\(z_{\hat y}=\beta {{z}_{x}}\)</span>, where <span class="math inline">\(z_{\hat y}\)</span> is the predicted standardized score of Y, <span class="math inline">\(\beta\)</span> is the standardized regression coefficient, and <span class="math inline">\({{z}_{x}}\)</span> is the standardized score of X. You may notice that the intercept is no longer in the regression equation when using standardized scores. The intercept is equal to the value of zero in this case. This is due to the fact that the mean of z scores is equal to a value of zero. Recall the formula for the intercept: <span class="math inline">\(a=\bar{Y}-b\bar{X}\)</span>= 0 – b(0) = 0.</li>
+</ul></li>
+<li><p>Formula for the standardized regression coefficient: <span class="math inline">\(\beta =\frac{\sum{{{z}_{x}}{{z}_{y}}}}{\sum{z_{x}^{2}}}\)</span>, where the term in the numerator, <span class="math inline">\(\sum{{{z}_{x}}{{z}_{y}}}\)</span>, is the sum of cross products and the term in the denominator, <span class="math inline">\(\sum{z_{x}^{2}}\)</span>, is the sum of squared standardized scores.</p></li>
+<li><p>Alternate formula for the standardized regression coefficient: <span class="math inline">\(\beta =b\frac{{{s}_{x}}}{{{s}_{y}}}\)</span>, where b is the unstandardized regression coefficient, sy is the standard deviation of the dependent variable Y, and sx is the standard deviation of the independent variable X.</p></li>
+</ul>
+<p>In <strong>simple linear</strong> regression, the standardized regression coefficient is the correlation coefficient between X and Y:</p>
+<p><span class="math inline">\(\beta =b\frac{{{s}_{x}}}{{{s}_{y}}}=\frac{\sum{xy}\sqrt{\sum{{{x}^{2}}}}\sqrt{n-1}}{\sum{{{x}^{2}}}\sqrt{n-1}\sqrt{\sum{{{y}^{2}}}}}=\frac{\sum{xy}}{\sqrt{\sum{{{x}^{2}}}\sqrt{\sum{{{y}^{2}}}}}}={{r}_{xy}}\)</span></p>
+<ul>
+<li>In Simple Linear Regression, the standardized regression coefficient has fixed upper lower and upper limits of a correlation coefficient (i.e., ranges from -1 to +1). Unstandardized regression coefficients indicate the direction and by how many units Y will change with a 1 unit increase in X. They are expressed in their original scale of measurement of the independent variable (e.g., number of years). Recall that the mean of z scores is zero and the standard deviation is 1. Because the standard deviation of z scores is 1, a unit change in X indicates a change of one standard deviation. Thus, standardized regression coefficients indicate the direction and by how many standard deviations Y will change with 1 standard deviation increase in X.</li>
+</ul>
+<div id="testing-the-regression-of-y-on-x" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Testing the regression of Y on X</h3>
+<ul>
+<li>Recall that the total sum of squares <span class="math inline">\(\sum{{{(Y-\bar{Y})}^{2}}}\)</span> is equal to the sum of the regression sum of squares <span class="math inline">\(\sum{{{({\hat Y}-\bar{Y})}^{2}}}\)</span>and the residual sum of squares <span class="math inline">\(\sum{{{(Y-{\hat Y})}^{2}}}\)</span>:</li>
+</ul>
+<p><span class="math inline">\(S{{S}_{total}}=S{{S}_{reg}}+S{{S}_{res}}\)</span>. These sums of squares represent the variation of Y around its respective mean (Total), the variation of each predicted Y around the mean of Y (Regression), and the variation of each observed Y around its respective predicted Y value (Residual).</p>
+<ul>
+<li>Dividing these sums of squares by their respective degrees of freedom (df) makes these statistics larger and more accurate estimates of the variability they represent in the population. The resulting value is referred to as the Mean Square or MS because it represents the mean of a particular sum of squares, which will be an unbiased estimate of the population variance.</li>
+</ul>
+<p><em>df</em> for the Total Sum of Squares: n – 1</p>
+<p><em>df</em> for the Regression Sum of Squares: k (number of independent variables)</p>
+<p><em>df</em> for the Residual Sum of Squares: n – k – 1</p>
+<p><span class="math inline">\(M{{S}_{reg}}=\frac{\sum{{{({\hat Y}-\bar{Y})}^{2}}}}{k}=\frac{S{{S}_{reg}}}{d{{f}_{reg}}}\)</span> <span class="math inline">\(M{{S}_{res}}=\frac{\sum{{{(Y-{\hat Y})}^{2}}}}{n-k-1}=\frac{S{{S}_{res}}}{d{{f}_{res}}}\)</span></p>
+<p>Using the <span class="math inline">\(M{{S}_{reg}}\)</span> and <span class="math inline">\(M{{S}_{res}}\)</span>, we can calculate an F ratio to test the regression of Y on X.</p>
+<p><span class="math inline">\(F=\frac{MS_{reg}}{MS_{res}}\)</span> with <span class="math inline">\(df_{reg}\)</span> in the numerator and <span class="math inline">\(df_{res}\)</span> in the denominator. If the F ratio exceeds the critical value with ( <span class="math inline">\(df_{reg}\)</span>, <span class="math inline">\(df_{res}\)</span> ) at alpha = .05, we reject the null that the regression of Y on X is equal to zero. That is, we are testing whether R Square is significantly different from zero:</p>
+<p><span class="math inline">\(F=\frac{{{R}^{2}}/k}{(1-{{R}^{2}})/(n-k-1)}\tilde{\ }df=k\ \text{and}\ n-k-1\)</span></p>
+</div>
+<div id="testing-the-regression-coefficient-slope-and-the-confidence-interval" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Testing the regression coefficient (slope) and the confidence interval</h3>
+<p>You can also test the significance of a regression coefficient (slope) b to see if it is significantly different from zero.</p>
+<ul>
+<li>Variance of Estimate: The variance of estimate indicates the variance of the scores about the regression line. It is the variance of the residuals.</li>
+</ul>
+<p><span class="math display">\[s_{y.x}^{2}=\frac{\sum{{{(Y-{\hat Y})}^{2}}}}{n-k-1}=\frac{S{{S}_{res}}}{n-k-1}\]</span></p>
+<p>Recall: <span class="math inline">\(M{{S}_{res}}=\frac{\sum{{{(Y-{\hat Y})}^{2}}}}{n-k-1}=\frac{S{{S}_{res}}}{d{{f}_{res}}}\)</span></p>
+<ul>
+<li>Standard Error of Estimate: The standard error of estimate is the square root of the variance of estimate or the standard deviation of the residuals.</li>
+</ul>
+<p><span class="math display">\[{{s}_{y.x}}=\sqrt{\frac{\sum{{{(Y-{\hat Y})}^{2}}}}{n-k-1}}=\sqrt{\frac{S{{S}_{res}}}{n-k-1}}\]</span></p>
+<ul>
+<li>When testing whether the slope or regression coefficient is significantly different from zero, the standard error associated with the slope b must be calculated:</li>
+</ul>
+<p><span class="math inline">\({{s}_{b}}=\sqrt{\frac{s_{y.x}^{2}}{\sum{{{x}^{2}}}}}=\frac{{{s}_{y.x}}}{\sqrt{\sum{{{x}^{2}}}}}\)</span> where sb is the standard error of b, <span class="math inline">\(s_{y.x}^{2}\)</span> is the variance of estimate, <span class="math inline">\(s_{y.x}^{{}}\)</span> is the standard error of estimate, and <span class="math inline">\(\sum\limits_{{}}{{{x}^{2}}}\)</span>is the sum of squares for the independent variable X</p>
+<ul>
+<li><p><span class="math inline">\({s}_{b}\)</span> is the standard deviation of the sampling distribution of b and is used when testing the significance of the b using the t ratio: <span class="math inline">\(t=\frac{b}{{{s}_{b}}}=\frac{b-0}{{{s}_{b}}}\)</span> with df of n – k – 1.</p></li>
+<li><p><span class="math inline">\(t=\frac{b}{{{s}_{b}}}=\frac{b-0}{{{s}_{b}}}\)</span>.</p></li>
+<li><p>Note the special relationship between the F ratio and the t ratio when using only 1 independent variable: The F ratio is equal to the squared value of the t ratio (<span class="math inline">\({{t}^{2}}=F\)</span>).</p></li>
+<li><p>With knowledge of the standard error of b, we can create a confidence interval around the regression coefficient: <span class="math inline">\(b\pm {{t}_{(\alpha /2,df)}}{{s}_{b}}\)</span>.</p></li>
+</ul>
+</div>
+<div id="r-syntax-1" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> R Syntax</h3>
+<p>Use <code>summary()</code> and <code>confint()</code> for statistical inference</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="simple-linear-regression.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span>
+<span id="cb217-2"><a href="simple-linear-regression.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(model, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="co"># for all parameters</span></span></code></pre></div>
+<pre><code>##                  2.5 %    97.5 %
+## (Intercept) -0.4645905 3.2298079
+## x            0.2056480 0.8769607</code></pre>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="simple-linear-regression.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(model, <span class="st">&quot;x&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="co"># for specific parameters</span></span></code></pre></div>
+<pre><code>##      2.5 %    97.5 %
+## x 0.205648 0.8769607</code></pre>
+<p>Get standardized regression coefficients</p>
+<ul>
+<li>Method 1</li>
+</ul>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="simple-linear-regression.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="fu">scale</span>(y) <span class="sc">~</span> <span class="fu">scale</span>(x))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = scale(y) ~ scale(x))
+## 
+## Coefficients:
+## (Intercept)     scale(x)  
+##   2.417e-16    8.801e-01</code></pre>
+<ul>
+<li>Method 2: use the <code>lm.beta()</code> function from the <code>QuantPsyc</code> package</li>
+</ul>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="simple-linear-regression.html#cb223-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb223-2"><a href="simple-linear-regression.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm.beta</span>(model)</span></code></pre></div>
+<pre><code>##         x 
+## 0.8801279</code></pre>
+</div>
+</div>
+<div id="summary-of-important-statistics" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Summary of Important Statistics</h2>
+<ul>
+<li>R Square</li>
+<li>Adjusted R Square</li>
+<li>F Statistic to Test the Regression Model</li>
+<li>Regression Coefficients (Slopes)</li>
+<li>Standard Error of the Regression Coefficient</li>
+<li>T Statistic to Test Individual Slope Values</li>
+<li>Confidence Interval for the Slope (b)</li>
+<li>Standardized Regression Coefficient</li>
+</ul>
+</div>
+<div id="confidence-intervals-hypothesis-testing-and-prediction-intervals" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Confidence Intervals, Hypothesis Testing, and Prediction Intervals</h2>
+<p><img src="image/Table5.2.png" /></p>
+<div id="prediction-intervals-for-new-observations" class="section level3" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Prediction Intervals for New Observations</h3>
+<ul>
+<li>Prediction Interval for the Mean (also called <em>Confidence Bands</em>)
+<ul>
+<li>Confidence interval around the mean predictions</li>
+</ul></li>
+<li>Prediction Interval for the Individual (also called <em>Prediction Bands</em>)
+<ul>
+<li>It gives uncertainty around a single value</li>
+</ul></li>
+<li>Prediction bands will be wider than the confidence bands</li>
+</ul>
+</div>
+<div id="r-syntax-2" class="section level3" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> R Syntax</h3>
+<p>Prediction Intervals</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="simple-linear-regression.html#cb225-1" aria-hidden="true" tabindex="-1"></a>new.xs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb225-2"><a href="simple-linear-regression.html#cb225-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">8</span>)</span>
+<span id="cb225-3"><a href="simple-linear-regression.html#cb225-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb225-4"><a href="simple-linear-regression.html#cb225-4" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> new.xs, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>) <span class="co"># Prediction interval for the mean</span></span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 2.465217 1.122592 3.807843
+## 2 4.089130 3.050686 5.127575
+## 3 5.713043 4.169650 7.256437</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="simple-linear-regression.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> new.xs, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>) <span class="co"># Prediction interval for the individual</span></span></code></pre></div>
+<pre><code>##        fit       lwr      upr
+## 1 2.465217 -0.568980 5.499415
+## 2 4.089130  1.176730 7.001531
+## 3 5.713043  2.584821 8.841266</code></pre>
+<p>Create a scatterplot with regression line, confidence band, and prediction band</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="simple-linear-regression.html#cb229-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb229-2"><a href="simple-linear-regression.html#cb229-2" aria-hidden="true" tabindex="-1"></a>pred.int <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in predict.lm(model, interval = &quot;prediction&quot;): predictions on current data refer to _future_ responses</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="simple-linear-regression.html#cb231-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y, pred.int)</span>
+<span id="cb231-2"><a href="simple-linear-regression.html#cb231-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb231-3"><a href="simple-linear-regression.html#cb231-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb231-4"><a href="simple-linear-regression.html#cb231-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span></span>
+<span id="cb231-5"><a href="simple-linear-regression.html#cb231-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> lwr), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb231-6"><a href="simple-linear-regression.html#cb231-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> upr), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="book_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+</div>
+</div>
+<div id="a-complete-example" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> A Complete Example</h2>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="simple-linear-regression.html#cb233-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/profs.sav&quot;</span>)</span>
+<span id="cb233-2"><a href="simple-linear-regression.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="co">#View(mydata)</span></span>
+<span id="cb233-3"><a href="simple-linear-regression.html#cb233-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corr.test</span>(mydata<span class="sc">$</span>salary, mydata<span class="sc">$</span>time)</span>
+<span id="cb233-4"><a href="simple-linear-regression.html#cb233-4" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> time, <span class="at">data =</span> mydata)</span>
+<span id="cb233-5"><a href="simple-linear-regression.html#cb233-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel)</span>
+<span id="cb233-6"><a href="simple-linear-regression.html#cb233-6" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(mymodel, <span class="at">level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb233-7"><a href="simple-linear-regression.html#cb233-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lm.beta</span>(mymodel)</span>
+<span id="cb233-8"><a href="simple-linear-regression.html#cb233-8" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>y.pred <span class="ot">&lt;-</span> <span class="fu">fitted</span>(mymodel)</span>
+<span id="cb233-9"><a href="simple-linear-regression.html#cb233-9" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>y.res <span class="ot">&lt;-</span> <span class="fu">resid</span>(mymodel)</span>
+<span id="cb233-10"><a href="simple-linear-regression.html#cb233-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mydata)</span>
+<span id="cb233-11"><a href="simple-linear-regression.html#cb233-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
+<span id="cb233-12"><a href="simple-linear-regression.html#cb233-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb233-13"><a href="simple-linear-regression.html#cb233-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="book_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="simple-linear-regression.html#cb235-1" aria-hidden="true" tabindex="-1"></a>new.obs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb235-2"><a href="simple-linear-regression.html#cb235-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="dv">12</span></span>
+<span id="cb235-3"><a href="simple-linear-regression.html#cb235-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb235-4"><a href="simple-linear-regression.html#cb235-4" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mymodel, <span class="at">newdata =</span> new.obs, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>) <span class="co"># Prediction interval for the mean</span></span>
+<span id="cb235-5"><a href="simple-linear-regression.html#cb235-5" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mymodel, <span class="at">newdata =</span> new.obs, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>) <span class="co"># Prediction interval for the individual</span></span></code></pre></div>
+<p><strong>Sum up</strong>: A correlational analysis indicated that a moderate, positive, and statistically significant relationship exists between time since earning a Ph.D. and professors’ current salary <em>r</em>(60) = .61, <em>p</em> &lt; .001. A simple linear regression analysis was used to regress salary on time since earning a Ph.D. The regression model was statistifally significant, <em>F</em>(1, 60) = 35.17, <em>p</em> &lt; .001. As indicated by the correlational analysis, time since earning a Ph.D. was a significant predictor of professors’ current salary, <em>t</em>(60) = 5.93, <em>p</em> &lt; .001, accounting for approximately 36% of the variance ( <span class="math inline">\(R_{adj}^{2} = .359\)</span>). The analysis indicated that as time since earning a Ph.D. increases by 1 year, professors’ salary is estimated to increase by about <code>$</code>1379 (95% CI: <code>$</code>914, <code>$</code>1845). As the number of years since earning a Ph.D. increases by 1 standard deviation, professors’ salary is estimate to increase by 0.61 standard deviations.</p>
+<p>For professors 12 years post Ph.D., it is predicted that their salary would be about <code>$</code>62001 (95% CI: <code>$</code>58875, <code>$</code>65127). For any professor 12 years post Ph.D., the predicted salary is about <code>$</code>62001 (95% CI: <code>$</code>46146, <code>$</code>77856).</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="correlation-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multiple-regression-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["book.pdf", "book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

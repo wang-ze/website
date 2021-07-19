@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introduction to R and RStudio | Quantitative Foundations in Educational Research</title>
+  <meta name="description" content="This is for course ESC_PS 8850 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Introduction to R and RStudio | Quantitative Foundations in Educational Research" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is for course ESC_PS 8850 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="ze-wang/quant-foundations" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Introduction to R and RStudio | Quantitative Foundations in Educational Research" />
+  
+  <meta name="twitter:description" content="This is for course ESC_PS 8850 at the University of Missouri. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Ze Wang" />
+
+
+<meta name="date" content="2021-07-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="author.html"/>
+<link rel="next" href="review-of-basic-statistics.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contents"><i class="fa fa-check"></i>Contents</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#the-r-language"><i class="fa fa-check"></i><b>1.1</b> The R Language</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#why-r"><i class="fa fa-check"></i><b>1.1.1</b> Why R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#statistical-analysis-software-for-data-modeling"><i class="fa fa-check"></i><b>1.1.2</b> Statistical analysis software for data modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#install-r"><i class="fa fa-check"></i><b>1.2</b> Install R</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#install-rstudio"><i class="fa fa-check"></i><b>1.3</b> Install RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#use-rstudio"><i class="fa fa-check"></i><b>1.4</b> Use RStudio</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#basic-operations"><i class="fa fa-check"></i><b>1.4.1</b> Basic operations</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#data-types-in-r"><i class="fa fa-check"></i><b>1.4.2</b> Data types in R</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#data-structures-in-r"><i class="fa fa-check"></i><b>1.4.3</b> Data structures in R</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#packages"><i class="fa fa-check"></i><b>1.4.4</b> R packages</a></li>
+<li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#rstudio-projects"><i class="fa fa-check"></i><b>1.4.5</b> RStudio projects</a></li>
+<li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#import-and-export-data"><i class="fa fa-check"></i><b>1.4.6</b> Import and export Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html"><i class="fa fa-check"></i><b>2</b> Review of Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#calculating-variance-and-covariance"><i class="fa fa-check"></i><b>2.1</b> Calculating Variance and Covariance</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#covariance"><i class="fa fa-check"></i><b>2.1.1</b> Covariance</a></li>
+<li class="chapter" data-level="2.1.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#correlation"><i class="fa fa-check"></i><b>2.1.2</b> Correlation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#using-matrix-algebra"><i class="fa fa-check"></i><b>2.1.3</b> Using Matrix Algebra</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#basic"><i class="fa fa-check"></i><b>2.2</b> Use R for Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#import-and-export-data-1"><i class="fa fa-check"></i><b>2.2.1</b> Import and export data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#several-functions-for-basic-data-management"><i class="fa fa-check"></i><b>2.2.2</b> Several functions for basic data management</a></li>
+<li class="chapter" data-level="2.2.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#some-descriptive-statistics"><i class="fa fa-check"></i><b>2.2.3</b> Some descriptive statistics</a></li>
+<li class="chapter" data-level="2.2.4" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#check-normality"><i class="fa fa-check"></i><b>2.2.4</b> Check normality</a></li>
+<li class="chapter" data-level="2.2.5" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#check-linearity"><i class="fa fa-check"></i><b>2.2.5</b> Check linearity</a></li>
+<li class="chapter" data-level="2.2.6" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#pearsons-product-moment-correlation"><i class="fa fa-check"></i><b>2.2.6</b> Pearson’s product moment correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-r-for-graphing-data"><i class="fa fa-check"></i><b>2.3</b> Use R for Graphing Data</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-plot"><i class="fa fa-check"></i><b>2.3.1</b> Use <code>plot()</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-ggplot2-package"><i class="fa fa-check"></i><b>2.3.2</b> Use <code>ggplot2</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-r-to-graph-a-correlation-matrix"><i class="fa fa-check"></i><b>2.4</b> Use R to Graph a Correlation Matrix</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-plot-1"><i class="fa fa-check"></i><b>2.4.1</b> Use <code>plot()</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-ggplot"><i class="fa fa-check"></i><b>2.4.2</b> Use <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#use-r-to-generate-random-data"><i class="fa fa-check"></i><b>2.5</b> Use R to Generate Random Data</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#sampling-distribution"><i class="fa fa-check"></i><b>2.5.1</b> Sampling distribution</a></li>
+<li class="chapter" data-level="2.5.2" data-path="review-of-basic-statistics.html"><a href="review-of-basic-statistics.html#simulate-data-from-a-model"><i class="fa fa-check"></i><b>2.5.2</b> Simulate data from a model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="correlation-1.html"><a href="correlation-1.html"><i class="fa fa-check"></i><b>3</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="correlation-1.html"><a href="correlation-1.html#variance-and-covariance"><i class="fa fa-check"></i><b>3.1</b> Variance and Covariance</a></li>
+<li class="chapter" data-level="3.2" data-path="correlation-1.html"><a href="correlation-1.html#pearson-product-moment-correlation-pearson-correlation"><i class="fa fa-check"></i><b>3.2</b> Pearson Product-Moment Correlation (Pearson Correlation)</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="correlation-1.html"><a href="correlation-1.html#test-that-the-population-correlation-equals-zero"><i class="fa fa-check"></i><b>3.2.1</b> Test that the population correlation equals zero</a></li>
+<li class="chapter" data-level="3.2.2" data-path="correlation-1.html"><a href="correlation-1.html#check-normality-1"><i class="fa fa-check"></i><b>3.2.2</b> Check normality</a></li>
+<li class="chapter" data-level="3.2.3" data-path="correlation-1.html"><a href="correlation-1.html#check-for-linearity-with-scatterplot"><i class="fa fa-check"></i><b>3.2.3</b> Check for linearity with scatterplot</a></li>
+<li class="chapter" data-level="3.2.4" data-path="correlation-1.html"><a href="correlation-1.html#factors-that-affect-the-pearson-correlation"><i class="fa fa-check"></i><b>3.2.4</b> Factors that affect the Pearson Correlation</a></li>
+<li class="chapter" data-level="3.2.5" data-path="correlation-1.html"><a href="correlation-1.html#test-that-the-population-correlation-equals-a-certain-value"><i class="fa fa-check"></i><b>3.2.5</b> Test that the population correlation equals a certain value</a></li>
+<li class="chapter" data-level="3.2.6" data-path="correlation-1.html"><a href="correlation-1.html#test-that-two-population-correlations-are-equal"><i class="fa fa-check"></i><b>3.2.6</b> Test that two population correlations are equal</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="correlation-1.html"><a href="correlation-1.html#variations-of-the-pearson-product-moment-correlation"><i class="fa fa-check"></i><b>3.3</b> Variations of the Pearson Product-Moment Correlation</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="correlation-1.html"><a href="correlation-1.html#point-biserial-correlation"><i class="fa fa-check"></i><b>3.3.1</b> Point Biserial Correlation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="correlation-1.html"><a href="correlation-1.html#biserial-correlation"><i class="fa fa-check"></i><b>3.3.2</b> Biserial Correlation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="correlation-1.html"><a href="correlation-1.html#spearmans-rankspearmans-correlationspearmans-rho"><i class="fa fa-check"></i><b>3.3.3</b> Spearman’s Rank/Spearman’s Correlation/Spearman’s rho</a></li>
+<li class="chapter" data-level="3.3.4" data-path="correlation-1.html"><a href="correlation-1.html#phi-coefficient"><i class="fa fa-check"></i><b>3.3.4</b> Phi Coefficient</a></li>
+<li class="chapter" data-level="3.3.5" data-path="correlation-1.html"><a href="correlation-1.html#tetrachoric-correlation"><i class="fa fa-check"></i><b>3.3.5</b> Tetrachoric Correlation</a></li>
+<li class="chapter" data-level="3.3.6" data-path="correlation-1.html"><a href="correlation-1.html#polychoric-correlation"><i class="fa fa-check"></i><b>3.3.6</b> Polychoric Correlation</a></li>
+<li class="chapter" data-level="3.3.7" data-path="correlation-1.html"><a href="correlation-1.html#chi-square"><i class="fa fa-check"></i><b>3.3.7</b> Chi-Square</a></li>
+<li class="chapter" data-level="3.3.8" data-path="correlation-1.html"><a href="correlation-1.html#summary-of-measures-of-association"><i class="fa fa-check"></i><b>3.3.8</b> Summary of measures of association</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="correlation-1.html"><a href="correlation-1.html#an-example"><i class="fa fa-check"></i><b>3.4</b> An Example</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data"><i class="fa fa-check"></i><b>4.1</b> Plot the Data</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#using-plot"><i class="fa fa-check"></i><b>4.1.1</b> Using <code>plot()</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#using-ggplot"><i class="fa fa-check"></i><b>4.1.2</b> Using <code>ggplot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#the-regression-equation"><i class="fa fa-check"></i><b>4.2</b> The Regression Equation</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#variance-explained"><i class="fa fa-check"></i><b>4.2.1</b> Variance explained</a></li>
+<li class="chapter" data-level="4.2.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#relationship-with-pearson-correlation"><i class="fa fa-check"></i><b>4.2.2</b> Relationship with Pearson correlation</a></li>
+<li class="chapter" data-level="4.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#coefficient-of-determination-r2"><i class="fa fa-check"></i><b>4.2.3</b> Coefficient of Determination (<span class="math inline">\({{R}^{2}}\)</span>)</a></li>
+<li class="chapter" data-level="4.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#r-syntax"><i class="fa fa-check"></i><b>4.2.4</b> R Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#test-of-significance-and-confidence-interval"><i class="fa fa-check"></i><b>4.3</b> Test of Significance and Confidence Interval</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#testing-the-regression-of-y-on-x"><i class="fa fa-check"></i><b>4.3.1</b> Testing the regression of Y on X</a></li>
+<li class="chapter" data-level="4.3.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#testing-the-regression-coefficient-slope-and-the-confidence-interval"><i class="fa fa-check"></i><b>4.3.2</b> Testing the regression coefficient (slope) and the confidence interval</a></li>
+<li class="chapter" data-level="4.3.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#r-syntax-1"><i class="fa fa-check"></i><b>4.3.3</b> R Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#summary-of-important-statistics"><i class="fa fa-check"></i><b>4.4</b> Summary of Important Statistics</a></li>
+<li class="chapter" data-level="4.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-hypothesis-testing-and-prediction-intervals"><i class="fa fa-check"></i><b>4.5</b> Confidence Intervals, Hypothesis Testing, and Prediction Intervals</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#prediction-intervals-for-new-observations"><i class="fa fa-check"></i><b>4.5.1</b> Prediction Intervals for New Observations</a></li>
+<li class="chapter" data-level="4.5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#r-syntax-2"><i class="fa fa-check"></i><b>4.5.2</b> R Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#a-complete-example"><i class="fa fa-check"></i><b>4.6</b> A Complete Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html"><i class="fa fa-check"></i><b>5</b> Multiple Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#f-test-and-partial-f-test"><i class="fa fa-check"></i><b>5.1</b> F Test and Partial F Test</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#overall-test-f-test"><i class="fa fa-check"></i><b>5.1.1</b> Overall test (F Test)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#partial-f-test-for-additional-variables"><i class="fa fa-check"></i><b>5.1.2</b> Partial F test for additional variable(s)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#testing-the-partial-regression-coefficients"><i class="fa fa-check"></i><b>5.2</b> Testing the Partial Regression Coefficients</a></li>
+<li class="chapter" data-level="5.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#partial-and-semi-paritial-part-correlations"><i class="fa fa-check"></i><b>5.3</b> Partial and Semi-paritial (Part) Correlations</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#r-syntax-3"><i class="fa fa-check"></i><b>5.3.1</b> R Syntax</a></li>
+<li class="chapter" data-level="5.3.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#sum-up"><i class="fa fa-check"></i><b>5.3.2</b> Sum up</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#a-complete-example-1"><i class="fa fa-check"></i><b>5.4</b> A Complete Example</a></li>
+<li class="chapter" data-level="5.5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#types-of-multiple-regression"><i class="fa fa-check"></i><b>5.5</b> Types of Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#regression-model-selection-based-on-statistics"><i class="fa fa-check"></i><b>5.5.1</b> Regression model selection based on statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#a-few-assumptions-in-regression"><i class="fa fa-check"></i><b>5.6</b> (A Few) Assumptions in Regression</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#linearity"><i class="fa fa-check"></i><b>5.6.1</b> Linearity</a></li>
+<li class="chapter" data-level="5.6.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#homoscedasticity-constant-variance-assumption"><i class="fa fa-check"></i><b>5.6.2</b> Homoscedasticity (Constant Variance Assumption)</a></li>
+<li class="chapter" data-level="5.6.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#normality"><i class="fa fa-check"></i><b>5.6.3</b> Normality</a></li>
+<li class="chapter" data-level="5.6.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#independence-of-residuals"><i class="fa fa-check"></i><b>5.6.4</b> Independence of Residuals</a></li>
+<li class="chapter" data-level="5.6.5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#multicollinearity"><i class="fa fa-check"></i><b>5.6.5</b> Multicollinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#multiple-regression-and-patterns-of-association"><i class="fa fa-check"></i><b>5.7</b> Multiple Regression and Patterns of Association</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#complete-independence"><i class="fa fa-check"></i><b>5.7.1</b> Complete independence</a></li>
+<li class="chapter" data-level="5.7.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#partial-redundancy"><i class="fa fa-check"></i><b>5.7.2</b> Partial redundancy</a></li>
+<li class="chapter" data-level="5.7.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#complete-redundancy"><i class="fa fa-check"></i><b>5.7.3</b> Complete redundancy</a></li>
+<li class="chapter" data-level="5.7.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#suppression-in-multiple-regression"><i class="fa fa-check"></i><b>5.7.4</b> Suppression in multiple regression</a></li>
+<li class="chapter" data-level="5.7.5" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#summary-of-patterns-of-association"><i class="fa fa-check"></i><b>5.7.5</b> Summary of patterns of association</a></li>
+<li class="chapter" data-level="5.7.6" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#statistical-paradoxes"><i class="fa fa-check"></i><b>5.7.6</b> Statistical paradoxes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#regression-diagnostics"><i class="fa fa-check"></i><b>5.8</b> Regression Diagnostics</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#leverage"><i class="fa fa-check"></i><b>5.8.1</b> Leverage</a></li>
+<li class="chapter" data-level="5.8.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#discrepancy"><i class="fa fa-check"></i><b>5.8.2</b> Discrepancy</a></li>
+<li class="chapter" data-level="5.8.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#influence"><i class="fa fa-check"></i><b>5.8.3</b> Influence</a></li>
+<li class="chapter" data-level="5.8.4" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#sources-of-outliers-and-remedies"><i class="fa fa-check"></i><b>5.8.4</b> Sources of Outliers and Remedies</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#curvilinear-regression"><i class="fa fa-check"></i><b>5.9</b> Curvilinear Regression</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#polynomial-regression"><i class="fa fa-check"></i><b>5.9.1</b> Polynomial regression</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#useful-functions-and-symbols-commonly-used-in-r-when-fitting-linear-models"><i class="fa fa-check"></i><b>5.10</b> Useful Functions and Symbols Commonly Used in R When Fitting Linear Models</a></li>
+<li class="chapter" data-level="5.11" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#interactions-in-regression"><i class="fa fa-check"></i><b>5.11</b> Interactions in Regression</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#an-example-1"><i class="fa fa-check"></i><b>5.11.1</b> An example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#categorical-independent-variables"><i class="fa fa-check"></i><b>5.12</b> Categorical Independent Variables</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#binary-independent-variables"><i class="fa fa-check"></i><b>5.12.1</b> Binary independent variables</a></li>
+<li class="chapter" data-level="5.12.2" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#categorical-independent-variables-with-more-than-two-categories"><i class="fa fa-check"></i><b>5.12.2</b> Categorical independent variables with more than two categories</a></li>
+<li class="chapter" data-level="5.12.3" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#an-example-2"><i class="fa fa-check"></i><b>5.12.3</b> An example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#interactions-between-categorical-and-continuous-variables"><i class="fa fa-check"></i><b>5.13</b> Interactions Between Categorical and Continuous Variables</a></li>
+<li class="chapter" data-level="5.14" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#an-open-book-on-regression"><i class="fa fa-check"></i><b>5.14</b> An Open Book on Regression</a></li>
+<li class="chapter" data-level="5.15" data-path="multiple-regression-analysis.html"><a href="multiple-regression-analysis.html#create-apa-tables-with-apatables-package"><i class="fa fa-check"></i><b>5.15</b> Create APA Tables with <code>apaTables</code> Package</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Binary Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#some-definitions"><i class="fa fa-check"></i><b>6.1</b> Some Definitions</a></li>
+<li class="chapter" data-level="6.2" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#logarithm-rules"><i class="fa fa-check"></i><b>6.2</b> Logarithm Rules</a></li>
+<li class="chapter" data-level="6.3" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#logistic-regression-equation"><i class="fa fa-check"></i><b>6.3</b> Logistic Regression Equation</a></li>
+<li class="chapter" data-level="6.4" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#run-logistic-regression"><i class="fa fa-check"></i><b>6.4</b> Run Logistic Regression</a></li>
+<li class="chapter" data-level="6.5" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#logistic-regression-coefficients"><i class="fa fa-check"></i><b>6.5</b> Logistic Regression Coefficients</a></li>
+<li class="chapter" data-level="6.6" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#similarities-and-differences-between-binary-logistic-regression-and-ols-regression"><i class="fa fa-check"></i><b>6.6</b> Similarities and Differences Between Binary Logistic Regression and OLS Regression</a></li>
+<li class="chapter" data-level="6.7" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#empirical-example"><i class="fa fa-check"></i><b>6.7</b> Empirical Example</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assess-the-model---model-chi-square"><i class="fa fa-check"></i><b>6.7.1</b> Assess the model - model chi-square</a></li>
+<li class="chapter" data-level="6.7.2" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assess-the-model---r2"><i class="fa fa-check"></i><b>6.7.2</b> Assess the model - <span class="math inline">\({R^2}\)</span></a></li>
+<li class="chapter" data-level="6.7.3" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#diagnostics"><i class="fa fa-check"></i><b>6.7.3</b> Diagnostics</a></li>
+<li class="chapter" data-level="6.7.4" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assumptions---linearity"><i class="fa fa-check"></i><b>6.7.4</b> Assumptions - Linearity</a></li>
+<li class="chapter" data-level="6.7.5" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#assumptions---independence-of-errors"><i class="fa fa-check"></i><b>6.7.5</b> Assumptions - Independence of errors</a></li>
+<li class="chapter" data-level="6.7.6" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#use-more-predictors"><i class="fa fa-check"></i><b>6.7.6</b> Use more predictors</a></li>
+<li class="chapter" data-level="6.7.7" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#check-multicollinearity-among-ivs"><i class="fa fa-check"></i><b>6.7.7</b> Check Multicollinearity Among IVs</a></li>
+<li class="chapter" data-level="6.7.8" data-path="binary-logistic-regression.html"><a href="binary-logistic-regression.html#interprete-results"><i class="fa fa-check"></i><b>6.7.8</b> Interprete results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>7</b> Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#historical-background"><i class="fa fa-check"></i><b>7.1</b> Historical Background</a></li>
+<li class="chapter" data-level="7.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-general-linear-model-glm"><i class="fa fa-check"></i><b>7.2</b> The General Linear Model (GLM)</a></li>
+<li class="chapter" data-level="7.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-anova-for-single-factor-designs"><i class="fa fa-check"></i><b>7.3</b> One-Way ANOVA (for Single Factor Designs)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#statistical-hypotheses"><i class="fa fa-check"></i><b>7.3.1</b> Statistical hypotheses</a></li>
+<li class="chapter" data-level="7.3.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#basic-idea-of-anova"><i class="fa fa-check"></i><b>7.3.2</b> Basic idea of ANOVA</a></li>
+<li class="chapter" data-level="7.3.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#empirical-example-1"><i class="fa fa-check"></i><b>7.3.3</b> Empirical example</a></li>
+<li class="chapter" data-level="7.3.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#pairwise-comparisons"><i class="fa fa-check"></i><b>7.3.4</b> Pairwise comparisons</a></li>
+<li class="chapter" data-level="7.3.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#planned-comparisons"><i class="fa fa-check"></i><b>7.3.5</b> Planned comparisons</a></li>
+<li class="chapter" data-level="7.3.6" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-pairwise-comparisons"><i class="fa fa-check"></i><b>7.3.6</b> Post-hoc pairwise comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#anova-assumptions"><i class="fa fa-check"></i><b>7.4</b> ANOVA Assumptions</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#robustness"><i class="fa fa-check"></i><b>7.4.1</b> Robustness</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-anova-using-glm-approach"><i class="fa fa-check"></i><b>7.5</b> One-way ANOVA Using GLM approach</a></li>
+<li class="chapter" data-level="7.6" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#factorial-analysis-of-variance-factorial-anova"><i class="fa fa-check"></i><b>7.6</b> Factorial Analysis of Variance (Factorial ANOVA)</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#numerical-calcuations-for-two-way-anova"><i class="fa fa-check"></i><b>7.6.1</b> Numerical calcuations for two-way ANOVA</a></li>
+<li class="chapter" data-level="7.6.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#partitioning-the-total-sum-of-squares"><i class="fa fa-check"></i><b>7.6.2</b> Partitioning the total sum of squares</a></li>
+<li class="chapter" data-level="7.6.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#empirical-example---two-way-anova"><i class="fa fa-check"></i><b>7.6.3</b> Empirical example - Two-way ANOVA</a></li>
+<li class="chapter" data-level="7.6.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#assumptions-for-factorial-anova-see-refanova-assumptions"><i class="fa fa-check"></i><b>7.6.4</b> Assumptions for factorial ANOVA (see @ref(anova-assumptions))</a></li>
+<li class="chapter" data-level="7.6.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#contrasts-using-the-multcomp-package"><i class="fa fa-check"></i><b>7.6.5</b> Contrasts using the <code>multcomp</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#factorial-anova-as-multiple-regression"><i class="fa fa-check"></i><b>7.7</b> Factorial ANOVA as Multiple Regression</a></li>
+<li class="chapter" data-level="7.8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-blog-on-anova-in-r"><i class="fa fa-check"></i><b>7.8</b> A Blog on ANOVA in R</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html"><i class="fa fa-check"></i><b>8</b> Analysis of Covariance</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#purposes-of-ancova"><i class="fa fa-check"></i><b>8.1</b> Purposes of ANCOVA</a></li>
+<li class="chapter" data-level="8.2" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#choice-of-covariates-to-use"><i class="fa fa-check"></i><b>8.2</b> Choice of covariates to use</a></li>
+<li class="chapter" data-level="8.3" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#statistical-model-for-ancova"><i class="fa fa-check"></i><b>8.3</b> Statistical Model for ANCOVA</a></li>
+<li class="chapter" data-level="8.4" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#ancova-assumptions"><i class="fa fa-check"></i><b>8.4</b> ANCOVA Assumptions</a></li>
+<li class="chapter" data-level="8.5" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#empirical-example-2"><i class="fa fa-check"></i><b>8.5</b> Empirical Example</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---normality"><i class="fa fa-check"></i><b>8.5.1</b> Assumptions - Normality</a></li>
+<li class="chapter" data-level="8.5.2" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---homogeneity-of-variance"><i class="fa fa-check"></i><b>8.5.2</b> Assumptions - Homogeneity of Variance</a></li>
+<li class="chapter" data-level="8.5.3" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---independence-of-the-covariate-and-the-independent-variable"><i class="fa fa-check"></i><b>8.5.3</b> Assumptions - Independence of the covariate and the independent variable</a></li>
+<li class="chapter" data-level="8.5.4" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#assumptions---homogeneity-of-regression-slopes"><i class="fa fa-check"></i><b>8.5.4</b> Assumptions - Homogeneity of regression slopes</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#post-hoc-tests-using-the-multcomp-package"><i class="fa fa-check"></i><b>8.6</b> Post-hoc Tests using the <code>multcomp</code> package</a></li>
+<li class="chapter" data-level="8.7" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#ancova-as-a-glm"><i class="fa fa-check"></i><b>8.7</b> ANCOVA as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html"><i class="fa fa-check"></i><b>9</b> Repeated Measures ANOVA and Mixed Designs</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#repeated-measures-anova"><i class="fa fa-check"></i><b>9.1</b> Repeated-Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#advantages-of-repeated-measures-design"><i class="fa fa-check"></i><b>9.1.1</b> Advantages of repeated-measures design</a></li>
+<li class="chapter" data-level="9.1.2" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#disadvantages-of-repeated-measures-design"><i class="fa fa-check"></i><b>9.1.2</b> Disadvantages of repeated-measures design</a></li>
+<li class="chapter" data-level="9.1.3" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#variance-partitioning-in-one-way-repeated-measures-design"><i class="fa fa-check"></i><b>9.1.3</b> Variance partitioning in one-way repeated measures design</a></li>
+<li class="chapter" data-level="9.1.4" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#assumptions-in-repeated-measures-analysis"><i class="fa fa-check"></i><b>9.1.4</b> Assumptions in repeated measures analysis</a></li>
+<li class="chapter" data-level="9.1.5" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#alternative-specification-of-the-variance-covariance-matrix"><i class="fa fa-check"></i><b>9.1.5</b> Alternative Specification of the Variance-Covariance Matrix</a></li>
+<li class="chapter" data-level="9.1.6" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#empirical-example-3"><i class="fa fa-check"></i><b>9.1.6</b> Empirical example</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#mixed-designs"><i class="fa fa-check"></i><b>9.2</b> Mixed Designs</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#one-between-and-one-within-factor-design"><i class="fa fa-check"></i><b>9.2.1</b> One between and one within factor design</a></li>
+<li class="chapter" data-level="9.2.2" data-path="repeated-measures-anova-and-mixed-designs.html"><a href="repeated-measures-anova-and-mixed-designs.html#a-few-online-resources"><i class="fa fa-check"></i><b>9.2.2</b> A few online resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="power-analysis.html"><a href="power-analysis.html"><i class="fa fa-check"></i><b>10</b> Power Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="power-analysis.html"><a href="power-analysis.html#components-of-power-analysis"><i class="fa fa-check"></i><b>10.1</b> Components of Power Analysis</a></li>
+<li class="chapter" data-level="10.2" data-path="power-analysis.html"><a href="power-analysis.html#effect-sizes"><i class="fa fa-check"></i><b>10.2</b> Effect Sizes</a></li>
+<li class="chapter" data-level="10.3" data-path="power-analysis.html"><a href="power-analysis.html#types-of-power-analysis"><i class="fa fa-check"></i><b>10.3</b> Types of Power Analysis</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="power-analysis.html"><a href="power-analysis.html#a-priori-power-analysis"><i class="fa fa-check"></i><b>10.3.1</b> A priori power analysis</a></li>
+<li class="chapter" data-level="10.3.2" data-path="power-analysis.html"><a href="power-analysis.html#post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.3.2</b> Post-hoc power analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="power-analysis.html"><a href="power-analysis.html#a-two-tailed-t-test-for-independent-samples-power-example"><i class="fa fa-check"></i><b>10.4</b> a Two-Tailed <em>t Test</em> for Independent Samples Power Example</a></li>
+<li class="chapter" data-level="10.5" data-path="power-analysis.html"><a href="power-analysis.html#software"><i class="fa fa-check"></i><b>10.5</b> Software</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Foundations in Educational Research</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction to R and RStudio</h1>
+<div id="the-r-language" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> The R Language</h2>
+<p>R is a free, open-source programming language developed for statistical computing and graphics. It is open source meaning that everyone can access and contribute to its development. R was born out of S, which was intended to be a programming language focused on data analysis, and has evolved into a system used not only by computer programmers and data analysts but also by physical scientists, psychologists, journalists, etc. The first publicly available version of R was released in 2000. The latest version of R, released on 2021-05-18, is R-4.1.0.</p>
+<div id="why-r" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Why R?</h3>
+<p>For scholarly articles published in 2018 found on Google Scholar, R is the second most frequently used data science software following SPSS. <img src="https://i1.wp.com/r4stats.com/wp-content/uploads/2019/03/Fig_2a_ScholarlyImpact2018-1.png" /></p>
+<p><a href="https://www.kdnuggets.com/2020/09/modern-data-science-skills.html">KDnuggets Poll 2020 - Modern Data Science Skills</a></p>
+<p><a href="https://www.kdnuggets.com/2020/06/data-science-tools-popularity-animated.html">KDnuggets Data Science Tools Popularity, animated</a></p>
+<p><a href="https://www.kdnuggets.com/2019/09/core-hot-data-science-skills.html">KDnuggets Poll 2019 - Core Data Science Skills</a></p>
+<p><a href="https://www.kdnuggets.com/2019/05/poll-top-data-science-machine-learning-platforms.html">KDnuggets Poll 2019 - Top Analytics/Data Science Software</a></p>
+<p><a href="https://www.r-bloggers.com/data-science-software-used-in-journals-stat-packages-declining-including-r-ai-ml-software-growing">Data Science Software Used in Journals in 2018</a></p>
+</div>
+<div id="statistical-analysis-software-for-data-modeling" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Statistical analysis software for data modeling</h3>
+<p>There are other statistical analysis software packages that you may be aware of. For example,</p>
+<ul>
+<li><a href="https://www.ibm.com/products/spss-statistics">SPSS</a></li>
+<li><a href="https://www.sas.com/en_us/home.html">SAS</a></li>
+<li><a href="https://www.stata.com/">STATA</a></li>
+<li><a href="https://statmodel.com/">Mplus</a></li>
+</ul>
+<p>They typically expect that data are already nicely organized in columns and rows. R is a powerful tool for data modeling <strong>and</strong> data processing and visualization. R is considered a data-oriented programming language (other examples are <a href="https://www.python.org/">Python</a>, and <a href="https://julialang.org/">Julia</a>). It has the control and power of managing and analyzing data.</p>
+</div>
+</div>
+<div id="install-r" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Install R</h2>
+<p>R is available for Windows, Mac, and Linux operating systems. To install R, go to the <a href="https://cran.r-project.org">Comprehensive R Archive Network (CRAN)</a>, download the version compatible with your operating system. For Windows or MacOS users, you probably want to download the precompiled binary distributions (i.e., ready-to-run applications) linked at the top of the CRAN webpage.</p>
+<p>The version downloaded includes the base R package. Often times, it is necessary to install other R packages to perform analysis. For example, for this course, we will use the [<code>rio</code>] (<a href="https://cran.r-project.org/web/packages/rio/index.html" class="uri">https://cran.r-project.org/web/packages/rio/index.html</a>) package. I will show how to install packages in <a href="intro.html#packages">1.4.4</a></p>
+</div>
+<div id="install-rstudio" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Install RStudio</h2>
+<p>RStudio is an integrated development environment (IDE) for R. It uses R to develop codes and analysis that can be executed and has greater usability than R itself. Essentially RStudio is an interface between the user and R (there are other interfaces for R, e.g., <a href="https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/">R Commander</a>). It depends on and adds onto R, which means that <em>the R program has to be installed before RStudio</em> for RStudio to implement R. Any R package or function can be used in RStudio.</p>
+<p>To install RStudio, go to the <a href="https://www.rstudio.com/products/rstudio/download/">RStudio download</a> page, and download and install the free RStudio Desktop.</p>
+<p>Open R Studio and you will see a window with four panes.</p>
+<ul>
+<li>R script</li>
+<li>R console</li>
+<li>Environment/History/Connections/Tutorial</li>
+<li>Files/Plots/Packages…</li>
+</ul>
+<p>You can change the appearances and layout of the panes. Go to <em>Tools -&gt; Global Options -&gt; Appearance</em> to change the appearance.</p>
+</div>
+<div id="use-rstudio" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Use RStudio</h2>
+<p>There are two basic ways for RStudio to execute your R syntax: (1) type your code directly in the R console and (2) write R script. If you type your code directly in the R console, the code will no longer be accessible after you close your R session. Writing R script is recommended if you would like to save the code (with “.R” extension). In this class, we will mainly use RStudio for our coding purpose.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<div id="basic-operations" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Basic operations</h3>
+<div id="entering-data" class="section level4" number="1.4.1.1">
+<h4><span class="header-section-number">1.4.1.1</span> entering data</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span> <span class="co">#press cmd/ctrol enter</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span> <span class="co">#sequence</span></span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello World!&quot;</code></pre>
+</div>
+<div id="assign-value" class="section level4" number="1.4.1.2">
+<h4><span class="header-section-number">1.4.1.2</span> assign value</h4>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co">#use &lt;-, not =</span></span>
+<span id="cb7-2"><a href="intro.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="ot">-&gt;</span> b <span class="co">#can go other way, but silly</span></span>
+<span id="cb7-3"><a href="intro.html#cb7-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> d <span class="ot">&lt;-</span> e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co">#multiple assignments</span></span></code></pre></div>
+</div>
+<div id="multiple-values" class="section level4" number="1.4.1.3">
+<h4><span class="header-section-number">1.4.1.3</span> multiple values</h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span> (<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>) <span class="co">#c means combine or concatenate</span></span>
+<span id="cb8-2"><a href="intro.html#cb8-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] 5 3 6 9</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1" aria-hidden="true" tabindex="-1"></a>(y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">10</span>)) <span class="co">#surround command with parentheses to also print</span></span></code></pre></div>
+<pre><code>## [1]  1  3  0 10</code></pre>
+</div>
+<div id="sequences" class="section level4" number="1.4.1.4">
+<h4><span class="header-section-number">1.4.1.4</span> sequences</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">:</span><span class="dv">5</span> <span class="co">#0 through 5</span></span></code></pre></div>
+<pre><code>## [1] 0 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="intro.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">:</span><span class="dv">0</span> <span class="co">#5 through 0</span></span></code></pre></div>
+<pre><code>## [1] 5 4 3 2 1 0</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">5</span>) <span class="co">#1 to 5</span></span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="at">by =</span> <span class="sc">-</span><span class="dv">2</span>) <span class="co">#count down by 2 </span></span></code></pre></div>
+<pre><code>## [1] 5 3 1</code></pre>
+</div>
+<div id="math" class="section level4" number="1.4.1.5">
+<h4><span class="header-section-number">1.4.1.5</span> math</h4>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y       <span class="co">#adds corresponding elements in x and y</span></span></code></pre></div>
+<pre><code>## [1]  6  6  6 19</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">2</span>       <span class="co">#multiplies each element in x by 2</span></span></code></pre></div>
+<pre><code>## [1] 10  6 12 18</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">4</span>         <span class="co">#powers/exponents</span></span></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">36</span>)    <span class="co">#squareroot</span></span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">100</span>)    <span class="co">#natural log: base e (2.71828...)</span></span></code></pre></div>
+<pre><code>## [1] 4.60517</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">100</span>)  <span class="co">#base 10 log</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+</div>
+</div>
+<div id="data-types-in-r" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Data types in R</h3>
+<div id="numeric" class="section level4" number="1.4.2.1">
+<h4><span class="header-section-number">1.4.2.1</span> numeric</h4>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1" aria-hidden="true" tabindex="-1"></a>(n1 <span class="ot">&lt;-</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(n1)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intro.html#cb36-1" aria-hidden="true" tabindex="-1"></a>(n2 <span class="ot">&lt;-</span> <span class="fl">2.5</span>)</span></code></pre></div>
+<pre><code>## [1] 2.5</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="intro.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(n2)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+</div>
+<div id="character" class="section level4" number="1.4.2.2">
+<h4><span class="header-section-number">1.4.2.2</span> character</h4>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="intro.html#cb40-1" aria-hidden="true" tabindex="-1"></a>(c1 <span class="ot">&lt;-</span> <span class="st">&quot;c&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="intro.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(c1)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="intro.html#cb44-1" aria-hidden="true" tabindex="-1"></a>(c2 <span class="ot">&lt;-</span> <span class="st">&quot;a string of text&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;a string of text&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="intro.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(c2)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="logical" class="section level4" number="1.4.2.3">
+<h4><span class="header-section-number">1.4.2.3</span> logical</h4>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="intro.html#cb48-1" aria-hidden="true" tabindex="-1"></a>(l1 <span class="ot">&lt;-</span> <span class="cn">TRUE</span>) <span class="co">#must use uppercase</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="intro.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(l1)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="intro.html#cb52-1" aria-hidden="true" tabindex="-1"></a>(l2 <span class="ot">&lt;-</span> F) <span class="co">#must use uppercase</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="intro.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(l2)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+</div>
+</div>
+<div id="data-structures-in-r" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Data structures in R</h3>
+<div id="vector" class="section level4" number="1.4.3.1">
+<h4><span class="header-section-number">1.4.3.1</span> vector</h4>
+<p>A vector has elements of the same data type.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="intro.html#cb56-1" aria-hidden="true" tabindex="-1"></a>(v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="intro.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(v1)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="intro.html#cb60-1" aria-hidden="true" tabindex="-1"></a>(v2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="intro.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(v2)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="intro.html#cb64-1" aria-hidden="true" tabindex="-1"></a>(v3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE FALSE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="intro.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(v3)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="matrix" class="section level4" number="1.4.3.2">
+<h4><span class="header-section-number">1.4.3.2</span> matrix</h4>
+<p>A matrix is two-dimensional and has elements of the same type.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="intro.html#cb68-1" aria-hidden="true" tabindex="-1"></a>(m1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(T, T, F, F, T, F), <span class="at">nrow =</span> <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##      [,1]  [,2]  [,3]
+## [1,] TRUE FALSE  TRUE
+## [2,] TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="intro.html#cb70-1" aria-hidden="true" tabindex="-1"></a>(m2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb70-2"><a href="intro.html#cb70-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>), </span>
+<span id="cb70-3"><a href="intro.html#cb70-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb70-4"><a href="intro.html#cb70-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">byrow =</span> T)) <span class="co">#default is FALSE</span></span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,] &quot;a&quot;  &quot;b&quot; 
+## [2,] &quot;c&quot;  &quot;d&quot;</code></pre>
+</div>
+<div id="array" class="section level4" number="1.4.3.3">
+<h4><span class="header-section-number">1.4.3.3</span> array</h4>
+<p>An array can be more than two dimensions</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="intro.html#cb72-1" aria-hidden="true" tabindex="-1"></a>(a1 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>( <span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>), <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>))) <span class="co">#four rows, three columns, and two tables</span></span></code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3]
+## [1,]   13   17   21
+## [2,]   14   18   22
+## [3,]   15   19   23
+## [4,]   16   20   24</code></pre>
+</div>
+<div id="data-frame" class="section level4" number="1.4.3.4">
+<h4><span class="header-section-number">1.4.3.4</span> data frame</h4>
+<p>A data frame combines vectors of the same length.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="intro.html#cb74-1" aria-hidden="true" tabindex="-1"></a>Numeric   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb74-2"><a href="intro.html#cb74-2" aria-hidden="true" tabindex="-1"></a>Character <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb74-3"><a href="intro.html#cb74-3" aria-hidden="true" tabindex="-1"></a>Logical   <span class="ot">&lt;-</span> <span class="fu">c</span>(T, F, T)</span>
+<span id="cb74-4"><a href="intro.html#cb74-4" aria-hidden="true" tabindex="-1"></a>(df1 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Numeric, Character, Logical))  <span class="co">#coerces all values to most basic data type</span></span></code></pre></div>
+<pre><code>##      Numeric Character Logical
+## [1,] &quot;1&quot;     &quot;a&quot;       &quot;TRUE&quot; 
+## [2,] &quot;2&quot;     &quot;b&quot;       &quot;FALSE&quot;
+## [3,] &quot;3&quot;     &quot;c&quot;       &quot;TRUE&quot;</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="intro.html#cb76-1" aria-hidden="true" tabindex="-1"></a>(df2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(Numeric, Character, Logical))) <span class="co">#makes a data frame with three different data types</span></span></code></pre></div>
+<pre><code>##   Numeric Character Logical
+## 1       1         a    TRUE
+## 2       2         b   FALSE
+## 3       3         c    TRUE</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="intro.html#cb78-1" aria-hidden="true" tabindex="-1"></a>(df3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Numeric, Character, Logical)) <span class="co">#the right way!</span></span></code></pre></div>
+<pre><code>##   Numeric Character Logical
+## 1       1         a    TRUE
+## 2       2         b   FALSE
+## 3       3         c    TRUE</code></pre>
+</div>
+<div id="list" class="section level4" number="1.4.3.5">
+<h4><span class="header-section-number">1.4.3.5</span> list</h4>
+<p>A list can have anything.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="intro.html#cb80-1" aria-hidden="true" tabindex="-1"></a>o1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb80-2"><a href="intro.html#cb80-2" aria-hidden="true" tabindex="-1"></a>o2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb80-3"><a href="intro.html#cb80-3" aria-hidden="true" tabindex="-1"></a>o3 <span class="ot">&lt;-</span> <span class="fu">c</span>(T, F, T, T, F)</span>
+<span id="cb80-4"><a href="intro.html#cb80-4" aria-hidden="true" tabindex="-1"></a>(list1 <span class="ot">&lt;-</span> <span class="fu">list</span>(o1, o2, o3))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;
+## 
+## [[3]]
+## [1]  TRUE FALSE  TRUE  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="intro.html#cb82-1" aria-hidden="true" tabindex="-1"></a>(list2 <span class="ot">&lt;-</span> <span class="fu">list</span>(o1, o2, o3, list1))  <span class="co">#lists within lists!</span></span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;
+## 
+## [[3]]
+## [1]  TRUE FALSE  TRUE  TRUE FALSE
+## 
+## [[4]]
+## [[4]][[1]]
+## [1] 1 2 3
+## 
+## [[4]][[2]]
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;
+## 
+## [[4]][[3]]
+## [1]  TRUE FALSE  TRUE  TRUE FALSE</code></pre>
+</div>
+<div id="a-few-notes-on-r-data-structures" class="section level4" number="1.4.3.6">
+<h4><span class="header-section-number">1.4.3.6</span> a few notes on R data structures</h4>
+<ul>
+<li><p><strong>matrices</strong> and <strong>arrays</strong> are vectors with the <code>dim</code> attribute.</p></li>
+<li><p>Factors are integer vectors with the<code>class</code> and <code>levels</code> attributes.<br/>. A <strong>factor</strong> is a vector that can contain only predefined values.</p></li>
+<li><p><strong>data frames</strong> are built on top of lists and therefore have the <code>list</code> type.</p></li>
+<li><p><strong>vectors</strong> are the most important family of data types in R. <strong>list</strong> are sometimes called generic vectors and the regular vectors are sometimes called atomic vectors.</p></li>
+<li><p>Hadley Wickham had a good description of the relationships between different types<br/>
+in his <a href="https://adv-r.hadley.nz/"><strong>Advanced R</strong> book</a>.</p></li>
+</ul>
+</div>
+</div>
+<div id="packages" class="section level3" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> R packages</h3>
+<p>When you install R, the <code>base</code> package is installed. The <code>datasets</code> package with example datasets is also ready to use. Type <code>plot(iris)</code> in Rstudio Console, or type it in an R script file and run the syntax. The iris flower data set is a multivariate data set introduced by the British statistician Ronald Fisher.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="intro.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(iris)</span></code></pre></div>
+<p>For this class, we will use a few packages. Use the <code>install.packages()</code> function to install an R package. For example, type <code>install.packages("rio")</code> to install the <code>rio</code> package for importing and exporting data from external programs. You only need to install the package once on your computer. Note that you need to put the package names inside quotation marks.</p>
+<p>To use the package, type either <code>library(rio)</code> or <code>require(rio)</code>. You need to load the package everytime you start a new R session.</p>
+</div>
+<div id="rstudio-projects" class="section level3" number="1.4.5">
+<h3><span class="header-section-number">1.4.5</span> RStudio projects</h3>
+<p>An RStudio project saves a relative base. When you create a R Studio project, a folder is created and all the file paths are relative to this folder. You can copy and paste this folder to another place without having to change file paths. For example, you can create a <code>data</code> folder inside the RStudio project for this class and keep all data in this folder. And then you can import a dataset to R.</p>
+</div>
+<div id="import-and-export-data" class="section level3" number="1.4.6">
+<h3><span class="header-section-number">1.4.6</span> Import and export Data</h3>
+<p>There are several packages (e.g., <code>foreign</code> and <code>haven</code>) that can help import and export data in different statistical formats (e.g., SPSS, SAS, Stata, Excel). The one that I particularly like is the <a href="https://cran.r-project.org/web/packages/rio/index.html"><code>rio</code></a> package. Its <code>import()</code> and <code>export()</code> functions work with different data types. Install and load <code>rio</code>.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="intro.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rio&quot;</span>)</span>
+<span id="cb85-2"><a href="intro.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio)</span></code></pre></div>
+<p>Import an SPSS data from the <code>data</code> folder within the RStudio project.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="intro.html#cb86-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/example.sav&quot;</span>)</span>
+<span id="cb86-2"><a href="intro.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mydata) <span class="co"># view first 6 observations</span></span></code></pre></div>
+<pre><code>##   IDCNTRY IDBOOK IDSCHOOL IDCLASS IDSTUD IDGRADE ITSEX ITADMINI ITLANG BSBG01 BSBG03 BSBG04 BSBG05 BSBG06A BSBG06B BSBG06C BSBG06D BSBG06E BSBG06F
+## 1     840      4        1     103  10301       8     1        1      1      1      1      2      5       1       1       1       1       1       1
+## 2     840      5        1     103  10302       8     2        1      1      2      2      3      3       1       1       1       1       1       1
+##   BSBG06G BSBG06H BSBG06I BSBG06J BSBG06K BSBG07A BSBG07B BSBG08 BSBG09A BSBG09B BSBG10A BSBG10B BSBG11 BSBG12 BSBG13A BSBG13B BSBG13C BSBG14A
+## 1       1       1      NA      NA      NA       7       5      5       1       1       1      NA      1      3       1       3       1       2
+## 2       1       1      NA      NA      NA       7       8      6       1       1       1      NA      4      2       4       3       4       2
+##   BSBG14B BSBG14C BSBG14D BSBG14E BSBG14F BSBG15A BSBG15B BSBG15C BSBG15D BSBG15E BSBG15F BSBG15G BSBG16A BSBG16B BSBG16C BSBG16D BSBG16E BSBG16F
+## 1       1       2       2       1       1       2       1       2       2       2       3       1       1       1       1       4       4       4
+## 2       1       2       1       1       1       3       2       2       1       2       1       2       2       1       4       3       4       4
+##   BSBG16G BSBG16H BSBG16I BSBM17A BSBM17B BSBM17C BSBM17D BSBM17E BSBM17F BSBM17G BSBM17H BSBM17I BSBM18A BSBM18B BSBM18C BSBM18D BSBM18E BSBM18F
+## 1       1       4       4       1       4       4       1       1       1       1       1       1       1       1       1       1       1       1
+## 2       4       4       4       1       4       1       3       1       1       1       3       1       1       1       3       2       1       1
+##   BSBM18G BSBM18H BSBM18I BSBM18J BSBM19A BSBM19B BSBM19C BSBM19D BSBM19E BSBM19F BSBM19G BSBM19H BSBM19I BSBM20A BSBM20B BSBM20C BSBM20D BSBM20E
+## 1       1       1       1       1       1       4       4       1       4       1       2       4       4       1       1       1       1       1
+## 2       1       1       1       1       1       4       4       1       4       1       1       4       4       1       1       2       1       1
+##   BSBM20F BSBM20G BSBM20H BSBM20I BSBS21A BSBS21B BSBS21C BSBS21D BSBS21E BSBS21F BSBS21G BSBS21H BSBS21I BSBS22A BSBS22B BSBS22C BSBS22D BSBS22E
+## 1       1       1       1       1       1       2       1       2       2       1       1       1       2       1       1       1       1       1
+## 2       1       1       1       1       4       3       1       3       1       3       1       1       1       1       1       3       2       1
+##   BSBS22F BSBS22G BSBS22H BSBS22I BSBS22J BSBS23A BSBS23B BSBS23C BSBS23D BSBS23E BSBS23F BSBS23G BSBS23H BSBS24A BSBS24B BSBS24C BSBS24D BSBS24E
+## 1       1       1       1       1       1       2       2       2       2       2       2       2       2       1       1       1       3       3
+## 2       1       1       1       1       1       1       4       4       1       2       2       4       3       1       2       3       1       1
+##   BSBS24F BSBS24G BSBS24H BSBS24I BSBM25AA BSBS25AB BSBM25BA BSBS25BB BSBM26AA BSBS26AB BSBM26BA BSBS26BB BSBB21 BSBB22A BSBB22B BSBB22C BSBB22D
+## 1       2       3       1       1        4        4        3        3        2        3        2        2     NA      NA      NA      NA      NA
+## 2       1       1       2       1        2        4        2        3        3        3        1        1     NA      NA      NA      NA      NA
+##   BSBB22E BSBB22F BSBB22G BSBB22H BSBB22I BSBB23A BSBB23B BSBB23C BSBB23D BSBB23E BSBB23F BSBB23G BSBB23H BSBB23I BSBB23J BSBB24A BSBB24B BSBB24C
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBB24D BSBB24E BSBB24F BSBB24G BSBB24H BSBE25 BSBE26A BSBE26B BSBE26C BSBE26D BSBE26E BSBE26F BSBE26G BSBE26H BSBE26I BSBE27A BSBE27B BSBE27C
+## 1      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBE27D BSBE27E BSBE27F BSBE27G BSBE27H BSBE27I BSBE27J BSBE28A BSBE28B BSBE28C BSBE28D BSBE28E BSBE28F BSBE28G BSBE28H BSBC29 BSBC30A BSBC30B
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA     NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA     NA      NA      NA
+##   BSBC30C BSBC30D BSBC30E BSBC30F BSBC30G BSBC30H BSBC30I BSBC31A BSBC31B BSBC31C BSBC31D BSBC31E BSBC31F BSBC31G BSBC31H BSBC31I BSBC31J BSBC32A
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBC32B BSBC32C BSBC32D BSBC32E BSBC32F BSBC32G BSBC32H BSBP33 BSBP34A BSBP34B BSBP34C BSBP34D BSBP34E BSBP34F BSBP34G BSBP34H BSBP34I BSBP35A
+## 1      NA      NA      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBP35B BSBP35C BSBP35D BSBP35E BSBP35F BSBP35G BSBP35H BSBP35I BSBP35J BSBP36A BSBP36B BSBP36C BSBP36D BSBP36E BSBP36F BSBP36G BSBP36H BSBS37A
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA       1
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA       1
+##   BSBS37B BSBS37C BSBS37D BSBS37E BSBS37F BSBS37G BSBS37H BSBS37I BSBM38AA BSBB38AB BSBE38AC BSBC38AD BSBP38AE BSBM38BA BSBB38BB BSBE38BC BSBC38BD
+## 1       1       1       3       3       2       3       1       1        4       NA       NA       NA       NA        3       NA       NA       NA
+## 2       2       3       1       1       1       1       2       1        2       NA       NA       NA       NA        2       NA       NA       NA
+##   BSBP38BE BSBM39AA BSBS39AB BSBM39BA BSBS39BB ITACCOMM1 IDPOP IDGRADER BSDAGE   TOTWGT   HOUWGT   SENWGT  WGTADJ1 WGTADJ2  WGTADJ3  WGTFAC1
+## 1       NA        2        3        2        2         0     2        2  13.92 191.4986 0.535255 0.026184 1.102564       1 1.045454 36.91851
+## 2       NA        3        3        1        1         1     2        2  13.92 191.4986 0.535255 0.026184 1.102564       1 1.045454 36.91851
+##   WGTFAC2 WGTFAC3 JKZONE JKREP BSMMAT01 BSMMAT02 BSMMAT03 BSMMAT04 BSMMAT05 BSSSCI01 BSSSCI02 BSSSCI03 BSSSCI04 BSSSCI05 BSMALG01 BSMALG02 BSMALG03
+## 1     4.5       1     25     0 514.4249 505.7916 519.7016 531.0448 542.1232 490.0679 474.9255 521.2601 493.9883 513.8363 514.5657 503.5694 540.7127
+## 2     4.5       1     25     0 587.6541 579.3172 562.0366 550.9720 568.2771 571.5391 535.8830 558.9193 559.8913 592.2060 575.0255 603.4856 589.0744
+##   BSMALG04 BSMALG05 BSMDAT01 BSMDAT02 BSMDAT03 BSMDAT04 BSMDAT05 BSMNUM01 BSMNUM02 BSMNUM03 BSMNUM04 BSMNUM05 BSMGEO01 BSMGEO02 BSMGEO03 BSMGEO04
+## 1 495.9604 516.0884 538.7014 555.5254 504.2005 553.7694 508.4274 512.7626 511.1604 487.0292  490.313 471.9762 516.0974 497.4462 494.0238 468.7053
+## 2 516.0658 602.3520 545.7862 573.8504 579.5864 490.1844 609.3757 562.7668 579.2757 594.9696  548.411 630.5318 619.2435 573.1298 605.8552 496.3814
+##   BSMGEO05 BSSCHE01 BSSCHE02 BSSCHE03 BSSCHE04 BSSCHE05 BSSEAR01 BSSEAR02 BSSEAR03 BSSEAR04 BSSEAR05 BSSBIO01 BSSBIO02 BSSBIO03 BSSBIO04 BSSBIO05
+## 1 434.6766 475.5856 554.9979 479.4414 509.9053 516.8859 454.3833 540.0875 446.0872 465.3053 540.4619 497.7536 534.3983 529.7410 507.6892 570.4911
+## 2 623.6547 615.6122 598.3530 644.2855 558.5238 587.9128 600.9338 563.4683 620.5797 570.7632 591.3771 601.0626 567.6580 611.6534 563.5830 543.3118
+##   BSSPHY01 BSSPHY02 BSSPHY03 BSSPHY04 BSSPHY05 BSMKNO01 BSMKNO02 BSMKNO03 BSMKNO04 BSMKNO05 BSMAPP01 BSMAPP02 BSMAPP03 BSMAPP04 BSMAPP05 BSMREA01
+## 1 456.0079 513.4090 480.3403 467.8219 543.4946 529.0403 558.7877 503.6952 492.9102 538.8042 500.4389 519.0317 510.1606 497.2687 489.3579 484.6627
+## 2 550.5409 533.1618 577.5741 527.0618 575.5149 593.5888 550.6020 577.6243 567.9767 564.5701 574.4144 568.5675 547.7672 556.5969 539.5741 552.9415
+##   BSMREA02 BSMREA03 BSMREA04 BSMREA05 BSSKNO01 BSSKNO02 BSSKNO03 BSSKNO04 BSSKNO05 BSSAPP01 BSSAPP02 BSSAPP03 BSSAPP04 BSSAPP05 BSSREA01 BSSREA02
+## 1 494.2266 504.5591 518.4353 493.1853 488.4110 491.6673 524.3182 507.8949 502.7248 549.3676 512.9106 519.5156 526.0618 495.4574 503.3588 492.6981
+## 2 572.1910 584.6759 601.2263 551.5208 593.9882 545.3113 591.2581 584.1462 577.5074 571.8668 570.2205 584.9571 590.2473 547.1351 582.2200 565.3724
+##   BSSREA03 BSSREA04 BSSREA05 BSMIBM01 BSMIBM02 BSMIBM03 BSMIBM04 BSMIBM05 BSSIBM01 BSSIBM02 BSSIBM03 BSSIBM04 BSSIBM05  BSBGHER BSDGHER BSBGSSB
+## 1 507.1144 500.9916 470.2027        3        3        3        3        3        3        2        3        3        3 10.91822       2 8.98361
+## 2 556.9847 570.5423 560.6985        4        4        4        4        4        4        3        4        4        4 11.62212       2 8.98361
+##   BSDGSSB  BSBGSB BSDGSB  BSBGSLM BSDGSLM  BSBGEML BSDGEML  BSBGSCM BSDGSCM  BSBGSVM BSDGSVM BSBGSLS BSDGSLS  BSBGESL BSDGESL  BSBGSCS BSDGSCS
+## 1       2 7.59182      2 13.97818       1 13.60365       1 14.10390       1 13.65262       1 9.58043       2 12.94849       1  9.12033       3
+## 2       2 8.78408      2 10.68282       2 11.13328       1 15.92523       1 12.14660       1 8.90626       2 10.86204       1 11.98495       1
+##    BSBGSVS BSDGSVS BSBGSLB BSDGSLB BSBGEBL BSDGEBL BSBGSCB BSDGSCB BSBGSLE BSDGSLE BSBGEEL BSDGEEL BSBGSCE BSDGSCE BSBGSLC BSDGSLC BSBGECL BSDGECL
+## 1  9.90677       2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2 10.71378       1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBGSCC BSDGSCC BSBGSLP BSDGSLP BSBGEPL BSDGEPL BSBGSCP BSDGSCP BSDG06S BSDGEDUP BSDMLOWP BSDSLOWP BSDMWKHW BSDSWKHS BSDBWKHB BSDCWKHC BSDPWKHP
+## 1      NA      NA      NA      NA      NA      NA      NA      NA       2        1        2        2        3        3       NA       NA       NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA       2        1        2        2        3        3       NA       NA       NA
+##   BSDEWKHE VERSION
+## 1       NA       4
+## 2       NA       4
+##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
+<p>Export the data.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="intro.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(mydata, <span class="at">file =</span> <span class="st">&quot;data/dataset_example.csv&quot;</span>)</span>
+<span id="cb88-2"><a href="intro.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(mydata, <span class="at">file =</span> <span class="st">&quot;data/dataset_example.xlsx&quot;</span>)</span></code></pre></div>
+<div id="a-few-functions-for-checking-data" class="section level4" number="1.4.6.1">
+<h4><span class="header-section-number">1.4.6.1</span> a few functions for checking data</h4>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="intro.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mydata) </span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    10221 obs. of  436 variables:
+##  $ IDCNTRY  : num  840 840 840 840 840 840 840 840 840 840 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;Country ID - Numeric Code&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F6.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num 1e+06
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Omitted or invalid&quot;
+##  $ IDBOOK   : num  4 5 6 7 8 9 10 11 13 14 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;Booklet ID&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F2.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:16] 0 1 2 3 4 5 6 7 8 9 ...
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:16] &quot;No booklet assigned as student is excluded&quot; &quot;Booklet 01&quot; &quot;Booklet 02&quot; &quot;Booklet 03&quot; ...
+##  $ IDSCHOOL : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;School ID&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F4.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num 9999
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Omitted or invalid&quot;
+##  $ IDCLASS  : num  103 103 103 103 103 103 103 103 103 103 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;Class ID&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F6.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num 1e+06
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Omitted or invalid&quot;
+##  $ IDSTUD   : num  10301 10302 10303 10304 10305 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;Student ID&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F8.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num 1e+08
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Omitted or invalid&quot;
+##  $ IDGRADE  : num  8 8 8 8 8 8 8 8 8 8 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;Grade ID&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F2.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:9] 3 4 5 6 7 8 9 10 99
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:9] &quot;Grade 3&quot; &quot;Grade 4&quot; &quot;Grade 5&quot; &quot;Grade 6&quot; ...
+##  $ ITSEX    : num  1 2 2 2 2 2 1 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;Sex of Students&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Female&quot; &quot;Male&quot; &quot;Omitted or invalid&quot;
+##  $ ITADMINI : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;Test Administrator Position&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:4] 1 2 3 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;National Center Staff&quot; &quot;Teacher from School&quot; &quot;Other&quot; &quot;Omitted or invalid&quot;
+##  $ ITLANG   : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;Language of Testing&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F2.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:73] 1 2 3 4 5 7 8 9 10 11 ...
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:73] &quot;English&quot; &quot;Spanish&quot; &quot;French&quot; &quot;Afrikaans&quot; ...
+##  $ BSBG01   : num  1 2 2 2 2 2 1 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\SEX OF STUDENT&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Girl&quot; &quot;Boy&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG03   : num  1 2 2 1 1 1 2 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\OFTEN SPEAK &lt;LANG OF TEST&gt; AT HOME&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Always&quot; &quot;Almost always&quot; &quot;Sometimes&quot; &quot;Never&quot; ...
+##  $ BSBG04   : num  2 3 2 2 3 3 1 4 1 5 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\AMOUNT OF BOOKS IN YOUR HOME&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:6] 1 2 3 4 5 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;0–10 books&quot; &quot;11–25 books&quot; &quot;26–100 books&quot; &quot;101–200 books&quot; ...
+##  $ BSBG05   : num  5 3 3 4 4 4 3 4 2 5 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\DIGITAL INFORMATION DEVICES&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:6] 1 2 3 4 5 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;None&quot; &quot;1-3 devices&quot; &quot;4-6 devices&quot; &quot;7-10 devices&quot; ...
+##  $ BSBG06A  : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOME POSSESS\\COMPUTER TABLET OWN&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG06B  : num  1 1 1 1 2 1 1 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOME POSSESS\\COMPUTER TABLET SHARED&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG06C  : num  1 1 2 1 1 1 2 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOME POSSESS\\STUDY DESK&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG06D  : num  1 1 1 1 1 1 2 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOME POSSESS\\OWN ROOM&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG06E  : num  1 1 1 1 1 1 2 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOME POSSESS\\INTERNET CONNECTION&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG06F  : num  1 1 1 1 1 2 1 2 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOME POSSESS\\OWN MOBILE PHONE&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG06G  : num  1 1 1 1 1 1 2 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOME POSSESS\\GAMING SYSTEM&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG06H  : num  1 1 1 1 1 1 1 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOME POSSESS\\&lt;COUNTRY SPECIFIC&gt;&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG06I  : num  NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOME POSSESS\\&lt;COUNTRY SPECIFIC&gt;&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG06J  : num  NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOME POSSESS\\&lt;COUNTRY SPECIFIC&gt;&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG06K  : num  NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOME POSSESS\\&lt;COUNTRY SPECIFIC&gt;&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG07A  : num  7 7 2 7 7 5 2 5 6 6 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HIGHEST LVL OF EDU OF MOTHER&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F2.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:9] 1 2 3 4 5 6 7 8 99
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:9] &quot;Some Primary or Lower secondary or did not go to school&quot; &quot;Lower secondary&quot; &quot;Upper secondary&quot; &quot;Post-secondary, non-tertiary&quot; ...
+##  $ BSBG07B  : num  5 8 2 3 8 3 2 5 5 6 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HIGHEST LVL OF EDU OF FATHER&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F2.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:9] 1 2 3 4 5 6 7 8 99
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:9] &quot;Some Primary or Lower secondary or did not go to school&quot; &quot;Lower secondary&quot; &quot;Upper secondary&quot; &quot;Post-secondary, non-tertiary&quot; ...
+##  $ BSBG08   : num  5 6 5 6 6 5 5 4 5 5 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW FAR IN EDU DO YOU EXPECT TO GO&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:7] 1 2 3 4 5 6 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:7] &quot;Finish Lower secondary&quot; &quot;Finish Upper secondary&quot; &quot;Finish Post-secondary, non-tertiary&quot; &quot;Finish Short-cycle tertiary&quot; ...
+##  $ BSBG09A  : num  1 1 2 1 1 1 2 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\MOTHER BORN IN &lt;COUNTRY&gt;&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:4] 1 2 3 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;Yes&quot; &quot;No&quot; &quot;I don&#39;t know&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG09B  : num  1 1 2 1 1 1 2 1 3 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\FATHER BORN IN &lt;COUNTRY&gt;&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:4] 1 2 3 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;Yes&quot; &quot;No&quot; &quot;I don&#39;t know&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG10A  : num  1 1 2 1 1 1 2 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\BORN IN &lt;COUNTRY&gt;&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG10B  : num  NA NA 3 NA NA NA 3 NA NA NA ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\BORN IN &lt;COUNTRY&gt;\\AGE CAME TO COUNTRY&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 6 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Older than 10 years old&quot; &quot;5 to 10 years old&quot; &quot;Younger than 5 years old&quot; &quot;Logically not applicable&quot; ...
+##  $ BSBG11   : num  1 4 4 4 4 3 4 3 1 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\ABOUT HOW OFTEN ABSENT FROM SCHOOL&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Once a week or more&quot; &quot;Once every two weeks&quot; &quot;Once a month&quot; &quot;Never or almost never&quot; ...
+##  $ BSBG12   : num  3 2 1 2 2 2 1 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN BREAKFAST ON SCHOOL DAYS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Every day&quot; &quot;Most days&quot; &quot;Sometimes&quot; &quot;Never or almost never&quot; ...
+##  $ BSBG13A  : num  1 4 3 1 1 1 1 4 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN USE COMPUTER TABLET\\HOME&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Every day or almost every day&quot; &quot;Once or twice a week&quot; &quot;Once or twice a month&quot; &quot;Never or almost never&quot; ...
+##  $ BSBG13B  : num  3 3 3 2 1 1 2 4 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN USE COMPUTER TABLET\\SCHOOL&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Every day or almost every day&quot; &quot;Once or twice a week&quot; &quot;Once or twice a month&quot; &quot;Never or almost never&quot; ...
+##  $ BSBG13C  : num  1 4 4 1 4 1 4 4 1 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN USE COMPUTER TABLET\\OTHER&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Every day or almost every day&quot; &quot;Once or twice a week&quot; &quot;Once or twice a month&quot; &quot;Never or almost never&quot; ...
+##  $ BSBG14A  : num  2 2 2 2 1 1 1 1 2 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\INTERNET USE\\ACCESS TEXTBOOKS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG14B  : num  1 1 1 1 1 2 1 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\INTERNET USE\\ACCESS ASSIGNMENTS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG14C  : num  2 2 2 1 2 1 1 2 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\INTERNET USE\\COLLABORATE WITH CLASSMATES&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG14D  : num  2 1 2 1 2 1 2 1 2 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\INTERNET USE\\COMMUNICATE WITH TEACHER&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG14E  : num  1 1 1 1 1 1 1 1 2 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\INTERNET USE\\FIND INFO TO AID IN MATH&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG14F  : num  1 1 1 2 1 1 1 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\INTERNET USE\\FIND INFO TO AID IN SCIENCE&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:3] 1 2 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;Yes&quot; &quot;No&quot; &quot;Omitted or invalid&quot;
+##  $ BSBG15A  : num  2 3 2 2 3 1 2 2 2 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\AGREE\\BEING IN SCHOOL&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBG15B  : num  1 2 3 1 4 1 1 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\AGREE\\SAFE AT SCHOOL&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBG15C  : num  2 2 2 1 2 2 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\AGREE\\BELONG AT SCHOOL&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBG15D  : num  2 1 1 1 2 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\AGREE\\LIKE TO SEE CLASSMATES&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBG15E  : num  2 2 3 3 3 1 3 1 3 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\AGREE\\FAIR TEACHERS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBG15F  : num  3 1 2 3 2 1 1 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\AGREE\\PROUD TO GO TO THIS SCHOOL&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBG15G  : num  1 2 2 1 1 1 1 1 2 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\AGREE\\LEARN A LOT&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBG16A  : num  1 2 4 4 3 3 4 4 1 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN\\MADE FUN OF&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;At least once a week&quot; &quot;Once or twice a month&quot; &quot;A few times a year&quot; &quot;Never&quot; ...
+##  $ BSBG16B  : num  1 1 4 4 4 4 4 4 4 4 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN\\LEFT OUT OF GAMES&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;At least once a week&quot; &quot;Once or twice a month&quot; &quot;A few times a year&quot; &quot;Never&quot; ...
+##  $ BSBG16C  : num  1 4 4 4 3 3 4 4 4 4 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN\\SPREAD LIES ABOUT ME&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;At least once a week&quot; &quot;Once or twice a month&quot; &quot;A few times a year&quot; &quot;Never&quot; ...
+##  $ BSBG16D  : num  4 3 4 4 2 4 3 4 4 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN\\STOLE STH FROM ME&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;At least once a week&quot; &quot;Once or twice a month&quot; &quot;A few times a year&quot; &quot;Never&quot; ...
+##  $ BSBG16E  : num  4 4 4 4 4 4 4 4 4 4 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN\\HURT BY OTHERS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;At least once a week&quot; &quot;Once or twice a month&quot; &quot;A few times a year&quot; &quot;Never&quot; ...
+##  $ BSBG16F  : num  4 4 4 4 4 4 4 4 4 4 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN\\FORCE TO DO STH&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;At least once a week&quot; &quot;Once or twice a month&quot; &quot;A few times a year&quot; &quot;Never&quot; ...
+##  $ BSBG16G  : num  1 4 4 4 2 4 4 4 4 4 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN\\EMBARRASSING INFO&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;At least once a week&quot; &quot;Once or twice a month&quot; &quot;A few times a year&quot; &quot;Never&quot; ...
+##  $ BSBG16H  : num  4 4 4 4 4 4 4 4 4 4 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN\\POSTED EMBARRASSING THINGS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;At least once a week&quot; &quot;Once or twice a month&quot; &quot;A few times a year&quot; &quot;Never&quot; ...
+##  $ BSBG16I  : num  4 4 4 4 4 4 4 4 4 4 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;GEN\\HOW OFTEN\\THREATENED&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;At least once a week&quot; &quot;Once or twice a month&quot; &quot;A few times a year&quot; &quot;Never&quot; ...
+##  $ BSBM17A  : num  1 1 1 1 2 1 3 2 3 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\ENJOY LEARNING MATHEMATICS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM17B  : num  4 4 4 4 1 2 3 4 1 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\WISH HAVE NOT TO STUDY MATH&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM17C  : num  4 1 4 4 4 2 2 4 1 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\MATH IS BORING&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM17D  : num  1 3 1 1 1 1 3 2 4 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\LEARN INTERESTING THINGS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM17E  : num  1 1 1 1 1 1 4 2 4 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\LIKE MATHEMATICS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM17F  : num  1 1 1 2 2 3 4 3 4 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\LIKE NUMBERS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM17G  : num  1 1 1 1 2 2 4 3 4 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\LIKE MATH PROBLEMS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM17H  : num  1 3 1 1 3 2 4 2 4 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\LOOK FORWARD TO MATH CLASS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM17I  : num  1 1 1 1 2 2 4 2 4 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\FAVORITE SUBJECT&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM18A  : num  1 1 2 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\TEACHER EXPECTS TO DO&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM18B  : num  1 1 2 1 2 2 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\TEACHER IS EASY TO UNDERSTAND&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM18C  : num  1 3 2 1 2 1 2 1 4 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\INTERESTED IN WHAT TCHR SAYS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM18D  : num  1 2 3 2 3 1 2 1 4 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\INTERESTING THINGS TO DO&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM18E  : num  1 1 2 1 2 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\TEACHER CLEAR ANSWERS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM18F  : num  1 1 2 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\TEACHER EXPLAINS GOOD&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM18G  : num  1 1 3 2 3 1 1 1 1 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\TEACHER SHOWS LEARNED&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM18H  : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\DIFFERENT THINGS TO HELP&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM18I  : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\TELLS HOW TO DO BETTER&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM18J  : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\TEACHER LISTENS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM19A  : num  1 1 1 1 1 1 2 1 4 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\USUALLY DO WELL IN MATH&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM19B  : num  4 4 4 4 4 2 2 4 1 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\MATHEMATICS IS MORE DIFFICULT&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM19C  : num  4 4 4 4 2 2 1 4 1 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\MATHEMATICS NOT MY STRENGTH&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM19D  : num  1 1 1 1 2 2 3 1 4 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\LEARN QUICKLY IN MATHEMATICS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM19E  : num  4 4 4 3 4 1 1 4 1 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\MAT MAKES NERVOUS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM19F  : num  1 1 1 2 3 1 4 2 4 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\GOOD AT WORKING OUT PROBLEMS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM19G  : num  2 1 2 1 2 1 4 3 4 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\I AM GOOD AT MATHEMATICS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM19H  : num  4 4 4 4 3 3 2 4 1 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\MATHEMATICS HARDER FOR ME&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM19I  : num  4 4 4 4 4 2 1 4 1 3 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\MAT MAKES CONFUSED&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM20A  : num  1 1 1 1 1 1 2 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\MATHEMATICS WILL HELP ME&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM20B  : num  1 1 1 2 1 1 2 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\NEED MAT TO LEARN OTHER THINGS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM20C  : num  1 2 1 3 1 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\NEED MATH TO GET INTO &lt;UNI&gt;&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM20D  : num  1 1 1 3 1 1 2 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\NEED MAT TO GET THE JOB I WANT&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM20E  : num  1 1 1 2 4 1 4 2 1 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\JOB INVOLVING MATHEMATICS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM20F  : num  1 1 1 1 1 1 2 2 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\GET AHEAD IN THE WORLD&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM20G  : num  1 1 1 2 1 1 2 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\MORE JOB OPPORTUNITIES&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM20H  : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\PARENTS THINK MATH IMPORTANT&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBM20I  : num  1 1 1 2 1 1 2 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;MATH\\AGREE\\IMPORTANT TO DO WELL IN MATH&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBS21A  : num  1 4 2 2 1 1 3 2 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;SCI\\AGREE\\ENJOY LEARNING SCIENCE&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBS21B  : num  2 3 3 3 2 2 3 4 1 4 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;SCI\\AGREE\\WISH HAVE NOT TO STUDY SCIENCE&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBS21C  : num  1 1 3 3 4 4 1 2 1 4 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;SCI\\AGREE\\SCIENCE IS BORING&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##  $ BSBS21D  : num  2 3 2 1 1 1 1 1 1 2 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;SCI\\AGREE\\LEARN INTERESTING THINGS&quot;
+##   ..- attr(*, &quot;format.spss&quot;)= chr &quot;F1.0&quot;
+##   ..- attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Agree a lot&quot; &quot;Agree a little&quot; &quot;Disagree a little&quot; &quot;Disagree a lot&quot; ...
+##   [list output truncated]</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="intro.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(mydata)</span></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="intro.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mydata)</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="intro.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mydata) <span class="co"># alternatively, use `nrow()` and `ncol()`</span></span></code></pre></div>
+<pre><code>## [1] 10221   436</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="intro.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(mydata) <span class="co"># number of variables in a data frame; information output by`length()` function depends on the data structure</span></span></code></pre></div>
+<pre><code>## [1] 436</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="intro.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mydata) <span class="co"># list variable names</span></span></code></pre></div>
+<pre><code>##   [1] &quot;IDCNTRY&quot;   &quot;IDBOOK&quot;    &quot;IDSCHOOL&quot;  &quot;IDCLASS&quot;   &quot;IDSTUD&quot;    &quot;IDGRADE&quot;   &quot;ITSEX&quot;     &quot;ITADMINI&quot;  &quot;ITLANG&quot;    &quot;BSBG01&quot;    &quot;BSBG03&quot;   
+##  [12] &quot;BSBG04&quot;    &quot;BSBG05&quot;    &quot;BSBG06A&quot;   &quot;BSBG06B&quot;   &quot;BSBG06C&quot;   &quot;BSBG06D&quot;   &quot;BSBG06E&quot;   &quot;BSBG06F&quot;   &quot;BSBG06G&quot;   &quot;BSBG06H&quot;   &quot;BSBG06I&quot;  
+##  [23] &quot;BSBG06J&quot;   &quot;BSBG06K&quot;   &quot;BSBG07A&quot;   &quot;BSBG07B&quot;   &quot;BSBG08&quot;    &quot;BSBG09A&quot;   &quot;BSBG09B&quot;   &quot;BSBG10A&quot;   &quot;BSBG10B&quot;   &quot;BSBG11&quot;    &quot;BSBG12&quot;   
+##  [34] &quot;BSBG13A&quot;   &quot;BSBG13B&quot;   &quot;BSBG13C&quot;   &quot;BSBG14A&quot;   &quot;BSBG14B&quot;   &quot;BSBG14C&quot;   &quot;BSBG14D&quot;   &quot;BSBG14E&quot;   &quot;BSBG14F&quot;   &quot;BSBG15A&quot;   &quot;BSBG15B&quot;  
+##  [45] &quot;BSBG15C&quot;   &quot;BSBG15D&quot;   &quot;BSBG15E&quot;   &quot;BSBG15F&quot;   &quot;BSBG15G&quot;   &quot;BSBG16A&quot;   &quot;BSBG16B&quot;   &quot;BSBG16C&quot;   &quot;BSBG16D&quot;   &quot;BSBG16E&quot;   &quot;BSBG16F&quot;  
+##  [56] &quot;BSBG16G&quot;   &quot;BSBG16H&quot;   &quot;BSBG16I&quot;   &quot;BSBM17A&quot;   &quot;BSBM17B&quot;   &quot;BSBM17C&quot;   &quot;BSBM17D&quot;   &quot;BSBM17E&quot;   &quot;BSBM17F&quot;   &quot;BSBM17G&quot;   &quot;BSBM17H&quot;  
+##  [67] &quot;BSBM17I&quot;   &quot;BSBM18A&quot;   &quot;BSBM18B&quot;   &quot;BSBM18C&quot;   &quot;BSBM18D&quot;   &quot;BSBM18E&quot;   &quot;BSBM18F&quot;   &quot;BSBM18G&quot;   &quot;BSBM18H&quot;   &quot;BSBM18I&quot;   &quot;BSBM18J&quot;  
+##  [78] &quot;BSBM19A&quot;   &quot;BSBM19B&quot;   &quot;BSBM19C&quot;   &quot;BSBM19D&quot;   &quot;BSBM19E&quot;   &quot;BSBM19F&quot;   &quot;BSBM19G&quot;   &quot;BSBM19H&quot;   &quot;BSBM19I&quot;   &quot;BSBM20A&quot;   &quot;BSBM20B&quot;  
+##  [89] &quot;BSBM20C&quot;   &quot;BSBM20D&quot;   &quot;BSBM20E&quot;   &quot;BSBM20F&quot;   &quot;BSBM20G&quot;   &quot;BSBM20H&quot;   &quot;BSBM20I&quot;   &quot;BSBS21A&quot;   &quot;BSBS21B&quot;   &quot;BSBS21C&quot;   &quot;BSBS21D&quot;  
+## [100] &quot;BSBS21E&quot;   &quot;BSBS21F&quot;   &quot;BSBS21G&quot;   &quot;BSBS21H&quot;   &quot;BSBS21I&quot;   &quot;BSBS22A&quot;   &quot;BSBS22B&quot;   &quot;BSBS22C&quot;   &quot;BSBS22D&quot;   &quot;BSBS22E&quot;   &quot;BSBS22F&quot;  
+## [111] &quot;BSBS22G&quot;   &quot;BSBS22H&quot;   &quot;BSBS22I&quot;   &quot;BSBS22J&quot;   &quot;BSBS23A&quot;   &quot;BSBS23B&quot;   &quot;BSBS23C&quot;   &quot;BSBS23D&quot;   &quot;BSBS23E&quot;   &quot;BSBS23F&quot;   &quot;BSBS23G&quot;  
+## [122] &quot;BSBS23H&quot;   &quot;BSBS24A&quot;   &quot;BSBS24B&quot;   &quot;BSBS24C&quot;   &quot;BSBS24D&quot;   &quot;BSBS24E&quot;   &quot;BSBS24F&quot;   &quot;BSBS24G&quot;   &quot;BSBS24H&quot;   &quot;BSBS24I&quot;   &quot;BSBM25AA&quot; 
+## [133] &quot;BSBS25AB&quot;  &quot;BSBM25BA&quot;  &quot;BSBS25BB&quot;  &quot;BSBM26AA&quot;  &quot;BSBS26AB&quot;  &quot;BSBM26BA&quot;  &quot;BSBS26BB&quot;  &quot;BSBB21&quot;    &quot;BSBB22A&quot;   &quot;BSBB22B&quot;   &quot;BSBB22C&quot;  
+## [144] &quot;BSBB22D&quot;   &quot;BSBB22E&quot;   &quot;BSBB22F&quot;   &quot;BSBB22G&quot;   &quot;BSBB22H&quot;   &quot;BSBB22I&quot;   &quot;BSBB23A&quot;   &quot;BSBB23B&quot;   &quot;BSBB23C&quot;   &quot;BSBB23D&quot;   &quot;BSBB23E&quot;  
+## [155] &quot;BSBB23F&quot;   &quot;BSBB23G&quot;   &quot;BSBB23H&quot;   &quot;BSBB23I&quot;   &quot;BSBB23J&quot;   &quot;BSBB24A&quot;   &quot;BSBB24B&quot;   &quot;BSBB24C&quot;   &quot;BSBB24D&quot;   &quot;BSBB24E&quot;   &quot;BSBB24F&quot;  
+## [166] &quot;BSBB24G&quot;   &quot;BSBB24H&quot;   &quot;BSBE25&quot;    &quot;BSBE26A&quot;   &quot;BSBE26B&quot;   &quot;BSBE26C&quot;   &quot;BSBE26D&quot;   &quot;BSBE26E&quot;   &quot;BSBE26F&quot;   &quot;BSBE26G&quot;   &quot;BSBE26H&quot;  
+## [177] &quot;BSBE26I&quot;   &quot;BSBE27A&quot;   &quot;BSBE27B&quot;   &quot;BSBE27C&quot;   &quot;BSBE27D&quot;   &quot;BSBE27E&quot;   &quot;BSBE27F&quot;   &quot;BSBE27G&quot;   &quot;BSBE27H&quot;   &quot;BSBE27I&quot;   &quot;BSBE27J&quot;  
+## [188] &quot;BSBE28A&quot;   &quot;BSBE28B&quot;   &quot;BSBE28C&quot;   &quot;BSBE28D&quot;   &quot;BSBE28E&quot;   &quot;BSBE28F&quot;   &quot;BSBE28G&quot;   &quot;BSBE28H&quot;   &quot;BSBC29&quot;    &quot;BSBC30A&quot;   &quot;BSBC30B&quot;  
+## [199] &quot;BSBC30C&quot;   &quot;BSBC30D&quot;   &quot;BSBC30E&quot;   &quot;BSBC30F&quot;   &quot;BSBC30G&quot;   &quot;BSBC30H&quot;   &quot;BSBC30I&quot;   &quot;BSBC31A&quot;   &quot;BSBC31B&quot;   &quot;BSBC31C&quot;   &quot;BSBC31D&quot;  
+## [210] &quot;BSBC31E&quot;   &quot;BSBC31F&quot;   &quot;BSBC31G&quot;   &quot;BSBC31H&quot;   &quot;BSBC31I&quot;   &quot;BSBC31J&quot;   &quot;BSBC32A&quot;   &quot;BSBC32B&quot;   &quot;BSBC32C&quot;   &quot;BSBC32D&quot;   &quot;BSBC32E&quot;  
+## [221] &quot;BSBC32F&quot;   &quot;BSBC32G&quot;   &quot;BSBC32H&quot;   &quot;BSBP33&quot;    &quot;BSBP34A&quot;   &quot;BSBP34B&quot;   &quot;BSBP34C&quot;   &quot;BSBP34D&quot;   &quot;BSBP34E&quot;   &quot;BSBP34F&quot;   &quot;BSBP34G&quot;  
+## [232] &quot;BSBP34H&quot;   &quot;BSBP34I&quot;   &quot;BSBP35A&quot;   &quot;BSBP35B&quot;   &quot;BSBP35C&quot;   &quot;BSBP35D&quot;   &quot;BSBP35E&quot;   &quot;BSBP35F&quot;   &quot;BSBP35G&quot;   &quot;BSBP35H&quot;   &quot;BSBP35I&quot;  
+## [243] &quot;BSBP35J&quot;   &quot;BSBP36A&quot;   &quot;BSBP36B&quot;   &quot;BSBP36C&quot;   &quot;BSBP36D&quot;   &quot;BSBP36E&quot;   &quot;BSBP36F&quot;   &quot;BSBP36G&quot;   &quot;BSBP36H&quot;   &quot;BSBS37A&quot;   &quot;BSBS37B&quot;  
+## [254] &quot;BSBS37C&quot;   &quot;BSBS37D&quot;   &quot;BSBS37E&quot;   &quot;BSBS37F&quot;   &quot;BSBS37G&quot;   &quot;BSBS37H&quot;   &quot;BSBS37I&quot;   &quot;BSBM38AA&quot;  &quot;BSBB38AB&quot;  &quot;BSBE38AC&quot;  &quot;BSBC38AD&quot; 
+## [265] &quot;BSBP38AE&quot;  &quot;BSBM38BA&quot;  &quot;BSBB38BB&quot;  &quot;BSBE38BC&quot;  &quot;BSBC38BD&quot;  &quot;BSBP38BE&quot;  &quot;BSBM39AA&quot;  &quot;BSBS39AB&quot;  &quot;BSBM39BA&quot;  &quot;BSBS39BB&quot;  &quot;ITACCOMM1&quot;
+## [276] &quot;IDPOP&quot;     &quot;IDGRADER&quot;  &quot;BSDAGE&quot;    &quot;TOTWGT&quot;    &quot;HOUWGT&quot;    &quot;SENWGT&quot;    &quot;WGTADJ1&quot;   &quot;WGTADJ2&quot;   &quot;WGTADJ3&quot;   &quot;WGTFAC1&quot;   &quot;WGTFAC2&quot;  
+## [287] &quot;WGTFAC3&quot;   &quot;JKZONE&quot;    &quot;JKREP&quot;     &quot;BSMMAT01&quot;  &quot;BSMMAT02&quot;  &quot;BSMMAT03&quot;  &quot;BSMMAT04&quot;  &quot;BSMMAT05&quot;  &quot;BSSSCI01&quot;  &quot;BSSSCI02&quot;  &quot;BSSSCI03&quot; 
+## [298] &quot;BSSSCI04&quot;  &quot;BSSSCI05&quot;  &quot;BSMALG01&quot;  &quot;BSMALG02&quot;  &quot;BSMALG03&quot;  &quot;BSMALG04&quot;  &quot;BSMALG05&quot;  &quot;BSMDAT01&quot;  &quot;BSMDAT02&quot;  &quot;BSMDAT03&quot;  &quot;BSMDAT04&quot; 
+## [309] &quot;BSMDAT05&quot;  &quot;BSMNUM01&quot;  &quot;BSMNUM02&quot;  &quot;BSMNUM03&quot;  &quot;BSMNUM04&quot;  &quot;BSMNUM05&quot;  &quot;BSMGEO01&quot;  &quot;BSMGEO02&quot;  &quot;BSMGEO03&quot;  &quot;BSMGEO04&quot;  &quot;BSMGEO05&quot; 
+## [320] &quot;BSSCHE01&quot;  &quot;BSSCHE02&quot;  &quot;BSSCHE03&quot;  &quot;BSSCHE04&quot;  &quot;BSSCHE05&quot;  &quot;BSSEAR01&quot;  &quot;BSSEAR02&quot;  &quot;BSSEAR03&quot;  &quot;BSSEAR04&quot;  &quot;BSSEAR05&quot;  &quot;BSSBIO01&quot; 
+## [331] &quot;BSSBIO02&quot;  &quot;BSSBIO03&quot;  &quot;BSSBIO04&quot;  &quot;BSSBIO05&quot;  &quot;BSSPHY01&quot;  &quot;BSSPHY02&quot;  &quot;BSSPHY03&quot;  &quot;BSSPHY04&quot;  &quot;BSSPHY05&quot;  &quot;BSMKNO01&quot;  &quot;BSMKNO02&quot; 
+## [342] &quot;BSMKNO03&quot;  &quot;BSMKNO04&quot;  &quot;BSMKNO05&quot;  &quot;BSMAPP01&quot;  &quot;BSMAPP02&quot;  &quot;BSMAPP03&quot;  &quot;BSMAPP04&quot;  &quot;BSMAPP05&quot;  &quot;BSMREA01&quot;  &quot;BSMREA02&quot;  &quot;BSMREA03&quot; 
+## [353] &quot;BSMREA04&quot;  &quot;BSMREA05&quot;  &quot;BSSKNO01&quot;  &quot;BSSKNO02&quot;  &quot;BSSKNO03&quot;  &quot;BSSKNO04&quot;  &quot;BSSKNO05&quot;  &quot;BSSAPP01&quot;  &quot;BSSAPP02&quot;  &quot;BSSAPP03&quot;  &quot;BSSAPP04&quot; 
+## [364] &quot;BSSAPP05&quot;  &quot;BSSREA01&quot;  &quot;BSSREA02&quot;  &quot;BSSREA03&quot;  &quot;BSSREA04&quot;  &quot;BSSREA05&quot;  &quot;BSMIBM01&quot;  &quot;BSMIBM02&quot;  &quot;BSMIBM03&quot;  &quot;BSMIBM04&quot;  &quot;BSMIBM05&quot; 
+## [375] &quot;BSSIBM01&quot;  &quot;BSSIBM02&quot;  &quot;BSSIBM03&quot;  &quot;BSSIBM04&quot;  &quot;BSSIBM05&quot;  &quot;BSBGHER&quot;   &quot;BSDGHER&quot;   &quot;BSBGSSB&quot;   &quot;BSDGSSB&quot;   &quot;BSBGSB&quot;    &quot;BSDGSB&quot;   
+## [386] &quot;BSBGSLM&quot;   &quot;BSDGSLM&quot;   &quot;BSBGEML&quot;   &quot;BSDGEML&quot;   &quot;BSBGSCM&quot;   &quot;BSDGSCM&quot;   &quot;BSBGSVM&quot;   &quot;BSDGSVM&quot;   &quot;BSBGSLS&quot;   &quot;BSDGSLS&quot;   &quot;BSBGESL&quot;  
+## [397] &quot;BSDGESL&quot;   &quot;BSBGSCS&quot;   &quot;BSDGSCS&quot;   &quot;BSBGSVS&quot;   &quot;BSDGSVS&quot;   &quot;BSBGSLB&quot;   &quot;BSDGSLB&quot;   &quot;BSBGEBL&quot;   &quot;BSDGEBL&quot;   &quot;BSBGSCB&quot;   &quot;BSDGSCB&quot;  
+## [408] &quot;BSBGSLE&quot;   &quot;BSDGSLE&quot;   &quot;BSBGEEL&quot;   &quot;BSDGEEL&quot;   &quot;BSBGSCE&quot;   &quot;BSDGSCE&quot;   &quot;BSBGSLC&quot;   &quot;BSDGSLC&quot;   &quot;BSBGECL&quot;   &quot;BSDGECL&quot;   &quot;BSBGSCC&quot;  
+## [419] &quot;BSDGSCC&quot;   &quot;BSBGSLP&quot;   &quot;BSDGSLP&quot;   &quot;BSBGEPL&quot;   &quot;BSDGEPL&quot;   &quot;BSBGSCP&quot;   &quot;BSDGSCP&quot;   &quot;BSDG06S&quot;   &quot;BSDGEDUP&quot;  &quot;BSDMLOWP&quot;  &quot;BSDSLOWP&quot; 
+## [430] &quot;BSDMWKHW&quot;  &quot;BSDSWKHS&quot;  &quot;BSDBWKHB&quot;  &quot;BSDCWKHC&quot;  &quot;BSDPWKHP&quot;  &quot;BSDEWKHE&quot;  &quot;VERSION&quot;</code></pre>
+
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Field, Miles, and Field (2012) uses <a href="https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/">R Commander</a> - a graphical user interface to R. We will not use it.<a href="intro.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>The example data is the USA student dataset from TIMSS 2015.<a href="intro.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="author.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="review-of-basic-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["book.pdf", "book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
