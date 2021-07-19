@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>👩🏻‍🎓 Structural Equation Moldeing | Ze Wang</title>
+    <title>👩🏻‍🎓 Structural Equation Modeling | Ze Wang</title>
     <link>https://zewang.netlify.app/courses/esc_ps9710/</link>
       <atom:link href="https://zewang.netlify.app/courses/esc_ps9710/index.xml" rel="self" type="application/rss+xml" />
-    <description>👩🏻‍🎓 Structural Equation Moldeing</description>
+    <description>👩🏻‍🎓 Structural Equation Modeling</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Ze Wang 2021  </copyright><lastBuildDate>Wed, 26 May 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://zewang.netlify.app/courses/esc_ps9710/featured.png</url>
-      <title>👩🏻‍🎓 Structural Equation Moldeing</title>
+      <title>👩🏻‍🎓 Structural Equation Modeling</title>
       <link>https://zewang.netlify.app/courses/esc_ps9710/</link>
     </image>
     
