@@ -1,8 +1,7 @@
 ---
 aliases: [quant_foundations]
 title: Quantitative Foundations
-summary: ESC_PS 8850 Quantitative Foundations in Educational Research
-summary: ESC_PS 9710 8850 Quantitative Foundations in Educational Research course taught at the University of Missouri.
+summary: ESC_PS 8850 Quantitative Foundations in Educational Research course taught at the University of Missouri.
 abstract: ""
 date: "2021-05-26"
 image:
