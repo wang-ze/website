@@ -119,7 +119,8 @@ blogdown::check_netlify()
 rstudioapi::navigateToFile("config.yaml", line = 3) # then change the baseurl
 blogdown::check_hugo()
 blogdown::check_config()
-rstudioapi::navigateToFile("config/_default/menus.toml")
+# rstudioapi::navigateToFile("config/_default/menus.toml")
+rstudioapi::navigateToFile("config/_default/menus.yaml")
 rstudioapi::navigateToFile("content/authors/admin/_index.md")
 blogdown::check_site() # run all check_*() functions
 ```

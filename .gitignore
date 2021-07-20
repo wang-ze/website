@@ -5,3 +5,5 @@
 /blogdown/
 /public/
 Thumbs.db
+.DS_Store
+/resources/
