@@ -129,10 +129,11 @@ blogdown::check_site() # run all check_*() functions
 [Unsplash](https://unsplash.com/)
 [rawpixel](https://www.rawpixel.com/category/53/public-domain)
 [falticon](https://www.flaticon.com/)
-[icons in "fab" pack] (https://fontawesome.com/icons?d=gallery&p=2&s=brands)
-[icons in "fas" or "far" pack] (https://fontawesome.com/icons?d=gallery&p=2&s=regular,solid)
-[icons in "ai" pack] (https://jpswalsh.github.io/academicons/)
+[icons in "fab" pack](https://fontawesome.com/icons?d=gallery&p=2&s=brands)
+[icons in "fas" or "far" pack](https://fontawesome.com/icons?d=gallery&p=2&s=regular,solid)
+[icons in "ai" pack](https://jpswalsh.github.io/academicons/)
 [emoji icons "emoji" pack](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
+[icons8](https://icons8.com/)
 
 
 [difference between "_index.md" and "index.md"] (https://discourse.gohugo.io/t/what-is-the-difference-between-index-md-and-index-md/10330/11)
