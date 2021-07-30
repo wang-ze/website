@@ -1,9 +1,12 @@
-tab:unnamed-chunk-68
-tab:unnamed-chunk-97
-tab:unnamed-chunk-120
-tab:unnamed-chunk-121
-tab:unnamed-chunk-135
+tab:unnamed-chunk-74
+tab:unnamed-chunk-103
+tab:unnamed-chunk-127
+tab:unnamed-chunk-128
 tab:unnamed-chunk-142
+tab:unnamed-chunk-149
+tab:unnamed-chunk-185
+tab:unnamed-chunk-210
+tab:unnamed-chunk-265
 intro
 the-r-language
 why-r

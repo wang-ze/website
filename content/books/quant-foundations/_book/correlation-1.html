@@ -24,7 +24,7 @@
 <meta name="author" content="Ze Wang" />
 
 
-<meta name="date" content="2021-07-19" />
+<meta name="date" content="2021-07-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,8 @@
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -727,14 +729,14 @@ where <span class="math inline">\(x=(X-\bar{X})\)</span> and <span class="math i
 <p>using <code>plot()</code></p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="correlation-1.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
 <span id="cb177-2"><a href="correlation-1.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x))</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-55-1.png" width="50%" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-61-1.png" width="50%" /></p>
 <p>using <code>ggplot()</code></p>
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="correlation-1.html#cb178-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,y)</span>
 <span id="cb178-2"><a href="correlation-1.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
 <span id="cb178-3"><a href="correlation-1.html#cb178-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb178-4"><a href="correlation-1.html#cb178-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="book_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <p><img src="image/Figure6.1.png" width="750" /></p>
 </div>
 <div id="factors-that-affect-the-pearson-correlation" class="section level3" number="3.2.4">
@@ -746,7 +748,7 @@ where <span class="math inline">\(x=(X-\bar{X})\)</span> and <span class="math i
 <li>Restriction of Range</li>
 </ul>
 <p><strong>Restriction of Range</strong></p>
-<p><img src="book_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 </div>
 <div id="test-that-the-population-correlation-equals-a-certain-value" class="section level3" number="3.2.5">
 <h3><span class="header-section-number">3.2.5</span> Test that the population correlation equals a certain value</h3>
@@ -986,7 +988,7 @@ D, 5
 <h3><span class="header-section-number">3.3.8</span> Summary of measures of association</h3>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-68">Table 3.1: </span>Summary of Measures of Association
+<span id="tab:unnamed-chunk-74">Table 3.1: </span>Summary of Measures of Association
 </caption>
 <thead>
 <tr>

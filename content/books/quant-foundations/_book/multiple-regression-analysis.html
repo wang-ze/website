@@ -24,7 +24,7 @@
 <meta name="author" content="Ze Wang" />
 
 
-<meta name="date" content="2021-07-19" />
+<meta name="date" content="2021-07-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,8 @@
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -421,7 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="multiple-regression-analysis" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Multiple Regression Analysis</h1>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="multiple-regression-analysis.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(QuantPsyc); <span class="fu">library</span>(psych); <span class="fu">library</span>(car); <span class="fu">library</span>(MASS); <span class="fu">library</span>(interactions); <span class="fu">library</span>(memisc); <span class="fu">library</span>(apaTables)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="multiple-regression-analysis.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(QuantPsyc); <span class="fu">library</span>(psych); <span class="fu">library</span>(car); <span class="fu">library</span>(lmtest); <span class="fu">library</span>(MASS); <span class="fu">library</span>(interactions); <span class="fu">library</span>(memisc); <span class="fu">library</span>(apaTables)</span></code></pre></div>
 <p><strong>Recall</strong>: Simple Linear Regression: <span class="math inline">\(Y=a+bX+e\)</span></p>
 <p>Regression with 2 Independent Variables: <span class="math inline">\(Y=a+{{b}_{1}}{{X}_{1}}+{{b}_{2}}{{X}_{2}}+e\)</span>, where a is the intercept/constant (value of Y when X1 and X2 are both equal to zero), <span class="math inline">\({{b}_{1}}\ \text{and}\ {{b}_{2}}\)</span> are regression coefficients associated with X1 and X2, respectively, X1 and X2 are raw scores on the independent variables, and e is the error or residual.</p>
 <p>Can be extended to incorporate more independent variables: <span class="math inline">\(Y=a+{{b}_{1}}{{X}_{1}}+{{b}_{2}}{{X}_{2}}+...+{{b}_{k}}{{X}_{k}}+e\)</span>, where k is the number of independent variables.</p>
@@ -666,7 +668,7 @@ With every 1 standard deviation increase in Time, predicted Salary increases by 
 <h2><span class="header-section-number">5.5</span> Types of Multiple Regression</h2>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-97">Table 5.1: </span>Types of Multiple Regression
+<span id="tab:unnamed-chunk-103">Table 5.1: </span>Types of Multiple Regression
 </caption>
 <thead>
 <tr>
@@ -850,11 +852,11 @@ a compromise between forward &amp; backward selection
 <span id="cb252-3"><a href="multiple-regression-analysis.html#cb252-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">resid</span>(mymodel)</span>
 <span id="cb252-4"><a href="multiple-regression-analysis.html#cb252-4" aria-hidden="true" tabindex="-1"></a>fitted <span class="ot">&lt;-</span> <span class="fu">fitted</span>(mymodel)</span>
 <span id="cb252-5"><a href="multiple-regression-analysis.html#cb252-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> res)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span>  <span class="fu">geom_smooth</span>(<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="co"># Add a loess smoothed fit curve </span></span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="multiple-regression-analysis.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> cits, <span class="at">y =</span> res)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">color=</span><span class="st">&quot;red&quot;</span>) </span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-99-2.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-105-2.png" width="672" /></p>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="multiple-regression-analysis.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> fitted, <span class="at">y =</span> res)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">color=</span><span class="st">&quot;red&quot;</span>) </span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-99-3.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-105-3.png" width="672" /></p>
 <p>Plot residuals against each independent variable and against the predicted values.</p>
 <ul>
 <li><p>The straight horizontal line (0-line) indicates where the residuals are zero. The mean of the residuals should be zero. The curved line is the loess fit line which follows the general trend of the data. If the relationship is linear, the loess fit line should not demonstrate any large or systematic deviations from the 0-line.</p></li>
@@ -864,7 +866,7 @@ a compromise between forward &amp; backward selection
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="multiple-regression-analysis.html#cb255-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/profs.sav&quot;</span>)</span>
 <span id="cb255-2"><a href="multiple-regression-analysis.html#cb255-2" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> time <span class="sc">+</span> cits, <span class="at">data =</span> mydata)</span>
 <span id="cb255-3"><a href="multiple-regression-analysis.html#cb255-3" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(mymodel)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="multiple-regression-analysis.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ceresPlots(mymodel)</span></span></code></pre></div>
 </div>
 <div id="homoscedasticity-constant-variance-assumption" class="section level3" number="5.6.2">
@@ -875,25 +877,34 @@ a compromise between forward &amp; backward selection
 <span id="cb257-3"><a href="multiple-regression-analysis.html#cb257-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">resid</span>(mymodel)</span>
 <span id="cb257-4"><a href="multiple-regression-analysis.html#cb257-4" aria-hidden="true" tabindex="-1"></a>fitted <span class="ot">&lt;-</span> <span class="fu">fitted</span>(mymodel)</span>
 <span id="cb257-5"><a href="multiple-regression-analysis.html#cb257-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> res)) <span class="sc">+</span>  <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-101-1.png" width="25%" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-107-1.png" width="25%" /></p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="multiple-regression-analysis.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> cits, <span class="at">y =</span> res)) <span class="sc">+</span>  <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-101-2.png" width="25%" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-107-2.png" width="25%" /></p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="multiple-regression-analysis.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> fitted, <span class="at">y =</span> res)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-101-3.png" width="25%" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-107-3.png" width="25%" /></p>
 <ul>
 <li><p>When examining these plots, you don’t want to see a relationship between the variability of the residuals and either the independent variables or the predicted values.</p></li>
 <li><p>If homoscedasticity is voilated, the standard errors of estimates will be incorrect. Thus, significance tests (p-value, confidence interval) are also incorrect. However, regression coefficients will still be correctly estimated.</p></li>
-<li><p>Use the <code>ncvTest</code> function from the <code>car</code> package. This function computes a score test of the hypothesis of constant error variance against the alternative that the error variance changes with the level of the response (fitted values), or with a linear combination of predictors.</p></li>
+<li><p>Use the <code>ncvTest()</code> function from the <code>car</code> package. This function computes a score test of the hypothesis of constant error variance against the alternative that the error variance changes with the level of the response (fitted values), or with a linear combination of predictors. The <code>ncvTest()</code> function performs the original version of Breusch-Pagan test.</p></li>
 </ul>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="multiple-regression-analysis.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvTest</span>(mymodel)</span></code></pre></div>
 <pre><code>## Non-constant Variance Score Test 
 ## Variance formula: ~ fitted.values 
 ## Chisquare = 0.09487541, Df = 1, p = 0.75807</code></pre>
 <ul>
+<li>Use the <code>bptest()</code> function from the <code>lmtest</code> package. This function offers studentized Breusch-Pagan test and is more robust than the orignial B-P test.</li>
+</ul>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="multiple-regression-analysis.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(mymodel)</span></code></pre></div>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  mymodel
+## BP = 0.1054, df = 2, p-value = 0.9487</code></pre>
+<ul>
 <li>The <code>spreadLevelPlot()</code> function from the <code>car</code> package creates plots for examining the possible dependence of spread on level, or an extension of these plots to the studentized residuals from linear models. It also suggests power transformation for improving homoscedasticity.</li>
 </ul>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="multiple-regression-analysis.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spreadLevelPlot</span>(mymodel) <span class="co"># plot studentized residuals vs. fitted values</span></span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-103-1.png" width="35%" /></p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="multiple-regression-analysis.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spreadLevelPlot</span>(mymodel) <span class="co"># plot studentized residuals vs. fitted values</span></span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-110-1.png" width="35%" /></p>
 <pre><code>## 
 ## Suggested power transformation:  0.6806045</code></pre>
 <p><strong>Homoscedasticity</strong> Remedies</p>
@@ -902,7 +913,7 @@ a compromise between forward &amp; backward selection
 <li><p><strong>Natural Log Transformation</strong> can be used to reduce the skewness of variables and to stabilize the variance (values must be strictly positive to apply the log-function). <code>newy = log(y)</code></p></li>
 <li><p><strong>Box-Cox transformation</strong> transforms a variable using the power <span class="math inline">\(\lambda\)</span> tha tis mostly likely to normalize the variable. Use the <code>powerTransform()</code> function in the <code>car</code> package. When <span class="math inline">\(\lambda = 0\)</span>, it is the log transformation.</p></li>
 </ul>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="multiple-regression-analysis.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">powerTransform</span>(mydata<span class="sc">$</span>salary))</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="multiple-regression-analysis.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">powerTransform</span>(mydata<span class="sc">$</span>salary))</span></code></pre></div>
 <pre><code>## bcPower Transformation to Normality 
 ##               Est Power Rounded Pwr Wald Lwr Bnd Wald Upr Bnd
 ## mydata$salary   -0.2629           0      -1.4766       0.9507
@@ -923,16 +934,16 @@ a compromise between forward &amp; backward selection
 <ul>
 <li>Want the distribution of residuals to resemble the normal curve.</li>
 </ul>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="multiple-regression-analysis.html#cb266-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>fitted <span class="ot">&lt;-</span> <span class="fu">fitted</span>(mymodel)</span>
-<span id="cb266-2"><a href="multiple-regression-analysis.html#cb266-2" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>res <span class="ot">&lt;-</span> <span class="fu">resid</span>(mymodel)</span>
-<span id="cb266-3"><a href="multiple-regression-analysis.html#cb266-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x=</span>res)) <span class="sc">+</span>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">fill=</span><span class="st">&quot;#FF6666&quot;</span>) </span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-105-1.png" width="30%" /></p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="multiple-regression-analysis.html#cb268-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>fitted <span class="ot">&lt;-</span> <span class="fu">fitted</span>(mymodel)</span>
+<span id="cb268-2"><a href="multiple-regression-analysis.html#cb268-2" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>res <span class="ot">&lt;-</span> <span class="fu">resid</span>(mymodel)</span>
+<span id="cb268-3"><a href="multiple-regression-analysis.html#cb268-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x=</span>res)) <span class="sc">+</span>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">fill=</span><span class="st">&quot;#FF6666&quot;</span>) </span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-112-1.png" width="30%" /></p>
 <p>Plot a histogram and the normal QQ plot of residuals</p>
 <ul>
 <li>Want the residuals (in circles) to be close to the straight line in the QQ plot.</li>
 </ul>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="multiple-regression-analysis.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">sample=</span>res)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-106-1.png" width="30%" /></p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="multiple-regression-analysis.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">sample=</span>res)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-113-1.png" width="30%" /></p>
 <ul>
 <li><p>If normality is violated, standard errors are incorrect. Thus, significance tests (p-value, confidence interval) are also incorrect, especially for small samples (In large sample sizes, violation of this assumption is not a big problem). However, regression coefficients will still be correctly estimated.</p></li>
 <li><p>The Shapiro-Wilk test can also be used to check for normaility for small to moderate samples</p></li>
@@ -947,17 +958,17 @@ a compromise between forward &amp; backward selection
 <li><p>Serial Dependency: When data are repeatedly collected from a single individual or the same sample of individuals over time (longitudinal studies), the residuals will often show serial dependency. Measures at adjacent times will tend to have more similar values.</p></li>
 </ul>
 <p>For clustering, plot residuals against the cluster variable.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="multiple-regression-analysis.html#cb268-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>dept <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mydata<span class="sc">$</span>dept) <span class="co"># convert `dept` as a factor variable</span></span>
-<span id="cb268-2"><a href="multiple-regression-analysis.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x=</span>dept, <span class="at">y=</span>res)) <span class="sc">+</span></span>
-<span id="cb268-3"><a href="multiple-regression-analysis.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="multiple-regression-analysis.html#cb270-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>dept <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mydata<span class="sc">$</span>dept) <span class="co"># convert `dept` as a factor variable</span></span>
+<span id="cb270-2"><a href="multiple-regression-analysis.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x=</span>dept, <span class="at">y=</span>res)) <span class="sc">+</span></span>
+<span id="cb270-3"><a href="multiple-regression-analysis.html#cb270-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 <p>Do the boxplots indicate much variability in the median value of thh residuals in each group?</p>
 <ul>
 <li><p>If there is clustering, the estimated regression coefficients are unbiased, but standard errors will typically be too small, leading to incorrect significance tests and confidence intervals.</p></li>
 <li><p>Dummy coded variables can be included as additional independent variables in the regression model to address clustering. Mulitivel modeling may be used as an alternative.</p></li>
 </ul>
 <p>For Serial Dependency, use Durbin-Watson Test. A value of 2 means the residuals are uncorrelated. A value less than 2 suggests positive autocorrelation; a value greater than 2 suggess negative autocorrelation.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="multiple-regression-analysis.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwt</span>(mymodel)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="multiple-regression-analysis.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwt</span>(mymodel)</span></code></pre></div>
 <pre><code>##  lag Autocorrelation D-W Statistic p-value
 ##    1     -0.06087733      2.099968    0.67
 ##  Alternative hypothesis: rho != 0</code></pre>
@@ -997,10 +1008,10 @@ a compromise between forward &amp; backward selection
 <li><p>Rule of thumb for CI: 0-10, weak dependency; 11-30, moderate dependency; &gt;30, strong dependency. CI is best used together with the variance-decomposition proportions. Variance-decomposition proportions are the proportions of variance of the intercept (a) and each of the regression coefficient (b) association with each CI.</p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="multiple-regression-analysis.html#cb271-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/profs.sav&quot;</span>)</span>
-<span id="cb271-2"><a href="multiple-regression-analysis.html#cb271-2" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> time <span class="sc">+</span> cits, <span class="at">data =</span> mydata)</span>
-<span id="cb271-3"><a href="multiple-regression-analysis.html#cb271-3" aria-hidden="true" tabindex="-1"></a><span class="co">#library(car)</span></span>
-<span id="cb271-4"><a href="multiple-regression-analysis.html#cb271-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mymodel)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="multiple-regression-analysis.html#cb273-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/profs.sav&quot;</span>)</span>
+<span id="cb273-2"><a href="multiple-regression-analysis.html#cb273-2" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> time <span class="sc">+</span> cits, <span class="at">data =</span> mydata)</span>
+<span id="cb273-3"><a href="multiple-regression-analysis.html#cb273-3" aria-hidden="true" tabindex="-1"></a><span class="co">#library(car)</span></span>
+<span id="cb273-4"><a href="multiple-regression-analysis.html#cb273-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mymodel)</span></code></pre></div>
 <pre><code>##     time     cits 
 ## 1.161517 1.161517</code></pre>
 </div>
@@ -1116,11 +1127,6 @@ correlation between predictor and criterion is zero but has a significant negati
 <h2><span class="header-section-number">5.8</span> Regression Diagnostics</h2>
 <p>Outliers Diagnostics</p>
 <p><strong>Outliers</strong>: One or more atypical points that do not fit with the data.</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="multiple-regression-analysis.html#cb273-1" aria-hidden="true" tabindex="-1"></a>case <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span></span>
-<span id="cb273-2"><a href="multiple-regression-analysis.html#cb273-2" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">60</span>, <span class="dv">16</span>, <span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">18</span>) <span class="co"># number of years since earning Ph.D.</span></span>
-<span id="cb273-3"><a href="multiple-regression-analysis.html#cb273-3" aria-hidden="true" tabindex="-1"></a>pubs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">17</span>, <span class="dv">11</span>, <span class="dv">6</span>, <span class="dv">38</span>, <span class="dv">48</span>, <span class="dv">9</span>, <span class="dv">22</span>, <span class="dv">30</span>, <span class="dv">21</span>, <span class="dv">10</span>, <span class="dv">27</span>, <span class="dv">37</span>) <span class="co"># number of publications</span></span>
-<span id="cb273-4"><a href="multiple-regression-analysis.html#cb273-4" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">case =</span> case, <span class="at">time =</span> time, <span class="at">pubs =</span> pubs)</span>
-<span id="cb273-5"><a href="multiple-regression-analysis.html#cb273-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tab, <span class="at">format =</span> <span class="st">&quot;html&quot;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1304,7 +1310,7 @@ pubs
 </tbody>
 </table>
 <p>Just skimming the data, case number 6 appears to be an outlier.</p>
-<p><img src="book_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
 <p>Three characteristics of badly behaved data:
 - Leverage: How unusual is the case in terms of its values on the independent (predictor) variable?</p>
 <ul>
@@ -1318,9 +1324,9 @@ pubs
 <p><em>FYI</em>: For one independent variable, leverage = <span class="math inline">\({{h}_{i}}=\frac{1}{n}+\frac{{{({{X}_{i}}-\bar{X})}^{2}}}{\sum{{{x}^{2}}}}\)</span> where <span class="math inline">\({{h}_{i}}\)</span> is the leverage for case i, n is the number of cases, <span class="math inline">\({{X}_{i}}\)</span> is the score for case i on the predictor variable, <span class="math inline">\(\bar{X}\)</span> is the mean of X, and <span class="math inline">\(\sum{{{x}^{2}}}\)</span>is the sum over the n cases of the squared deviations of <span class="math inline">\({{X}_{i}}\)</span> from the mean. For more than one independent variable, leverage = <span class="math inline">\(\mathbf{H}=\mathbf{X}{{(\mathbf{{X}&#39;X})}^{-\mathbf{1}}}\mathbf{{X}&#39;}\)</span> where X is the n x (k + 1) matrix of X values. These can range from 1/n to 1.</p>
 <p>–
 - Cases with leverage values greater than 2-3 times the average value are considered to have high leverage</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="multiple-regression-analysis.html#cb274-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(pubs <span class="sc">~</span> time)</span>
-<span id="cb274-2"><a href="multiple-regression-analysis.html#cb274-2" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">hatvalues</span>(model)</span>
-<span id="cb274-3"><a href="multiple-regression-analysis.html#cb274-3" aria-hidden="true" tabindex="-1"></a>hi[(hi <span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">*</span> <span class="fu">mean</span>(hi))] </span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="multiple-regression-analysis.html#cb275-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(pubs <span class="sc">~</span> time)</span>
+<span id="cb275-2"><a href="multiple-regression-analysis.html#cb275-2" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">hatvalues</span>(model)</span>
+<span id="cb275-3"><a href="multiple-regression-analysis.html#cb275-3" aria-hidden="true" tabindex="-1"></a>hi[(hi <span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">*</span> <span class="fu">mean</span>(hi))] </span></code></pre></div>
 <pre><code>##         6 
 ## 0.9044069</code></pre>
 </div>
@@ -1328,17 +1334,17 @@ pubs
 <h3><span class="header-section-number">5.8.2</span> Discrepancy</h3>
 <p><strong>Discrepancy</strong>: Extremity on the dependent variable. Distance between the predicted and observed values on the dependent variable. Use Studentized Residuals.</p>
 <p>The <code>outlierTest()</code> function from the <code>car</code> package tests the single largest residual for significance as an outlier. If it isn’t significant, there are no outliers in the data. If it is significant, you must delete it and rerun the test to see if others are present.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="multiple-regression-analysis.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rstudent</span>(model) <span class="co"># studentized residuals</span></span>
-<span id="cb276-2"><a href="multiple-regression-analysis.html#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="do">##           1           2           3           4           5           6           7           8           9          10          11          12 </span></span>
-<span id="cb276-3"><a href="multiple-regression-analysis.html#cb276-3" aria-hidden="true" tabindex="-1"></a><span class="do">## -0.17131041 -1.28478010 -1.39891896 -0.21829507 -0.64134592 -3.29427276  1.37772714  2.35025411 -0.83472973  0.11829003  0.69147074  0.05234216 </span></span>
-<span id="cb276-4"><a href="multiple-regression-analysis.html#cb276-4" aria-hidden="true" tabindex="-1"></a><span class="do">##          13          14          15 </span></span>
-<span id="cb276-5"><a href="multiple-regression-analysis.html#cb276-5" aria-hidden="true" tabindex="-1"></a><span class="do">## -0.72571300  0.49473073  1.30864113</span></span>
-<span id="cb276-6"><a href="multiple-regression-analysis.html#cb276-6" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
-<span id="cb276-7"><a href="multiple-regression-analysis.html#cb276-7" aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(model)</span>
-<span id="cb276-8"><a href="multiple-regression-analysis.html#cb276-8" aria-hidden="true" tabindex="-1"></a><span class="do">## No Studentized residuals with Bonferroni p &lt; 0.05</span></span>
-<span id="cb276-9"><a href="multiple-regression-analysis.html#cb276-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Largest |rstudent|:</span></span>
-<span id="cb276-10"><a href="multiple-regression-analysis.html#cb276-10" aria-hidden="true" tabindex="-1"></a><span class="do">##    rstudent unadjusted p-value Bonferroni p</span></span>
-<span id="cb276-11"><a href="multiple-regression-analysis.html#cb276-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 -3.294273          0.0064084     0.096126</span></span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="multiple-regression-analysis.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rstudent</span>(model) <span class="co"># studentized residuals</span></span>
+<span id="cb277-2"><a href="multiple-regression-analysis.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="do">##           1           2           3           4           5           6           7           8           9          10          11 </span></span>
+<span id="cb277-3"><a href="multiple-regression-analysis.html#cb277-3" aria-hidden="true" tabindex="-1"></a><span class="do">## -0.17131041 -1.28478010 -1.39891896 -0.21829507 -0.64134592 -3.29427276  1.37772714  2.35025411 -0.83472973  0.11829003  0.69147074 </span></span>
+<span id="cb277-4"><a href="multiple-regression-analysis.html#cb277-4" aria-hidden="true" tabindex="-1"></a><span class="do">##          12          13          14          15 </span></span>
+<span id="cb277-5"><a href="multiple-regression-analysis.html#cb277-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  0.05234216 -0.72571300  0.49473073  1.30864113</span></span>
+<span id="cb277-6"><a href="multiple-regression-analysis.html#cb277-6" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
+<span id="cb277-7"><a href="multiple-regression-analysis.html#cb277-7" aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(model)</span>
+<span id="cb277-8"><a href="multiple-regression-analysis.html#cb277-8" aria-hidden="true" tabindex="-1"></a><span class="do">## No Studentized residuals with Bonferroni p &lt; 0.05</span></span>
+<span id="cb277-9"><a href="multiple-regression-analysis.html#cb277-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Largest |rstudent|:</span></span>
+<span id="cb277-10"><a href="multiple-regression-analysis.html#cb277-10" aria-hidden="true" tabindex="-1"></a><span class="do">##    rstudent unadjusted p-value Bonferroni p</span></span>
+<span id="cb277-11"><a href="multiple-regression-analysis.html#cb277-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 -3.294273          0.0064084     0.096126</span></span></code></pre></div>
 <ul>
 <li><p>In large samples, cases with studentized deleted residuals greater than ± 3 or ± 4 are considered to have large discrepancy.</p></li>
 <li><p>In small samples, cases with studentized deleted residuals greater than ± 2 are considered to have large discrepancy.</p></li>
@@ -1353,16 +1359,16 @@ pubs
 <li>Case with Cook’s D values greater than 1 or <span class="math display">\[4/(n - k - 1)\]</span> are considered high influential observations.</li>
 </ul>
 <p>Get Cook’s D</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="multiple-regression-analysis.html#cb277-1" aria-hidden="true" tabindex="-1"></a>di <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(model)</span>
-<span id="cb277-2"><a href="multiple-regression-analysis.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(di)</span>
-<span id="cb277-3"><a href="multiple-regression-analysis.html#cb277-3" aria-hidden="true" tabindex="-1"></a><span class="do">##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. </span></span>
-<span id="cb277-4"><a href="multiple-regression-analysis.html#cb277-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  0.000123  0.005616  0.021811  1.984229  0.072340 29.203927</span></span>
-<span id="cb277-5"><a href="multiple-regression-analysis.html#cb277-5" aria-hidden="true" tabindex="-1"></a>di[di <span class="sc">&gt;</span><span class="dv">1</span>]</span>
-<span id="cb277-6"><a href="multiple-regression-analysis.html#cb277-6" aria-hidden="true" tabindex="-1"></a><span class="do">##        6 </span></span>
-<span id="cb277-7"><a href="multiple-regression-analysis.html#cb277-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 29.20393</span></span>
-<span id="cb277-8"><a href="multiple-regression-analysis.html#cb277-8" aria-hidden="true" tabindex="-1"></a>di[di <span class="sc">&gt;</span> <span class="dv">4</span><span class="sc">/</span>(<span class="fu">length</span>(pubs)<span class="sc">-</span><span class="dv">1-1</span>)]</span>
-<span id="cb277-9"><a href="multiple-regression-analysis.html#cb277-9" aria-hidden="true" tabindex="-1"></a><span class="do">##        6 </span></span>
-<span id="cb277-10"><a href="multiple-regression-analysis.html#cb277-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 29.20393</span></span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="multiple-regression-analysis.html#cb278-1" aria-hidden="true" tabindex="-1"></a>di <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(model)</span>
+<span id="cb278-2"><a href="multiple-regression-analysis.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(di)</span>
+<span id="cb278-3"><a href="multiple-regression-analysis.html#cb278-3" aria-hidden="true" tabindex="-1"></a><span class="do">##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. </span></span>
+<span id="cb278-4"><a href="multiple-regression-analysis.html#cb278-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  0.000123  0.005616  0.021811  1.984229  0.072340 29.203927</span></span>
+<span id="cb278-5"><a href="multiple-regression-analysis.html#cb278-5" aria-hidden="true" tabindex="-1"></a>di[di <span class="sc">&gt;</span><span class="dv">1</span>]</span>
+<span id="cb278-6"><a href="multiple-regression-analysis.html#cb278-6" aria-hidden="true" tabindex="-1"></a><span class="do">##        6 </span></span>
+<span id="cb278-7"><a href="multiple-regression-analysis.html#cb278-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 29.20393</span></span>
+<span id="cb278-8"><a href="multiple-regression-analysis.html#cb278-8" aria-hidden="true" tabindex="-1"></a>di[di <span class="sc">&gt;</span> <span class="dv">4</span><span class="sc">/</span>(<span class="fu">length</span>(pubs)<span class="sc">-</span><span class="dv">1-1</span>)]</span>
+<span id="cb278-9"><a href="multiple-regression-analysis.html#cb278-9" aria-hidden="true" tabindex="-1"></a><span class="do">##        6 </span></span>
+<span id="cb278-10"><a href="multiple-regression-analysis.html#cb278-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 29.20393</span></span></code></pre></div>
 <p>Additional Influence Measures:</p>
 <ul>
 <li>Standardized difference in fit. Indicates how much the predicted value for case i would change if case i were deleted from the data set.</li>
@@ -1420,9 +1426,9 @@ pubs
 <li><p>In order that higher order terms have meaning, all lower order terms must be included, since higher order terms are reflective of the specific level of curvature they represent only if all lower order terms are partialed out.</p></li>
 <li><p>Ploynomial regression is carried out as an ordinary hierarchical regression analysis.</p></li>
 </ol>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="multiple-regression-analysis.html#cb278-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>newtime <span class="ot">&lt;-</span> mydata<span class="sc">$</span>time <span class="sc">-</span> <span class="fu">mean</span>(mydata<span class="sc">$</span>time)</span>
-<span id="cb278-2"><a href="multiple-regression-analysis.html#cb278-2" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> newtime <span class="sc">+</span> cits <span class="sc">+</span> <span class="fu">I</span>(newtime<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> mydata)</span>
-<span id="cb278-3"><a href="multiple-regression-analysis.html#cb278-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel2)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="multiple-regression-analysis.html#cb279-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>newtime <span class="ot">&lt;-</span> mydata<span class="sc">$</span>time <span class="sc">-</span> <span class="fu">mean</span>(mydata<span class="sc">$</span>time)</span>
+<span id="cb279-2"><a href="multiple-regression-analysis.html#cb279-2" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> newtime <span class="sc">+</span> cits <span class="sc">+</span> <span class="fu">I</span>(newtime<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> mydata)</span>
+<span id="cb279-3"><a href="multiple-regression-analysis.html#cb279-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ newtime + cits + I(newtime^2), data = mydata)
@@ -1452,7 +1458,7 @@ pubs
 <h2><span class="header-section-number">5.10</span> Useful Functions and Symbols Commonly Used in R When Fitting Linear Models</h2>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-120">Table 5.2: </span>Useful Functions in R When Fitting Linear Models
+<span id="tab:unnamed-chunk-127">Table 5.2: </span>Useful Functions in R When Fitting Linear Models
 </caption>
 <thead>
 <tr>
@@ -1549,7 +1555,7 @@ Uses a fitted model to predict response values for a new dataset
 </table>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-121">Table 5.3: </span>Symbols Commonly Use in R Formulas
+<span id="tab:unnamed-chunk-128">Table 5.3: </span>Symbols Commonly Use in R Formulas
 </caption>
 <thead>
 <tr>
@@ -1673,17 +1679,17 @@ Mathematical functions cna be used in formulas. For example, log(y) ~ x + z + w 
 <div id="an-example-1" class="section level3" number="5.11.1">
 <h3><span class="header-section-number">5.11.1</span> An example</h3>
 <p>Regress Physical Endurance (minutes on treadmill test) on Age ( <span class="math inline">\(X_1\)</span>) and Number of Years of Vigorous Physical Exercise ( <span class="math inline">\(X_2\)</span>).</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="multiple-regression-analysis.html#cb280-1" aria-hidden="true" tabindex="-1"></a>endurance <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/endurance.sav&quot;</span>)</span>
-<span id="cb280-2"><a href="multiple-regression-analysis.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="co"># str(endurance)</span></span>
-<span id="cb280-3"><a href="multiple-regression-analysis.html#cb280-3" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(endurance)</span>
-<span id="cb280-4"><a href="multiple-regression-analysis.html#cb280-4" aria-hidden="true" tabindex="-1"></a>newage <span class="ot">&lt;-</span> <span class="fu">scale</span>(age, <span class="at">scale=</span><span class="cn">FALSE</span>) <span class="co">#&lt;&lt; </span></span>
-<span id="cb280-5"><a href="multiple-regression-analysis.html#cb280-5" aria-hidden="true" tabindex="-1"></a>newyears <span class="ot">&lt;-</span> <span class="fu">scale</span>(years, <span class="at">scale=</span><span class="cn">FALSE</span>)</span>
-<span id="cb280-6"><a href="multiple-regression-analysis.html#cb280-6" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(endurance)</span>
-<span id="cb280-7"><a href="multiple-regression-analysis.html#cb280-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb280-8"><a href="multiple-regression-analysis.html#cb280-8" aria-hidden="true" tabindex="-1"></a>mymodel1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(endurance <span class="sc">~</span> newage <span class="sc">+</span> newyears <span class="sc">+</span> newage<span class="sc">:</span>newyears, <span class="at">data =</span> endurance) </span>
-<span id="cb280-9"><a href="multiple-regression-analysis.html#cb280-9" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(endurance <span class="sc">~</span> newage<span class="sc">*</span>newyears, <span class="at">data =</span> endurance) <span class="co"># alternative formula</span></span>
-<span id="cb280-10"><a href="multiple-regression-analysis.html#cb280-10" aria-hidden="true" tabindex="-1"></a><span class="co"># mymodel2 &lt;- lm(endurance ~ I(age-49.18)*I(years-10.67), data = endurance) # use the `I()` symbol</span></span>
-<span id="cb280-11"><a href="multiple-regression-analysis.html#cb280-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel1)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="multiple-regression-analysis.html#cb281-1" aria-hidden="true" tabindex="-1"></a>endurance <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/endurance.sav&quot;</span>)</span>
+<span id="cb281-2"><a href="multiple-regression-analysis.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="co"># str(endurance)</span></span>
+<span id="cb281-3"><a href="multiple-regression-analysis.html#cb281-3" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(endurance)</span>
+<span id="cb281-4"><a href="multiple-regression-analysis.html#cb281-4" aria-hidden="true" tabindex="-1"></a>newage <span class="ot">&lt;-</span> <span class="fu">scale</span>(age, <span class="at">scale=</span><span class="cn">FALSE</span>) <span class="co">#&lt;&lt; </span></span>
+<span id="cb281-5"><a href="multiple-regression-analysis.html#cb281-5" aria-hidden="true" tabindex="-1"></a>newyears <span class="ot">&lt;-</span> <span class="fu">scale</span>(years, <span class="at">scale=</span><span class="cn">FALSE</span>)</span>
+<span id="cb281-6"><a href="multiple-regression-analysis.html#cb281-6" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(endurance)</span>
+<span id="cb281-7"><a href="multiple-regression-analysis.html#cb281-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-8"><a href="multiple-regression-analysis.html#cb281-8" aria-hidden="true" tabindex="-1"></a>mymodel1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(endurance <span class="sc">~</span> newage <span class="sc">+</span> newyears <span class="sc">+</span> newage<span class="sc">:</span>newyears, <span class="at">data =</span> endurance) </span>
+<span id="cb281-9"><a href="multiple-regression-analysis.html#cb281-9" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(endurance <span class="sc">~</span> newage<span class="sc">*</span>newyears, <span class="at">data =</span> endurance) <span class="co"># alternative formula</span></span>
+<span id="cb281-10"><a href="multiple-regression-analysis.html#cb281-10" aria-hidden="true" tabindex="-1"></a><span class="co"># mymodel2 &lt;- lm(endurance ~ I(age-49.18)*I(years-10.67), data = endurance) # use the `I()` symbol</span></span>
+<span id="cb281-11"><a href="multiple-regression-analysis.html#cb281-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = endurance ~ newage + newyears + newage:newyears, 
@@ -1712,7 +1718,7 @@ Mathematical functions cna be used in formulas. For example, log(y) ~ x + z + w 
 <p>All of the partial regression coefficients are significantly different from zero, controlling for the other variables in the model. For every 1 year increase in age, there is an estimated loss of endurance of .26 minutes for people at the mean level of years of exercise in the sample. For every 1 year increase in years of vigorous exercise, there is an estimated increase in endurance of .97 minutes for people at the mean level of age in the sample. The interaction indicates that the decline in endurance with age depends on a history of rigorous exercise.</p>
 <p><strong>To Interpret Interactions</strong>: Write the simple regression equation for the regression of the criterion on one predictor at a specific value of the other predictor variable, then plot these values.</p>
 <p>For example, write the simple regression equations for the regression of Physical Endurance on Age at three levels of Years of Rigorous Exercise. The three levels are typically 1) at the mean of the other predictor (when centered Years = 0); 2) at 1 standard deviation above the mean (when centered Years = 4.78); and 3) at 1 standard deviation below the mean (when centered Years = -4.78).</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="multiple-regression-analysis.html#cb282-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(endurance)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="multiple-regression-analysis.html#cb283-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(endurance)</span></code></pre></div>
 <pre><code>##           vars   n   mean    sd median trimmed   mad min max range skew kurtosis   se
 ## case         1 245 124.99 72.48    124  124.86 91.92   1 250   249 0.02    -1.21 4.63
 ## age          2 245  49.18 10.11     48   49.11 10.38  20  82    62 0.15    -0.08 0.65
@@ -1828,33 +1834,33 @@ High
 </tr>
 </tbody>
 </table>
-<p><img src="book_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 <p>This indicates that the decline in physical endurance across the life span is less dramatic for those with high number of years of rigorous exercise, whereas there appears to be a dramatic decline in physical endurance across the life span for those with low or average number of years of rigorous exercise.</p>
 <p>Does including the interaction improve prediction?</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="multiple-regression-analysis.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(endurance)</span>
-<span id="cb284-2"><a href="multiple-regression-analysis.html#cb284-2" aria-hidden="true" tabindex="-1"></a>newage <span class="ot">&lt;-</span> <span class="fu">scale</span>(age, <span class="at">scale=</span><span class="cn">FALSE</span>)  </span>
-<span id="cb284-3"><a href="multiple-regression-analysis.html#cb284-3" aria-hidden="true" tabindex="-1"></a>newyears <span class="ot">&lt;-</span> <span class="fu">scale</span>(years, <span class="at">scale=</span><span class="cn">FALSE</span>)</span>
-<span id="cb284-4"><a href="multiple-regression-analysis.html#cb284-4" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(endurance)</span>
-<span id="cb284-5"><a href="multiple-regression-analysis.html#cb284-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-6"><a href="multiple-regression-analysis.html#cb284-6" aria-hidden="true" tabindex="-1"></a>mymodel1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(endurance <span class="sc">~</span> newage <span class="sc">+</span> newyears <span class="sc">+</span> newage<span class="sc">:</span>newyears, <span class="at">data =</span> endurance) </span>
-<span id="cb284-7"><a href="multiple-regression-analysis.html#cb284-7" aria-hidden="true" tabindex="-1"></a>mymodel3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(endurance <span class="sc">~</span> newage <span class="sc">+</span> newyears, <span class="at">data =</span> endurance) </span>
-<span id="cb284-8"><a href="multiple-regression-analysis.html#cb284-8" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mymodel3, mymodel1) <span class="co">#using Type I Sum of Squares </span></span>
-<span id="cb284-9"><a href="multiple-regression-analysis.html#cb284-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Analysis of Variance Table</span></span>
-<span id="cb284-10"><a href="multiple-regression-analysis.html#cb284-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb284-11"><a href="multiple-regression-analysis.html#cb284-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Model 1: endurance ~ newage + newyears</span></span>
-<span id="cb284-12"><a href="multiple-regression-analysis.html#cb284-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Model 2: endurance ~ newage + newyears + newage:newyears</span></span>
-<span id="cb284-13"><a href="multiple-regression-analysis.html#cb284-13" aria-hidden="true" tabindex="-1"></a><span class="do">##   Res.Df   RSS Df Sum of Sq     F    Pr(&gt;F)    </span></span>
-<span id="cb284-14"><a href="multiple-regression-analysis.html#cb284-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 1    242 23810                                 </span></span>
-<span id="cb284-15"><a href="multiple-regression-analysis.html#cb284-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 2    241 22674  1    1136.5 12.08 0.0006042 ***</span></span>
-<span id="cb284-16"><a href="multiple-regression-analysis.html#cb284-16" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb284-17"><a href="multiple-regression-analysis.html#cb284-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="multiple-regression-analysis.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(endurance)</span>
+<span id="cb285-2"><a href="multiple-regression-analysis.html#cb285-2" aria-hidden="true" tabindex="-1"></a>newage <span class="ot">&lt;-</span> <span class="fu">scale</span>(age, <span class="at">scale=</span><span class="cn">FALSE</span>)  </span>
+<span id="cb285-3"><a href="multiple-regression-analysis.html#cb285-3" aria-hidden="true" tabindex="-1"></a>newyears <span class="ot">&lt;-</span> <span class="fu">scale</span>(years, <span class="at">scale=</span><span class="cn">FALSE</span>)</span>
+<span id="cb285-4"><a href="multiple-regression-analysis.html#cb285-4" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(endurance)</span>
+<span id="cb285-5"><a href="multiple-regression-analysis.html#cb285-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-6"><a href="multiple-regression-analysis.html#cb285-6" aria-hidden="true" tabindex="-1"></a>mymodel1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(endurance <span class="sc">~</span> newage <span class="sc">+</span> newyears <span class="sc">+</span> newage<span class="sc">:</span>newyears, <span class="at">data =</span> endurance) </span>
+<span id="cb285-7"><a href="multiple-regression-analysis.html#cb285-7" aria-hidden="true" tabindex="-1"></a>mymodel3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(endurance <span class="sc">~</span> newage <span class="sc">+</span> newyears, <span class="at">data =</span> endurance) </span>
+<span id="cb285-8"><a href="multiple-regression-analysis.html#cb285-8" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mymodel3, mymodel1) <span class="co">#using Type I Sum of Squares </span></span>
+<span id="cb285-9"><a href="multiple-regression-analysis.html#cb285-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Analysis of Variance Table</span></span>
+<span id="cb285-10"><a href="multiple-regression-analysis.html#cb285-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb285-11"><a href="multiple-regression-analysis.html#cb285-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Model 1: endurance ~ newage + newyears</span></span>
+<span id="cb285-12"><a href="multiple-regression-analysis.html#cb285-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Model 2: endurance ~ newage + newyears + newage:newyears</span></span>
+<span id="cb285-13"><a href="multiple-regression-analysis.html#cb285-13" aria-hidden="true" tabindex="-1"></a><span class="do">##   Res.Df   RSS Df Sum of Sq     F    Pr(&gt;F)    </span></span>
+<span id="cb285-14"><a href="multiple-regression-analysis.html#cb285-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 1    242 23810                                 </span></span>
+<span id="cb285-15"><a href="multiple-regression-analysis.html#cb285-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 2    241 22674  1    1136.5 12.08 0.0006042 ***</span></span>
+<span id="cb285-16"><a href="multiple-regression-analysis.html#cb285-16" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb285-17"><a href="multiple-regression-analysis.html#cb285-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
 <p>Use the <code>interact_plot()</code> function in the <code>interactions</code> package.</p>
 <ul>
 <li>By default, all continuous variables <em>not involved in the interaction</em> are mean-centered. The <code>centered</code> argument can be used to overwrite the default. However, the response variable, pred, modx, and mod2 variables are never centered.</li>
 </ul>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="multiple-regression-analysis.html#cb285-1" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">lm</span>(endurance <span class="sc">~</span> age<span class="sc">*</span>years, <span class="at">data =</span> endurance)  </span>
-<span id="cb285-2"><a href="multiple-regression-analysis.html#cb285-2" aria-hidden="true" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(mymodel, <span class="at">pred =</span> age, <span class="at">modx =</span> years, <span class="at">plot.points =</span> <span class="cn">TRUE</span>, <span class="at">point.shape=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="multiple-regression-analysis.html#cb286-1" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">lm</span>(endurance <span class="sc">~</span> age<span class="sc">*</span>years, <span class="at">data =</span> endurance)  </span>
+<span id="cb286-2"><a href="multiple-regression-analysis.html#cb286-2" aria-hidden="true" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(mymodel, <span class="at">pred =</span> age, <span class="at">modx =</span> years, <span class="at">plot.points =</span> <span class="cn">TRUE</span>, <span class="at">point.shape=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 </div>
 </div>
 <div id="categorical-independent-variables" class="section level2" number="5.12">
@@ -1865,7 +1871,7 @@ High
 <li><p>Examples of nominal or categorical variables include: religion, treatment groups in experiments, region of country, ethnic group, occupation, diagnosis, or marital status.</p></li>
 <li><p>One Independent Variable with Two Categories: Regression of Salary on Gender (Females coded as 1 and males coded as 0).</p></li>
 </ul>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="multiple-regression-analysis.html#cb286-1" aria-hidden="true" tabindex="-1"></a>profs <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/profs.sav&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="multiple-regression-analysis.html#cb287-1" aria-hidden="true" tabindex="-1"></a>profs <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/profs.sav&quot;</span>)</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:500px; ">
 <table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -3323,7 +3329,7 @@ gender
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="multiple-regression-analysis.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(profs<span class="sc">$</span>gender, profs<span class="sc">$</span>salary) <span class="co"># point-biserial correlation</span></span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="multiple-regression-analysis.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(profs<span class="sc">$</span>gender, profs<span class="sc">$</span>salary) <span class="co"># point-biserial correlation</span></span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -3335,8 +3341,8 @@ gender
 ## sample estimates:
 ##        cor 
 ## -0.5141948</code></pre>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="multiple-regression-analysis.html#cb289-1" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(gender), <span class="at">data =</span> profs) <span class="co">#&lt;&lt; 0 for male, 1 for female on gender</span></span>
-<span id="cb289-2"><a href="multiple-regression-analysis.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="multiple-regression-analysis.html#cb290-1" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> <span class="fu">as.factor</span>(gender), <span class="at">data =</span> profs) <span class="co">#&lt;&lt; 0 for male, 1 for female on gender</span></span>
+<span id="cb290-2"><a href="multiple-regression-analysis.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ as.factor(gender), data = profs)
@@ -3367,8 +3373,8 @@ gender
 <ul>
 <li>Alternatively, the regression model can be specified in R as below. .</li>
 </ul>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="multiple-regression-analysis.html#cb291-1" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> gender, <span class="at">data =</span> profs)</span>
-<span id="cb291-2"><a href="multiple-regression-analysis.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel2)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="multiple-regression-analysis.html#cb292-1" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> gender, <span class="at">data =</span> profs)</span>
+<span id="cb292-2"><a href="multiple-regression-analysis.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salary ~ gender, data = profs)
@@ -3399,7 +3405,7 @@ gender
 <div id="an-example-2" class="section level3" number="5.12.3">
 <h3><span class="header-section-number">5.12.3</span> An example</h3>
 <p>Effects of religion on attitude toward abortion</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="multiple-regression-analysis.html#cb293-1" aria-hidden="true" tabindex="-1"></a>religion <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/religion.sav&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="multiple-regression-analysis.html#cb294-1" aria-hidden="true" tabindex="-1"></a>religion <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/religion.sav&quot;</span>)</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:500px; ">
 <table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -3815,7 +3821,7 @@ P
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="multiple-regression-analysis.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(religion<span class="sc">$</span>religion)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="multiple-regression-analysis.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(religion<span class="sc">$</span>religion)</span></code></pre></div>
 <pre><code>## 
 ##  C  J  O  P 
 ##  9  6  8 13</code></pre>
@@ -3824,7 +3830,7 @@ P
 <p>One group is designated as the reference group and is assigned a value of 0 for every code variable. The reference group should serve as a useful comparison (e.g., a control group; the group expected to score the highest or lowest on Y; a standard treatment). The reference group should be well defined and not a “catch all” category (e.g., Other). The reference group should not have a very small sample size compared to the other groups.</p>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
-<span id="tab:unnamed-chunk-135">Table 5.4: </span>Protestant as Reference Group:
+<span id="tab:unnamed-chunk-142">Table 5.4: </span>Protestant as Reference Group:
 </caption>
 <thead>
 <tr>
@@ -3919,66 +3925,66 @@ Other
 </table>
 <p><span class="math inline">\(\hat Y = a + {b_1}Catholic + {b_2}Jewish + {b_3}Other\)</span></p>
 <p>In R, dummy coding is called “treatment constrasts.” It’s the default coding with the first group “C” as the reference group.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="multiple-regression-analysis.html#cb296-1" aria-hidden="true" tabindex="-1"></a>religion<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">factor</span>(religion<span class="sc">$</span>religion)</span>
-<span id="cb296-2"><a href="multiple-regression-analysis.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="co"># Catholic is the reference group</span></span>
-<span id="cb296-3"><a href="multiple-regression-analysis.html#cb296-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   J O P</span></span>
-<span id="cb296-4"><a href="multiple-regression-analysis.html#cb296-4" aria-hidden="true" tabindex="-1"></a><span class="do">## C 0 0 0</span></span>
-<span id="cb296-5"><a href="multiple-regression-analysis.html#cb296-5" aria-hidden="true" tabindex="-1"></a><span class="do">## J 1 0 0</span></span>
-<span id="cb296-6"><a href="multiple-regression-analysis.html#cb296-6" aria-hidden="true" tabindex="-1"></a><span class="do">## O 0 1 0</span></span>
-<span id="cb296-7"><a href="multiple-regression-analysis.html#cb296-7" aria-hidden="true" tabindex="-1"></a><span class="do">## P 0 0 1</span></span>
-<span id="cb296-8"><a href="multiple-regression-analysis.html#cb296-8" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion) </span>
-<span id="cb296-9"><a href="multiple-regression-analysis.html#cb296-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel)<span class="sc">$</span>coefficients</span>
-<span id="cb296-10"><a href="multiple-regression-analysis.html#cb296-10" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate Std. Error  t value     Pr(&gt;|t|)</span></span>
-<span id="cb296-11"><a href="multiple-regression-analysis.html#cb296-11" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept) 60.666667   7.806057 7.771743 7.301349e-09</span></span>
-<span id="cb296-12"><a href="multiple-regression-analysis.html#cb296-12" aria-hidden="true" tabindex="-1"></a><span class="do">## groupJ      42.833333  12.342460 3.470405 1.508602e-03</span></span>
-<span id="cb296-13"><a href="multiple-regression-analysis.html#cb296-13" aria-hidden="true" tabindex="-1"></a><span class="do">## groupO       9.458333  11.379186 0.831196 4.120223e-01</span></span>
-<span id="cb296-14"><a href="multiple-regression-analysis.html#cb296-14" aria-hidden="true" tabindex="-1"></a><span class="do">## groupP      32.641026  10.154800 3.214344 2.982232e-03</span></span>
-<span id="cb296-15"><a href="multiple-regression-analysis.html#cb296-15" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mymodel)</span>
-<span id="cb296-16"><a href="multiple-regression-analysis.html#cb296-16" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)      groupJ      groupO      groupP </span></span>
-<span id="cb296-17"><a href="multiple-regression-analysis.html#cb296-17" aria-hidden="true" tabindex="-1"></a><span class="do">##   60.666667   42.833333    9.458333   32.641026</span></span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="multiple-regression-analysis.html#cb297-1" aria-hidden="true" tabindex="-1"></a>religion<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">factor</span>(religion<span class="sc">$</span>religion)</span>
+<span id="cb297-2"><a href="multiple-regression-analysis.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="co"># Catholic is the reference group</span></span>
+<span id="cb297-3"><a href="multiple-regression-analysis.html#cb297-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   J O P</span></span>
+<span id="cb297-4"><a href="multiple-regression-analysis.html#cb297-4" aria-hidden="true" tabindex="-1"></a><span class="do">## C 0 0 0</span></span>
+<span id="cb297-5"><a href="multiple-regression-analysis.html#cb297-5" aria-hidden="true" tabindex="-1"></a><span class="do">## J 1 0 0</span></span>
+<span id="cb297-6"><a href="multiple-regression-analysis.html#cb297-6" aria-hidden="true" tabindex="-1"></a><span class="do">## O 0 1 0</span></span>
+<span id="cb297-7"><a href="multiple-regression-analysis.html#cb297-7" aria-hidden="true" tabindex="-1"></a><span class="do">## P 0 0 1</span></span>
+<span id="cb297-8"><a href="multiple-regression-analysis.html#cb297-8" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion) </span>
+<span id="cb297-9"><a href="multiple-regression-analysis.html#cb297-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel)<span class="sc">$</span>coefficients</span>
+<span id="cb297-10"><a href="multiple-regression-analysis.html#cb297-10" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate Std. Error  t value     Pr(&gt;|t|)</span></span>
+<span id="cb297-11"><a href="multiple-regression-analysis.html#cb297-11" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept) 60.666667   7.806057 7.771743 7.301349e-09</span></span>
+<span id="cb297-12"><a href="multiple-regression-analysis.html#cb297-12" aria-hidden="true" tabindex="-1"></a><span class="do">## groupJ      42.833333  12.342460 3.470405 1.508602e-03</span></span>
+<span id="cb297-13"><a href="multiple-regression-analysis.html#cb297-13" aria-hidden="true" tabindex="-1"></a><span class="do">## groupO       9.458333  11.379186 0.831196 4.120223e-01</span></span>
+<span id="cb297-14"><a href="multiple-regression-analysis.html#cb297-14" aria-hidden="true" tabindex="-1"></a><span class="do">## groupP      32.641026  10.154800 3.214344 2.982232e-03</span></span>
+<span id="cb297-15"><a href="multiple-regression-analysis.html#cb297-15" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mymodel)</span>
+<span id="cb297-16"><a href="multiple-regression-analysis.html#cb297-16" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)      groupJ      groupO      groupP </span></span>
+<span id="cb297-17"><a href="multiple-regression-analysis.html#cb297-17" aria-hidden="true" tabindex="-1"></a><span class="do">##   60.666667   42.833333    9.458333   32.641026</span></span></code></pre></div>
 <p>Manually setting the contrasts</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="multiple-regression-analysis.html#cb297-1" aria-hidden="true" tabindex="-1"></a>Jewish <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb297-2"><a href="multiple-regression-analysis.html#cb297-2" aria-hidden="true" tabindex="-1"></a>Other <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb297-3"><a href="multiple-regression-analysis.html#cb297-3" aria-hidden="true" tabindex="-1"></a>Protestant <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb297-4"><a href="multiple-regression-analysis.html#cb297-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Jewish, Other, Protestant) <span class="co">#add a `contrasts` attribute to `religion$group`</span></span>
-<span id="cb297-5"><a href="multiple-regression-analysis.html#cb297-5" aria-hidden="true" tabindex="-1"></a>religion<span class="sc">$</span>group</span>
-<span id="cb297-6"><a href="multiple-regression-analysis.html#cb297-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] C O P C C O P C O O C O P C P C C J O C P J P P J O P O J P P P J P J P</span></span>
-<span id="cb297-7"><a href="multiple-regression-analysis.html#cb297-7" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;contrasts&quot;)</span></span>
-<span id="cb297-8"><a href="multiple-regression-analysis.html#cb297-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   Jewish Other Protestant</span></span>
-<span id="cb297-9"><a href="multiple-regression-analysis.html#cb297-9" aria-hidden="true" tabindex="-1"></a><span class="do">## C      0     0          0</span></span>
-<span id="cb297-10"><a href="multiple-regression-analysis.html#cb297-10" aria-hidden="true" tabindex="-1"></a><span class="do">## J      1     0          0</span></span>
-<span id="cb297-11"><a href="multiple-regression-analysis.html#cb297-11" aria-hidden="true" tabindex="-1"></a><span class="do">## O      0     1          0</span></span>
-<span id="cb297-12"><a href="multiple-regression-analysis.html#cb297-12" aria-hidden="true" tabindex="-1"></a><span class="do">## P      0     0          1</span></span>
-<span id="cb297-13"><a href="multiple-regression-analysis.html#cb297-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Levels: C J O P</span></span></code></pre></div>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="multiple-regression-analysis.html#cb298-1" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion)</span>
-<span id="cb298-2"><a href="multiple-regression-analysis.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel2)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="multiple-regression-analysis.html#cb298-1" aria-hidden="true" tabindex="-1"></a>Jewish <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb298-2"><a href="multiple-regression-analysis.html#cb298-2" aria-hidden="true" tabindex="-1"></a>Other <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb298-3"><a href="multiple-regression-analysis.html#cb298-3" aria-hidden="true" tabindex="-1"></a>Protestant <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb298-4"><a href="multiple-regression-analysis.html#cb298-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Jewish, Other, Protestant) <span class="co">#add a `contrasts` attribute to `religion$group`</span></span>
+<span id="cb298-5"><a href="multiple-regression-analysis.html#cb298-5" aria-hidden="true" tabindex="-1"></a>religion<span class="sc">$</span>group</span>
+<span id="cb298-6"><a href="multiple-regression-analysis.html#cb298-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] C O P C C O P C O O C O P C P C C J O C P J P P J O P O J P P P J P J P</span></span>
+<span id="cb298-7"><a href="multiple-regression-analysis.html#cb298-7" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;contrasts&quot;)</span></span>
+<span id="cb298-8"><a href="multiple-regression-analysis.html#cb298-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   Jewish Other Protestant</span></span>
+<span id="cb298-9"><a href="multiple-regression-analysis.html#cb298-9" aria-hidden="true" tabindex="-1"></a><span class="do">## C      0     0          0</span></span>
+<span id="cb298-10"><a href="multiple-regression-analysis.html#cb298-10" aria-hidden="true" tabindex="-1"></a><span class="do">## J      1     0          0</span></span>
+<span id="cb298-11"><a href="multiple-regression-analysis.html#cb298-11" aria-hidden="true" tabindex="-1"></a><span class="do">## O      0     1          0</span></span>
+<span id="cb298-12"><a href="multiple-regression-analysis.html#cb298-12" aria-hidden="true" tabindex="-1"></a><span class="do">## P      0     0          1</span></span>
+<span id="cb298-13"><a href="multiple-regression-analysis.html#cb298-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Levels: C J O P</span></span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="multiple-regression-analysis.html#cb299-1" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion)</span>
+<span id="cb299-2"><a href="multiple-regression-analysis.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel2)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##                  Estimate Std. Error  t value     Pr(&gt;|t|)
 ## (Intercept)     60.666667   7.806057 7.771743 7.301349e-09
 ## groupJewish     42.833333  12.342460 3.470405 1.508602e-03
 ## groupOther       9.458333  11.379186 0.831196 4.120223e-01
 ## groupProtestant 32.641026  10.154800 3.214344 2.982232e-03</code></pre>
 <p>Change the reference group for dummy coding.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="multiple-regression-analysis.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="ot">&lt;-</span><span class="fu">contr.treatment</span>(<span class="at">n=</span><span class="dv">4</span>, <span class="at">base=</span><span class="dv">4</span>) <span class="co"># &quot;religion&quot; has four groups: C, J, O, P</span></span>
-<span id="cb300-2"><a href="multiple-regression-analysis.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="co"># Protestant is the reference group</span></span>
-<span id="cb300-3"><a href="multiple-regression-analysis.html#cb300-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   1 2 3</span></span>
-<span id="cb300-4"><a href="multiple-regression-analysis.html#cb300-4" aria-hidden="true" tabindex="-1"></a><span class="do">## C 1 0 0</span></span>
-<span id="cb300-5"><a href="multiple-regression-analysis.html#cb300-5" aria-hidden="true" tabindex="-1"></a><span class="do">## J 0 1 0</span></span>
-<span id="cb300-6"><a href="multiple-regression-analysis.html#cb300-6" aria-hidden="true" tabindex="-1"></a><span class="do">## O 0 0 1</span></span>
-<span id="cb300-7"><a href="multiple-regression-analysis.html#cb300-7" aria-hidden="true" tabindex="-1"></a><span class="do">## P 0 0 0</span></span>
-<span id="cb300-8"><a href="multiple-regression-analysis.html#cb300-8" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion) </span>
-<span id="cb300-9"><a href="multiple-regression-analysis.html#cb300-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel2)<span class="sc">$</span>coefficients</span>
-<span id="cb300-10"><a href="multiple-regression-analysis.html#cb300-10" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate Std. Error    t value     Pr(&gt;|t|)</span></span>
-<span id="cb300-11"><a href="multiple-regression-analysis.html#cb300-11" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)  93.30769   6.495032 14.3660093 1.664683e-15</span></span>
-<span id="cb300-12"><a href="multiple-regression-analysis.html#cb300-12" aria-hidden="true" tabindex="-1"></a><span class="do">## group1      -32.64103  10.154800 -3.2143444 2.982232e-03</span></span>
-<span id="cb300-13"><a href="multiple-regression-analysis.html#cb300-13" aria-hidden="true" tabindex="-1"></a><span class="do">## group2       10.19231  11.557994  0.8818405 3.844393e-01</span></span>
-<span id="cb300-14"><a href="multiple-regression-analysis.html#cb300-14" aria-hidden="true" tabindex="-1"></a><span class="do">## group3      -23.18269  10.523155 -2.2030173 3.491209e-02</span></span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="multiple-regression-analysis.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="ot">&lt;-</span><span class="fu">contr.treatment</span>(<span class="at">n=</span><span class="dv">4</span>, <span class="at">base=</span><span class="dv">4</span>) <span class="co"># &quot;religion&quot; has four groups: C, J, O, P</span></span>
+<span id="cb301-2"><a href="multiple-regression-analysis.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="co"># Protestant is the reference group</span></span>
+<span id="cb301-3"><a href="multiple-regression-analysis.html#cb301-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   1 2 3</span></span>
+<span id="cb301-4"><a href="multiple-regression-analysis.html#cb301-4" aria-hidden="true" tabindex="-1"></a><span class="do">## C 1 0 0</span></span>
+<span id="cb301-5"><a href="multiple-regression-analysis.html#cb301-5" aria-hidden="true" tabindex="-1"></a><span class="do">## J 0 1 0</span></span>
+<span id="cb301-6"><a href="multiple-regression-analysis.html#cb301-6" aria-hidden="true" tabindex="-1"></a><span class="do">## O 0 0 1</span></span>
+<span id="cb301-7"><a href="multiple-regression-analysis.html#cb301-7" aria-hidden="true" tabindex="-1"></a><span class="do">## P 0 0 0</span></span>
+<span id="cb301-8"><a href="multiple-regression-analysis.html#cb301-8" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion) </span>
+<span id="cb301-9"><a href="multiple-regression-analysis.html#cb301-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel2)<span class="sc">$</span>coefficients</span>
+<span id="cb301-10"><a href="multiple-regression-analysis.html#cb301-10" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate Std. Error    t value     Pr(&gt;|t|)</span></span>
+<span id="cb301-11"><a href="multiple-regression-analysis.html#cb301-11" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)  93.30769   6.495032 14.3660093 1.664683e-15</span></span>
+<span id="cb301-12"><a href="multiple-regression-analysis.html#cb301-12" aria-hidden="true" tabindex="-1"></a><span class="do">## group1      -32.64103  10.154800 -3.2143444 2.982232e-03</span></span>
+<span id="cb301-13"><a href="multiple-regression-analysis.html#cb301-13" aria-hidden="true" tabindex="-1"></a><span class="do">## group2       10.19231  11.557994  0.8818405 3.844393e-01</span></span>
+<span id="cb301-14"><a href="multiple-regression-analysis.html#cb301-14" aria-hidden="true" tabindex="-1"></a><span class="do">## group3      -23.18269  10.523155 -2.2030173 3.491209e-02</span></span></code></pre></div>
 <p>Change the reference group for dummy coding.</p>
 <p>Manually setting the contrasts.</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="multiple-regression-analysis.html#cb301-1" aria-hidden="true" tabindex="-1"></a>Catholic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb301-2"><a href="multiple-regression-analysis.html#cb301-2" aria-hidden="true" tabindex="-1"></a>Jewish <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb301-3"><a href="multiple-regression-analysis.html#cb301-3" aria-hidden="true" tabindex="-1"></a>Other <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb301-4"><a href="multiple-regression-analysis.html#cb301-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Catholic, Jewish, Other) <span class="co">#&lt;&lt;</span></span>
-<span id="cb301-5"><a href="multiple-regression-analysis.html#cb301-5" aria-hidden="true" tabindex="-1"></a>religion<span class="sc">$</span>group</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="multiple-regression-analysis.html#cb302-1" aria-hidden="true" tabindex="-1"></a>Catholic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb302-2"><a href="multiple-regression-analysis.html#cb302-2" aria-hidden="true" tabindex="-1"></a>Jewish <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb302-3"><a href="multiple-regression-analysis.html#cb302-3" aria-hidden="true" tabindex="-1"></a>Other <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb302-4"><a href="multiple-regression-analysis.html#cb302-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Catholic, Jewish, Other) <span class="co">#&lt;&lt;</span></span>
+<span id="cb302-5"><a href="multiple-regression-analysis.html#cb302-5" aria-hidden="true" tabindex="-1"></a>religion<span class="sc">$</span>group</span></code></pre></div>
 <pre><code>##  [1] C O P C C O P C O O C O P C P C C J O C P J P P J O P O J P P P J P J P
 ## attr(,&quot;contrasts&quot;)
 ##   Catholic Jewish Other
@@ -3987,8 +3993,8 @@ Other
 ## O        0      0     1
 ## P        0      0     0
 ## Levels: C J O P</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="multiple-regression-analysis.html#cb303-1" aria-hidden="true" tabindex="-1"></a>mymodel3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion)</span>
-<span id="cb303-2"><a href="multiple-regression-analysis.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel3)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="multiple-regression-analysis.html#cb304-1" aria-hidden="true" tabindex="-1"></a>mymodel3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion)</span>
+<span id="cb304-2"><a href="multiple-regression-analysis.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel3)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##                Estimate Std. Error    t value     Pr(&gt;|t|)
 ## (Intercept)    93.30769   6.495032 14.3660093 1.664683e-15
 ## groupCatholic -32.64103  10.154800 -3.2143444 2.982232e-03
@@ -4011,7 +4017,7 @@ Other
 <p>The reference point is the unweighted mean of all of the group means, which is the intercept. The unstandardized regression coefficients represent the difference between each group’s mean and the unweighted mean. You must select a base group (a group for which comparisons with the mean are of least interest) and assign that group a value of -1. The results of multiple regression do not directly inform us about this base group (e.g., control) but may be obtained through subtraction. Useful with experimental designs.</p>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-142">Table 5.5: </span>Effect Coding
+<span id="tab:unnamed-chunk-149">Table 5.5: </span>Effect Coding
 </caption>
 <thead>
 <tr>
@@ -4107,45 +4113,45 @@ Other
 <li><p>Other: 70.12 – 81.90 = -11.78</p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="multiple-regression-analysis.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain the mean of `ata` by religion group</span></span>
-<span id="cb305-2"><a href="multiple-regression-analysis.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(religion<span class="sc">$</span>ata, <span class="at">by =</span> <span class="fu">list</span>(religion<span class="sc">$</span>group), <span class="at">FUN =</span> mean) </span>
-<span id="cb305-3"><a href="multiple-regression-analysis.html#cb305-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   Group.1         x</span></span>
-<span id="cb305-4"><a href="multiple-regression-analysis.html#cb305-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1       C  60.66667</span></span>
-<span id="cb305-5"><a href="multiple-regression-analysis.html#cb305-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2       J 103.50000</span></span>
-<span id="cb305-6"><a href="multiple-regression-analysis.html#cb305-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3       O  70.12500</span></span>
-<span id="cb305-7"><a href="multiple-regression-analysis.html#cb305-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 4       P  93.30769</span></span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="multiple-regression-analysis.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain the mean of `ata` by religion group</span></span>
+<span id="cb306-2"><a href="multiple-regression-analysis.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(religion<span class="sc">$</span>ata, <span class="at">by =</span> <span class="fu">list</span>(religion<span class="sc">$</span>group), <span class="at">FUN =</span> mean) </span>
+<span id="cb306-3"><a href="multiple-regression-analysis.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   Group.1         x</span></span>
+<span id="cb306-4"><a href="multiple-regression-analysis.html#cb306-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1       C  60.66667</span></span>
+<span id="cb306-5"><a href="multiple-regression-analysis.html#cb306-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2       J 103.50000</span></span>
+<span id="cb306-6"><a href="multiple-regression-analysis.html#cb306-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3       O  70.12500</span></span>
+<span id="cb306-7"><a href="multiple-regression-analysis.html#cb306-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 4       P  93.30769</span></span></code></pre></div>
 <p>In R, effect coding is called “sum contrasts” (i.e., contrasts sum up to zero). Use the <code>contr.sum</code> function in the <code>memisc</code> package.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="multiple-regression-analysis.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(memisc)</span></span>
-<span id="cb306-2"><a href="multiple-regression-analysis.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="ot">&lt;-</span> memisc<span class="sc">::</span><span class="fu">contr.sum</span>(<span class="at">n=</span><span class="dv">4</span>, <span class="at">base=</span><span class="dv">4</span>) <span class="co"># &quot;religion&quot; has four groups: C, J, O, P</span></span>
-<span id="cb306-3"><a href="multiple-regression-analysis.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="co"># Protestant is the reference group</span></span>
-<span id="cb306-4"><a href="multiple-regression-analysis.html#cb306-4" aria-hidden="true" tabindex="-1"></a><span class="do">##    1  2  3</span></span>
-<span id="cb306-5"><a href="multiple-regression-analysis.html#cb306-5" aria-hidden="true" tabindex="-1"></a><span class="do">## C  1  0  0</span></span>
-<span id="cb306-6"><a href="multiple-regression-analysis.html#cb306-6" aria-hidden="true" tabindex="-1"></a><span class="do">## J  0  1  0</span></span>
-<span id="cb306-7"><a href="multiple-regression-analysis.html#cb306-7" aria-hidden="true" tabindex="-1"></a><span class="do">## O  0  0  1</span></span>
-<span id="cb306-8"><a href="multiple-regression-analysis.html#cb306-8" aria-hidden="true" tabindex="-1"></a><span class="do">## P -1 -1 -1</span></span>
-<span id="cb306-9"><a href="multiple-regression-analysis.html#cb306-9" aria-hidden="true" tabindex="-1"></a>mymodel4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion)</span>
-<span id="cb306-10"><a href="multiple-regression-analysis.html#cb306-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel4)<span class="sc">$</span>coefficients</span>
-<span id="cb306-11"><a href="multiple-regression-analysis.html#cb306-11" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate Std. Error   t value     Pr(&gt;|t|)</span></span>
-<span id="cb306-12"><a href="multiple-regression-analysis.html#cb306-12" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)  81.89984   4.054882 20.197835 8.897761e-20</span></span>
-<span id="cb306-13"><a href="multiple-regression-analysis.html#cb306-13" aria-hidden="true" tabindex="-1"></a><span class="do">## group1      -21.23317   6.849039 -3.100168 4.015602e-03</span></span>
-<span id="cb306-14"><a href="multiple-regression-analysis.html#cb306-14" aria-hidden="true" tabindex="-1"></a><span class="do">## group2       21.60016   7.883081  2.740066 9.961199e-03</span></span>
-<span id="cb306-15"><a href="multiple-regression-analysis.html#cb306-15" aria-hidden="true" tabindex="-1"></a><span class="do">## group3      -11.77484   7.121639 -1.653389 1.080306e-01</span></span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="multiple-regression-analysis.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(memisc)</span></span>
+<span id="cb307-2"><a href="multiple-regression-analysis.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="ot">&lt;-</span> memisc<span class="sc">::</span><span class="fu">contr.sum</span>(<span class="at">n=</span><span class="dv">4</span>, <span class="at">base=</span><span class="dv">4</span>) <span class="co"># &quot;religion&quot; has four groups: C, J, O, P</span></span>
+<span id="cb307-3"><a href="multiple-regression-analysis.html#cb307-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="co"># Protestant is the reference group</span></span>
+<span id="cb307-4"><a href="multiple-regression-analysis.html#cb307-4" aria-hidden="true" tabindex="-1"></a><span class="do">##    1  2  3</span></span>
+<span id="cb307-5"><a href="multiple-regression-analysis.html#cb307-5" aria-hidden="true" tabindex="-1"></a><span class="do">## C  1  0  0</span></span>
+<span id="cb307-6"><a href="multiple-regression-analysis.html#cb307-6" aria-hidden="true" tabindex="-1"></a><span class="do">## J  0  1  0</span></span>
+<span id="cb307-7"><a href="multiple-regression-analysis.html#cb307-7" aria-hidden="true" tabindex="-1"></a><span class="do">## O  0  0  1</span></span>
+<span id="cb307-8"><a href="multiple-regression-analysis.html#cb307-8" aria-hidden="true" tabindex="-1"></a><span class="do">## P -1 -1 -1</span></span>
+<span id="cb307-9"><a href="multiple-regression-analysis.html#cb307-9" aria-hidden="true" tabindex="-1"></a>mymodel4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion)</span>
+<span id="cb307-10"><a href="multiple-regression-analysis.html#cb307-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel4)<span class="sc">$</span>coefficients</span>
+<span id="cb307-11"><a href="multiple-regression-analysis.html#cb307-11" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate Std. Error   t value     Pr(&gt;|t|)</span></span>
+<span id="cb307-12"><a href="multiple-regression-analysis.html#cb307-12" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)  81.89984   4.054882 20.197835 8.897761e-20</span></span>
+<span id="cb307-13"><a href="multiple-regression-analysis.html#cb307-13" aria-hidden="true" tabindex="-1"></a><span class="do">## group1      -21.23317   6.849039 -3.100168 4.015602e-03</span></span>
+<span id="cb307-14"><a href="multiple-regression-analysis.html#cb307-14" aria-hidden="true" tabindex="-1"></a><span class="do">## group2       21.60016   7.883081  2.740066 9.961199e-03</span></span>
+<span id="cb307-15"><a href="multiple-regression-analysis.html#cb307-15" aria-hidden="true" tabindex="-1"></a><span class="do">## group3      -11.77484   7.121639 -1.653389 1.080306e-01</span></span></code></pre></div>
 <p>Manually setting the sum contrasts</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="multiple-regression-analysis.html#cb307-1" aria-hidden="true" tabindex="-1"></a>Catholic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb307-2"><a href="multiple-regression-analysis.html#cb307-2" aria-hidden="true" tabindex="-1"></a>Jewish <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb307-3"><a href="multiple-regression-analysis.html#cb307-3" aria-hidden="true" tabindex="-1"></a>Other <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb307-4"><a href="multiple-regression-analysis.html#cb307-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Catholic, Jewish, Other) </span>
-<span id="cb307-5"><a href="multiple-regression-analysis.html#cb307-5" aria-hidden="true" tabindex="-1"></a>religion<span class="sc">$</span>group</span>
-<span id="cb307-6"><a href="multiple-regression-analysis.html#cb307-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] C O P C C O P C O O C O P C P C C J O C P J P P J O P O J P P P J P J P</span></span>
-<span id="cb307-7"><a href="multiple-regression-analysis.html#cb307-7" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;contrasts&quot;)</span></span>
-<span id="cb307-8"><a href="multiple-regression-analysis.html#cb307-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   Catholic Jewish Other</span></span>
-<span id="cb307-9"><a href="multiple-regression-analysis.html#cb307-9" aria-hidden="true" tabindex="-1"></a><span class="do">## C        1      0     0</span></span>
-<span id="cb307-10"><a href="multiple-regression-analysis.html#cb307-10" aria-hidden="true" tabindex="-1"></a><span class="do">## J        0      1     0</span></span>
-<span id="cb307-11"><a href="multiple-regression-analysis.html#cb307-11" aria-hidden="true" tabindex="-1"></a><span class="do">## O        0      0     1</span></span>
-<span id="cb307-12"><a href="multiple-regression-analysis.html#cb307-12" aria-hidden="true" tabindex="-1"></a><span class="do">## P       -1     -1    -1</span></span>
-<span id="cb307-13"><a href="multiple-regression-analysis.html#cb307-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Levels: C J O P</span></span></code></pre></div>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="multiple-regression-analysis.html#cb308-1" aria-hidden="true" tabindex="-1"></a>mymodel5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion)</span>
-<span id="cb308-2"><a href="multiple-regression-analysis.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel5)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="multiple-regression-analysis.html#cb308-1" aria-hidden="true" tabindex="-1"></a>Catholic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb308-2"><a href="multiple-regression-analysis.html#cb308-2" aria-hidden="true" tabindex="-1"></a>Jewish <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb308-3"><a href="multiple-regression-analysis.html#cb308-3" aria-hidden="true" tabindex="-1"></a>Other <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb308-4"><a href="multiple-regression-analysis.html#cb308-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(religion<span class="sc">$</span>group) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Catholic, Jewish, Other) </span>
+<span id="cb308-5"><a href="multiple-regression-analysis.html#cb308-5" aria-hidden="true" tabindex="-1"></a>religion<span class="sc">$</span>group</span>
+<span id="cb308-6"><a href="multiple-regression-analysis.html#cb308-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] C O P C C O P C O O C O P C P C C J O C P J P P J O P O J P P P J P J P</span></span>
+<span id="cb308-7"><a href="multiple-regression-analysis.html#cb308-7" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;contrasts&quot;)</span></span>
+<span id="cb308-8"><a href="multiple-regression-analysis.html#cb308-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   Catholic Jewish Other</span></span>
+<span id="cb308-9"><a href="multiple-regression-analysis.html#cb308-9" aria-hidden="true" tabindex="-1"></a><span class="do">## C        1      0     0</span></span>
+<span id="cb308-10"><a href="multiple-regression-analysis.html#cb308-10" aria-hidden="true" tabindex="-1"></a><span class="do">## J        0      1     0</span></span>
+<span id="cb308-11"><a href="multiple-regression-analysis.html#cb308-11" aria-hidden="true" tabindex="-1"></a><span class="do">## O        0      0     1</span></span>
+<span id="cb308-12"><a href="multiple-regression-analysis.html#cb308-12" aria-hidden="true" tabindex="-1"></a><span class="do">## P       -1     -1    -1</span></span>
+<span id="cb308-13"><a href="multiple-regression-analysis.html#cb308-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Levels: C J O P</span></span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="multiple-regression-analysis.html#cb309-1" aria-hidden="true" tabindex="-1"></a>mymodel5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ata <span class="sc">~</span> group, <span class="at">data=</span>religion)</span>
+<span id="cb309-2"><a href="multiple-regression-analysis.html#cb309-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel5)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##                Estimate Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept)    81.89984   4.054882 20.197835 8.897761e-20
 ## groupCatholic -21.23317   6.849039 -3.100168 4.015602e-03
@@ -4177,9 +4183,9 @@ Other
 </div>
 <div id="create-apa-tables-with-apatables-package" class="section level2" number="5.15">
 <h2><span class="header-section-number">5.15</span> Create APA Tables with <code>apaTables</code> Package</h2>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="multiple-regression-analysis.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.cor.table</span>(iris, <span class="at">filename=</span><span class="st">&quot;output/Table1_APA.doc&quot;</span>, <span class="at">table.number =</span> <span class="dv">1</span>) <span class="co"># filename must end in .rtf or .doc only)</span></span>
-<span id="cb310-2"><a href="multiple-regression-analysis.html#cb310-2" aria-hidden="true" tabindex="-1"></a>reg.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> adverts <span class="sc">+</span> airplay, <span class="at">data =</span> album) <span class="co"># The &quot;album&quot; dataset comes with the &quot;apaTables&quot; package</span></span>
-<span id="cb310-3"><a href="multiple-regression-analysis.html#cb310-3" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.reg.table</span>(reg.model, <span class="at">filename =</span> <span class="st">&quot;output/Table2_APA.doc&quot;</span>, <span class="at">table.number =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="multiple-regression-analysis.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.cor.table</span>(iris, <span class="at">filename=</span><span class="st">&quot;output/Table1_APA.doc&quot;</span>, <span class="at">table.number =</span> <span class="dv">1</span>) <span class="co"># filename must end in .rtf or .doc only)</span></span>
+<span id="cb311-2"><a href="multiple-regression-analysis.html#cb311-2" aria-hidden="true" tabindex="-1"></a>reg.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> adverts <span class="sc">+</span> airplay, <span class="at">data =</span> album) <span class="co"># The &quot;album&quot; dataset comes with the &quot;apaTables&quot; package</span></span>
+<span id="cb311-3"><a href="multiple-regression-analysis.html#cb311-3" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.reg.table</span>(reg.model, <span class="at">filename =</span> <span class="st">&quot;output/Table2_APA.doc&quot;</span>, <span class="at">table.number =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p>For more examples, check <a href="https://cran.r-project.org/web/packages/apaTables/vignettes/apaTables.html">apaTables vignettes</a></p>
 
 </div>

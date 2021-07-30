@@ -24,7 +24,7 @@
 <meta name="author" content="Ze Wang" />
 
 
-<meta name="date" content="2021-07-19" />
+<meta name="date" content="2021-07-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,8 @@
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -421,7 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="analysis-of-covariance" class="section level1" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Analysis of Covariance</h1>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="analysis-of-covariance.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(QuantPsyc); <span class="fu">library</span>(psych); <span class="fu">library</span>(car); <span class="fu">library</span>(memisc); <span class="fu">library</span>(multcomp)</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="analysis-of-covariance.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(QuantPsyc); <span class="fu">library</span>(psych); <span class="fu">library</span>(car); <span class="fu">library</span>(memisc); <span class="fu">library</span>(multcomp)</span></code></pre></div>
 <ul>
 <li><p>One-way ANCOVA is used to describe the differences in predicted outcomes for a single dependent variable among multiple groups.</p></li>
 <li><p>The design has one treatment factor that represents group membership, a continuous independent variable, and a continuous dependent measure.</p></li>
@@ -674,8 +676,8 @@ Mean
 </tbody>
 </table>
 <p>Run a t-test comparing the two treatment groups.</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="analysis-of-covariance.html#cb442-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/ancova_example.sav&quot;</span>)</span>
-<span id="cb442-2"><a href="analysis-of-covariance.html#cb442-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat)</span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="analysis-of-covariance.html#cb443-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/ancova_example.sav&quot;</span>)</span>
+<span id="cb443-2"><a href="analysis-of-covariance.html#cb443-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat)</span></code></pre></div>
 <pre><code>##   treatment achieve  IQ ach_mean iq_mean achmsqrd    iqmsqrd     cross
 ## 1         1      23 100    -8.17 -12.125  66.7489 147.015625  99.06125
 ## 2         1      31 113    -0.17   0.875   0.0289   0.765625  -0.14875
@@ -683,7 +685,7 @@ Mean
 ## 4         1      28 110    -3.17  -2.125  10.0489   4.515625   6.73625
 ## 5         1      40 124     8.83  11.875  77.9689 141.015625 104.85625
 ## 6         1      42 135    10.83  22.875 117.2889 523.265625 247.73625</code></pre>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="analysis-of-covariance.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(dat<span class="sc">$</span>achieve <span class="sc">~</span> dat<span class="sc">$</span>treatment, <span class="at">var.equal =</span> <span class="cn">TRUE</span>) <span class="co"># assume equal variance between groups</span></span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="analysis-of-covariance.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(dat<span class="sc">$</span>achieve <span class="sc">~</span> dat<span class="sc">$</span>treatment, <span class="at">var.equal =</span> <span class="cn">TRUE</span>) <span class="co"># assume equal variance between groups</span></span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -695,18 +697,18 @@ Mean
 ## sample estimates:
 ## mean in group 1 mean in group 2 
 ##        33.50000        28.83333</code></pre>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="analysis-of-covariance.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t.test(dat$achieve ~ dat$treatment, var.equal = FALSE) # equal variance between groups not assumed. This is default.</span></span>
-<span id="cb446-2"><a href="analysis-of-covariance.html#cb446-2" aria-hidden="true" tabindex="-1"></a><span class="co"># leveneTest(dat$achieve ~ as.factor(dat$treatment)) # test equality of variance between groups</span></span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="analysis-of-covariance.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t.test(dat$achieve ~ dat$treatment, var.equal = FALSE) # equal variance between groups not assumed. This is default.</span></span>
+<span id="cb447-2"><a href="analysis-of-covariance.html#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="co"># leveneTest(dat$achieve ~ as.factor(dat$treatment)) # test equality of variance between groups</span></span></code></pre></div>
 <p><strong>Example:</strong> If we are conducting a study in which we are interested in treatment effects on an achievement variable and we see that IQ is positively correlated with achievement (r = .60). By squaring the correlation between IQ and achievement, we see that IQ accounts for 36% of the within group variance in achievement. We are only interested in the effects of treatment. ANCOVA luckily removes the part of the variance due to IQ. It controls for the effects of IQ.</p>
 <p><strong>Run an ANOVA</strong></p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="analysis-of-covariance.html#cb447-1" aria-hidden="true" tabindex="-1"></a>model.anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(achieve <span class="sc">~</span> <span class="fu">as.factor</span>(treatment), <span class="at">data =</span> dat)</span>
-<span id="cb447-2"><a href="analysis-of-covariance.html#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.anova)</span></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="analysis-of-covariance.html#cb448-1" aria-hidden="true" tabindex="-1"></a>model.anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(achieve <span class="sc">~</span> <span class="fu">as.factor</span>(treatment), <span class="at">data =</span> dat)</span>
+<span id="cb448-2"><a href="analysis-of-covariance.html#cb448-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.anova)</span></code></pre></div>
 <pre><code>##                      Df Sum Sq Mean Sq F value Pr(&gt;F)
 ## as.factor(treatment)  1  130.7  130.67   2.805  0.108
 ## Residuals            22 1024.7   46.58</code></pre>
 <p><strong>Run an ANCOVA</strong></p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="analysis-of-covariance.html#cb449-1" aria-hidden="true" tabindex="-1"></a>model.ancova <span class="ot">&lt;-</span> <span class="fu">aov</span>(achieve <span class="sc">~</span> IQ <span class="sc">+</span> <span class="fu">as.factor</span>(treatment), <span class="at">data =</span> dat) <span class="co"># Type I Sums of Squares. Order of entry matters!</span></span>
-<span id="cb449-2"><a href="analysis-of-covariance.html#cb449-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.ancova)</span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="analysis-of-covariance.html#cb450-1" aria-hidden="true" tabindex="-1"></a>model.ancova <span class="ot">&lt;-</span> <span class="fu">aov</span>(achieve <span class="sc">~</span> IQ <span class="sc">+</span> <span class="fu">as.factor</span>(treatment), <span class="at">data =</span> dat) <span class="co"># Type I Sums of Squares. Order of entry matters!</span></span>
+<span id="cb450-2"><a href="analysis-of-covariance.html#cb450-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.ancova)</span></code></pre></div>
 <pre><code>##                      Df Sum Sq Mean Sq F value  Pr(&gt;F)    
 ## IQ                    1  711.2   711.2   41.76 2.1e-06 ***
 ## as.factor(treatment)  1   86.5    86.5    5.08   0.035 *  
@@ -806,19 +808,19 @@ Mean
 - Dependent variable: Reading achievement (RA)
 - Independent variable: Training condition (a = control, b = non-parental, c = parental)
 - Covariate: Initial reading experience (IRE)</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="analysis-of-covariance.html#cb454-1" aria-hidden="true" tabindex="-1"></a>reading <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">33</span>,<span class="dv">34</span>,<span class="dv">35</span>,<span class="dv">44</span>,<span class="dv">48</span>,<span class="dv">43</span>,<span class="dv">51</span>,<span class="dv">46</span>,<span class="dv">38</span>,<span class="dv">44</span>,<span class="dv">46</span>,<span class="dv">42</span>,<span class="dv">54</span>,<span class="dv">43</span>)</span>
-<span id="cb454-2"><a href="analysis-of-covariance.html#cb454-2" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="at">each =</span> <span class="dv">5</span>))</span>
-<span id="cb454-3"><a href="analysis-of-covariance.html#cb454-3" aria-hidden="true" tabindex="-1"></a>init.read <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">37</span>,<span class="dv">23</span>,<span class="dv">30</span>,<span class="dv">35</span>,<span class="dv">41</span>,<span class="dv">45</span>,<span class="dv">40</span>,<span class="dv">44</span>,<span class="dv">45</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">41</span>,<span class="dv">37</span>,<span class="dv">51</span>,<span class="dv">39</span>)</span>
-<span id="cb454-4"><a href="analysis-of-covariance.html#cb454-4" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(reading, groups, init.read)</span>
-<span id="cb454-5"><a href="analysis-of-covariance.html#cb454-5" aria-hidden="true" tabindex="-1"></a>model.anova<span class="ot">&lt;-</span><span class="fu">aov</span>(reading <span class="sc">~</span> groups, <span class="at">data =</span> dat)</span>
-<span id="cb454-6"><a href="analysis-of-covariance.html#cb454-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.anova)</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="analysis-of-covariance.html#cb455-1" aria-hidden="true" tabindex="-1"></a>reading <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">33</span>,<span class="dv">34</span>,<span class="dv">35</span>,<span class="dv">44</span>,<span class="dv">48</span>,<span class="dv">43</span>,<span class="dv">51</span>,<span class="dv">46</span>,<span class="dv">38</span>,<span class="dv">44</span>,<span class="dv">46</span>,<span class="dv">42</span>,<span class="dv">54</span>,<span class="dv">43</span>)</span>
+<span id="cb455-2"><a href="analysis-of-covariance.html#cb455-2" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="at">each =</span> <span class="dv">5</span>))</span>
+<span id="cb455-3"><a href="analysis-of-covariance.html#cb455-3" aria-hidden="true" tabindex="-1"></a>init.read <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">37</span>,<span class="dv">23</span>,<span class="dv">30</span>,<span class="dv">35</span>,<span class="dv">41</span>,<span class="dv">45</span>,<span class="dv">40</span>,<span class="dv">44</span>,<span class="dv">45</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">41</span>,<span class="dv">37</span>,<span class="dv">51</span>,<span class="dv">39</span>)</span>
+<span id="cb455-4"><a href="analysis-of-covariance.html#cb455-4" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(reading, groups, init.read)</span>
+<span id="cb455-5"><a href="analysis-of-covariance.html#cb455-5" aria-hidden="true" tabindex="-1"></a>model.anova<span class="ot">&lt;-</span><span class="fu">aov</span>(reading <span class="sc">~</span> groups, <span class="at">data =</span> dat)</span>
+<span id="cb455-6"><a href="analysis-of-covariance.html#cb455-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.anova)</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
 ## groups       2  230.5   115.3   4.968 0.0268 *
 ## Residuals   12  278.4    23.2                 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="analysis-of-covariance.html#cb456-1" aria-hidden="true" tabindex="-1"></a>model.ancova<span class="ot">&lt;-</span><span class="fu">aov</span>(reading <span class="sc">~</span> init.read <span class="sc">+</span> groups, <span class="at">data =</span> dat) <span class="co">#&lt;&lt;</span></span>
-<span id="cb456-2"><a href="analysis-of-covariance.html#cb456-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.ancova)</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="analysis-of-covariance.html#cb457-1" aria-hidden="true" tabindex="-1"></a>model.ancova<span class="ot">&lt;-</span><span class="fu">aov</span>(reading <span class="sc">~</span> init.read <span class="sc">+</span> groups, <span class="at">data =</span> dat) <span class="co">#&lt;&lt;</span></span>
+<span id="cb457-2"><a href="analysis-of-covariance.html#cb457-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.ancova)</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## init.read    1  443.6   443.6 101.222 6.96e-07 ***
 ## groups       2   17.1     8.6   1.956    0.188    
@@ -827,7 +829,7 @@ Mean
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div id="assumptions---normality" class="section level3" number="8.5.1">
 <h3><span class="header-section-number">8.5.1</span> Assumptions - Normality</h3>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="analysis-of-covariance.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(dat<span class="sc">$</span>reading, groups, shapiro.test) <span class="co"># Testing each grouop separately</span></span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="analysis-of-covariance.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(dat<span class="sc">$</span>reading, groups, shapiro.test) <span class="co"># Testing each grouop separately</span></span></code></pre></div>
 <pre><code>## $a
 ## 
 ##  Shapiro-Wilk normality test
@@ -850,12 +852,12 @@ Mean
 ## 
 ## data:  X[[i]]
 ## W = 0.81558, p-value = 0.1079</code></pre>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="analysis-of-covariance.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tapply(dat$init.read, groups, shapiro.test)</span></span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="analysis-of-covariance.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tapply(dat$init.read, groups, shapiro.test)</span></span></code></pre></div>
 </div>
 <div id="assumptions---homogeneity-of-variance" class="section level3" number="8.5.2">
 <h3><span class="header-section-number">8.5.2</span> Assumptions - Homogeneity of Variance</h3>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="analysis-of-covariance.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(car)</span></span>
-<span id="cb461-2"><a href="analysis-of-covariance.html#cb461-2" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(reading <span class="sc">~</span> groups, <span class="at">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="analysis-of-covariance.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(car)</span></span>
+<span id="cb462-2"><a href="analysis-of-covariance.html#cb462-2" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(reading <span class="sc">~</span> groups, <span class="at">data =</span> dat)</span></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##       Df F value Pr(&gt;F)
 ## group  2  0.0363 0.9645
@@ -864,7 +866,7 @@ Mean
 <div id="assumptions---independence-of-the-covariate-and-the-independent-variable" class="section level3" number="8.5.3">
 <h3><span class="header-section-number">8.5.3</span> Assumptions - Independence of the covariate and the independent variable</h3>
 <p>This assumption can be tested using a regression model where the covariate is used as the outcome. Non-significant terms indicate independence.</p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="analysis-of-covariance.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(init.read <span class="sc">~</span> groups, <span class="at">data =</span> dat))</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="analysis-of-covariance.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(init.read <span class="sc">~</span> groups, <span class="at">data =</span> dat))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = init.read ~ groups, data = dat)
@@ -888,8 +890,8 @@ Mean
 <div id="assumptions---homogeneity-of-regression-slopes" class="section level3" number="8.5.4">
 <h3><span class="header-section-number">8.5.4</span> Assumptions - Homogeneity of regression slopes</h3>
 <p>Homogeneity of regression slopes can be tested through including an interaction term in the ANCOVA model. A non-significant interaction term indicates equal regression slopes.</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="analysis-of-covariance.html#cb465-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> init.read<span class="sc">*</span> groups, <span class="at">data =</span> dat)</span>
-<span id="cb465-2"><a href="analysis-of-covariance.html#cb465-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="analysis-of-covariance.html#cb466-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> init.read<span class="sc">*</span> groups, <span class="at">data =</span> dat)</span>
+<span id="cb466-2"><a href="analysis-of-covariance.html#cb466-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
 <pre><code>##                  Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## init.read         1  443.6   443.6  95.269 4.38e-06 ***
 ## groups            2   17.1     8.6   1.841    0.214    
@@ -897,7 +899,7 @@ Mean
 ## Residuals         9   41.9     4.7                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="analysis-of-covariance.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(model2, <span class="at">type =</span> <span class="st">&quot;III&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="analysis-of-covariance.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(model2, <span class="at">type =</span> <span class="st">&quot;III&quot;</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: reading
@@ -909,17 +911,17 @@ Mean
 ## Residuals        41.905  9                    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="analysis-of-covariance.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat, <span class="fu">aes</span>(<span class="at">x=</span>init.read, <span class="at">y=</span>reading, <span class="at">group=</span>groups, <span class="at">color=</span>groups)) <span class="sc">+</span> </span>
-<span id="cb469-2"><a href="analysis-of-covariance.html#cb469-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb469-3"><a href="analysis-of-covariance.html#cb469-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-241-1.png" width="45%" /></p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="analysis-of-covariance.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat, <span class="fu">aes</span>(<span class="at">x=</span>init.read, <span class="at">y=</span>reading, <span class="at">group=</span>groups, <span class="at">color=</span>groups)) <span class="sc">+</span> </span>
+<span id="cb470-2"><a href="analysis-of-covariance.html#cb470-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb470-3"><a href="analysis-of-covariance.html#cb470-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-248-1.png" width="45%" /></p>
 </div>
 </div>
 <div id="post-hoc-tests-using-the-multcomp-package" class="section level2" number="8.6">
 <h2><span class="header-section-number">8.6</span> Post-hoc Tests using the <code>multcomp</code> package</h2>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="analysis-of-covariance.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(multcomp)</span></span>
-<span id="cb470-2"><a href="analysis-of-covariance.html#cb470-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">glht</span>(model.ancova, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">groups =</span> <span class="st">&quot;Tukey&quot;</span>))</span>
-<span id="cb470-3"><a href="analysis-of-covariance.html#cb470-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="analysis-of-covariance.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(multcomp)</span></span>
+<span id="cb471-2"><a href="analysis-of-covariance.html#cb471-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">glht</span>(model.ancova, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">groups =</span> <span class="st">&quot;Tukey&quot;</span>))</span>
+<span id="cb471-3"><a href="analysis-of-covariance.html#cb471-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -935,16 +937,16 @@ Mean
 ## c - b == 0  0.04297    1.32621   0.032    0.999
 ## (Adjusted p values reported -- single-step method)</code></pre>
 <p>User-defined contrasts:</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="analysis-of-covariance.html#cb472-1" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span><span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>), <span class="co"># compares control versus mean of both treatment groups</span></span>
-<span id="cb472-2"><a href="analysis-of-covariance.html#cb472-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># compares means of treatment 1 and 2</span></span>
-<span id="cb472-3"><a href="analysis-of-covariance.html#cb472-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(K) <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;control vs ave.treatment&quot;</span>, <span class="st">&quot;treatment 2 vs treatment 1&quot;</span>)</span>
-<span id="cb472-4"><a href="analysis-of-covariance.html#cb472-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(K) <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;Group A&quot;</span>, <span class="st">&quot;Group B&quot;</span>, <span class="st">&quot;Group C&quot;</span>)</span>
-<span id="cb472-5"><a href="analysis-of-covariance.html#cb472-5" aria-hidden="true" tabindex="-1"></a>K</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="analysis-of-covariance.html#cb473-1" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span><span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>), <span class="co"># compares control versus mean of both treatment groups</span></span>
+<span id="cb473-2"><a href="analysis-of-covariance.html#cb473-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># compares means of treatment 1 and 2</span></span>
+<span id="cb473-3"><a href="analysis-of-covariance.html#cb473-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(K) <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;control vs ave.treatment&quot;</span>, <span class="st">&quot;treatment 2 vs treatment 1&quot;</span>)</span>
+<span id="cb473-4"><a href="analysis-of-covariance.html#cb473-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(K) <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;Group A&quot;</span>, <span class="st">&quot;Group B&quot;</span>, <span class="st">&quot;Group C&quot;</span>)</span>
+<span id="cb473-5"><a href="analysis-of-covariance.html#cb473-5" aria-hidden="true" tabindex="-1"></a>K</span></code></pre></div>
 <pre><code>##                            Group A Group B Group C
 ## control vs ave.treatment         1    -0.5    -0.5
 ## treatment 2 vs treatment 1       0    -1.0     1.0</code></pre>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="analysis-of-covariance.html#cb474-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span><span class="fu">glht</span>(model.ancova, <span class="at">linfct=</span> <span class="fu">mcp</span>(<span class="at">groups =</span> K))</span>
-<span id="cb474-2"><a href="analysis-of-covariance.html#cb474-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="analysis-of-covariance.html#cb475-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span><span class="fu">glht</span>(model.ancova, <span class="at">linfct=</span> <span class="fu">mcp</span>(<span class="at">groups =</span> K))</span>
+<span id="cb475-2"><a href="analysis-of-covariance.html#cb475-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -1186,11 +1188,11 @@ Group C
 </table>
 <p>ANCOVA can be re-characterized as model selection problem:</p>
 <p><strong>Step 1</strong>: Estimate a base model that incorporates all covariates.</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="analysis-of-covariance.html#cb476-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span><span class="fu">lm</span>(reading <span class="sc">~</span> init.read, <span class="at">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="analysis-of-covariance.html#cb477-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span><span class="fu">lm</span>(reading <span class="sc">~</span> init.read, <span class="at">data =</span> dat)</span></code></pre></div>
 <p><strong>Step 2</strong>: Add the independent variable of interest to the model.</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="analysis-of-covariance.html#cb477-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span><span class="fu">lm</span>(reading <span class="sc">~</span> init.read <span class="sc">+</span> groups, <span class="at">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="analysis-of-covariance.html#cb478-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span><span class="fu">lm</span>(reading <span class="sc">~</span> init.read <span class="sc">+</span> groups, <span class="at">data =</span> dat)</span></code></pre></div>
 <p><strong>Step 3</strong>: Check whether the independent variable contributes to predicting the outcome.</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="analysis-of-covariance.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m0, m1)</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="analysis-of-covariance.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m0, m1)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: reading ~ init.read
@@ -1198,14 +1200,14 @@ Group C
 ##   Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
 ## 1     13 65.347                           
 ## 2     11 48.205  2    17.141 1.9557 0.1876</code></pre>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="analysis-of-covariance.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>groups) <span class="ot">&lt;-</span> <span class="fu">contr.treatment</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">base =</span> <span class="dv">1</span>)</span>
-<span id="cb480-2"><a href="analysis-of-covariance.html#cb480-2" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span><span class="fu">lm</span>(reading <span class="sc">~</span> init.read <span class="sc">+</span> groups, <span class="at">data =</span> dat)</span>
-<span id="cb480-3"><a href="analysis-of-covariance.html#cb480-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>groups)</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="analysis-of-covariance.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>groups) <span class="ot">&lt;-</span> <span class="fu">contr.treatment</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">base =</span> <span class="dv">1</span>)</span>
+<span id="cb481-2"><a href="analysis-of-covariance.html#cb481-2" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span><span class="fu">lm</span>(reading <span class="sc">~</span> init.read <span class="sc">+</span> groups, <span class="at">data =</span> dat)</span>
+<span id="cb481-3"><a href="analysis-of-covariance.html#cb481-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>groups)</span></code></pre></div>
 <pre><code>##   2 3
 ## a 0 0
 ## b 1 0
 ## c 0 1</code></pre>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="analysis-of-covariance.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="analysis-of-covariance.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = reading ~ init.read + groups, data = dat)
@@ -1226,7 +1228,7 @@ Group C
 ## Residual standard error: 2.093 on 11 degrees of freedom
 ## Multiple R-squared:  0.9053, Adjusted R-squared:  0.8794 
 ## F-statistic: 35.04 on 3 and 11 DF,  p-value: 6.351e-06</code></pre>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="analysis-of-covariance.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model3)</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="analysis-of-covariance.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model3)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: reading
@@ -1236,14 +1238,14 @@ Group C
 ## Residuals 11  48.21    4.38                       
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="analysis-of-covariance.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>groups) <span class="ot">&lt;-</span> <span class="fu">contr.treatment</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">base =</span> <span class="dv">2</span>)</span>
-<span id="cb486-2"><a href="analysis-of-covariance.html#cb486-2" aria-hidden="true" tabindex="-1"></a>model4 <span class="ot">&lt;-</span><span class="fu">lm</span>(reading <span class="sc">~</span> init.read <span class="sc">+</span> groups, <span class="at">data =</span> dat)</span>
-<span id="cb486-3"><a href="analysis-of-covariance.html#cb486-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>groups)</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="analysis-of-covariance.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>groups) <span class="ot">&lt;-</span> <span class="fu">contr.treatment</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">base =</span> <span class="dv">2</span>)</span>
+<span id="cb487-2"><a href="analysis-of-covariance.html#cb487-2" aria-hidden="true" tabindex="-1"></a>model4 <span class="ot">&lt;-</span><span class="fu">lm</span>(reading <span class="sc">~</span> init.read <span class="sc">+</span> groups, <span class="at">data =</span> dat)</span>
+<span id="cb487-3"><a href="analysis-of-covariance.html#cb487-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>groups)</span></code></pre></div>
 <pre><code>##   1 3
 ## a 1 0
 ## b 0 0
 ## c 0 1</code></pre>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="analysis-of-covariance.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model4)</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="analysis-of-covariance.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model4)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = reading ~ init.read + groups, data = dat)
@@ -1264,7 +1266,7 @@ Group C
 ## Residual standard error: 2.093 on 11 degrees of freedom
 ## Multiple R-squared:  0.9053, Adjusted R-squared:  0.8794 
 ## F-statistic: 35.04 on 3 and 11 DF,  p-value: 6.351e-06</code></pre>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="analysis-of-covariance.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model4)</span></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="analysis-of-covariance.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model4)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: reading

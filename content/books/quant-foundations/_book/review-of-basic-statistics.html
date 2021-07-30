@@ -24,7 +24,7 @@
 <meta name="author" content="Ze Wang" />
 
 
-<meta name="date" content="2021-07-19" />
+<meta name="date" content="2021-07-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,8 @@
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -545,7 +547,7 @@ The Shapiro-Wilk test is for small to moderate samples.</p>
 <h3><span class="header-section-number">2.2.5</span> Check linearity</h3>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="review-of-basic-statistics.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat2<span class="sc">$</span>confidence, dat2<span class="sc">$</span>math)</span>
 <span id="cb111-2"><a href="review-of-basic-statistics.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(math <span class="sc">~</span> confidence, <span class="at">data =</span>dat2), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 </div>
 <div id="pearsons-product-moment-correlation" class="section level3" number="2.2.6">
 <h3><span class="header-section-number">2.2.6</span> Pearson’s product moment correlation</h3>
@@ -620,13 +622,13 @@ Need to coerce from dataframe to matrix to get both a correlation matrix and p-v
 <p>Use <code>browseURL("https://datalab.cc/rcolors")</code> to view different colors and methods to refer to them.
 Use <code>?palette</code> for palettes in R; use <code>palette()</code> for current palette</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="review-of-basic-statistics.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat1<span class="sc">$</span>value, dat1<span class="sc">$</span>math)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="review-of-basic-statistics.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat1<span class="sc">$</span>value, <span class="fu">jitter</span>(dat1<span class="sc">$</span>math)) <span class="co"># add some random noise to Y</span></span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-36-2.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-42-2.png" width="672" /></p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="review-of-basic-statistics.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat1<span class="sc">$</span>value, <span class="fu">jitter</span>(dat1<span class="sc">$</span>math), <span class="at">xlab =</span> <span class="st">&quot;Valuing Math&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Math Score&quot;</span>) <span class="co"># change labels</span></span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-36-3.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-42-3.png" width="672" /></p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="review-of-basic-statistics.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat1<span class="sc">$</span>value, <span class="fu">jitter</span>(dat1<span class="sc">$</span>math), <span class="at">xlab =</span> <span class="st">&quot;Valuing Math&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Math Score&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>) <span class="co"># change color</span></span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-36-4.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-42-4.png" width="672" /></p>
 </div>
 <div id="use-ggplot2-package" class="section level3" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> Use <code>ggplot2</code> package</h3>
@@ -639,7 +641,7 @@ Use <code>?palette</code> for palettes in R; use <code>palette()</code> for curr
 <span id="cb126-4"><a href="review-of-basic-statistics.html#cb126-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Math&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb126-5"><a href="review-of-basic-statistics.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="fu">mean</span>(dat1<span class="sc">$</span>math, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd =</span> <span class="fu">sd</span>(dat1<span class="sc">$</span>math, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="book_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 </div>
 </div>
 <div id="use-r-to-graph-a-correlation-matrix" class="section level2" number="2.4">
@@ -647,7 +649,7 @@ Use <code>?palette</code> for palettes in R; use <code>palette()</code> for curr
 <div id="use-plot-1" class="section level3" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Use <code>plot()</code></h3>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="review-of-basic-statistics.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat1[,var])</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 </div>
 <div id="use-ggplot" class="section level3" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> Use <code>ggplot()</code></h3>
@@ -662,10 +664,11 @@ Use <code>?palette</code> for palettes in R; use <code>palette()</code> for curr
 ## value       0.036903141 0.16511215  0.1020825  0.3753560 1.00000000 0.366637734
 ## belonging   0.007168246 0.22111335  0.1520417  0.2809509 0.36663773 1.000000000</code></pre>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="review-of-basic-statistics.html#cb132-1" aria-hidden="true" tabindex="-1"></a>(melt_cor_matrix <span class="ot">&lt;-</span> <span class="fu">melt</span>(cor_matrix))</span></code></pre></div>
-<pre><code>## Warning in type.convert.default(X[[i]], ...): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-## Warning in type.convert.default(X[[i]], ...): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
-<pre><code>##            X1         X2        value
+<pre><code>## Warning in melt(cor_matrix): The melt generic in data.table has been passed a matrix and will attempt to redirect to the relevant
+## reshape2 method; please note that reshape2 is deprecated, and this redirection is now deprecated as well. To continue using melt methods
+## from reshape2 while both libraries are attached, e.g. melt.list, you can prepend the namespace like reshape2::melt(cor_matrix). In the
+## next version, this warning will become an error.</code></pre>
+<pre><code>##          Var1       Var2        value
 ## 1      gender     gender  1.000000000
 ## 2        math     gender  0.013055968
 ## 3    resource     gender -0.028155898
@@ -703,8 +706,8 @@ Use <code>?palette</code> for palettes in R; use <code>palette()</code> for curr
 ## 35      value  belonging  0.366637734
 ## 36  belonging  belonging  1.000000000</code></pre>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="review-of-basic-statistics.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> melt_cor_matrix,</span>
-<span id="cb135-2"><a href="review-of-basic-statistics.html#cb135-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">fill =</span> value)) <span class="sc">+</span> <span class="fu">geom_tile</span>()</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<span id="cb135-2"><a href="review-of-basic-statistics.html#cb135-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Var1, <span class="at">y =</span> Var2, <span class="at">fill =</span> value)) <span class="sc">+</span> <span class="fu">geom_tile</span>()</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 </div>
 </div>
 <div id="use-r-to-generate-random-data" class="section level2" number="2.5">
@@ -725,7 +728,7 @@ Use <code>?palette</code> for palettes in R; use <code>palette()</code> for curr
 <pre><code>## [1] 0.708293</code></pre>
 <p>Use <code>hist()</code> to graph the sample means for sampling distribution.</p>
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="review-of-basic-statistics.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample_means, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">main =</span> <span class="st">&quot;N= 50&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Sample Means&quot;</span>, <span class="at">probability =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>Use <code>ggplot()</code> to graph the sample means for sampling distribution.</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="review-of-basic-statistics.html#cb142-1" aria-hidden="true" tabindex="-1"></a>df_sample_means <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, sample_means) <span class="co"># data for ggplot has to be a data frame.</span></span>
 <span id="cb142-2"><a href="review-of-basic-statistics.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sample_means, <span class="fu">aes</span>(<span class="at">x =</span> sample_means)) <span class="sc">+</span></span>
@@ -733,7 +736,7 @@ Use <code>?palette</code> for palettes in R; use <code>palette()</code> for curr
 <span id="cb142-4"><a href="review-of-basic-statistics.html#cb142-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Sample Means&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb142-5"><a href="review-of-basic-statistics.html#cb142-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="fu">mean</span>(df_sample_means<span class="sc">$</span>sample_means, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd =</span> <span class="fu">sd</span>(df_sample_means<span class="sc">$</span>sample_means, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="book_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 </div>
 <div id="simulate-data-from-a-model" class="section level3" number="2.5.2">
 <h3><span class="header-section-number">2.5.2</span> Simulate data from a model</h3>

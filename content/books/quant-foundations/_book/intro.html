@@ -24,7 +24,7 @@
 <meta name="author" content="Ze Wang" />
 
 
-<meta name="date" content="2021-07-19" />
+<meta name="date" content="2021-07-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,8 @@
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -695,84 +697,90 @@ in his <a href="https://adv-r.hadley.nz/"><strong>Advanced R</strong> book</a>.<
 <p>Import an SPSS data from the <code>data</code> folder within the RStudio project.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="intro.html#cb86-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/example.sav&quot;</span>)</span>
 <span id="cb86-2"><a href="intro.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mydata) <span class="co"># view first 6 observations</span></span></code></pre></div>
-<pre><code>##   IDCNTRY IDBOOK IDSCHOOL IDCLASS IDSTUD IDGRADE ITSEX ITADMINI ITLANG BSBG01 BSBG03 BSBG04 BSBG05 BSBG06A BSBG06B BSBG06C BSBG06D BSBG06E BSBG06F
-## 1     840      4        1     103  10301       8     1        1      1      1      1      2      5       1       1       1       1       1       1
-## 2     840      5        1     103  10302       8     2        1      1      2      2      3      3       1       1       1       1       1       1
-##   BSBG06G BSBG06H BSBG06I BSBG06J BSBG06K BSBG07A BSBG07B BSBG08 BSBG09A BSBG09B BSBG10A BSBG10B BSBG11 BSBG12 BSBG13A BSBG13B BSBG13C BSBG14A
-## 1       1       1      NA      NA      NA       7       5      5       1       1       1      NA      1      3       1       3       1       2
-## 2       1       1      NA      NA      NA       7       8      6       1       1       1      NA      4      2       4       3       4       2
-##   BSBG14B BSBG14C BSBG14D BSBG14E BSBG14F BSBG15A BSBG15B BSBG15C BSBG15D BSBG15E BSBG15F BSBG15G BSBG16A BSBG16B BSBG16C BSBG16D BSBG16E BSBG16F
-## 1       1       2       2       1       1       2       1       2       2       2       3       1       1       1       1       4       4       4
-## 2       1       2       1       1       1       3       2       2       1       2       1       2       2       1       4       3       4       4
-##   BSBG16G BSBG16H BSBG16I BSBM17A BSBM17B BSBM17C BSBM17D BSBM17E BSBM17F BSBM17G BSBM17H BSBM17I BSBM18A BSBM18B BSBM18C BSBM18D BSBM18E BSBM18F
-## 1       1       4       4       1       4       4       1       1       1       1       1       1       1       1       1       1       1       1
-## 2       4       4       4       1       4       1       3       1       1       1       3       1       1       1       3       2       1       1
-##   BSBM18G BSBM18H BSBM18I BSBM18J BSBM19A BSBM19B BSBM19C BSBM19D BSBM19E BSBM19F BSBM19G BSBM19H BSBM19I BSBM20A BSBM20B BSBM20C BSBM20D BSBM20E
-## 1       1       1       1       1       1       4       4       1       4       1       2       4       4       1       1       1       1       1
-## 2       1       1       1       1       1       4       4       1       4       1       1       4       4       1       1       2       1       1
-##   BSBM20F BSBM20G BSBM20H BSBM20I BSBS21A BSBS21B BSBS21C BSBS21D BSBS21E BSBS21F BSBS21G BSBS21H BSBS21I BSBS22A BSBS22B BSBS22C BSBS22D BSBS22E
-## 1       1       1       1       1       1       2       1       2       2       1       1       1       2       1       1       1       1       1
-## 2       1       1       1       1       4       3       1       3       1       3       1       1       1       1       1       3       2       1
-##   BSBS22F BSBS22G BSBS22H BSBS22I BSBS22J BSBS23A BSBS23B BSBS23C BSBS23D BSBS23E BSBS23F BSBS23G BSBS23H BSBS24A BSBS24B BSBS24C BSBS24D BSBS24E
-## 1       1       1       1       1       1       2       2       2       2       2       2       2       2       1       1       1       3       3
-## 2       1       1       1       1       1       1       4       4       1       2       2       4       3       1       2       3       1       1
-##   BSBS24F BSBS24G BSBS24H BSBS24I BSBM25AA BSBS25AB BSBM25BA BSBS25BB BSBM26AA BSBS26AB BSBM26BA BSBS26BB BSBB21 BSBB22A BSBB22B BSBB22C BSBB22D
-## 1       2       3       1       1        4        4        3        3        2        3        2        2     NA      NA      NA      NA      NA
-## 2       1       1       2       1        2        4        2        3        3        3        1        1     NA      NA      NA      NA      NA
-##   BSBB22E BSBB22F BSBB22G BSBB22H BSBB22I BSBB23A BSBB23B BSBB23C BSBB23D BSBB23E BSBB23F BSBB23G BSBB23H BSBB23I BSBB23J BSBB24A BSBB24B BSBB24C
-## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
-## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
-##   BSBB24D BSBB24E BSBB24F BSBB24G BSBB24H BSBE25 BSBE26A BSBE26B BSBE26C BSBE26D BSBE26E BSBE26F BSBE26G BSBE26H BSBE26I BSBE27A BSBE27B BSBE27C
-## 1      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
-## 2      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
-##   BSBE27D BSBE27E BSBE27F BSBE27G BSBE27H BSBE27I BSBE27J BSBE28A BSBE28B BSBE28C BSBE28D BSBE28E BSBE28F BSBE28G BSBE28H BSBC29 BSBC30A BSBC30B
-## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA     NA      NA      NA
-## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA     NA      NA      NA
-##   BSBC30C BSBC30D BSBC30E BSBC30F BSBC30G BSBC30H BSBC30I BSBC31A BSBC31B BSBC31C BSBC31D BSBC31E BSBC31F BSBC31G BSBC31H BSBC31I BSBC31J BSBC32A
-## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
-## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
-##   BSBC32B BSBC32C BSBC32D BSBC32E BSBC32F BSBC32G BSBC32H BSBP33 BSBP34A BSBP34B BSBP34C BSBP34D BSBP34E BSBP34F BSBP34G BSBP34H BSBP34I BSBP35A
-## 1      NA      NA      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
-## 2      NA      NA      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
-##   BSBP35B BSBP35C BSBP35D BSBP35E BSBP35F BSBP35G BSBP35H BSBP35I BSBP35J BSBP36A BSBP36B BSBP36C BSBP36D BSBP36E BSBP36F BSBP36G BSBP36H BSBS37A
-## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA       1
-## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA       1
-##   BSBS37B BSBS37C BSBS37D BSBS37E BSBS37F BSBS37G BSBS37H BSBS37I BSBM38AA BSBB38AB BSBE38AC BSBC38AD BSBP38AE BSBM38BA BSBB38BB BSBE38BC BSBC38BD
-## 1       1       1       3       3       2       3       1       1        4       NA       NA       NA       NA        3       NA       NA       NA
-## 2       2       3       1       1       1       1       2       1        2       NA       NA       NA       NA        2       NA       NA       NA
-##   BSBP38BE BSBM39AA BSBS39AB BSBM39BA BSBS39BB ITACCOMM1 IDPOP IDGRADER BSDAGE   TOTWGT   HOUWGT   SENWGT  WGTADJ1 WGTADJ2  WGTADJ3  WGTFAC1
-## 1       NA        2        3        2        2         0     2        2  13.92 191.4986 0.535255 0.026184 1.102564       1 1.045454 36.91851
-## 2       NA        3        3        1        1         1     2        2  13.92 191.4986 0.535255 0.026184 1.102564       1 1.045454 36.91851
-##   WGTFAC2 WGTFAC3 JKZONE JKREP BSMMAT01 BSMMAT02 BSMMAT03 BSMMAT04 BSMMAT05 BSSSCI01 BSSSCI02 BSSSCI03 BSSSCI04 BSSSCI05 BSMALG01 BSMALG02 BSMALG03
-## 1     4.5       1     25     0 514.4249 505.7916 519.7016 531.0448 542.1232 490.0679 474.9255 521.2601 493.9883 513.8363 514.5657 503.5694 540.7127
-## 2     4.5       1     25     0 587.6541 579.3172 562.0366 550.9720 568.2771 571.5391 535.8830 558.9193 559.8913 592.2060 575.0255 603.4856 589.0744
-##   BSMALG04 BSMALG05 BSMDAT01 BSMDAT02 BSMDAT03 BSMDAT04 BSMDAT05 BSMNUM01 BSMNUM02 BSMNUM03 BSMNUM04 BSMNUM05 BSMGEO01 BSMGEO02 BSMGEO03 BSMGEO04
-## 1 495.9604 516.0884 538.7014 555.5254 504.2005 553.7694 508.4274 512.7626 511.1604 487.0292  490.313 471.9762 516.0974 497.4462 494.0238 468.7053
-## 2 516.0658 602.3520 545.7862 573.8504 579.5864 490.1844 609.3757 562.7668 579.2757 594.9696  548.411 630.5318 619.2435 573.1298 605.8552 496.3814
-##   BSMGEO05 BSSCHE01 BSSCHE02 BSSCHE03 BSSCHE04 BSSCHE05 BSSEAR01 BSSEAR02 BSSEAR03 BSSEAR04 BSSEAR05 BSSBIO01 BSSBIO02 BSSBIO03 BSSBIO04 BSSBIO05
-## 1 434.6766 475.5856 554.9979 479.4414 509.9053 516.8859 454.3833 540.0875 446.0872 465.3053 540.4619 497.7536 534.3983 529.7410 507.6892 570.4911
-## 2 623.6547 615.6122 598.3530 644.2855 558.5238 587.9128 600.9338 563.4683 620.5797 570.7632 591.3771 601.0626 567.6580 611.6534 563.5830 543.3118
-##   BSSPHY01 BSSPHY02 BSSPHY03 BSSPHY04 BSSPHY05 BSMKNO01 BSMKNO02 BSMKNO03 BSMKNO04 BSMKNO05 BSMAPP01 BSMAPP02 BSMAPP03 BSMAPP04 BSMAPP05 BSMREA01
-## 1 456.0079 513.4090 480.3403 467.8219 543.4946 529.0403 558.7877 503.6952 492.9102 538.8042 500.4389 519.0317 510.1606 497.2687 489.3579 484.6627
-## 2 550.5409 533.1618 577.5741 527.0618 575.5149 593.5888 550.6020 577.6243 567.9767 564.5701 574.4144 568.5675 547.7672 556.5969 539.5741 552.9415
-##   BSMREA02 BSMREA03 BSMREA04 BSMREA05 BSSKNO01 BSSKNO02 BSSKNO03 BSSKNO04 BSSKNO05 BSSAPP01 BSSAPP02 BSSAPP03 BSSAPP04 BSSAPP05 BSSREA01 BSSREA02
-## 1 494.2266 504.5591 518.4353 493.1853 488.4110 491.6673 524.3182 507.8949 502.7248 549.3676 512.9106 519.5156 526.0618 495.4574 503.3588 492.6981
-## 2 572.1910 584.6759 601.2263 551.5208 593.9882 545.3113 591.2581 584.1462 577.5074 571.8668 570.2205 584.9571 590.2473 547.1351 582.2200 565.3724
-##   BSSREA03 BSSREA04 BSSREA05 BSMIBM01 BSMIBM02 BSMIBM03 BSMIBM04 BSMIBM05 BSSIBM01 BSSIBM02 BSSIBM03 BSSIBM04 BSSIBM05  BSBGHER BSDGHER BSBGSSB
-## 1 507.1144 500.9916 470.2027        3        3        3        3        3        3        2        3        3        3 10.91822       2 8.98361
-## 2 556.9847 570.5423 560.6985        4        4        4        4        4        4        3        4        4        4 11.62212       2 8.98361
-##   BSDGSSB  BSBGSB BSDGSB  BSBGSLM BSDGSLM  BSBGEML BSDGEML  BSBGSCM BSDGSCM  BSBGSVM BSDGSVM BSBGSLS BSDGSLS  BSBGESL BSDGESL  BSBGSCS BSDGSCS
-## 1       2 7.59182      2 13.97818       1 13.60365       1 14.10390       1 13.65262       1 9.58043       2 12.94849       1  9.12033       3
-## 2       2 8.78408      2 10.68282       2 11.13328       1 15.92523       1 12.14660       1 8.90626       2 10.86204       1 11.98495       1
-##    BSBGSVS BSDGSVS BSBGSLB BSDGSLB BSBGEBL BSDGEBL BSBGSCB BSDGSCB BSBGSLE BSDGSLE BSBGEEL BSDGEEL BSBGSCE BSDGSCE BSBGSLC BSDGSLC BSBGECL BSDGECL
-## 1  9.90677       2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
-## 2 10.71378       1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
-##   BSBGSCC BSDGSCC BSBGSLP BSDGSLP BSBGEPL BSDGEPL BSBGSCP BSDGSCP BSDG06S BSDGEDUP BSDMLOWP BSDSLOWP BSDMWKHW BSDSWKHS BSDBWKHB BSDCWKHC BSDPWKHP
-## 1      NA      NA      NA      NA      NA      NA      NA      NA       2        1        2        2        3        3       NA       NA       NA
-## 2      NA      NA      NA      NA      NA      NA      NA      NA       2        1        2        2        3        3       NA       NA       NA
-##   BSDEWKHE VERSION
-## 1       NA       4
-## 2       NA       4
+<pre><code>##   IDCNTRY IDBOOK IDSCHOOL IDCLASS IDSTUD IDGRADE ITSEX ITADMINI ITLANG BSBG01 BSBG03 BSBG04 BSBG05 BSBG06A BSBG06B BSBG06C BSBG06D
+## 1     840      4        1     103  10301       8     1        1      1      1      1      2      5       1       1       1       1
+## 2     840      5        1     103  10302       8     2        1      1      2      2      3      3       1       1       1       1
+##   BSBG06E BSBG06F BSBG06G BSBG06H BSBG06I BSBG06J BSBG06K BSBG07A BSBG07B BSBG08 BSBG09A BSBG09B BSBG10A BSBG10B BSBG11 BSBG12 BSBG13A
+## 1       1       1       1       1      NA      NA      NA       7       5      5       1       1       1      NA      1      3       1
+## 2       1       1       1       1      NA      NA      NA       7       8      6       1       1       1      NA      4      2       4
+##   BSBG13B BSBG13C BSBG14A BSBG14B BSBG14C BSBG14D BSBG14E BSBG14F BSBG15A BSBG15B BSBG15C BSBG15D BSBG15E BSBG15F BSBG15G BSBG16A
+## 1       3       1       2       1       2       2       1       1       2       1       2       2       2       3       1       1
+## 2       3       4       2       1       2       1       1       1       3       2       2       1       2       1       2       2
+##   BSBG16B BSBG16C BSBG16D BSBG16E BSBG16F BSBG16G BSBG16H BSBG16I BSBM17A BSBM17B BSBM17C BSBM17D BSBM17E BSBM17F BSBM17G BSBM17H
+## 1       1       1       4       4       4       1       4       4       1       4       4       1       1       1       1       1
+## 2       1       4       3       4       4       4       4       4       1       4       1       3       1       1       1       3
+##   BSBM17I BSBM18A BSBM18B BSBM18C BSBM18D BSBM18E BSBM18F BSBM18G BSBM18H BSBM18I BSBM18J BSBM19A BSBM19B BSBM19C BSBM19D BSBM19E
+## 1       1       1       1       1       1       1       1       1       1       1       1       1       4       4       1       4
+## 2       1       1       1       3       2       1       1       1       1       1       1       1       4       4       1       4
+##   BSBM19F BSBM19G BSBM19H BSBM19I BSBM20A BSBM20B BSBM20C BSBM20D BSBM20E BSBM20F BSBM20G BSBM20H BSBM20I BSBS21A BSBS21B BSBS21C
+## 1       1       2       4       4       1       1       1       1       1       1       1       1       1       1       2       1
+## 2       1       1       4       4       1       1       2       1       1       1       1       1       1       4       3       1
+##   BSBS21D BSBS21E BSBS21F BSBS21G BSBS21H BSBS21I BSBS22A BSBS22B BSBS22C BSBS22D BSBS22E BSBS22F BSBS22G BSBS22H BSBS22I BSBS22J
+## 1       2       2       1       1       1       2       1       1       1       1       1       1       1       1       1       1
+## 2       3       1       3       1       1       1       1       1       3       2       1       1       1       1       1       1
+##   BSBS23A BSBS23B BSBS23C BSBS23D BSBS23E BSBS23F BSBS23G BSBS23H BSBS24A BSBS24B BSBS24C BSBS24D BSBS24E BSBS24F BSBS24G BSBS24H
+## 1       2       2       2       2       2       2       2       2       1       1       1       3       3       2       3       1
+## 2       1       4       4       1       2       2       4       3       1       2       3       1       1       1       1       2
+##   BSBS24I BSBM25AA BSBS25AB BSBM25BA BSBS25BB BSBM26AA BSBS26AB BSBM26BA BSBS26BB BSBB21 BSBB22A BSBB22B BSBB22C BSBB22D BSBB22E BSBB22F
+## 1       1        4        4        3        3        2        3        2        2     NA      NA      NA      NA      NA      NA      NA
+## 2       1        2        4        2        3        3        3        1        1     NA      NA      NA      NA      NA      NA      NA
+##   BSBB22G BSBB22H BSBB22I BSBB23A BSBB23B BSBB23C BSBB23D BSBB23E BSBB23F BSBB23G BSBB23H BSBB23I BSBB23J BSBB24A BSBB24B BSBB24C
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBB24D BSBB24E BSBB24F BSBB24G BSBB24H BSBE25 BSBE26A BSBE26B BSBE26C BSBE26D BSBE26E BSBE26F BSBE26G BSBE26H BSBE26I BSBE27A BSBE27B
+## 1      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBE27C BSBE27D BSBE27E BSBE27F BSBE27G BSBE27H BSBE27I BSBE27J BSBE28A BSBE28B BSBE28C BSBE28D BSBE28E BSBE28F BSBE28G BSBE28H BSBC29
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA     NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA     NA
+##   BSBC30A BSBC30B BSBC30C BSBC30D BSBC30E BSBC30F BSBC30G BSBC30H BSBC30I BSBC31A BSBC31B BSBC31C BSBC31D BSBC31E BSBC31F BSBC31G
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBC31H BSBC31I BSBC31J BSBC32A BSBC32B BSBC32C BSBC32D BSBC32E BSBC32F BSBC32G BSBC32H BSBP33 BSBP34A BSBP34B BSBP34C BSBP34D BSBP34E
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA     NA      NA      NA      NA      NA      NA
+##   BSBP34F BSBP34G BSBP34H BSBP34I BSBP35A BSBP35B BSBP35C BSBP35D BSBP35E BSBP35F BSBP35G BSBP35H BSBP35I BSBP35J BSBP36A BSBP36B
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBP36C BSBP36D BSBP36E BSBP36F BSBP36G BSBP36H BSBS37A BSBS37B BSBS37C BSBS37D BSBS37E BSBS37F BSBS37G BSBS37H BSBS37I BSBM38AA
+## 1      NA      NA      NA      NA      NA      NA       1       1       1       3       3       2       3       1       1        4
+## 2      NA      NA      NA      NA      NA      NA       1       2       3       1       1       1       1       2       1        2
+##   BSBB38AB BSBE38AC BSBC38AD BSBP38AE BSBM38BA BSBB38BB BSBE38BC BSBC38BD BSBP38BE BSBM39AA BSBS39AB BSBM39BA BSBS39BB ITACCOMM1 IDPOP
+## 1       NA       NA       NA       NA        3       NA       NA       NA       NA        2        3        2        2         0     2
+## 2       NA       NA       NA       NA        2       NA       NA       NA       NA        3        3        1        1         1     2
+##   IDGRADER BSDAGE   TOTWGT   HOUWGT   SENWGT  WGTADJ1 WGTADJ2  WGTADJ3  WGTFAC1 WGTFAC2 WGTFAC3 JKZONE JKREP BSMMAT01 BSMMAT02 BSMMAT03
+## 1        2  13.92 191.4986 0.535255 0.026184 1.102564       1 1.045454 36.91851     4.5       1     25     0 514.4249 505.7916 519.7016
+## 2        2  13.92 191.4986 0.535255 0.026184 1.102564       1 1.045454 36.91851     4.5       1     25     0 587.6541 579.3172 562.0366
+##   BSMMAT04 BSMMAT05 BSSSCI01 BSSSCI02 BSSSCI03 BSSSCI04 BSSSCI05 BSMALG01 BSMALG02 BSMALG03 BSMALG04 BSMALG05 BSMDAT01 BSMDAT02 BSMDAT03
+## 1 531.0448 542.1232 490.0679 474.9255 521.2601 493.9883 513.8363 514.5657 503.5694 540.7127 495.9604 516.0884 538.7014 555.5254 504.2005
+## 2 550.9720 568.2771 571.5391 535.8830 558.9193 559.8913 592.2060 575.0255 603.4856 589.0744 516.0658 602.3520 545.7862 573.8504 579.5864
+##   BSMDAT04 BSMDAT05 BSMNUM01 BSMNUM02 BSMNUM03 BSMNUM04 BSMNUM05 BSMGEO01 BSMGEO02 BSMGEO03 BSMGEO04 BSMGEO05 BSSCHE01 BSSCHE02 BSSCHE03
+## 1 553.7694 508.4274 512.7626 511.1604 487.0292  490.313 471.9762 516.0974 497.4462 494.0238 468.7053 434.6766 475.5856 554.9979 479.4414
+## 2 490.1844 609.3757 562.7668 579.2757 594.9696  548.411 630.5318 619.2435 573.1298 605.8552 496.3814 623.6547 615.6122 598.3530 644.2855
+##   BSSCHE04 BSSCHE05 BSSEAR01 BSSEAR02 BSSEAR03 BSSEAR04 BSSEAR05 BSSBIO01 BSSBIO02 BSSBIO03 BSSBIO04 BSSBIO05 BSSPHY01 BSSPHY02 BSSPHY03
+## 1 509.9053 516.8859 454.3833 540.0875 446.0872 465.3053 540.4619 497.7536 534.3983 529.7410 507.6892 570.4911 456.0079 513.4090 480.3403
+## 2 558.5238 587.9128 600.9338 563.4683 620.5797 570.7632 591.3771 601.0626 567.6580 611.6534 563.5830 543.3118 550.5409 533.1618 577.5741
+##   BSSPHY04 BSSPHY05 BSMKNO01 BSMKNO02 BSMKNO03 BSMKNO04 BSMKNO05 BSMAPP01 BSMAPP02 BSMAPP03 BSMAPP04 BSMAPP05 BSMREA01 BSMREA02 BSMREA03
+## 1 467.8219 543.4946 529.0403 558.7877 503.6952 492.9102 538.8042 500.4389 519.0317 510.1606 497.2687 489.3579 484.6627 494.2266 504.5591
+## 2 527.0618 575.5149 593.5888 550.6020 577.6243 567.9767 564.5701 574.4144 568.5675 547.7672 556.5969 539.5741 552.9415 572.1910 584.6759
+##   BSMREA04 BSMREA05 BSSKNO01 BSSKNO02 BSSKNO03 BSSKNO04 BSSKNO05 BSSAPP01 BSSAPP02 BSSAPP03 BSSAPP04 BSSAPP05 BSSREA01 BSSREA02 BSSREA03
+## 1 518.4353 493.1853 488.4110 491.6673 524.3182 507.8949 502.7248 549.3676 512.9106 519.5156 526.0618 495.4574 503.3588 492.6981 507.1144
+## 2 601.2263 551.5208 593.9882 545.3113 591.2581 584.1462 577.5074 571.8668 570.2205 584.9571 590.2473 547.1351 582.2200 565.3724 556.9847
+##   BSSREA04 BSSREA05 BSMIBM01 BSMIBM02 BSMIBM03 BSMIBM04 BSMIBM05 BSSIBM01 BSSIBM02 BSSIBM03 BSSIBM04 BSSIBM05  BSBGHER BSDGHER BSBGSSB
+## 1 500.9916 470.2027        3        3        3        3        3        3        2        3        3        3 10.91822       2 8.98361
+## 2 570.5423 560.6985        4        4        4        4        4        4        3        4        4        4 11.62212       2 8.98361
+##   BSDGSSB  BSBGSB BSDGSB  BSBGSLM BSDGSLM  BSBGEML BSDGEML  BSBGSCM BSDGSCM  BSBGSVM BSDGSVM BSBGSLS BSDGSLS  BSBGESL BSDGESL  BSBGSCS
+## 1       2 7.59182      2 13.97818       1 13.60365       1 14.10390       1 13.65262       1 9.58043       2 12.94849       1  9.12033
+## 2       2 8.78408      2 10.68282       2 11.13328       1 15.92523       1 12.14660       1 8.90626       2 10.86204       1 11.98495
+##   BSDGSCS  BSBGSVS BSDGSVS BSBGSLB BSDGSLB BSBGEBL BSDGEBL BSBGSCB BSDGSCB BSBGSLE BSDGSLE BSBGEEL BSDGEEL BSBGSCE BSDGSCE BSBGSLC
+## 1       3  9.90677       2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2       1 10.71378       1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSDGSLC BSBGECL BSDGECL BSBGSCC BSDGSCC BSBGSLP BSDGSLP BSBGEPL BSDGEPL BSBGSCP BSDGSCP BSDG06S BSDGEDUP BSDMLOWP BSDSLOWP BSDMWKHW
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA       2        1        2        2        3
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA      NA       2        1        2        2        3
+##   BSDSWKHS BSDBWKHB BSDCWKHC BSDPWKHP BSDEWKHE VERSION
+## 1        3       NA       NA       NA       NA       4
+## 2        3       NA       NA       NA       NA       4
 ##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
 <p>Export the data.</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="intro.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(mydata, <span class="at">file =</span> <span class="st">&quot;data/dataset_example.csv&quot;</span>)</span>

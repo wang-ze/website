@@ -24,7 +24,7 @@
 <meta name="author" content="Ze Wang" />
 
 
-<meta name="date" content="2021-07-19" />
+<meta name="date" content="2021-07-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,8 @@
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -421,7 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="analysis-of-variance" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Analysis of Variance</h1>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="analysis-of-variance.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(QuantPsyc); <span class="fu">library</span>(psych); <span class="fu">library</span>(car); <span class="fu">library</span>(interactions); <span class="fu">library</span>(memisc); <span class="fu">library</span>(multcomp)</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="analysis-of-variance.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(QuantPsyc); <span class="fu">library</span>(psych); <span class="fu">library</span>(car); <span class="fu">library</span>(interactions); <span class="fu">library</span>(memisc); <span class="fu">library</span>(multcomp)</span></code></pre></div>
 <div id="historical-background" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Historical Background</h2>
 <ul>
@@ -520,59 +522,59 @@ Overall <span class="math inline">\(\alpha \approx r\alpha\)</span> (It’s actu
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:right;">
+<th style="text-align:center;">
 Number of Groups
 </th>
-<th style="text-align:left;">
+<th style="text-align:center;">
 Number of <span class="math inline">\(t\)</span> tests [<span class="math inline">\(k(k-1)/2\)</span>]
 </th>
-<th style="text-align:left;">
+<th style="text-align:center;">
 Approximate Overall <span class="math inline">\(\alpha\)</span> [$ r$]
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 3
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 3(3-1)/2 = 3
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 3 * 5 = .15
 </td>
 </tr>
 <tr>
-<td style="text-align:right;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 4
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 4(4-1)/2 = 6
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 6 * .05 = .30
 </td>
 </tr>
 <tr>
-<td style="text-align:right;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 5
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 5(5-1)/2 = 10
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 10 * .05 = .50
 </td>
 </tr>
 <tr>
-<td style="text-align:right;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 6
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 6(6-1)/2 = 15
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;">
 15 * .05 = .75
 </td>
 </tr>
@@ -721,6 +723,9 @@ SD
 </ul>
 <p><img src="image/one_way_ANOVA_example_figure.png" width="120%" /></p>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-185">Table 7.1: </span>ANOVA Table for One-Way ANOVA
+</caption>
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -799,8 +804,8 @@ Total
 <p><span class="math inline">\(F = \frac{{M{S_b}}}{{M{S_w}}}\)</span></p></li>
 <li><p>The coefficient of determination is defined as <span class="math inline">\({R^2} = \frac{{S{S_b}}}{{S{S_t}}}\)</span></p></li>
 </ul>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="analysis-of-variance.html#cb365-1" aria-hidden="true" tabindex="-1"></a>reading <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/reading.txt&quot;</span>)</span>
-<span id="cb365-2"><a href="analysis-of-variance.html#cb365-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(reading)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="analysis-of-variance.html#cb366-1" aria-hidden="true" tabindex="-1"></a>reading <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/reading.txt&quot;</span>)</span>
+<span id="cb366-2"><a href="analysis-of-variance.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(reading)</span></code></pre></div>
 <pre><code>##   group reading
 ## 1     1      40
 ## 2     1      33
@@ -808,10 +813,10 @@ Total
 ## 4     1      35
 ## 5     1      44
 ## 6     2      48</code></pre>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="analysis-of-variance.html#cb367-1" aria-hidden="true" tabindex="-1"></a>reading<span class="sc">$</span>group.f <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(reading<span class="sc">$</span>group)</span>
-<span id="cb367-2"><a href="analysis-of-variance.html#cb367-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
-<span id="cb367-3"><a href="analysis-of-variance.html#cb367-3" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading)</span>
-<span id="cb367-4"><a href="analysis-of-variance.html#cb367-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel)</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="analysis-of-variance.html#cb368-1" aria-hidden="true" tabindex="-1"></a>reading<span class="sc">$</span>group.f <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(reading<span class="sc">$</span>group)</span>
+<span id="cb368-2"><a href="analysis-of-variance.html#cb368-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
+<span id="cb368-3"><a href="analysis-of-variance.html#cb368-3" aria-hidden="true" tabindex="-1"></a>mymodel <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading)</span>
+<span id="cb368-4"><a href="analysis-of-variance.html#cb368-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel)</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
 ## group.f      2  230.5   115.3   4.968 0.0268 *
 ## Residuals   12  278.4    23.2                 
@@ -927,11 +932,11 @@ control vs. parental training
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="analysis-of-variance.html#cb369-1" aria-hidden="true" tabindex="-1"></a>c1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="co"># compares control vs. mean of both treatments groups</span></span>
-<span id="cb369-2"><a href="analysis-of-variance.html#cb369-2" aria-hidden="true" tabindex="-1"></a>c2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="co"># compares means of treatment groups</span></span>
-<span id="cb369-3"><a href="analysis-of-variance.html#cb369-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(c1, c2) <span class="co"># add a &quot;contrasts&quot; attribute to  &quot;reading$group.f&quot; </span></span>
-<span id="cb369-4"><a href="analysis-of-variance.html#cb369-4" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> model.c <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading)</span>
-<span id="cb369-5"><a href="analysis-of-variance.html#cb369-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel2, <span class="at">split =</span> <span class="fu">list</span>(<span class="at">group.f =</span> <span class="fu">list</span>(<span class="st">&quot;Control vs Treatment&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,  <span class="st">&quot;Treatment1 vs Treatment2&quot;</span> <span class="ot">=</span> <span class="dv">2</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="analysis-of-variance.html#cb370-1" aria-hidden="true" tabindex="-1"></a>c1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="co"># compares control vs. mean of both treatments groups</span></span>
+<span id="cb370-2"><a href="analysis-of-variance.html#cb370-2" aria-hidden="true" tabindex="-1"></a>c2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="co"># compares means of treatment groups</span></span>
+<span id="cb370-3"><a href="analysis-of-variance.html#cb370-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">cbind</span>(c1, c2) <span class="co"># add a &quot;contrasts&quot; attribute to  &quot;reading$group.f&quot; </span></span>
+<span id="cb370-4"><a href="analysis-of-variance.html#cb370-4" aria-hidden="true" tabindex="-1"></a>mymodel2 <span class="ot">&lt;-</span> model.c <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading)</span>
+<span id="cb370-5"><a href="analysis-of-variance.html#cb370-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel2, <span class="at">split =</span> <span class="fu">list</span>(<span class="at">group.f =</span> <span class="fu">list</span>(<span class="st">&quot;Control vs Treatment&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,  <span class="st">&quot;Treatment1 vs Treatment2&quot;</span> <span class="ot">=</span> <span class="dv">2</span>)))</span></code></pre></div>
 <pre><code>##                                     Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 ## group.f                              2  230.5   115.3   4.968 0.02679 * 
 ##   group.f: Control vs Treatment      1  229.6   229.6   9.898 0.00844 **
@@ -955,7 +960,7 @@ control vs. parental training
 <li><p>Given a significance level of <span class="math inline">\(\alpha\)</span>, the <em>p</em>-value of each of <em>k</em> tests must be smaller than <span class="math inline">\(\alpha /k\)</span>.</p></li>
 <li><p>For example, if <em>k</em> = 3 and <span class="math inline">\(\alpha = 0.05\)</span>: <span class="math inline">\(\alpha * = \frac{{0.05}}{3} = 0.017\)</span></p></li>
 </ul>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="analysis-of-variance.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(reading<span class="sc">$</span>reading, reading<span class="sc">$</span>group.f, <span class="at">p.adjust=</span><span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="analysis-of-variance.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(reading<span class="sc">$</span>reading, reading<span class="sc">$</span>group.f, <span class="at">p.adjust=</span><span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -974,8 +979,8 @@ control vs. parental training
 <li><p>Performs all possible pairwise contrasts, where <span class="math inline">\({H_0}:{\mu _i} = {\mu _j}\)</span> for all <span class="math inline">\(i \ne j\)</span>.</p></li>
 <li><p>One of the most conservative procedures: Thus, low probability of Type I Error and less power.</p></li>
 </ul>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="analysis-of-variance.html#cb373-1" aria-hidden="true" tabindex="-1"></a>mymodel3 <span class="ot">&lt;-</span><span class="fu">aov</span>(reading <span class="sc">~</span> group.f, <span class="at">data =</span> reading)</span>
-<span id="cb373-2"><a href="analysis-of-variance.html#cb373-2" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(mymodel3)</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="analysis-of-variance.html#cb374-1" aria-hidden="true" tabindex="-1"></a>mymodel3 <span class="ot">&lt;-</span><span class="fu">aov</span>(reading <span class="sc">~</span> group.f, <span class="at">data =</span> reading)</span>
+<span id="cb374-2"><a href="analysis-of-variance.html#cb374-2" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(mymodel3)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -1012,14 +1017,14 @@ control vs. parental training
 </ul></li>
 </ul>
 <p><em>Bartlett’s test</em></p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="analysis-of-variance.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(reading <span class="sc">~</span> group.f, <span class="at">data =</span> reading)</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="analysis-of-variance.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(reading <span class="sc">~</span> group.f, <span class="at">data =</span> reading)</span></code></pre></div>
 <pre><code>## 
 ##  Bartlett test of homogeneity of variances
 ## 
 ## data:  reading by group.f
 ## Bartlett&#39;s K-squared = 0.015081, df = 2, p-value = 0.9925</code></pre>
 <p><em>Levene’s test</em></p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="analysis-of-variance.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(reading <span class="sc">~</span> group.f, <span class="at">data =</span> reading)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="analysis-of-variance.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(reading <span class="sc">~</span> group.f, <span class="at">data =</span> reading)</span></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##       Df F value Pr(&gt;F)
 ## group  2  0.0363 0.9645
@@ -1072,20 +1077,20 @@ control vs. parental training
 </ul>
 <p><strong>Dummy Coding </strong></p>
 <p>In R, dummy coding is called “treatment contrasts” (this is the default). the first group is used as the reference group by default.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="analysis-of-variance.html#cb379-1" aria-hidden="true" tabindex="-1"></a>reading <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/reading.txt&quot;</span>)</span>
-<span id="cb379-2"><a href="analysis-of-variance.html#cb379-2" aria-hidden="true" tabindex="-1"></a>reading<span class="sc">$</span>group.f <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(reading<span class="sc">$</span>group)</span>
-<span id="cb379-3"><a href="analysis-of-variance.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
-<span id="cb379-4"><a href="analysis-of-variance.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="co"># group A is the reference group</span></span>
-<span id="cb379-5"><a href="analysis-of-variance.html#cb379-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   B C</span></span>
-<span id="cb379-6"><a href="analysis-of-variance.html#cb379-6" aria-hidden="true" tabindex="-1"></a><span class="do">## A 0 0</span></span>
-<span id="cb379-7"><a href="analysis-of-variance.html#cb379-7" aria-hidden="true" tabindex="-1"></a><span class="do">## B 1 0</span></span>
-<span id="cb379-8"><a href="analysis-of-variance.html#cb379-8" aria-hidden="true" tabindex="-1"></a><span class="do">## C 0 1</span></span>
-<span id="cb379-9"><a href="analysis-of-variance.html#cb379-9" aria-hidden="true" tabindex="-1"></a>mymodel4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading) <span class="co">#&lt;&lt;</span></span>
-<span id="cb379-10"><a href="analysis-of-variance.html#cb379-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel4)<span class="sc">$</span>coefficients</span>
-<span id="cb379-11"><a href="analysis-of-variance.html#cb379-11" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error   t value     Pr(&gt;|t|)</span></span>
-<span id="cb379-12"><a href="analysis-of-variance.html#cb379-12" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)     37.2   2.154066 17.269666 7.682923e-10</span></span>
-<span id="cb379-13"><a href="analysis-of-variance.html#cb379-13" aria-hidden="true" tabindex="-1"></a><span class="do">## group.fB         8.0   3.046309  2.626129 2.213323e-02</span></span>
-<span id="cb379-14"><a href="analysis-of-variance.html#cb379-14" aria-hidden="true" tabindex="-1"></a><span class="do">## group.fC         8.6   3.046309  2.823088 1.537161e-02</span></span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="analysis-of-variance.html#cb380-1" aria-hidden="true" tabindex="-1"></a>reading <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/reading.txt&quot;</span>)</span>
+<span id="cb380-2"><a href="analysis-of-variance.html#cb380-2" aria-hidden="true" tabindex="-1"></a>reading<span class="sc">$</span>group.f <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(reading<span class="sc">$</span>group)</span>
+<span id="cb380-3"><a href="analysis-of-variance.html#cb380-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
+<span id="cb380-4"><a href="analysis-of-variance.html#cb380-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="co"># group A is the reference group</span></span>
+<span id="cb380-5"><a href="analysis-of-variance.html#cb380-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   B C</span></span>
+<span id="cb380-6"><a href="analysis-of-variance.html#cb380-6" aria-hidden="true" tabindex="-1"></a><span class="do">## A 0 0</span></span>
+<span id="cb380-7"><a href="analysis-of-variance.html#cb380-7" aria-hidden="true" tabindex="-1"></a><span class="do">## B 1 0</span></span>
+<span id="cb380-8"><a href="analysis-of-variance.html#cb380-8" aria-hidden="true" tabindex="-1"></a><span class="do">## C 0 1</span></span>
+<span id="cb380-9"><a href="analysis-of-variance.html#cb380-9" aria-hidden="true" tabindex="-1"></a>mymodel4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading) <span class="co">#&lt;&lt;</span></span>
+<span id="cb380-10"><a href="analysis-of-variance.html#cb380-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel4)<span class="sc">$</span>coefficients</span>
+<span id="cb380-11"><a href="analysis-of-variance.html#cb380-11" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error   t value     Pr(&gt;|t|)</span></span>
+<span id="cb380-12"><a href="analysis-of-variance.html#cb380-12" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)     37.2   2.154066 17.269666 7.682923e-10</span></span>
+<span id="cb380-13"><a href="analysis-of-variance.html#cb380-13" aria-hidden="true" tabindex="-1"></a><span class="do">## group.fB         8.0   3.046309  2.626129 2.213323e-02</span></span>
+<span id="cb380-14"><a href="analysis-of-variance.html#cb380-14" aria-hidden="true" tabindex="-1"></a><span class="do">## group.fC         8.6   3.046309  2.823088 1.537161e-02</span></span></code></pre></div>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1317,39 +1322,39 @@ control vs. parental training
 </tbody>
 </table>
 <p>The reference group can be changed.</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="analysis-of-variance.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">contr.treatment</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">base =</span> <span class="dv">2</span>) <span class="co">#&lt;&lt;</span></span>
-<span id="cb380-2"><a href="analysis-of-variance.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="co"># 2nd group is the reference group</span></span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="analysis-of-variance.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">contr.treatment</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">base =</span> <span class="dv">2</span>) <span class="co">#&lt;&lt;</span></span>
+<span id="cb381-2"><a href="analysis-of-variance.html#cb381-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="co"># 2nd group is the reference group</span></span></code></pre></div>
 <pre><code>##   1 3
 ## A 1 0
 ## B 0 0
 ## C 0 1</code></pre>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="analysis-of-variance.html#cb382-1" aria-hidden="true" tabindex="-1"></a>mymodel5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading) </span>
-<span id="cb382-2"><a href="analysis-of-variance.html#cb382-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel5)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="analysis-of-variance.html#cb383-1" aria-hidden="true" tabindex="-1"></a>mymodel5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading) </span>
+<span id="cb383-2"><a href="analysis-of-variance.html#cb383-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel5)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##             Estimate Std. Error    t value     Pr(&gt;|t|)
 ## (Intercept)     45.2   2.154066 20.9835732 7.957511e-11
 ## group.f1        -8.0   3.046309 -2.6261287 2.213323e-02
 ## group.f3         0.6   3.046309  0.1969596 8.471556e-01</code></pre>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="analysis-of-variance.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mymodel5)</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="analysis-of-variance.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mymodel5)</span></code></pre></div>
 <pre><code>## (Intercept)    group.f1    group.f3 
 ##        45.2        -8.0         0.6</code></pre>
 <p><strong>Effect Coding </strong>
 In R, effect coding is called “sum contrasts” (i.e., contrasts sum up to zero)</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="analysis-of-variance.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(memisc) # use the modified version of the contr.sum() function from the &quot;memisc&quot; group</span></span>
-<span id="cb386-2"><a href="analysis-of-variance.html#cb386-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">contr.sum</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">base =</span> <span class="dv">1</span>) <span class="co"># 1st group is the reference group</span></span>
-<span id="cb386-3"><a href="analysis-of-variance.html#cb386-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f)</span>
-<span id="cb386-4"><a href="analysis-of-variance.html#cb386-4" aria-hidden="true" tabindex="-1"></a><span class="do">##    2  3</span></span>
-<span id="cb386-5"><a href="analysis-of-variance.html#cb386-5" aria-hidden="true" tabindex="-1"></a><span class="do">## A -1 -1</span></span>
-<span id="cb386-6"><a href="analysis-of-variance.html#cb386-6" aria-hidden="true" tabindex="-1"></a><span class="do">## B  1  0</span></span>
-<span id="cb386-7"><a href="analysis-of-variance.html#cb386-7" aria-hidden="true" tabindex="-1"></a><span class="do">## C  0  1</span></span>
-<span id="cb386-8"><a href="analysis-of-variance.html#cb386-8" aria-hidden="true" tabindex="-1"></a>mymodel6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading) </span>
-<span id="cb386-9"><a href="analysis-of-variance.html#cb386-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel6)<span class="sc">$</span>coefficients</span>
-<span id="cb386-10"><a href="analysis-of-variance.html#cb386-10" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate Std. Error   t value     Pr(&gt;|t|)</span></span>
-<span id="cb386-11"><a href="analysis-of-variance.html#cb386-11" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept) 42.733333   1.243651 34.361207 2.350226e-13</span></span>
-<span id="cb386-12"><a href="analysis-of-variance.html#cb386-12" aria-hidden="true" tabindex="-1"></a><span class="do">## group.f2     2.466667   1.758787  1.402481 1.861089e-01</span></span>
-<span id="cb386-13"><a href="analysis-of-variance.html#cb386-13" aria-hidden="true" tabindex="-1"></a><span class="do">## group.f3     3.066667   1.758787  1.743626 1.067619e-01</span></span>
-<span id="cb386-14"><a href="analysis-of-variance.html#cb386-14" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mymodel6)</span>
-<span id="cb386-15"><a href="analysis-of-variance.html#cb386-15" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)    group.f2    group.f3 </span></span>
-<span id="cb386-16"><a href="analysis-of-variance.html#cb386-16" aria-hidden="true" tabindex="-1"></a><span class="do">##   42.733333    2.466667    3.066667</span></span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="analysis-of-variance.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(memisc) # use the modified version of the contr.sum() function from the &quot;memisc&quot; group</span></span>
+<span id="cb387-2"><a href="analysis-of-variance.html#cb387-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">contr.sum</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">base =</span> <span class="dv">1</span>) <span class="co"># 1st group is the reference group</span></span>
+<span id="cb387-3"><a href="analysis-of-variance.html#cb387-3" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f)</span>
+<span id="cb387-4"><a href="analysis-of-variance.html#cb387-4" aria-hidden="true" tabindex="-1"></a><span class="do">##    2  3</span></span>
+<span id="cb387-5"><a href="analysis-of-variance.html#cb387-5" aria-hidden="true" tabindex="-1"></a><span class="do">## A -1 -1</span></span>
+<span id="cb387-6"><a href="analysis-of-variance.html#cb387-6" aria-hidden="true" tabindex="-1"></a><span class="do">## B  1  0</span></span>
+<span id="cb387-7"><a href="analysis-of-variance.html#cb387-7" aria-hidden="true" tabindex="-1"></a><span class="do">## C  0  1</span></span>
+<span id="cb387-8"><a href="analysis-of-variance.html#cb387-8" aria-hidden="true" tabindex="-1"></a>mymodel6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading) </span>
+<span id="cb387-9"><a href="analysis-of-variance.html#cb387-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel6)<span class="sc">$</span>coefficients</span>
+<span id="cb387-10"><a href="analysis-of-variance.html#cb387-10" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate Std. Error   t value     Pr(&gt;|t|)</span></span>
+<span id="cb387-11"><a href="analysis-of-variance.html#cb387-11" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept) 42.733333   1.243651 34.361207 2.350226e-13</span></span>
+<span id="cb387-12"><a href="analysis-of-variance.html#cb387-12" aria-hidden="true" tabindex="-1"></a><span class="do">## group.f2     2.466667   1.758787  1.402481 1.861089e-01</span></span>
+<span id="cb387-13"><a href="analysis-of-variance.html#cb387-13" aria-hidden="true" tabindex="-1"></a><span class="do">## group.f3     3.066667   1.758787  1.743626 1.067619e-01</span></span>
+<span id="cb387-14"><a href="analysis-of-variance.html#cb387-14" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mymodel6)</span>
+<span id="cb387-15"><a href="analysis-of-variance.html#cb387-15" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)    group.f2    group.f3 </span></span>
+<span id="cb387-16"><a href="analysis-of-variance.html#cb387-16" aria-hidden="true" tabindex="-1"></a><span class="do">##   42.733333    2.466667    3.066667</span></span></code></pre></div>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1580,23 +1585,23 @@ In R, effect coding is called “sum contrasts” (i.e., contrasts sum up to zer
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="analysis-of-variance.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">contr.sum</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">base =</span> <span class="dv">2</span>) <span class="co"># 2nd group is the reference group</span></span>
-<span id="cb387-2"><a href="analysis-of-variance.html#cb387-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f)</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="analysis-of-variance.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f) <span class="ot">&lt;-</span> <span class="fu">contr.sum</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">base =</span> <span class="dv">2</span>) <span class="co"># 2nd group is the reference group</span></span>
+<span id="cb388-2"><a href="analysis-of-variance.html#cb388-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(reading<span class="sc">$</span>group.f)</span></code></pre></div>
 <pre><code>##    1  3
 ## A  1  0
 ## B -1 -1
 ## C  0  1</code></pre>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="analysis-of-variance.html#cb389-1" aria-hidden="true" tabindex="-1"></a>mymodel7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading) </span>
-<span id="cb389-2"><a href="analysis-of-variance.html#cb389-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel7)<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="analysis-of-variance.html#cb390-1" aria-hidden="true" tabindex="-1"></a>mymodel7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> group.f, <span class="at">data=</span>reading) </span>
+<span id="cb390-2"><a href="analysis-of-variance.html#cb390-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mymodel7)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##              Estimate Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept) 42.733333   1.243651 34.361207 2.350226e-13
 ## group.f1    -5.533333   1.758787 -3.146107 8.435697e-03
 ## group.f3     3.066667   1.758787  1.743626 1.067619e-01</code></pre>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="analysis-of-variance.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mymodel7)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="analysis-of-variance.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mymodel7)</span></code></pre></div>
 <pre><code>## (Intercept)    group.f1    group.f3 
 ##   42.733333   -5.533333    3.066667</code></pre>
 <p>Use the function <code>anova()</code> to get the traditional ANOVA table.</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="analysis-of-variance.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mymodel4)</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="analysis-of-variance.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mymodel4)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: reading
@@ -1606,7 +1611,7 @@ In R, effect coding is called “sum contrasts” (i.e., contrasts sum up to zer
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Note that the coding scheme does not affect the ANOVA statistics.</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="analysis-of-variance.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mymodel5); <span class="fu">anova</span>(mymodel6); <span class="fu">anova</span>(mymodel7)</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="analysis-of-variance.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mymodel5); <span class="fu">anova</span>(mymodel6); <span class="fu">anova</span>(mymodel7)</span></code></pre></div>
 </div>
 <div id="factorial-analysis-of-variance-factorial-anova" class="section level2" number="7.6">
 <h2><span class="header-section-number">7.6</span> Factorial Analysis of Variance (Factorial ANOVA)</h2>
@@ -1650,13 +1655,13 @@ In R, effect coding is called “sum contrasts” (i.e., contrasts sum up to zer
 High Ability 85.00000 80.00000 76.00000 80.33333
 Low Ability  60.00000 63.00000 68.00000 63.66667
 mean         72.50000 71.50000 72.00000 72.00000</code></pre>
-<p><img src="book_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 <p><em>Example 2</em>: The superiority reverses; one treatment is best with one group, but another treatment is better for a different group.</p>
 <pre><code>         Contract for Grade Teacher Controlled   mean
 Internal             50.520             38.010 44.265
 External             36.330             46.220 41.275
 mean                 43.425             42.115 42.770</code></pre>
-<p><img src="book_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+<p><img src="book_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
 <p><strong>Factorial designs can lead to more powerful tests by reducing error (within cell) variance. If performance on the dependent variable is related to the individual difference characteristic (the blocking variable; e.g., gender, ethnicity, age), then the reduction can be substantial.</strong></p>
 <p><strong>Treatment Only</strong> (variances are inside parentheses)</p>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
@@ -1868,69 +1873,69 @@ Factor A
 </th>
 </tr>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:center;">
 </th>
-<th style="text-align:left;">
+<th style="text-align:center;">
 Control
 </th>
-<th style="text-align:left;">
+<th style="text-align:center;">
 Non-parental training
 </th>
-<th style="text-align:left;">
+<th style="text-align:center;">
 Parental training
 </th>
-<th style="text-align:left;">
+<th style="text-align:center;">
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:center;">
 Boys
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{11}\)</span>
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{12}\)</span>
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{13}\)</span>
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{1.}\)</span>
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:center;">
 Girls
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{21}\)</span>
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{22}\)</span>
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{23}\)</span>
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{2.}\)</span>
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:center;">
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{.1}\)</span>
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{.2}\)</span>
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{.3}\)</span>
 </td>
-<td style="text-align:left;border-left:1px solid;border-right:1px solid;">
+<td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 <span class="math inline">\(\mu _{..}\)</span>
 </td>
 </tr>
@@ -1958,6 +1963,9 @@ where
 <p><span class="math display">\[{y_{ijk}} = \mu  + {\alpha _j} + {\beta _k} + {(\alpha \beta )_{jk}} + {\varepsilon _{ijk}}\]</span></p>
 <p><span class="math display">\[SS{Q_y} = SS{Q_A} + SS{Q_B} + SS{Q_{AB}} + SS{Q_E}\]</span></p>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-210">Table 7.2: </span>ANOVA Table for Two-Way ANOVA
+</caption>
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -2191,10 +2199,10 @@ Girls
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="analysis-of-variance.html#cb398-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/reading2.txt&quot;</span>)</span>
-<span id="cb398-2"><a href="analysis-of-variance.html#cb398-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>training <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat<span class="sc">$</span>training)</span>
-<span id="cb398-3"><a href="analysis-of-variance.html#cb398-3" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat<span class="sc">$</span>gender)</span>
-<span id="cb398-4"><a href="analysis-of-variance.html#cb398-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat)             </span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="analysis-of-variance.html#cb399-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/reading2.txt&quot;</span>)</span>
+<span id="cb399-2"><a href="analysis-of-variance.html#cb399-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>training <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat<span class="sc">$</span>training)</span>
+<span id="cb399-3"><a href="analysis-of-variance.html#cb399-3" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat<span class="sc">$</span>gender)</span>
+<span id="cb399-4"><a href="analysis-of-variance.html#cb399-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat)             </span></code></pre></div>
 <pre><code>##   reading training gender
 ## 1      40        A    boy
 ## 2      33        A    boy
@@ -2203,8 +2211,8 @@ Girls
 ## 5      48        B    boy
 ## 6      43        B    boy</code></pre>
 <p><strong>Means of main effects</strong></p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="analysis-of-variance.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(reading <span class="sc">~</span> training, <span class="at">data =</span> dat, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb400-2"><a href="analysis-of-variance.html#cb400-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(reading <span class="sc">~</span> gender, <span class="at">data =</span> dat, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="analysis-of-variance.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(reading <span class="sc">~</span> training, <span class="at">data =</span> dat, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb401-2"><a href="analysis-of-variance.html#cb401-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(reading <span class="sc">~</span> gender, <span class="at">data =</span> dat, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##   training reading
 ## 1        A  38.250
 ## 2        B  47.750
@@ -2213,7 +2221,7 @@ Girls
 ## 1    boy 42.16667
 ## 2   girl 43.75000</code></pre>
 <p><strong>Means of interaction effects</strong></p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="analysis-of-variance.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(reading <span class="sc">~</span> training <span class="sc">+</span> gender, <span class="at">data =</span> dat, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="analysis-of-variance.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(reading <span class="sc">~</span> training <span class="sc">+</span> gender, <span class="at">data =</span> dat, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##   training gender reading
 ## 1        A    boy   37.75
 ## 2        B    boy   45.00
@@ -2222,8 +2230,8 @@ Girls
 ## 5        B   girl   50.50
 ## 6        C   girl   42.00</code></pre>
 <p><strong>Two-Way ANOVA Model</strong></p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="analysis-of-variance.html#cb404-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> training <span class="sc">*</span> gender, <span class="at">data =</span> dat)</span>
-<span id="cb404-2"><a href="analysis-of-variance.html#cb404-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="analysis-of-variance.html#cb405-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> training <span class="sc">*</span> gender, <span class="at">data =</span> dat)</span>
+<span id="cb405-2"><a href="analysis-of-variance.html#cb405-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>##                 Df Sum Sq Mean Sq F value Pr(&gt;F)  
 ## training         2  361.1  180.54   4.118 0.0337 *
 ## gender           1   15.0   15.04   0.343 0.5653  
@@ -2231,31 +2239,31 @@ Girls
 ## Residuals       18  789.2   43.85                 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="analysis-of-variance.html#cb406-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">tapply</span>(dat<span class="sc">$</span>reading, <span class="fu">list</span>(dat<span class="sc">$</span>gender, dat<span class="sc">$</span>training), mean)</span>
-<span id="cb406-2"><a href="analysis-of-variance.html#cb406-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb406-3"><a href="analysis-of-variance.html#cb406-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">treatment=</span><span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>)),</span>
-<span id="cb406-4"><a href="analysis-of-variance.html#cb406-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender=</span><span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;boy&quot;</span>, <span class="st">&quot;girl&quot;</span>,<span class="st">&quot;boy&quot;</span>, <span class="st">&quot;girl&quot;</span>,<span class="st">&quot;boy&quot;</span>, <span class="st">&quot;girl&quot;</span>)),</span>
-<span id="cb406-5"><a href="analysis-of-variance.html#cb406-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">score=</span><span class="fu">as.vector</span>(M)</span>
-<span id="cb406-6"><a href="analysis-of-variance.html#cb406-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb406-7"><a href="analysis-of-variance.html#cb406-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb406-8"><a href="analysis-of-variance.html#cb406-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span>df, <span class="fu">aes</span>(<span class="at">x=</span>treatment, <span class="at">y=</span>score, <span class="at">group =</span> gender, <span class="at">color=</span>gender)) <span class="sc">+</span> </span>
-<span id="cb406-9"><a href="analysis-of-variance.html#cb406-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb406-10"><a href="analysis-of-variance.html#cb406-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Achievement by Treatment and Gender&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb406-11"><a href="analysis-of-variance.html#cb406-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Treatment Group&quot;</span>) <span class="sc">+</span></span>
-<span id="cb406-12"><a href="analysis-of-variance.html#cb406-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Achievement&quot;</span>) <span class="sc">+</span></span>
-<span id="cb406-13"><a href="analysis-of-variance.html#cb406-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> gender), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb406-14"><a href="analysis-of-variance.html#cb406-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title=</span><span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="analysis-of-variance.html#cb407-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>int <span class="ot">&lt;-</span> <span class="fu">interaction</span>(dat<span class="sc">$</span>training, dat<span class="sc">$</span>gender)</span>
-<span id="cb407-2"><a href="analysis-of-variance.html#cb407-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">y=</span>reading, <span class="at">x=</span>int, <span class="at">color=</span>gender)) <span class="sc">+</span> </span>
-<span id="cb407-3"><a href="analysis-of-variance.html#cb407-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="analysis-of-variance.html#cb407-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">tapply</span>(dat<span class="sc">$</span>reading, <span class="fu">list</span>(dat<span class="sc">$</span>gender, dat<span class="sc">$</span>training), mean)</span>
+<span id="cb407-2"><a href="analysis-of-variance.html#cb407-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb407-3"><a href="analysis-of-variance.html#cb407-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">treatment=</span><span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>)),</span>
+<span id="cb407-4"><a href="analysis-of-variance.html#cb407-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender=</span><span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;boy&quot;</span>, <span class="st">&quot;girl&quot;</span>,<span class="st">&quot;boy&quot;</span>, <span class="st">&quot;girl&quot;</span>,<span class="st">&quot;boy&quot;</span>, <span class="st">&quot;girl&quot;</span>)),</span>
+<span id="cb407-5"><a href="analysis-of-variance.html#cb407-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">score=</span><span class="fu">as.vector</span>(M)</span>
+<span id="cb407-6"><a href="analysis-of-variance.html#cb407-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb407-7"><a href="analysis-of-variance.html#cb407-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb407-8"><a href="analysis-of-variance.html#cb407-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span>df, <span class="fu">aes</span>(<span class="at">x=</span>treatment, <span class="at">y=</span>score, <span class="at">group =</span> gender, <span class="at">color=</span>gender)) <span class="sc">+</span> </span>
+<span id="cb407-9"><a href="analysis-of-variance.html#cb407-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb407-10"><a href="analysis-of-variance.html#cb407-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Achievement by Treatment and Gender&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb407-11"><a href="analysis-of-variance.html#cb407-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Treatment Group&quot;</span>) <span class="sc">+</span></span>
+<span id="cb407-12"><a href="analysis-of-variance.html#cb407-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Achievement&quot;</span>) <span class="sc">+</span></span>
+<span id="cb407-13"><a href="analysis-of-variance.html#cb407-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> gender), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb407-14"><a href="analysis-of-variance.html#cb407-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="analysis-of-variance.html#cb408-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>int <span class="ot">&lt;-</span> <span class="fu">interaction</span>(dat<span class="sc">$</span>training, dat<span class="sc">$</span>gender)</span>
+<span id="cb408-2"><a href="analysis-of-variance.html#cb408-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">y=</span>reading, <span class="at">x=</span>int, <span class="at">color=</span>gender)) <span class="sc">+</span> </span>
+<span id="cb408-3"><a href="analysis-of-variance.html#cb408-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
 <p><strong>Interpret model results.</strong></p>
 <p>When interpreting results of models with interaction terms, use <em>Type III</em> Sums of Squares.</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="analysis-of-variance.html#cb408-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> training <span class="sc">*</span> gender, <span class="at">data =</span> dat)</span>
-<span id="cb408-2"><a href="analysis-of-variance.html#cb408-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span>
-<span id="cb408-3"><a href="analysis-of-variance.html#cb408-3" aria-hidden="true" tabindex="-1"></a><span class="co"># anova(model)</span></span>
-<span id="cb408-4"><a href="analysis-of-variance.html#cb408-4" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(model, <span class="at">type =</span> <span class="st">&quot;III&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="analysis-of-variance.html#cb409-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> training <span class="sc">*</span> gender, <span class="at">data =</span> dat)</span>
+<span id="cb409-2"><a href="analysis-of-variance.html#cb409-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span>
+<span id="cb409-3"><a href="analysis-of-variance.html#cb409-3" aria-hidden="true" tabindex="-1"></a><span class="co"># anova(model)</span></span>
+<span id="cb409-4"><a href="analysis-of-variance.html#cb409-4" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(model, <span class="at">type =</span> <span class="st">&quot;III&quot;</span>)</span></code></pre></div>
 <pre><code>##                 Df Sum Sq Mean Sq F value Pr(&gt;F)  
 ## training         2  361.1  180.54   4.118 0.0337 *
 ## gender           1   15.0   15.04   0.343 0.5653  
@@ -2284,7 +2292,7 @@ Girls
 <h3><span class="header-section-number">7.6.4</span> Assumptions for factorial ANOVA (see <a href="analysis-of-variance.html#anova-assumptions">7.4</a>)</h3>
 <p><strong>Use <code>leveneTest</code> to test variance homogeneity. </strong></p>
 <p><em>Levene’s test</em></p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="analysis-of-variance.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(reading <span class="sc">~</span> training <span class="sc">*</span> gender, <span class="at">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="analysis-of-variance.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(reading <span class="sc">~</span> training <span class="sc">*</span> gender, <span class="at">data =</span> dat)</span></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##       Df F value   Pr(&gt;F)    
 ## group  5   8.554 0.000272 ***
@@ -2304,14 +2312,14 @@ Girls
 <div id="contrasts-using-the-multcomp-package" class="section level3" number="7.6.5">
 <h3><span class="header-section-number">7.6.5</span> Contrasts using the <code>multcomp</code> package</h3>
 <p>One-Way ANOVA using pairwise contrasts (so-called Tukey contrasts)</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="analysis-of-variance.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(multcomp)</span></span>
-<span id="cb412-2"><a href="analysis-of-variance.html#cb412-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> training, <span class="at">data =</span> dat) <span class="co"># no intercept to obtain cell means</span></span>
-<span id="cb412-3"><a href="analysis-of-variance.html#cb412-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="analysis-of-variance.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(multcomp)</span></span>
+<span id="cb413-2"><a href="analysis-of-variance.html#cb413-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> training, <span class="at">data =</span> dat) <span class="co"># no intercept to obtain cell means</span></span>
+<span id="cb413-3"><a href="analysis-of-variance.html#cb413-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model)</span></code></pre></div>
 <pre><code>## trainingA trainingB trainingC 
 ##    38.250    47.750    42.875</code></pre>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="analysis-of-variance.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TukeyHSD(model)</span></span>
-<span id="cb414-2"><a href="analysis-of-variance.html#cb414-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">glht</span>(model, <span class="at">linfct=</span><span class="fu">mcp</span>(<span class="at">training=</span><span class="st">&quot;Tukey&quot;</span>)) <span class="co"># mean contrasts; mcp - multiple comparison procedures</span></span>
-<span id="cb414-3"><a href="analysis-of-variance.html#cb414-3" aria-hidden="true" tabindex="-1"></a>out</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="analysis-of-variance.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TukeyHSD(model)</span></span>
+<span id="cb415-2"><a href="analysis-of-variance.html#cb415-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">glht</span>(model, <span class="at">linfct=</span><span class="fu">mcp</span>(<span class="at">training=</span><span class="st">&quot;Tukey&quot;</span>)) <span class="co"># mean contrasts; mcp - multiple comparison procedures</span></span>
+<span id="cb415-3"><a href="analysis-of-variance.html#cb415-3" aria-hidden="true" tabindex="-1"></a>out</span></code></pre></div>
 <pre><code>## 
 ##   General Linear Hypotheses
 ## 
@@ -2323,7 +2331,7 @@ Girls
 ## B - A == 0    9.500
 ## C - A == 0    4.625
 ## C - B == 0   -4.875</code></pre>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="analysis-of-variance.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="analysis-of-variance.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(out)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Confidence Intervals
 ## 
@@ -2342,13 +2350,13 @@ Girls
 ## C - A == 0   4.6250  -3.4336  12.6836
 ## C - B == 0  -4.8750 -12.9336   3.1836</code></pre>
 <p>One-Way ANOVA using user-defined contrasts.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="analysis-of-variance.html#cb418-1" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>), <span class="co"># control vs. mean of the two treatment groups</span></span>
-<span id="cb418-2"><a href="analysis-of-variance.html#cb418-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>))     <span class="co"># compares the two treatment groups</span></span>
-<span id="cb418-3"><a href="analysis-of-variance.html#cb418-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(K) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;control vs treatments&quot;</span>, <span class="st">&quot;treatment 1 vs treatment 2&quot;</span>)</span>
-<span id="cb418-4"><a href="analysis-of-variance.html#cb418-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(K) <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">coef</span>(model))</span>
-<span id="cb418-5"><a href="analysis-of-variance.html#cb418-5" aria-hidden="true" tabindex="-1"></a><span class="co"># K</span></span>
-<span id="cb418-6"><a href="analysis-of-variance.html#cb418-6" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">glht</span>(model, <span class="at">linfct =</span> K)</span>
-<span id="cb418-7"><a href="analysis-of-variance.html#cb418-7" aria-hidden="true" tabindex="-1"></a>out</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="analysis-of-variance.html#cb419-1" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>), <span class="co"># control vs. mean of the two treatment groups</span></span>
+<span id="cb419-2"><a href="analysis-of-variance.html#cb419-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>))     <span class="co"># compares the two treatment groups</span></span>
+<span id="cb419-3"><a href="analysis-of-variance.html#cb419-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(K) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;control vs treatments&quot;</span>, <span class="st">&quot;treatment 1 vs treatment 2&quot;</span>)</span>
+<span id="cb419-4"><a href="analysis-of-variance.html#cb419-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(K) <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">coef</span>(model))</span>
+<span id="cb419-5"><a href="analysis-of-variance.html#cb419-5" aria-hidden="true" tabindex="-1"></a><span class="co"># K</span></span>
+<span id="cb419-6"><a href="analysis-of-variance.html#cb419-6" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">glht</span>(model, <span class="at">linfct =</span> K)</span>
+<span id="cb419-7"><a href="analysis-of-variance.html#cb419-7" aria-hidden="true" tabindex="-1"></a>out</span></code></pre></div>
 <pre><code>## 
 ##   General Linear Hypotheses
 ## 
@@ -2356,7 +2364,7 @@ Girls
 ##                                 Estimate
 ## control vs treatments == 0        -7.062
 ## treatment 1 vs treatment 2 == 0   -4.875</code></pre>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="analysis-of-variance.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="analysis-of-variance.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -2370,77 +2378,77 @@ Girls
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
 <p><strong>Two-Way ANOVA (main effects only)</strong></p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="analysis-of-variance.html#cb422-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> gender <span class="sc">+</span> training, <span class="at">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="analysis-of-variance.html#cb423-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> gender <span class="sc">+</span> training, <span class="at">data =</span> dat)</span></code></pre></div>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:center;">
 </th>
-<th style="text-align:right;">
+<th style="text-align:center;">
 Male
 </th>
-<th style="text-align:right;">
+<th style="text-align:center;">
 Condition B
 </th>
-<th style="text-align:right;">
+<th style="text-align:center;">
 Condition C
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:center;">
 B - A
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 1
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 0
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:center;">
 C - A
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:center;">
 C - B
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 -1
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:center;">
 male - female
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 1
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 0
 </td>
-<td style="text-align:right;">
+<td style="text-align:center;">
 0
 </td>
 </tr>
@@ -2448,10 +2456,10 @@ male - female
 </table>
 <pre><code>model2 &lt;- aov(reading ~ gender + training, data = dat)</code></pre>
 <p>First, extract the appropriate contrast matrices for both factors.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="analysis-of-variance.html#cb424-1" aria-hidden="true" tabindex="-1"></a>K1 <span class="ot">&lt;-</span> <span class="fu">glht</span>(model2, <span class="at">linfct=</span> <span class="fu">mcp</span>(<span class="at">training =</span> <span class="st">&quot;Tukey&quot;</span>))<span class="sc">$</span>linfct</span>
-<span id="cb424-2"><a href="analysis-of-variance.html#cb424-2" aria-hidden="true" tabindex="-1"></a>K2 <span class="ot">&lt;-</span> <span class="fu">glht</span>(model2, <span class="at">linfct=</span> <span class="fu">mcp</span>(<span class="at">gender =</span> <span class="st">&quot;Tukey&quot;</span>))<span class="sc">$</span>linfct</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="analysis-of-variance.html#cb425-1" aria-hidden="true" tabindex="-1"></a>K1 <span class="ot">&lt;-</span> <span class="fu">glht</span>(model2, <span class="at">linfct=</span> <span class="fu">mcp</span>(<span class="at">training =</span> <span class="st">&quot;Tukey&quot;</span>))<span class="sc">$</span>linfct</span>
+<span id="cb425-2"><a href="analysis-of-variance.html#cb425-2" aria-hidden="true" tabindex="-1"></a>K2 <span class="ot">&lt;-</span> <span class="fu">glht</span>(model2, <span class="at">linfct=</span> <span class="fu">mcp</span>(<span class="at">gender =</span> <span class="st">&quot;Tukey&quot;</span>))<span class="sc">$</span>linfct</span></code></pre></div>
 <p>Then, compare levels of each factor simultaneously.</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="analysis-of-variance.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>(model2, <span class="at">linfct=</span><span class="fu">rbind</span>(K1, K2)))</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="analysis-of-variance.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>(model2, <span class="at">linfct=</span><span class="fu">rbind</span>(K1, K2)))</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -2656,15 +2664,15 @@ C - B
 <ul>
 <li>Step 1: Define the contrast matrix:</li>
 </ul>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="analysis-of-variance.html#cb427-1" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span> ,<span class="dv">0</span>),</span>
-<span id="cb427-2"><a href="analysis-of-variance.html#cb427-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span> , <span class="dv">0</span>),</span>
-<span id="cb427-3"><a href="analysis-of-variance.html#cb427-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span> , <span class="dv">0</span>),</span>
-<span id="cb427-4"><a href="analysis-of-variance.html#cb427-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb427-5"><a href="analysis-of-variance.html#cb427-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb427-6"><a href="analysis-of-variance.html#cb427-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb427-7"><a href="analysis-of-variance.html#cb427-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(K) <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>),<span class="dv">2</span>)</span>
-<span id="cb427-8"><a href="analysis-of-variance.html#cb427-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(K) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;boy:B-A&quot;</span>, <span class="st">&quot;boy:C-A&quot;</span>, <span class="st">&quot;boy:C-B&quot;</span>, <span class="st">&quot;girl:B-A&quot;</span>, <span class="st">&quot;girl:C-A&quot;</span>, <span class="st">&quot;girl:C-B&quot;</span>)</span>
-<span id="cb427-9"><a href="analysis-of-variance.html#cb427-9" aria-hidden="true" tabindex="-1"></a>K</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="analysis-of-variance.html#cb428-1" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span> ,<span class="dv">0</span>),</span>
+<span id="cb428-2"><a href="analysis-of-variance.html#cb428-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span> , <span class="dv">0</span>),</span>
+<span id="cb428-3"><a href="analysis-of-variance.html#cb428-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span> , <span class="dv">0</span>),</span>
+<span id="cb428-4"><a href="analysis-of-variance.html#cb428-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb428-5"><a href="analysis-of-variance.html#cb428-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb428-6"><a href="analysis-of-variance.html#cb428-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb428-7"><a href="analysis-of-variance.html#cb428-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(K) <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>),<span class="dv">2</span>)</span>
+<span id="cb428-8"><a href="analysis-of-variance.html#cb428-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(K) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;boy:B-A&quot;</span>, <span class="st">&quot;boy:C-A&quot;</span>, <span class="st">&quot;boy:C-B&quot;</span>, <span class="st">&quot;girl:B-A&quot;</span>, <span class="st">&quot;girl:C-A&quot;</span>, <span class="st">&quot;girl:C-B&quot;</span>)</span>
+<span id="cb428-9"><a href="analysis-of-variance.html#cb428-9" aria-hidden="true" tabindex="-1"></a>K</span></code></pre></div>
 <pre><code>##           A  B C  A  B C
 ## boy:B-A  -1  1 0  0  0 0
 ## boy:C-A  -1  0 1  0  0 0
@@ -2675,17 +2683,17 @@ C - B
 <ul>
 <li>Step 2: Estimate auxiliary cell-means model (i.e., model without intercept)</li>
 </ul>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="analysis-of-variance.html#cb429-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>gender.train <span class="ot">&lt;-</span> <span class="fu">interaction</span>(dat<span class="sc">$</span>training, dat<span class="sc">$</span>gender)</span>
-<span id="cb429-2"><a href="analysis-of-variance.html#cb429-2" aria-hidden="true" tabindex="-1"></a><span class="co"># head(dat)</span></span>
-<span id="cb429-3"><a href="analysis-of-variance.html#cb429-3" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> gender.train, <span class="at">data =</span> dat)</span>
-<span id="cb429-4"><a href="analysis-of-variance.html#cb429-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model3)</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="analysis-of-variance.html#cb430-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>gender.train <span class="ot">&lt;-</span> <span class="fu">interaction</span>(dat<span class="sc">$</span>training, dat<span class="sc">$</span>gender)</span>
+<span id="cb430-2"><a href="analysis-of-variance.html#cb430-2" aria-hidden="true" tabindex="-1"></a><span class="co"># head(dat)</span></span>
+<span id="cb430-3"><a href="analysis-of-variance.html#cb430-3" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(reading <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> gender.train, <span class="at">data =</span> dat)</span>
+<span id="cb430-4"><a href="analysis-of-variance.html#cb430-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model3)</span></code></pre></div>
 <pre><code>##  gender.trainA.boy  gender.trainB.boy  gender.trainC.boy gender.trainA.girl gender.trainB.girl gender.trainC.girl 
 ##              37.75              45.00              43.75              38.75              50.50              42.00</code></pre>
 <ul>
 <li>Step 3: Compute contrasts</li>
 </ul>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="analysis-of-variance.html#cb431-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">glht</span>(model3, <span class="at">linfct =</span> K)</span>
-<span id="cb431-2"><a href="analysis-of-variance.html#cb431-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="analysis-of-variance.html#cb432-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">glht</span>(model3, <span class="at">linfct =</span> K)</span>
+<span id="cb432-2"><a href="analysis-of-variance.html#cb432-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -2704,12 +2712,12 @@ C - B
 <li>Step 4: Visualization</li>
 </ul>
 <p><em>use <code>plot()</code> function</em></p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="analysis-of-variance.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-224-1.png" width="40%" /></p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="analysis-of-variance.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
 <p><em>use <code>ggplot()</code> function</em></p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="analysis-of-variance.html#cb434-1" aria-hidden="true" tabindex="-1"></a>ggstatsplot<span class="sc">::</span><span class="fu">ggcoefstats</span>(out) <span class="sc">+</span> </span>
-<span id="cb434-2"><a href="analysis-of-variance.html#cb434-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Linear Function&quot;</span>, <span class="at">y=</span><span class="cn">NULL</span>)</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-225-1.png" width="40%" /></p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="analysis-of-variance.html#cb435-1" aria-hidden="true" tabindex="-1"></a>ggstatsplot<span class="sc">::</span><span class="fu">ggcoefstats</span>(out) <span class="sc">+</span> </span>
+<span id="cb435-2"><a href="analysis-of-variance.html#cb435-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Linear Function&quot;</span>, <span class="at">y=</span><span class="cn">NULL</span>)</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
 </div>
 </div>
 <div id="factorial-anova-as-multiple-regression" class="section level2" number="7.7">
@@ -2720,17 +2728,17 @@ C - B
              {b_4}boy*condB + {b_5}boy*CondC
 \end{array}\]</span></p>
 <p>Where <span class="math inline">\({b_1}\)</span>, <span class="math inline">\({b_2}\)</span>, and <span class="math inline">\({b_3}\)</span>, are the main effects and <span class="math inline">\({b_4}\)</span>, and <span class="math inline">\({b_5}\)</span> are the interaction effects.</p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="analysis-of-variance.html#cb435-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading<span class="sc">~</span> gender, <span class="at">data =</span> dat)</span>
-<span id="cb435-2"><a href="analysis-of-variance.html#cb435-2" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> gender <span class="sc">+</span> training, <span class="at">data =</span> dat)</span>
-<span id="cb435-3"><a href="analysis-of-variance.html#cb435-3" aria-hidden="true" tabindex="-1"></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> gender <span class="sc">*</span> training, <span class="at">data =</span> dat)</span>
-<span id="cb435-4"><a href="analysis-of-variance.html#cb435-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm1)</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="analysis-of-variance.html#cb436-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading<span class="sc">~</span> gender, <span class="at">data =</span> dat)</span>
+<span id="cb436-2"><a href="analysis-of-variance.html#cb436-2" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> gender <span class="sc">+</span> training, <span class="at">data =</span> dat)</span>
+<span id="cb436-3"><a href="analysis-of-variance.html#cb436-3" aria-hidden="true" tabindex="-1"></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(reading <span class="sc">~</span> gender <span class="sc">*</span> training, <span class="at">data =</span> dat)</span>
+<span id="cb436-4"><a href="analysis-of-variance.html#cb436-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm1)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: reading
 ##           Df  Sum Sq Mean Sq F value Pr(&gt;F)
 ## gender     1   15.04  15.042  0.2749 0.6053
 ## Residuals 22 1203.92  54.723</code></pre>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="analysis-of-variance.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm2)</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="analysis-of-variance.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: reading
@@ -2740,7 +2748,7 @@ C - B
 ## Residuals 20 842.83  42.142                  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="analysis-of-variance.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm3)</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="analysis-of-variance.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm3)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: reading

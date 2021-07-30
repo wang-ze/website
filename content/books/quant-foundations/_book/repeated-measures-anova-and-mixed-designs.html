@@ -24,7 +24,7 @@
 <meta name="author" content="Ze Wang" />
 
 
-<meta name="date" content="2021-07-19" />
+<meta name="date" content="2021-07-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,8 @@
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -421,7 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="repeated-measures-anova-and-mixed-designs" class="section level1" number="9">
 <h1><span class="header-section-number">Chapter 9</span> Repeated Measures ANOVA and Mixed Designs</h1>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(QuantPsyc); <span class="fu">library</span>(psych); <span class="fu">library</span>(car); <span class="fu">library</span>(reshape); <span class="fu">library</span>(nlme); <span class="fu">library</span>(ez)</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(QuantPsyc); <span class="fu">library</span>(psych); <span class="fu">library</span>(car); <span class="fu">library</span>(reshape); <span class="fu">library</span>(nlme); <span class="fu">library</span>(ez)</span></code></pre></div>
 <div id="repeated-measures-anova" class="section level2" number="9.1">
 <h2><span class="header-section-number">9.1</span> Repeated-Measures ANOVA</h2>
 <p>Previous ANOVA designs discussed in class have measured participants at 1 time.</p>
@@ -1011,6 +1013,9 @@ Column Mean
 </ul>
 <p><strong>Repeated-Measures ANOVA Table</strong>:</p>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-265">Table 9.1: </span>Repeated-Measures ANOVA Table
+</caption>
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -1233,16 +1238,16 @@ Treatment 3
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb493-1" aria-hidden="true" tabindex="-1"></a>subj <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
-<span id="cb493-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb493-2" aria-hidden="true" tabindex="-1"></a>T1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">14</span>, <span class="dv">24</span>, <span class="dv">38</span>, <span class="dv">26</span>)</span>
-<span id="cb493-3"><a href="repeated-measures-anova-and-mixed-designs.html#cb493-3" aria-hidden="true" tabindex="-1"></a>T2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">34</span>, <span class="dv">28</span>)</span>
-<span id="cb493-4"><a href="repeated-measures-anova-and-mixed-designs.html#cb493-4" aria-hidden="true" tabindex="-1"></a>T3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">34</span>, <span class="dv">22</span>, <span class="dv">30</span>, <span class="dv">44</span>, <span class="dv">30</span>)</span>
-<span id="cb493-5"><a href="repeated-measures-anova-and-mixed-designs.html#cb493-5" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(subj, T1, T2, T3)</span></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb494-1" aria-hidden="true" tabindex="-1"></a>subj <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb494-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb494-2" aria-hidden="true" tabindex="-1"></a>T1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">14</span>, <span class="dv">24</span>, <span class="dv">38</span>, <span class="dv">26</span>)</span>
+<span id="cb494-3"><a href="repeated-measures-anova-and-mixed-designs.html#cb494-3" aria-hidden="true" tabindex="-1"></a>T2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">34</span>, <span class="dv">28</span>)</span>
+<span id="cb494-4"><a href="repeated-measures-anova-and-mixed-designs.html#cb494-4" aria-hidden="true" tabindex="-1"></a>T3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">34</span>, <span class="dv">22</span>, <span class="dv">30</span>, <span class="dv">44</span>, <span class="dv">30</span>)</span>
+<span id="cb494-5"><a href="repeated-measures-anova-and-mixed-designs.html#cb494-5" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(subj, T1, T2, T3)</span></code></pre></div>
 <p><strong>Convert data from the wide format to the long format</strong></p>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(reshape)</span></span>
-<span id="cb494-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb494-2" aria-hidden="true" tabindex="-1"></a>dat.long <span class="ot">&lt;-</span> <span class="fu">reshape</span>(dat, <span class="at">idvar =</span> <span class="st">&quot;subj&quot;</span>, <span class="at">v.names =</span> <span class="st">&quot;score&quot;</span>, <span class="at">varying =</span>  <span class="fu">c</span>(<span class="st">&quot;T1&quot;</span>, <span class="st">&quot;T2&quot;</span>, <span class="st">&quot;T3&quot;</span>), <span class="at">timevar =</span> <span class="st">&quot;treatment&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;long&quot;</span>)</span>
-<span id="cb494-3"><a href="repeated-measures-anova-and-mixed-designs.html#cb494-3" aria-hidden="true" tabindex="-1"></a>dat.long<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat.long<span class="sc">$</span>treatment)</span>
-<span id="cb494-4"><a href="repeated-measures-anova-and-mixed-designs.html#cb494-4" aria-hidden="true" tabindex="-1"></a>dat.long</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(reshape)</span></span>
+<span id="cb495-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb495-2" aria-hidden="true" tabindex="-1"></a>dat.long <span class="ot">&lt;-</span> <span class="fu">reshape</span>(dat, <span class="at">idvar =</span> <span class="st">&quot;subj&quot;</span>, <span class="at">v.names =</span> <span class="st">&quot;score&quot;</span>, <span class="at">varying =</span>  <span class="fu">c</span>(<span class="st">&quot;T1&quot;</span>, <span class="st">&quot;T2&quot;</span>, <span class="st">&quot;T3&quot;</span>), <span class="at">timevar =</span> <span class="st">&quot;treatment&quot;</span>, <span class="at">direction =</span> <span class="st">&quot;long&quot;</span>)</span>
+<span id="cb495-3"><a href="repeated-measures-anova-and-mixed-designs.html#cb495-3" aria-hidden="true" tabindex="-1"></a>dat.long<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat.long<span class="sc">$</span>treatment)</span>
+<span id="cb495-4"><a href="repeated-measures-anova-and-mixed-designs.html#cb495-4" aria-hidden="true" tabindex="-1"></a>dat.long</span></code></pre></div>
 <pre><code>##     subj treatment score
 ## 1.1    1         1    30
 ## 2.1    2         1    14
@@ -1260,12 +1265,12 @@ Treatment 3
 ## 4.3    4         3    44
 ## 5.3    5         3    30</code></pre>
 <p><strong>Plot the Data</strong></p>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat.long, <span class="fu">aes</span>(<span class="at">x=</span>treatment, <span class="at">y=</span>score, <span class="at">group=</span>subj))<span class="sc">+</span></span>
-<span id="cb496-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb496-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="book_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat.long, <span class="fu">aes</span>(<span class="at">x=</span>treatment, <span class="at">y=</span>score, <span class="at">group=</span>subj))<span class="sc">+</span></span>
+<span id="cb497-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb497-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-269-1.png" width="672" /></p>
 <p><strong>Method 1</strong>: Univariate approach using <code>aov()</code></p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb497-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> treatment <span class="sc">+</span> <span class="fu">Error</span>(subj<span class="sc">/</span>treatment), <span class="at">data =</span> dat.long)</span>
-<span id="cb497-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb497-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb498-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> treatment <span class="sc">+</span> <span class="fu">Error</span>(subj<span class="sc">/</span>treatment), <span class="at">data =</span> dat.long)</span>
+<span id="cb498-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb498-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
 <pre><code>## 
 ## Error: subj
 ##           Df Sum Sq Mean Sq F value Pr(&gt;F)
@@ -1280,9 +1285,9 @@ Treatment 3
 ## treatment  2   26.7   13.35   0.181  0.837
 ## Residuals  9  663.6   73.73</code></pre>
 <p><strong>Method 2</strong>: Univariate approach using <code>lme()</code> (multilevel model)</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(nlme)</span></span>
-<span id="cb499-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb499-2" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lme</span>(score <span class="sc">~</span> treatment, <span class="at">random =</span> <span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>subj<span class="sc">/</span>treatment, <span class="at">method =</span> <span class="st">&quot;ML&quot;</span>, <span class="at">data =</span> dat.long) <span class="co">#&lt;&lt;</span></span>
-<span id="cb499-3"><a href="repeated-measures-anova-and-mixed-designs.html#cb499-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(nlme)</span></span>
+<span id="cb500-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb500-2" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lme</span>(score <span class="sc">~</span> treatment, <span class="at">random =</span> <span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>subj<span class="sc">/</span>treatment, <span class="at">method =</span> <span class="st">&quot;ML&quot;</span>, <span class="at">data =</span> dat.long) <span class="co">#&lt;&lt;</span></span>
+<span id="cb500-3"><a href="repeated-measures-anova-and-mixed-designs.html#cb500-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
 <pre><code>## Linear mixed-effects model fit by maximum likelihood
 ##  Data: dat.long 
 ##        AIC      BIC    logLik
@@ -1315,13 +1320,13 @@ Treatment 3
 ## Number of Groups: 
 ##                subj treatment %in% subj 
 ##                   5                  15</code></pre>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb501-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model2)</span></code></pre></div>
 <pre><code>##             numDF denDF  F-value p-value
 ## (Intercept)     1     8 67.58621  &lt;.0001
 ## treatment       2     8 12.66667  0.0033</code></pre>
 <p><strong>Method 3</strong>: Use the <code>lm</code> function.</p>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb503-1" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> treatment <span class="sc">+</span> <span class="fu">factor</span>(subj), <span class="at">data =</span> dat.long)</span>
-<span id="cb503-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb503-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb504-1" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> treatment <span class="sc">+</span> <span class="fu">factor</span>(subj), <span class="at">data =</span> dat.long)</span>
+<span id="cb504-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb504-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = score ~ treatment + factor(subj), data = dat.long)
@@ -1345,7 +1350,7 @@ Treatment 3
 ## Residual standard error: 2.191 on 8 degrees of freedom
 ## Multiple R-squared:  0.9551, Adjusted R-squared:  0.9215 
 ## F-statistic: 28.39 on 6 and 8 DF,  p-value: 5.647e-05</code></pre>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model3)</span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model3)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: score
@@ -1356,10 +1361,10 @@ Treatment 3
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>Method 4</strong>: Us the <code>ezANOVA</code> function from the <code>ez</code> package</p>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(ez)</span></span>
-<span id="cb507-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb507-2" aria-hidden="true" tabindex="-1"></a>model4 <span class="ot">&lt;-</span> <span class="fu">ezANOVA</span>(<span class="at">data =</span> dat.long, <span class="at">dv =</span> .(score), <span class="at">wid =</span> .(subj), <span class="at">within =</span> .(treatment), <span class="at">detailed =</span> <span class="cn">TRUE</span>, <span class="at">type =</span> <span class="dv">3</span>) <span class="co">#&lt;&lt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(ez)</span></span>
+<span id="cb508-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb508-2" aria-hidden="true" tabindex="-1"></a>model4 <span class="ot">&lt;-</span> <span class="fu">ezANOVA</span>(<span class="at">data =</span> dat.long, <span class="at">dv =</span> .(score), <span class="at">wid =</span> .(subj), <span class="at">within =</span> .(treatment), <span class="at">detailed =</span> <span class="cn">TRUE</span>, <span class="at">type =</span> <span class="dv">3</span>) <span class="co">#&lt;&lt;</span></span></code></pre></div>
 <pre><code>## Warning: Converting &quot;subj&quot; to factor for ANOVA.</code></pre>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb509-1" aria-hidden="true" tabindex="-1"></a>model4</span></code></pre></div>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb510-1" aria-hidden="true" tabindex="-1"></a>model4</span></code></pre></div>
 <pre><code>## $ANOVA
 ##        Effect DFn DFd     SSn   SSd        F           p p&lt;.05       ges
 ## 1 (Intercept)   1   4 11760.0 696.0 67.58621 0.001193346     * 0.9412217
@@ -1390,8 +1395,8 @@ Treatment 3
 <li><p>Between-groups equality of variance (use Levene’s test; examine standard deviations for each group)</p></li>
 </ul>
 <p><strong>Example</strong>: The effects of therapy (family therapy group versus control group) on weight gain across time (beginning weight, weight at 12 weeks, and weight at 24 weeks) for teen girls with anorexia.</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb511-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/2_group_repeated_measures.sav&quot;</span>)</span>
-<span id="cb511-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb511-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb512-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&quot;data/2_group_repeated_measures.sav&quot;</span>)</span>
+<span id="cb512-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb512-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mydata)</span></code></pre></div>
 <pre><code>##   weight1 weight2 weight3 group
 ## 1    83.8    95.2   107.1     1
 ## 2    83.3    94.3   109.2     1
@@ -1399,10 +1404,10 @@ Treatment 3
 ## 4    82.5    91.9   106.5     1
 ## 5    86.7   100.3   104.2     1
 ## 6    79.6    82.5   100.2     1</code></pre>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb513-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mydata<span class="sc">$</span>group)</span>
-<span id="cb513-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb513-2" aria-hidden="true" tabindex="-1"></a>mydata.long <span class="ot">&lt;-</span> <span class="fu">reshape</span>(mydata, <span class="at">idvar =</span> <span class="st">&quot;id&quot;</span>, <span class="at">v.names =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">varying =</span>  <span class="fu">c</span>(<span class="st">&quot;weight1&quot;</span>, <span class="st">&quot;weight2&quot;</span>, <span class="st">&quot;weight3&quot;</span>), <span class="at">direction =</span> <span class="st">&quot;long&quot;</span>)</span>
-<span id="cb513-3"><a href="repeated-measures-anova-and-mixed-designs.html#cb513-3" aria-hidden="true" tabindex="-1"></a>mydata.long<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mydata.long<span class="sc">$</span>time)</span>
-<span id="cb513-4"><a href="repeated-measures-anova-and-mixed-designs.html#cb513-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ezANOVA</span>(<span class="at">data =</span> mydata.long, <span class="at">dv =</span> .(weight), <span class="at">wid =</span> .(id), <span class="at">between =</span> .(group), <span class="at">within =</span> .(time), <span class="at">type =</span> <span class="dv">3</span>, <span class="at">detailed =</span>  <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="repeated-measures-anova-and-mixed-designs.html#cb514-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mydata<span class="sc">$</span>group)</span>
+<span id="cb514-2"><a href="repeated-measures-anova-and-mixed-designs.html#cb514-2" aria-hidden="true" tabindex="-1"></a>mydata.long <span class="ot">&lt;-</span> <span class="fu">reshape</span>(mydata, <span class="at">idvar =</span> <span class="st">&quot;id&quot;</span>, <span class="at">v.names =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">varying =</span>  <span class="fu">c</span>(<span class="st">&quot;weight1&quot;</span>, <span class="st">&quot;weight2&quot;</span>, <span class="st">&quot;weight3&quot;</span>), <span class="at">direction =</span> <span class="st">&quot;long&quot;</span>)</span>
+<span id="cb514-3"><a href="repeated-measures-anova-and-mixed-designs.html#cb514-3" aria-hidden="true" tabindex="-1"></a>mydata.long<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mydata.long<span class="sc">$</span>time)</span>
+<span id="cb514-4"><a href="repeated-measures-anova-and-mixed-designs.html#cb514-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ezANOVA</span>(<span class="at">data =</span> mydata.long, <span class="at">dv =</span> .(weight), <span class="at">wid =</span> .(id), <span class="at">between =</span> .(group), <span class="at">within =</span> .(time), <span class="at">type =</span> <span class="dv">3</span>, <span class="at">detailed =</span>  <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Warning: Converting &quot;id&quot; to factor for ANOVA.</code></pre>
 <pre><code>## $ANOVA
 ##        Effect DFn DFd        SSn       SSd           F            p p&lt;.05       ges
