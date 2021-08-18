@@ -1,7 +1,7 @@
 ---
 title: Three Professional Service Roles This Summer
 author: Ze Wang
-date: '2021-08-10'
+date: '2025-08-10'
 slug: three-professional-service-roles-this-summer
 categories:
   - Random
