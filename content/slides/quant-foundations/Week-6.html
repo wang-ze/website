@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ESC_PS 8850:  Quantitative Foundations in Educational Research</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ze Wang" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# ESC_PS 8850: <br>Quantitative Foundations in Educational Research
+## <br/>Monday, 4:00pm-6:30pm; online
+### Ze Wang
+### University of Missouri
+### 2021-10-4
+
+---
+
+layout: true
+
+&lt;div class = 'my-header'&gt;&lt;span&gt;ESC_PS 8850 Quant Foundations&lt;/span&gt;&lt;/div&gt;
+
+&lt;div class = 'my-footer'&gt;&lt;span&gt;wangze@missouri.edu
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+Ze Wang, Ph.D.&lt;/span&gt;&lt;/div&gt; 
+
+
+---
+class: center, middle
+
+
+
+
+
+
+
+
+
+# .blue[Week 6]
+
+## .blue[Multiple Regression Analysis]
+
+### Partial and Semipartial Correlations
+### F Test and Partial F Test
+### Regression Model Selection/Types of Multiple Regression
+### Assumptions in Regression
+
+---
+
+```r
+library(rio); library(ggplot2); library(QuantPsyc); library(psych); library(car); library(lmtest); library(apaTables)
+```
+
+
+---
+
+## Multiple Regression Analysis - Partial and Semi-paritial (Part) Correlations
+
+Questions Typically Asked in Multiple Regression
+
+1. How well does a group of independent variables together estimate Y?
+
+  - R Square or Adjusted R Square may be used to answer this question.  In the professor's salary example, time since Ph.D. was earned and number of citations accounted for/explained 49% or 47% ( `\(R^2 = .491\)`; `\(R_{adj}^{2}=.474\)`) of the variance in Professors’ Salary.  The Coefficient of Multiple Alienation = `\(1-{{R}^{2}}=1-.491=.509\)` is the proportion of variance in Salary not explained by/associated with Time and Citations.  Fifty-one percent of the variance in Salary is not associated with Time and Citations.  The *F*-test indicates significance of R Square.
+
+---
+
+### Partial and Semi-paritial (Part) Correlations
+
+Questions Typically Asked in Multiple Regression
+
+2. How much does any single variable add to the estimation of Y already explained by other variables?  
+
+  - The Semipartial (or Part) Correlation may be used to answer this question.  
+
+  - A semipartial correlation is a correlation between Y and an independent variable/predictor from which the other independent variables/predictors have been partialled.  It is the correlation between the dependent variable and an independent variable when the linear effects of the other independent variables in the model have been removed from the independent variable.  It is related to the change in R square when a variable is added to an equation.  
+
+  - Thus, the semipartial correlation for Time (X1) is the correlation between Time (X1) and Salary (Y) with the association between Time (X1) and Citations (X2) removed, but the association between Citations (X2) and Salary (Y) is not removed ( `\({{r}_{Y({{X}_{1}}|{{X}_{2}})}}\)` ). The semipartial correlation for Citations (X2) is the correlation between Citations (X2) and Salary (Y) with the association between Citations (X2) and Time (X1) removed, but the association between Time (X1) and Salary (Y) is not removed ( `\({{r}_{Y({{X}_{2}}|{{X}_{1}})}}\)`).  
+
+---
+
+### Partial and Semi-paritial (Part) Correlations
+
+.pull-left[
+![partial correlation venn diagram](images/partial_correlation.png)
+]
+
+
+.pull-right[
+`$$a = sr_1^2 = {R^2} - r_{Y2}^2$$`
+
+`$$b = sr_2^2 = {R^2} - r_{Y1}^2$$`
+`$$r_{Y1}^2 = a + c$$`
+`$$r_{Y2}^2 = b + c$$`
+`$${R^2} = a + b + c$$`
+]
+
+  - *a* and *b* are proportions of *Y* variance uniquely accounted for by *X1* and *X2*, respectively and equal the squared semipartial correlation (the increase in *R* Square when one independent variable/predictor is added to the other independent variable/predictor).
+  
+
+`$$s{{r}_{1}}=\frac{{{r}_{Y1}}-{{r}_{Y2}}{{r}_{12}}}{\sqrt{1-r_{12}^{2}}}$$`
+`$$s{{r}_{2}}=\frac{{{r}_{Y2}}-{{r}_{Y1}}{{r}_{12}}}{\sqrt{1-r_{12}^{2}}}$$`
+
+---
+
+### Partial and Semi-paritial (Part) Correlations
+
+3. When other independent variables/predictors are held constant statistically, how much of Y does a given variable account for?
+
+  - The Partial Correlation may be used to answer this question.
+  
+  - A Partial correlation is a correlation between Y and an independent variable/predictor while controlling for the other independent variables/predictors in the model.  It is the correlation between the dependent variable and an independent variable when the linear effects of the other independent variables in the model have been removed from both.  Thus, the partial correlation for Time (X1) is the correlation between Time (X1) and Salary (Y) while controlling for Citations (X2) or when removing the effects of Citations ( `\({{r}_{Y{{X}_{1}}|{{X}_{2}}}}\)`).  The partial correlation for Citations (X2) is the correlation between Citations (X2) and Salary (Y) while controlling for Time (X1) or when removing the effects of Time ( `\({{r}_{Y{{X}_{2}}|{{X}_{1}}}}\)`). 
+  
+  - The squared partial correlation indicates how much of the Y variance not estimated by other predictors is estimated by this predictor.  For Time (X1), it is the proportion of variance in Y not associated with Citations (X2) but is associated with Time (X1).  For Citations (X2), it is the proportion of variance in Y not associated with Time (X1) but is associated with Citations (X2).
+
+
+---
+
+### Partial and Semi-paritial (Part) Correlations
+
+.pull-left[
+![partial correlation venn diagram](images/partial_correlation.png)
+]
+
+
+.pull-right[
+
+`$$pr_{1}^{2}=\frac{a}{a+e}=\frac{{{R}^{2}}-r_{Y2}^{2}}{1-r_{Y2}^{2}}$$`
+
+`$$pr_{2}^{2}=\frac{b}{b+e}=\frac{{{R}^{2}}-r_{Y1}^{2}}{1-r_{Y1}^{2}}$$`
+]
+
+
+---
+
+### Partial and Semi-paritial (Part) Correlations
+
+
+```r
+mydata &lt;- import("data/profs.sav")
+corr.test(mydata$salary, mydata$time)
+corr.test(mydata$salary, mydata$cits)
+corr.test(mydata$time, mydata$cits)
+y &lt;- mydata$salary
+y.x2 &lt;- (lm(salary ~ cits, data = mydata))$residuals
+x1.x2 &lt;- (lm(time ~ cits, data = mydata))$residuals
+y.x1 &lt;- (lm(salary ~ time, data = mydata))$residuals
+x2.x1 &lt;- (lm(cits ~ time, data = mydata))$residuals
+cor(y.x2, x1.x2) # partial correlation between y and x1 controlling for x2
+cor(y.x1, x2.x1) # partial correlation between y and x2 controlling for x1
+cor(y, x1.x2) # semi-partial correlation between y and x1 controlling for x2
+cor(y, x2.x1) # semi-partial correlation between y and x2 controlling for x1
+```
+
+---
+
+### Partial and Semi-paritial (Part) Correlations
+
+**Sum up**: Multiple regression analysis was used to examine how well time since Ph.D. was earned and the number of citations for professors would explain/predict their salary.  Time since Ph.D. and number of citations together accounted for approximately 47% of the variance in Salary `\((R_{adj}^{2}=.474)\)`, *F*(2, 59) = 28.43, *p* &lt; .001.  Time since professor’s earned their Ph.D. was a statistically significant predictor of Salary, *t*(59) = 4.67, *p* &lt; .001, which accounted for 27% of the variance in Salary not accounted for by number of citations (pr = .520) and uniquely accounted for 19% of the variance in Salary (sr = .434).  Holding number of citations constant, as time since professors’ earned their Ph.D. increased by 1 year, salary was estimated to increase by  `$`1062 (95%: 607,19, 1516,34). Number of citations for professors was also a statistically significant predictor of salary, *t*(59) = 3.75, *p* &lt; .001, which accounted for 19% of the variance in salary not accounted for by time since Ph.D. was earned (pr = .439) and uniquely accounted for 12% of the variance in Salary (sr = .348). Holding time since Ph.D. was earned constant, as the number of citations for professors increased by 1, salary was estimated to increase by `$`212 (95% CI: 98.87, 325.36). 
+
+
+**Note**: 
+- The regular pearson correlation is also called zero-order correlation. 
+- Section 6.6 of textbook is on partial and semi-partial correlations.
+
+---
+
+## MR - F Test and Partial F Test
+
+
+Three Questions That can be Answered with F tests:
+
+  - **Overall test**. Taken collectively, does the entire set of IVs (or equivalently, the fitted model itself) contribute significantly to the prediction of Y?
+  
+  - **Test for addition of a single variable**. Does the addition of one particular IV of interest add significantly to the prediction of Y achieved by other IVs already present in the model?
+  
+  - **Test for addition of a group of variables**. Does the addition of some group of IVs of interest add significantly to the prediction of Y obtained through other IVs already present in the model?
+
+---
+
+## MR - F Test and Partial F Test
+
+Overall Test (F Test)
+
+`$$F = \frac{{M{S_{reg}}}}{{M{S_{res}}}} = \frac{{S{S_{reg}}/k}}{{S{S_{res}}/(n - k - 1)}}$$`
+
+  - How many degrees of freedom for the numerator?
+
+  - How many degrees of freedom for the denominator?
+
+
+
+---
+
+## MR - F Test and Partial F Test
+
+Test for Additional Variable(s) (Partial F Test)
+
+**Add k IVs to the model with p IVs already in the model**:
+
+`$$F = \frac{{[S{S_{reg}}(full) - S{S_{reg}}(reduced)]/k}}{{S{S_{res}}(full)/[n - (p + k) - 1]}} = \frac{{[S{S_{reg}}(full) - S{S_{reg}}(reduced)]/k}}{{M{S_{res}}(full)}}$$`
+
+
+  - This partial F test compares two models: one with p IVs and the other with (p+k) IVs. 
+
+  - df for the numerator is k; 
+
+  - df for the denominator is [n-(p+k)-1]
+
+
+---
+
+## MR - Partial F Test in R
+
+  - Estimate both models
+  
+
+```r
+model_full &lt;- lm(salary ~ time + cits, data = mydata)
+model_reduced &lt;- lm(salary ~ time, data = mydata)
+```
+  
+  - Conduct Partial F test using the `anova()` function
+  
+
+```r
+anova(model_full, model_reduced)
+```
+
+```
+## Analysis of Variance Table
+## 
+## Model 1: salary ~ time + cits
+## Model 2: salary ~ time
+##   Res.Df        RSS Df  Sum of Sq      F    Pr(&gt;F)    
+## 1     59 2926312249                                   
+## 2     60 3623032005 -1 -696719756 14.047 0.0004078 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+ 
+---
+
+## MR - F Test and Partial F Test
+
+**Variables Added in Order, and Variables Added Last**
+
+  - **Recall**: A partial F test compares two models
+    
+  - Type I F test is for variables added in order
+    - The current model is compared to the previous model with one IV less
+    - Order of entry matters
+
+  - Type III F test is for variables added last
+    -The full model is compared to the model with all IVs except for the one IV currently under consideration
+    - Order of entry does not matter
+    
+  - It is more important to know which models you are comparing than which F test (Type I or Type III) you use!	
+  
+  
+
+---
+
+## MR - F Test and Partial F Test
+
+  - Type I F test (using Type I Sum of Squares). This is the default in the `anova` function.
+  
+
+```r
+anova(model_full)
+```
+
+```
+## Analysis of Variance Table
+## 
+## Response: salary
+##           Df     Sum Sq    Mean Sq F value    Pr(&gt;F)    
+## time       1 2123587818 2123587818  42.816 1.596e-08 ***
+## cits       1  696719756  696719756  14.047 0.0004078 ***
+## Residuals 59 2926312249   49598513                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+  
+---
+
+## MR - F Test and Partial F Test
+
+  - Type III F test (using Type III Sum of Squares). Use the `Anova` function from the `car` package.
+
+
+```r
+# library(car)
+*Anova(model_full, type = "III")
+```
+
+```
+## Anova Table (Type III tests)
+## 
+## Response: salary
+##                 Sum Sq Df F value    Pr(&gt;F)    
+## (Intercept) 1.3185e+10  1 265.842 &lt; 2.2e-16 ***
+## time        1.0834e+09  1  21.844 1.761e-05 ***
+## cits        6.9672e+08  1  14.047 0.0004078 ***
+## Residuals   2.9263e+09 59                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+
+---
+
+## Types of Multiple Regression
+
+&lt;table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Types of Multiple Regression&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Type of Regression &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Alternative Name &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV Entered &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV Evaluated &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Stnadard &lt;/td&gt;
+   &lt;td style="text-align:left;width: 5em; "&gt; simultaneous &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; all IVs enter at once &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; each evaluated in terms of what it contributes as though it is last and all others have already made their contribution &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sequential &lt;/td&gt;
+   &lt;td style="text-align:left;width: 5em; "&gt; hierarchical &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; IVs enter in the order specified by the researcher &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; evaluated in terms of what it contributes at the time it was entered (therefore, sometimes the weaker IVs are entered first &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Statistical &lt;/td&gt;
+   &lt;td style="text-align:left;width: 5em; "&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; entry order based solely on statistical criteria &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; IVs are not evaluted in the same sense &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;width: 5em; "&gt; forward selection &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; equation begins empty and each IV is entered one at a time &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; criterion can be a significance level &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;width: 5em; "&gt; backward selection &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; equation being full (all in) &amp;amp; each IV deleted one at a time &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; deleteion based on whether IV contributes substantially; if not, then delete &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;width: 5em; "&gt; stepwise selection &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; equation starts out empty; IVs entered if they met statistical criterion, and deleted at any time when they no longer contribute &lt;/td&gt;
+   &lt;td style="text-align:left;width: 15em; "&gt; a compromise between forward &amp;amp; backward selection &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Types of Multiple Regression
+
+  - Regression Model Selection based on Statistics. 
+    - use the `step` function from the `stats` package (already installed with `base`) or the `stepAIC` function from the `MASS` pacakge.
+
+
+
+```r
+fit &lt;- lm(salary ~ time + cits + pubs, data = mydata)
+step1 &lt;- step(fit, direction = "both") # stepwise
+```
+
+```
+## Start:  AIC=1102.26
+## salary ~ time + cits + pubs
+## 
+##        Df Sum of Sq        RSS    AIC
+## - pubs  1  59458298 2926312249 1101.5
+## &lt;none&gt;              2866853951 1102.3
+## - time  1 468968436 3335822387 1109.7
+## - cits  1 634124345 3500978295 1112.7
+## 
+## Step:  AIC=1101.53
+## salary ~ time + cits
+## 
+##        Df  Sum of Sq        RSS    AIC
+## &lt;none&gt;               2926312249 1101.5
+## + pubs  1   59458298 2866853951 1102.3
+## - cits  1  696719756 3623032005 1112.8
+## - time  1 1083431156 4009743405 1119.1
+```
+
+---
+
+## Types of Multiple Regression
+
+  - Regression Model Selection based on Statistics. 
+    - use the `step` function from the `stats` package (already installed with `base`) or the `stepAIC` function from the `MASS` pacakge.
+
+
+```r
+step2 &lt;- step(lm(salary ~ 1, data = mydata), scope = formula(fit), direction = "forward")
+```
+
+```
+## Start:  AIC=1139.37
+## salary ~ 1
+## 
+##        Df  Sum of Sq        RSS    AIC
+## + time  1 2123587818 3623032005 1112.8
+## + cits  1 1736876419 4009743405 1119.1
+## + pubs  1 1472195326 4274424497 1123.0
+## &lt;none&gt;               5746619823 1139.4
+## 
+## Step:  AIC=1112.77
+## salary ~ time
+## 
+##        Df Sum of Sq        RSS    AIC
+## + cits  1 696719756 2926312249 1101.5
+## + pubs  1 122053710 3500978295 1112.7
+## &lt;none&gt;              3623032005 1112.8
+## 
+## Step:  AIC=1101.53
+## salary ~ time + cits
+## 
+##        Df Sum of Sq        RSS    AIC
+## &lt;none&gt;              2926312249 1101.5
+## + pubs  1  59458298 2866853951 1102.3
+```
+
+
+---
+
+## Types of Multiple Regression
+
+  - Regression Model Selection based on Statistics. 
+    - use the `step` function from the `stats` package (already installed with `base`) or the `stepAIC` function from the `MASS` pacakge.
+
+
+```r
+step3 &lt;- step(fit, direction = "backward")
+```
+
+```
+## Start:  AIC=1102.26
+## salary ~ time + cits + pubs
+## 
+##        Df Sum of Sq        RSS    AIC
+## - pubs  1  59458298 2926312249 1101.5
+## &lt;none&gt;              2866853951 1102.3
+## - time  1 468968436 3335822387 1109.7
+## - cits  1 634124345 3500978295 1112.7
+## 
+## Step:  AIC=1101.53
+## salary ~ time + cits
+## 
+##        Df  Sum of Sq        RSS    AIC
+## &lt;none&gt;               2926312249 1101.5
+## - cits  1  696719756 3623032005 1112.8
+## - time  1 1083431156 4009743405 1119.1
+```
+
+    
+---
+
+## (A Few) Assumptions in Regression
+
+
+  - Linear Relationship Exists Between Independent Variables and Dependent Variable
+  
+  - Homoscedasticity of Residuals (Residuals Have Constant Variance)
+  
+  - Residuals are Normally Distributed
+  
+  - Residuals are Independent
+  
+  - Lack of Multicollinearity
+
+**Note**: See section 7.7.2.1 of textbook for a more complete list of assumptions
+
+
+---
+
+## (A Few) Assumptions in Regression  
+
+How to check for **Linearity**?
+
+Plot residuals against each independent variable and against the predicted values. 
+
+
+```r
+mydata &lt;- import("data/profs.sav")
+mymodel &lt;- lm(salary ~ time + cits, data = mydata)
+res &lt;- resid(mymodel)
+fitted &lt;- fitted(mymodel)
+ggplot(mydata, aes(x = time, y = res)) + geom_point() + geom_smooth(method = lm, se=FALSE) +  geom_smooth(color="red") # Add a loess smoothed fit curve 
+```
+
+&lt;img src="Week-6_files/figure-html/unnamed-chunk-13-1.png" width="20%" /&gt;
+
+```r
+ggplot(mydata, aes(x = cits, y = res)) + geom_point() + geom_smooth(method = lm, se=FALSE) + geom_smooth(color="red") 
+```
+
+&lt;img src="Week-6_files/figure-html/unnamed-chunk-13-2.png" width="20%" /&gt;
+
+```r
+ggplot(mydata, aes(x = fitted, y = res)) + geom_point() + geom_smooth(method = lm, se=FALSE) + geom_smooth(color="red") 
+```
+
+&lt;img src="Week-6_files/figure-html/unnamed-chunk-13-3.png" width="20%" /&gt;
+
+
+---
+
+## (A Few) Assumptions in Regression  
+
+How to check for **Linearity**?
+
+Plot residuals against each independent variable and against the predicted values. 
+
+  - The straight horizontal line (0-line) indicates where the residuals are zero.  The mean of the residuals should be zero.  The curved line is the loess fit line which follows the general trend of the data.  If the relationship is linear, the loess fit line should not demonstrate any large or systematic deviations from the 0-line.
+
+  - Violation of linearity leads to biased regression coefficients and standard errors, resulting in incorrect significance tests and confidence intervals.
+
+
+
+---
+
+## (A Few) Assumptions in Regression  
+
+How to check for **Linearity**?
+
+You can also use the `crPlots` (Components + Residual Plots) or the `ceresPlots` function from the `car` package
+
+
+```r
+mydata &lt;- import("data/profs.sav")
+mymodel &lt;- lm(salary ~ time + cits, data = mydata)
+crPlots(mymodel)
+```
+
+&lt;img src="Week-6_files/figure-html/unnamed-chunk-14-1.png" width="35%" /&gt;
+
+```r
+#ceresPlots(mymodel)
+```
+
+---
+
+## (A Few) Assumptions in Regression  
+
+How to check for **Homoscedasticity** (Constant Variance Assumption)?
+
+Plot residuals against each independent variable and against the predicted values. 
+
+
+```r
+mydata &lt;- import("data/profs.sav")
+mymodel &lt;- lm(salary ~ time + cits, data = mydata)
+res &lt;- resid(mymodel)
+fitted &lt;- fitted(mymodel)
+ggplot(mydata, aes(x = time, y = res)) +  geom_point() +  geom_smooth(method = lm, se=FALSE)
+```
+
+&lt;img src="Week-6_files/figure-html/unnamed-chunk-15-1.png" width="25%" /&gt;
+
+```r
+ggplot(mydata, aes(x = cits, y = res)) +  geom_point() +  geom_smooth(method = lm, se=FALSE)
+```
+
+&lt;img src="Week-6_files/figure-html/unnamed-chunk-15-2.png" width="25%" /&gt;
+
+```r
+ggplot(mydata, aes(x = fitted, y = res)) + geom_point() + geom_smooth(method = lm, se=FALSE)
+```
+
+&lt;img src="Week-6_files/figure-html/unnamed-chunk-15-3.png" width="25%" /&gt;
+
+---
+
+## (A Few) Assumptions in Regression  
+
+**Homoscedasticity**
+
+  - When examining these plots, you don’t want to see a relationship between the variability of the residuals and either the independent variables or the predicted values.  
+
+  - If homoscedasticity is voilated, the standard errors of estimates will be incorrect. Thus, significance tests (p-value, confidence interval) are also incorrect. However, regression coefficients will still be correctly estimated.
+
+
+---
+
+## (A Few) Assumptions in Regression  
+
+How to check for **Homoscedasticity** (Constant Variance Assumption)?
+
+  - Use the `ncvTest()` function from the `car` package. This function computes a score test of the hypothesis of constant error variance against the alternative that the error variance changes with the level of the response (fitted values), or with a linear combination of predictors. The `ncvTest()` function performs the original version of Breusch-Pagan test. 
+
+
+
+```r
+ncvTest(mymodel)
+```
+
+```
+## Non-constant Variance Score Test 
+## Variance formula: ~ fitted.values 
+## Chisquare = 0.09487541, Df = 1, p = 0.75807
+```
+
+  - Use the `bptest()` function from the `lmtest` package. This function offers studentized Breusch-Pagan test and is more robust than the orignial B-P test.
+
+
+```r
+bptest(mymodel)
+```
+
+```
+## 
+## 	studentized Breusch-Pagan test
+## 
+## data:  mymodel
+## BP = 0.1054, df = 2, p-value = 0.9487
+```
+
+---
+
+## (A Few) Assumptions in Regression  
+
+How to check for **Homoscedasticity** (Constant Variance Assumption)?
+
+  - The `spreadLevelPlot` function from the `car` package creates plots for examining the possible dependence of spread on level, or an extension of these plots to the studentized residuals from linear models. It also suggests power transformation for improving homoscedasticity. 
+
+
+
+```r
+spreadLevelPlot(mymodel) # plot studentized residuals vs. fitted values
+```
+
+&lt;img src="Week-6_files/figure-html/unnamed-chunk-18-1.png" width="35%" /&gt;
+
+```
+## 
+## Suggested power transformation:  0.6806045
+```
+
+
+---
+
+## (A Few) Assumptions in Regression  
+
+**Homoscedasticity** Remedies
+
+When the homoscedasticity assumption is not met, variables can be transformed to stabilize the variance. 
+
+  - **Natural Log Transformation** can be used to reduce the skewness of variables and to stabilize the variance (values must be strictly positive to apply the log-function). `newy = log(y)`
+  
+  - **Box-Cox transformation** transforms a variable using the power `\(\lambda\)` tha tis mostly likely to normalize the variable. Use the `powerTransform()` function in the `car` package. When `\(\lambda  = 0\)`, it is the log transformation. 
+  
+
+```r
+summary(powerTransform(mydata$salary))
+```
+
+```
+## bcPower Transformation to Normality 
+##               Est Power Rounded Pwr Wald Lwr Bnd Wald Upr Bnd
+## mydata$salary   -0.2629           0      -1.4766       0.9507
+## 
+## Likelihood ratio test that transformation parameter is equal to 0
+##  (log transformation)
+##                             LRT df    pval
+## LR test, lambda = (0) 0.1808747  1 0.67062
+## 
+## Likelihood ratio test that no transformation is needed
+##                           LRT df     pval
+## LR test, lambda = (1) 4.20349  1 0.040341
+```
+  
+
+---
+
+## (A Few) Assumptions in Regression  
+
+How to check for **Normality** of residuals?
+
+Plot a histogram and the normal QQ plot of residuals
+
+  - Want the distribution of residuals to resemble the normal curve.
+
+
+```r
+mydata$fitted &lt;- fitted(mymodel)
+mydata$res &lt;- resid(mymodel)
+ggplot(mydata, aes(x=res)) +  geom_histogram(aes(y=..density..), color = "black", fill = "white") + geom_density(alpha=.2, fill="#FF6666") 
+```
+
+&lt;img src="Week-6_files/figure-html/unnamed-chunk-20-1.png" width="30%" /&gt;
+
+
+---
+
+## (A Few) Assumptions in Regression  
+
+How to check for **Normality** of residuals?
+
+Plot a histogram and the normal QQ plot of residuals
+
+  - Want the residuals (in circles) to be close to the straight line in the QQ plot.
+
+
+```r
+ggplot(mydata, aes(sample=res)) + stat_qq() + stat_qq_line(color = "red")
+```
+
+&lt;img src="Week-6_files/figure-html/unnamed-chunk-21-1.png" width="30%" /&gt;
+
+ 
+---
+
+## (A Few) Assumptions in Regression  
+
+**Normality**
+
+  - If normality is violated, standard errors are incorrect. Thus, significance tests (p-value, confidence interval) are also incorrect, especially for small samples (In large sample sizes, violation of this assumption is not a big problem). However, regression coefficients will still be correctly estimated.
+  
+  - The Shapiro-Wilk test can also be used to check for normaility for small to moderate samples
+  
+  - There a few other statistical tests for normaility: Kolmogorov-Smirnov (K-S), Anderson-Darling, D’Agostino, Jarque-Bera.
+  
+---
+
+## (A Few) Assumptions in Regression
+
+How to check for **Independence** of Residuals?
+  
+A violation of this assumption typically occurs under 2 conditions:
+
+- Clustering:  When data are collected from groups or other clusters (e.g., people within different classes, people within different schools, people within different school districts, people who see different doctors, order of participation in a study, etc.).  In this case, the residuals may be more similar within the clusters than between the clusters.  
+   
+- Serial Dependency:  When data are repeatedly collected from a single individual or the same sample of individuals over time (longitudinal studies), the residuals will often show serial dependency.  Measures at adjacent times will tend to have more similar values.  
+
+  
+---
+
+## (A Few) Assumptions in Regression
+
+How to check for **Independence** of Residuals?
+
+For clustering, plot residuals against the cluster variable.
+
+.pull-left[
+
+```r
+mydata$dept &lt;- as.factor(mydata$dept) # convert `dept` as a factor variable
+ggplot(mydata, aes(x=dept, y=res)) +
+  geom_boxplot()
+```
+
+&lt;img src="Week-6_files/figure-html/unnamed-chunk-22-1.png" width="60%" /&gt;
+]
+
+.pull-right[
+Do the boxplots indicate much variability in the median value of thh residuals in each group?
+
+  - If there is clustering, the estimated regression coefficients are unbiased, but standard errors will typically be too small, leading to incorrect significance tests and confidence intervals.
+
+  - Dummy coded variables can be included as additional independent variables in the regression model to address clustering. Mulitivel modeling may be used as an alternative.
+]
+
+
+---
+
+## (A Few) Assumptions in Regression
+
+How to check for **Independence** of Residuals?
+
+For Serial Dependency, use Durbin-Watson Test. A value of 2 means the residuals are uncorrelated. A value less than 2 suggests positive autocorrelation; a value greater than 2 suggess negative autocorrelation.
+
+
+```r
+dwt(mymodel)
+```
+
+```
+##  lag Autocorrelation D-W Statistic p-value
+##    1     -0.06087733      2.099968    0.71
+##  Alternative hypothesis: rho != 0
+```
+
+
+---
+
+## (A Few) Assumptions in Regression
+
+How to check for lack of **Multicollinearity**?
+
+**Multicollinearity**:  High correlations among some independent (predictor) variables which are included in the regression model.
+
+  - The more a predictor is correlated with other predictors, the less unique information it can contribute to the prediction of the dependent (criterion) variable.
+
+**Exact Collinearity**:  Occurs when 1 independent variable has a correlation or a multiple correlation of 1.0 with the other independent variables.  In this case, this independent variable cannot contribute any unique information that is not contained in the other independent variables.
+
+   - When exact collinearity occurs, there is no mathematically unique solution for the regression coefficients and regression is impossible.  
+   
+
+.red[We will talk more about Multicollinearity next week]
+
+
+
+---
+
+### Useful Functions and Symbols Commonly Used in R When Fitting Linear Models
+&lt;table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Useful Functions in R When Fitting Linear Models&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Function &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Action &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; summary() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Displays detailed results for the fitted model &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; coefficients() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Lists the model parameters (intercept and slopes) for the fitted model &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; confint() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Provides confidence intervals for teh model parameters (95% by default) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; fitted() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Lists the predicted values in a fitted model &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; residuals() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Lists the residual values in a fitted model &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; anova() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Generates an ANOVA table for a fitted model, or an ANOVA table comparing two or more fitted models &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; vcov() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Lists the covariance matrix for model parameters &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; AIC() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Prints Akaike's Information Criterion &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; plot() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Generates diagnostic plots for evaluating the fit of a model &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; predict() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Uses a fitted model to predict response values for a new dataset &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+&lt;table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Symbols Commonly Use in R Formulas&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Symbol &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Usage &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; ~ &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Separates response variables on the left from the explanatory varialbes on the right. For example, a prediction of y from x, z, and w would be coded y ~ x + z + w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Separates predictor variables. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; : &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Denotes an interaction between predictor variables. A prediction of y from x, z, and the interaction between x and z would be coded y ~ x + z + x:z. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; * &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; A shortcut for denoting all possibel interactions. The code y ~ x*z*w expands to y ~ x + z + w + x:z + x:w + z:w + x:z:w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; ^ &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Denotes interactions up to a specified degree. The code y ~ (x + z + w)^2 expands to y ~ x + z + w + x:z + x:w + z:w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; . &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; A placeholder for all other variables in the data frame except the dependent variable. For example, if a data frame contained the varibels x, y, z, and w, then the code y ~ . would expands to y ~ x + z + w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; A minus sign removes a variable from teh equation. For example, y ~ (x + z + w)^2 - x:w expands to y ~ x + z + w + x:z + z:w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; -1 &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Supresses the intercept. For example, the formula y ~ x -1 fits a regression of y on x, and forces the line through the origin at x=0. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; I() &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Elements within the parentheses are interpreted arithmetically. For example, y ~ x + (z + w)^2 would expand to y ~ x + z + w + z:w. In contrast, y ~ x + I(z + w)^2 would expand to y ~ x + h, where h is a new variable created by squaring the sum of z and w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; function &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Mathematical functions cna be used in formulas. For example, log(y) ~ x + z + w would predict log(y) from x, z, and w &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+## .red[Using Colors in R]
+
+
+
+```r
+?colors
+browseURL("https://datalab.cc/rcolors")
+?palette
+palette() # current palette
+```
+
+---
+## Create APA Tables with `apaTables` Package 
+
+
+```r
+apa.cor.table(iris, filename="output/Table1_APA.doc", table.number = 1) # filename must end in .rtf or .doc only)
+reg.model &lt;- lm(sales ~ adverts + airplay, data = album) # The "album" dataset comes with the "apaTables" package
+apa.reg.table(reg.model, filename = "output/Table2_APA.doc", table.number = 2)
+```
+For more examples, check [apaTables vignettes](https://cran.r-project.org/web/packages/apaTables/vignettes/apaTables.html)
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

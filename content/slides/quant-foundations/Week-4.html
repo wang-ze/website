@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ESC_PS 8850:  Quantitative Foundations in Educational Research</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ze Wang" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# ESC_PS 8850: <br>Quantitative Foundations in Educational Research
+## <br/>Monday, 4:00pm-6:30pm; online
+### Ze Wang
+### University of Missouri
+### 2021-9-20
+
+---
+
+layout: true
+
+&lt;div class = 'my-header'&gt;&lt;span&gt;ESC_PS 8850 Quant Foundations&lt;/span&gt;&lt;/div&gt;
+
+&lt;div class = 'my-footer'&gt;&lt;span&gt;wangze@missouri.edu
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+Ze Wang, Ph.D.&lt;/span&gt;&lt;/div&gt; 
+
+
+---
+class: center, middle
+
+
+
+
+
+# .blue[Week 4]
+
+## Simple Linear Regression
+
+
+
+```r
+library(ggplot2); library(rio); library(psych); library(Hmisc); library(QuantPsyc)
+```
+
+---
+
+## Simple Linear Regression
+
+The simplest functional relationship between two variables X and Y can be expressed by the linear model (population):  `\({{Y}_{i}}=\alpha +\beta {{X}_{i}}+{{\varepsilon }_{i}}\)`, where
+
+`\({{Y}_{i}}\)`= the score for person *i* on the dependent variable *Y*;
+ 
+`\(\alpha\)` = the Y-intercept and is equal to the Y value when the value of X = 0 (where the line intersects the Y-axis);  
+
+`\(\beta\)` = the slope of the line and indicates the change in Y as the X value increases (or decreases) by 1 point (the steepness of the line) (Also called a regression coefficient);
+
+`\({{X}_{i}}\)` = the value of the independent variable X for person *i*;	
+
+`\({{\varepsilon }_{i}}\)` = random error for person *i*.
+
+
+???
+
+Regression is one of the most flexible, most powerful, and most frequently used methods for modeling data, both in standard data analysis, and in advanced data science. Make sure you know how to do it. Use it as a baseline for comparing all of your other models.
+
+---
+
+## Simple Linear Regression
+
+For a sample:  `\(Y=a+bX+e\)`, where
+
+*a* is an estimate of `\(\alpha\)`; *b* is an estimate of `\(\beta\)`; and *e* is an estimate of `\({{\varepsilon }_{i}}\)`.
+
+Y cannot be perfectly predicted from X.  Other sources of variability will not be measured (represented by *e*). 
+
+Because *e* is unobservable or is unable to be measured, we rewrite the equation to indicate that we are unable to measure all sources of error:  `\(\hat Y = a + bX\)`, where `\({\hat Y}\)` is the predicted Y value determined from a knowledge of X values.  
+
+Prediction Error (called Residuals) is represented as the difference between observed Y values and the predicted Y values:   `\(e = Y - \hat Y\)`
+
+---
+
+## Simple Linear Regression
+
+Ultimately, we want to find a solution for a and b that will minimize error as much as possible so that we can explain as much of Y as possible.  Anything unexplained by X is leftover error (again, represented by e).
+
+Ordinary Least Squares Regression minimizes the sum of squared residuals ( `\(SS_{res}\)` ):  `\(\sum{{{(Y-{\hat Y})}^{2}}=\sum{{{e}^{2}}}}\)`
+
+The linear regression equation, `\({\hat Y}=a+bX\)`, will produce a line that will fit the data most accurately in the sense that it will minimize the residual sum of squares ( `\(SS_{res}\)` ) (Ordinary Least Squares).
+
+
+Intercept: `\(a=\bar{Y}-b\bar{X}\)`
+
+Slope: `\(b=\frac{\sum{xy}}{\sum{{{x}^{2}}}}=\frac{\sum{(X-\bar{X})(Y-\bar{Y})}}{\sum{{{(X-\bar{X})}^{2}}}}\)`
+
+---
+
+## Simple Linear Regression
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(X\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(Y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(X-\bar X\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(Y-\bar Y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((X - \bar X)^2\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((Y - \bar Y)^2\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((X - \bar X)(Y - \bar Y)\)` &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -3.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -2.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -3.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.07 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.92 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.65 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.04 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.20 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.77 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 1px solid"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 5.43 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 3.14 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 29.48 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 9.86 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 17.05 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(\Sigma\)` &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65.68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 35.57 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`\(\bar X = 4.57\)`, `\(\bar Y = 3.86\)`, `\(s_x = 3.31\)`, `\(s_y = 2.03\)`
+
+Calculate slope: `\(b=\frac{\sum{xy}}{\sum{{{x}^{2}}}}=\frac{\sum{(X-\bar{X})(Y-\bar{Y})}}{\sum{{{(X-\bar{X})}^{2}}}}=\frac{35.57}{65.68}=.54\)`
+
+Calculate intercept: `\(a=\bar{Y}-b\bar{X}=3.85-(.54)(4.57)=3.85-2.47=1.38\)`
+
+---
+
+## Simple Linear Regression
+
+&lt;img src="Week-4_files/figure-html/unnamed-chunk-4-1.png" width="50%" /&gt;
+
+
+---
+
+## Simple Linear Regression
+
+Our linear regression equation:  `\({\hat Y}=1.38+.54X\)`. This equation can be used to predict Y using X for other samples.
+
+What if we wanted to predict Y for a certain value of X (e.g., X = 8)?  Just plug in the value 8 for X in the equation:    `\({\hat Y}=1.38+.54X=1.38+(.54)(8)=1.38+4.32=5.7\)`
+
+
+---
+
+#### scattplot using `plot()`
+
+
+```r
+x &lt;- c(1, 1, 3, 4, 6, 7, 10)
+y &lt;- c(1, 3, 2, 5, 4, 5, 7)
+```
+
+
+```r
+plot(x,y)
+abline(lm(y ~ x))
+```
+
+&lt;img src="Week-4_files/figure-html/unnamed-chunk-6-1.png" width="50%" /&gt;
+
+
+---
+
+#### scattplot using `ggplot()`
+
+.pull-left[
+
+```r
+df &lt;- data.frame(x,y)
+ggplot(data = df, mapping = aes(x = x, y = y)) + 
+  geom_point(color = "red", size = 2) +
+  geom_smooth(method = "lm", se = FALSE)  
+```
+]
+
+.pull-right[
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+&lt;img src="Week-4_files/figure-html/simple-regression-scatter-plot-out-1.png" width="80%" /&gt;
+]
+
+
+
+---
+
+## Simple Linear Regression
+
+Note that the intercept (*a* = 1.38) is where the line intersects the Y axis on the scatterplot.  Also, look at the slope value (b = .54) which indicates that as X increases by 1 point, Y increases about a half of a point.  
+
+Recall that `\({\hat Y}=a+bX\)` and that `\(a=\bar{Y}-b\bar{X}\)`.
+
+`$${\hat Y}=(\bar{Y}-b\bar{X})+bX=\bar{Y}+b(X-\bar{X})=\bar{Y}+bx$$`  
+
+`$$b=\frac{\sum{xy}}{\sum{{{x}^{2}}}}=\frac{\sum{(X-\bar{X})(Y-\bar{Y})}}{\sum{{{(X-\bar{X})}^{2}}}}$$`
+
+Thus, if X does not affect Y or covary with Y, b  = 0 and the predicted Y value will be equal to the mean of Y:  `\({\hat Y}=\bar{Y}+bx=\bar{Y}+(0)(x)=\bar{Y}\)`.  Without any useful information, the mean will be the best predicted value.
+
+
+
+---
+
+## Simple Linear Regression
+
+Plugging in each person’s X value into our regression equation will yield predicted Y scores for every person: `\({\hat Y}=1.38+.54X\)`
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(X\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(Y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(\hat Y\)` &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.92 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.92 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.54 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.62 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.16 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 1px solid"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 6.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(\Sigma\)` &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 26.94 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Simple Linear Regression
+
+How much of the variance in Y is due to X and how much is due to error?
+
+`\(\sum{{{y}^{2}}=\sum{{{({\hat Y}-\bar{Y})}^{2}}+\sum{{{(Y-{\hat Y})}^{2}}}}}\)` which can be expressed as  `\(\sum{{{y}^{2}}=S{{S}_{reg}}+S{{S}_{res}}}\)`  where 
+the deviation sum of squares of the dependent variable Y ( `\(S{S_{total}}\)` ) is a function of two components:  sum of squares due to regression ( `\(S{{S}_{reg}}\)` ) and sum of squares due to error ( `\(S{S_{res}}\)` ): `\(S{{S}_{total}}=S{{S}_{reg}}+S{{S}_{res}}\)`.  
+
+Dividing by the total sum of squares, we can determine the proportion of variance due to the regression of Y on X and the proportion of variance due to error.   
+
+`\(\frac{\sum{{{y}^{2}}}}{\sum{{{y}^{2}}}}=\frac{S{{S}_{reg}}}{\sum{{{y}^{2}}}}+\frac{S{{S}_{res}}}{\sum{{{y}^{2}}}}\)`	OR	`\(\frac{S{{S}_{total}}}{S{{S}_{total}}}=\frac{S{{S}_{reg}}}{S{{S}_{total}}}+\frac{S{{S}_{res}}}{S{{S}_{total}}}\)`
+
+Different notations in textbook: `\(S{S_T}\)` is the total sum of squares; `\(S{S_M}\)` is the model sum of squares (i.e., sum of squares due to the regression model), `\(S{S_R}\)` is the residual sum of squares.
+
+---
+
+## Simple Linear Regression
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(X\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(Y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(\hat Y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(\hat Y-\bar Y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((\hat Y-\bar Y)^2\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(Y - \hat Y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((Y - \hat Y)^2\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((Y - \bar Y)^2\)` &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.92 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.94 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.92 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.85 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.16 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.92 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.94 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.17 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.73 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.73 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.54 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.31 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.76 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.58 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.38 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.70 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.03 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.31 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 1px solid"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 6.78 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 2.92 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 8.54 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 0.22 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 0.05 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 9.88 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(\Sigma\)` &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 26.94 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19.15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.06 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.61 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24.86 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`\(\bar X = 4.57\)`, `\(\bar Y = 3.86\)`
+
+`\(\sum y^2 = \sum {(\hat Y - \bar Y)^2} + \sum {(Y - \hat Y)^2} = SS_{reg} + SS_{res} = 19.15 + 5.61 = 24.76\)`
+
+`\({{\sum y^2} \over {\sum y^2}} = {SS_{reg} \over {\sum y^2 }} + {SS_{res} \over {\sum y^2}}\)`  OR 
+
+`\({SS_{total} \over {SS_{total}}} = {{SS_{reg}} \over {SS_{total}}} + {{SS_{res}} \over {SS_{total}}} = {{19.15} \over {24.76}} + {{5.61} \over {24.76}} = .77 + .23\)`
+
+About 77% of the variance in *Y* is due to *X* whereas about 23% of the variance is due to error.
+
+
+---
+
+## Simple Linear Regression
+
+#### Other important relationships
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(X\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(Y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(X-\bar X\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(Y-\bar Y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((X - \bar X)^2\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((Y - \bar Y)^2\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((X - \bar X)(Y - \bar Y)\)` &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -3.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -2.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -3.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.07 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.92 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.65 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.04 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.20 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.77 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 1px solid"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 5.43 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 3.14 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 29.48 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 9.86 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 17.05 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(\Sigma\)` &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65.68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 35.57 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+`$${{r}_{xy}}=\frac{\sum{(X-\bar{X})(Y-\bar{Y})/(N-1)}}{{{s}_{x}}{{s}_{y}}}=\frac{35.57/(7-1)}{(3.31)(2.03)}=\frac{5.93}{6.72}=.88$$`
+
+`\(r_{xy}^{2}={{.88}^{2}}=.77\)` which represents the proportion of variance in Y accounted for by X.  Recall that this is the same value as dividing `\(S{{S}_{reg}}\)` by `\(S{{S}_{total}}\)`:  `\(\frac{S{{S}_{reg}}}{S{{S}_{total}}}=\frac{19.15}{24.86}=.77\)`.
+
+
+---
+
+## Simple Linear Regression
+
+In R, use the `lm()` function
+
+
+```r
+model &lt;- lm(y ~ x)
+coef(model)
+```
+
+```
+##  (Intercept)            x 
+## -0.003630435  0.541304348
+```
+
+---
+
+## Simple Linear Regression
+
+To get the predicted values: `\({\hat Y}=1.38+.54X\)`. 
+
+To get the residuals: `\(e = Y - {\hat Y}\)`
+
+
+```r
+y.pred &lt;- fitted(model)
+y.res &lt;- resid(model)
+cbind(x, y, y.pred, y.res)
+```
+
+```
+##       x     y     y.pred      y.res
+## 1 -3.57 -2.86 -1.9360870 -0.9239130
+## 2 -3.57 -0.86 -1.9360870  1.0760870
+## 3 -1.57 -1.86 -0.8534783 -1.0065217
+## 4 -0.57  1.14 -0.3121739  1.4521739
+## 5  1.43  0.14  0.7704348 -0.6304348
+## 6  2.43  1.14  1.3117391 -0.1717391
+## 7  5.43  3.14  2.9356522  0.2043478
+```
+
+
+---
+
+## SLR - Coefficient of Determination ( `\({{R}^{2}}\)` )
+
+
+```r
+summary(model)
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##       1       2       3       4       5       6       7 
+## -0.9239  1.0761 -1.0065  1.4522 -0.6304 -0.1717  0.2043 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept) -0.00363    0.40008  -0.009  0.99311   
+## x            0.54130    0.13058   4.146  0.00895 **
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.059 on 5 degrees of freedom
+## Multiple R-squared:  0.7746,	Adjusted R-squared:  0.7296 
+## F-statistic: 17.19 on 1 and 5 DF,  p-value: 0.008949
+```
+
+---
+
+## SLR - Coefficient of Determination ( `\({{R}^{2}}\)` )
+
+The Squared multiple correlation, or R Square ( `\({{R}^{2}}\)` ), is interpreted as the proportion of variance in the outcome variable Y that can be explained by the predictor variable X.  The adjusted R Square is an adjustment to better reflect the fit of the model in the population.  
+
+`$${{R}^{2}}=1-\frac{S{{S}_{res}}}{S{{S}_{total}}}$$` where `\(S{{S}_{res}}\)` =  `\(\sum{{{(Y-{\hat Y})}^{2}}=\sum{{{e}^{2}}}}\)` and `\(S{{S}_{total}}\)` = `\(\sum{{{(Y-\bar{Y})}^{2}}}\)`.
+
+
+`$$R_{adj}^{2}={{R}^{2}}-\frac{(1-{{R}^{2}})k}{n-k-1}$$` where *n* = sample size and *k* = the number of independent variables included in the model.  
+
+
+
+---
+
+## SLR - Coefficient of Determination ( `\({{R}^{2}}\)` )
+
+
+```r
+SS_total  &lt;- sum((y-mean(y))^2)
+SS_reg &lt;- sum((fitted(model)-mean(y))^2)
+SS_res &lt;- sum((y - fitted(model))^2)
+SS_reg/SS_total
+```
+
+```
+## [1] 0.7746252
+```
+
+```r
+1 - SS_res/SS_total
+```
+
+```
+## [1] 0.7746252
+```
+
+
+---
+
+## SLR - Coefficient of Determination ( `\({{R}^{2}}\)` )
+
+`\({{R}^{2}}\)` is the correlation between observed and predicted/fitted values squared
+
+
+```r
+cor(y, fitted(model))^2
+```
+
+```
+## [1] 0.7746252
+```
+
+In **simple linear** regression, `\({{R}^{2}}\)` is the square of the correlation between the predictor and outcome variables.
+
+
+
+```r
+cor(x, y)
+```
+
+```
+## [1] 0.8801279
+```
+
+```r
+cor(x, y)^2
+```
+
+```
+## [1] 0.7746252
+```
+
+
+---
+
+## SLR - Test of Significance and Confidence Interval
+
+  - Formula for the Slope (Regression Coefficient):  `\(b=\frac{\sum{xy}}{\sum{{{x}^{2}}}}=\frac{\sum{(X-\bar{X})(Y-\bar{Y})}}{\sum{{{(X-\bar{X})}^{2}}}}\)`
+
+  - Alternate Formula for the Slope (Regression Coefficient):  `\(b=r\frac{{{s}_{y}}}{{{s}_{x}}}\)`, where *r* is the correlation coefficient between the independent and dependent variable, `\({s_y}\)` is the standard deviation of the dependent variable, and `\({s_x}\)` is the standard deviation of the independent variable.  
+
+
+---
+
+## SLR - Test of Significance and Confidence Interval
+
+  - **Standardized Regression Coefficients**:  Unstandardized regression coefficients we have been discussing are calculated using the raw scores of our variables (X and Y) in which they are still in their units of measurement (e.g., time in years, money in dollars).  If we had standardized X and Y scores, in which the raw score units of X and Y were changed into z scores, the regression coefficients we would calculate would no longer be unstandardized, but would be called standardized regression coefficients.  They are called standardized because they are the slopes of an equation using standardized scores (i.e., z scores).  When using standardized scores, our regression equation would then be:  `\(z_{\hat y}=\beta {{z}_{x}}\)`, where `\(z_{\hat y}\)` is the predicted standardized score of Y, `\(\beta\)` is the standardized regression coefficient, and `\({{z}_{x}}\)` is the standardized score of X.  You may notice that the intercept is no longer in the regression equation when using standardized scores.  The intercept is equal to the value of zero in this case.  This is due to the fact that the mean of z scores is equal to a value of zero.  Recall the formula for the intercept:  `\(a=\bar{Y}-b\bar{X}\)`= 0 – b(0) = 0.  
+
+
+
+---
+
+## SLR - Test of Significance and Confidence Interval
+
+  - Formula for the standardized regression coefficient:  `\(\beta =\frac{\sum{{{z}_{x}}{{z}_{y}}}}{\sum{z_{x}^{2}}}\)`, where the term in the numerator, `\(\sum{{{z}_{x}}{{z}_{y}}}\)`, is the sum of cross products and the term in the denominator, `\(\sum{z_{x}^{2}}\)`, is the sum of squared standardized scores.   
+  
+  - Alternate formula for the standardized regression coefficient:  `\(\beta =b\frac{{{s}_{x}}}{{{s}_{y}}}\)`, where b is the unstandardized regression coefficient, sy is the standard deviation of the dependent variable Y, and sx is the standard deviation of the independent variable X.  
+  
+In **simple linear** regression, the standardized regression coefficient is the correlation coefficient between X and Y:
+
+`\(\beta =b\frac{{{s}_{x}}}{{{s}_{y}}}=\frac{\sum{xy}\sqrt{\sum{{{x}^{2}}}}\sqrt{n-1}}{\sum{{{x}^{2}}}\sqrt{n-1}\sqrt{\sum{{{y}^{2}}}}}=\frac{\sum{xy}}{\sqrt{\sum{{{x}^{2}}}\sqrt{\sum{{{y}^{2}}}}}}={{r}_{xy}}\)`
+
+---
+
+## SLR - Test of Significance and Confidence Interval
+
+  - In Simple Linear Regression, the standardized regression coefficient has fixed upper lower and upper limits of a correlation coefficient (i.e., ranges from -1 to +1).  Unstandardized regression coefficients indicate the direction and by how many units Y will change with a 1 unit increase in X.  They are expressed in their original scale of measurement of the independent variable (e.g., number of years).  Recall that the mean of z scores is zero and the standard deviation is 1.  Because the standard deviation of z scores is 1, a unit change in X indicates a change of one standard deviation.  Thus, standardized regression coefficients indicate the direction and by how many standard deviations Y will change with 1 standard deviation increase in X. 
+
+---
+
+## SLR - Testing the Regression of Y on X
+
+  - Recall that the total sum of squares `\(\sum{{{(Y-\bar{Y})}^{2}}}\)` is equal to the sum of the regression sum of squares `\(\sum{{{({\hat Y}-\bar{Y})}^{2}}}\)`and the residual sum of squares `\(\sum{{{(Y-{\hat Y})}^{2}}}\)`:
+  
+  `\(S{{S}_{total}}=S{{S}_{reg}}+S{{S}_{res}}\)`.  These sums of squares represent the variation of Y around its respective mean (Total), the variation of each predicted Y around the mean of Y (Regression), and the variation of each observed Y around its respective predicted Y value (Residual).  
+
+  - Dividing these sums of squares by their respective degrees of freedom (df) makes these statistics larger and more accurate estimates of the variability they represent in the population.  The resulting value is referred to as the Mean Square or MS because it represents the mean of a particular sum of squares, which will be an unbiased estimate of the population variance.  
+
+*df* for the Total Sum of Squares:  n – 1
+
+*df* for the Regression Sum of Squares:  k (number of independent variables)
+
+*df* for the Residual Sum of Squares:   n – k – 1
+
+
+---
+
+## SLR - Testing the Regression of Y on X
+
+`\(M{{S}_{reg}}=\frac{\sum{{{({\hat Y}-\bar{Y})}^{2}}}}{k}=\frac{S{{S}_{reg}}}{d{{f}_{reg}}}\)`	`\(M{{S}_{res}}=\frac{\sum{{{(Y-{\hat Y})}^{2}}}}{n-k-1}=\frac{S{{S}_{res}}}{d{{f}_{res}}}\)`
+
+Using the `\(M{{S}_{reg}}\)` and `\(M{{S}_{res}}\)`, we can calculate an F ratio to test the regression of Y on X.  
+
+`\(F=\frac{MS_{reg}}{MS_{res}}\)` with `\(df_{reg}\)` in the numerator and `\(df_{res}\)` in the denominator.  If the F ratio exceeds the critical value with ( `\(df_{reg}\)`, `\(df_{res}\)` ) at alpha = .05, we reject the null that the regression of Y on X is equal to zero.  That is, we are testing whether R Square is significantly different from zero:
+
+`\(F=\frac{{{R}^{2}}/k}{(1-{{R}^{2}})/(n-k-1)}\tilde{\ }df=k\ \text{and}\ n-k-1\)`
+
+
+
+---
+
+## SLR - Testing the Regression Coefficient (Slope)
+
+You can also test the significance of a regression coefficient (slope) b to see if it is significantly different from zero.
+
+  - Variance of Estimate:  The variance of estimate indicates the variance of the scores about the regression line.  It is the variance of the residuals.
+
+`$$s_{y.x}^{2}=\frac{\sum{{{(Y-{\hat Y})}^{2}}}}{n-k-1}=\frac{S{{S}_{res}}}{n-k-1}$$`
+
+Recall:  	`\(M{{S}_{res}}=\frac{\sum{{{(Y-{\hat Y})}^{2}}}}{n-k-1}=\frac{S{{S}_{res}}}{d{{f}_{res}}}\)` 
+
+
+  - Standard Error of Estimate:  The standard error of estimate is the square root of the variance of estimate or the standard deviation of the residuals.
+
+`$${{s}_{y.x}}=\sqrt{\frac{\sum{{{(Y-{\hat Y})}^{2}}}}{n-k-1}}=\sqrt{\frac{S{{S}_{res}}}{n-k-1}}$$`
+
+---
+
+## SLR - Testing the Regression Coefficient (Slope) and the Confidence Interval 
+
+
+  - When testing whether the slope or regression coefficient is significantly different from zero, the standard error associated with the slope b must be calculated:
+
+`\({{s}_{b}}=\sqrt{\frac{s_{y.x}^{2}}{\sum{{{x}^{2}}}}}=\frac{{{s}_{y.x}}}{\sqrt{\sum{{{x}^{2}}}}}\)`  where sb is the standard error of b, `\(s_{y.x}^{2}\)` is the variance of estimate, `\(s_{y.x}^{{}}\)` is the standard error of estimate, and `\(\sum\limits_{{}}{{{x}^{2}}}\)`is the sum of squares for the independent variable X
+
+  - `\({s}_{b}\)` is the standard deviation of the sampling distribution of b and is used when testing the significance of the b using the t ratio:  `\(t=\frac{b}{{{s}_{b}}}=\frac{b-0}{{{s}_{b}}}\)` with df of n – k – 1.
+
+  - `\(t=\frac{b}{{{s}_{b}}}=\frac{b-0}{{{s}_{b}}}\)`.  
+
+  - Note the special relationship between the F ratio and the t ratio when using only 1 independent variable:   The F ratio is equal to the squared value of the t ratio (${{t}^{2}}=F$).
+
+  - With knowledge of the standard error of b, we can create a confidence interval around the regression coefficient:  `\(b\pm {{t}_{(\alpha /2,df)}}{{s}_{b}}\)`.  
+
+
+---
+
+## SLR - Testing the Regression Coefficient (Slope) and the Confidence Interval 
+
+Using `summary()` and `confint()` for statistical inference
+
+
+```r
+# summary(model)
+confint(model, level = 0.95) # for all parameters
+```
+
+```
+##                 2.5 %    97.5 %
+## (Intercept) -1.032063 1.0248020
+## x            0.205648 0.8769607
+```
+
+```r
+confint(model, "x", level = 0.95) # for specific parameters
+```
+
+```
+##      2.5 %    97.5 %
+## x 0.205648 0.8769607
+```
+
+
+---
+
+## SLR - Standardized Regression Coeffients 
+
+.pull-left[
+  - Method 1
+
+```r
+lm(scale(y) ~ scale(x))
+```
+
+```
+## 
+## Call:
+## lm(formula = scale(y) ~ scale(x))
+## 
+## Coefficients:
+## (Intercept)     scale(x)  
+##   1.678e-16    8.801e-01
+```
+]
+
+.pull-right[
+  - Method 2: use the `lm.beta` function from the `QuantPsyc` package
+
+```r
+# install.packages("QuantPsyc")
+# library(QuantPsyc)
+model &lt;- lm(y ~ x)
+lm.beta(model)
+```
+
+```
+##         x 
+## 0.8801279
+```
+  
+]
+---
+
+## SLR - Summary of Important Statistics
+
+  - R Square
+  - Adjusted R Square
+  - F Statistic to Test the Regression Model
+  - Regression Coefficients (Slopes)
+  - Standard Error of the Regression Coefficient
+  - T Statistic to Test Individual Slope Values
+  - Confidence Interval for the Slope (b)
+  - Standardized Regression Coefficient
+
+
+
+---
+
+## SLR - Confidence Intervals, Hypothesis Testing, and Prediction Intervals
+
+![Table 5.2](images/Table5.2.png)
+
+
+---
+
+## SLR - Prediction Intervals for New Observations
+
+  - Prediction Interval for the Mean (also called *Confidence Bands*)
+    - Confidence interval around the mean predictions
+
+  - Prediction Interval for the Individual (also called *Prediction Bands*)
+    - It gives uncertainty around a single value
+  
+  - Prediction bands will be wider than the confidence bands
+  
+
+---
+
+## SLR - Prediction Intervals
+
+
+```r
+new.xs &lt;- data.frame(
+  x = c(2, 5, 8)
+)
+predict(model, newdata = new.xs, interval = "confidence") # Prediction interval for the mean
+```
+
+```
+##        fit        lwr      upr
+## 1 1.078978 -0.1489021 2.306859
+## 2 2.702891  0.7349754 4.670807
+## 3 4.326804  1.4517968 7.201812
+```
+
+```r
+predict(model, newdata = new.xs, interval = "prediction") # Prediction interval for the individual
+```
+
+```
+##        fit        lwr      upr
+## 1 1.078978 -1.9062187 4.064175
+## 2 2.702891 -0.6551444 6.060927
+## 3 4.326804  0.3683476 8.285261
+```
+
+
+---
+
+## SLR - Prediction Intervals
+
+Create a scatterplot with regression line, confidence band, and prediction band
+
+.pull-left[
+
+```r
+model &lt;- lm(y ~ x)
+pred.int &lt;- predict(model, interval = "prediction")
+mydata &lt;- data.frame(x, y, pred.int)
+ggplot(mydata, aes(x, y)) +
+  geom_point() +
+  stat_smooth(method = lm) +
+  geom_line(aes(y = lwr), color = "red", linetype = "dashed") +
+  geom_line(aes(y = upr), color = "red", linetype = "dashed")
+```
+]
+
+.pull-right[
+&lt;img src="Week-4_files/figure-html/prediction-intervals-out-1.png" width="80%" /&gt;
+]
+
+---
+
+## Simple Linear Regression
+
+A Complete Example:
+
+
+```r
+mydata &lt;- import("data/profs.sav")
+View(mydata)
+corr.test(mydata$salary, mydata$time)
+mymodel &lt;- lm(salary ~ time, data = mydata)
+summary(mymodel)
+confint(mymodel, level = 0.95)
+lm.beta(mymodel)
+mydata$y.pred &lt;- fitted(mymodel)
+mydata$y.res &lt;- resid(mymodel)
+head(mydata)
+ggplot(mydata, aes(x = time, y = salary)) +
+  geom_point() +
+  stat_smooth(method = lm)
+new.obs &lt;- data.frame(
+  time = 12
+)
+predict(mymodel, newdata = new.obs, interval = "confidence") # Prediction interval for the mean
+predict(mymodel, newdata = new.obs, interval = "prediction") # Prediction interval for the individual
+```
+
+
+---
+
+## Simple Linear Regression
+
+A Complete Example:
+
+**Sum up**: A correlational analysis indicated that a moderate, positive, and statistically significant relationship exists between time since earning a Ph.D. and professors’ current salary *r*(60) = .61, *p* &lt; .001.  A simple linear regression analysis was used to regress salary on time since earning a Ph.D. The regression model was statistifally significant, *F*(1, 60) = 35.17, *p* &lt; .001. As indicated by the correlational analysis, time since earning a Ph.D. was a significant predictor of professors’ current salary, *t*(60) = 5.93, *p* &lt; .001, accounting for approximately 36% of the variance ( `\(R_{adj}^{2} = .359\)`).  The analysis indicated that as time since earning a Ph.D. increases by 1 year, professors’ salary is estimated to increase by about `$`1379 (95% CI: `$`914, `$`1845). As the number of years since earning a Ph.D. increases by 1 standard deviation, professors' salary is estimate to increase by 0.61 standard deviations.
+
+For professors 12 years post Ph.D., it is predicted that their salary would be about `$`62001 (95% CI: `$`58875, `$`65127). For any professor 12 years post Ph.D., the predicted salary is about `$`62001 (95% CI: `$`46146, `$`77856).
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

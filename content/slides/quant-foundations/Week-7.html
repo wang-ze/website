@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ESC_PS 8850:  Quantitative Foundations in Educational Research</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ze Wang" />
+    <meta name="date" content="2021-10-11" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# ESC_PS 8850: <br>Quantitative Foundations in Educational Research
+## <br/>Monday, 4:00pm-6:30pm; online
+### Ze Wang
+### University of Missouri
+### 2021-10-11
+
+---
+
+layout: true
+
+&lt;div class = 'my-header'&gt;&lt;span&gt;ESC_PS 8850 Quant Foundations&lt;/span&gt;&lt;/div&gt;
+
+&lt;div class = 'my-footer'&gt;&lt;span&gt;wangze@missouri.edu
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+Ze Wang, Ph.D.&lt;/span&gt;&lt;/div&gt; 
+
+
+---
+class: center, middle
+
+
+
+
+
+
+
+
+
+# .blue[Week 7]
+
+## .blue[Multiple Regression Analysis]
+
+### Multicollinearity
+### Regression and Patterns of Association
+### Regression Diagnostics
+### Curvilinear Regression
+
+---
+
+```r
+library(rio); library(ggplot2); library(QuantPsyc); library(psych); library(car)
+```
+
+---
+
+## Multicollinearity
+
+
+**Multicollinearity**:  High correlations among some independent (predictor) variables which are included in the regression model.
+
+  - The more a predictor is correlated with other predictors, the less unique information it can contribute to the prediction of the dependent (criterion) variable.
+
+**Exact Collinearity**:  Occurs when 1 independent variable has a correlation or a multiple correlation of 1.0 with the other independent variables.  In this case, this independent variable cannot contribute any unique information that is not contained in the other independent variables.
+
+   - When exact collinearity occurs, there is no mathematically unique solution for the regression coefficients and regression is impossible.  
+   
+
+
+---
+
+## Multicollinearity
+
+**Example 1**: X1 is weight of person in pounds; X2 is weight of person in kilograms
+
+   - Both variables contain the same information.  Each is just a transformation of the other variable and will correlate perfectly.  When running this regression, one of the variables will automatically be kicked out because they are perfectly correlated.
+  
+
+
+`\({\hat Y}=a+{{b}_{1}}{{X}_{1}}+{{b}_{2}}{{X}_{2}}\)`, where X1 and X2 are perfectly correlated (each X1 score is 2 points higher than its corresponding X2 score; X1 is a linear transformation of X2), and each of these predictors is correlated with the dependent variable at .967.  Watch what happens:
+
+`\({{\beta }_{1}}=\frac{{{r}_{Y1}}-{{r}_{Y2}}{{r}_{12}}}{1-r_{12}^{2}}=\frac{0}{0}\)`
+
+`\({{\beta }_{2}}=\frac{{{r}_{Y2}}-{{r}_{Y1}}{{r}_{12}}}{1-r_{12}^{2}}=\frac{0}{0}\)`  
+
+
+**Example 2**:	X1 is score at time 1; X2 is score at time 2; X3 is difference between scores at time 1 and time 2
+
+`\({\hat Y}=a+{{b}_{1}}{{X}_{1}}+{{b}_{2}}{{X}_{2}}+{{b}_{3}}{{X}_{3}}\)`
+
+   - X3 can be perfectly predicted by X1 and X2.  When running this regression, one of the variables would be kicked out.  
+
+---
+
+## Multicollinearity
+
+### Measures of the Degree of Multicollinearity
+
+  - Squared correlation between two independent (predictor) variables.  The closer the value is to 1.0, the more multicollinearity is indicated.  With increasing numbers of predictor variables, this measure is more likely to miss substantial multicollinearity.
+
+  - Tolerance:  A statistic used to determine how much the independent variables are linearly related to one another (multicollinear).  It indicates the proportion of a variable's variance not accounted for by other independent variables in the equation.  A variable with very low tolerance contributes little information to a model, and can cause computational problems.  It is calculated as 1 minus R squared for an independent variable when it is predicted by the other independent variables already included in the analysis:  `\(1-R_{j}^{2}\)`.  If Tolerance is less than .10, severe multicollinearity for the corresponding variable exists. Some think this value is too lenient and recommend a cutoff value of .20 instead.
+
+  - Variance Inflation Factor:  The reciprocal of the Tolerance:  `\(\frac{1}{\text{Toleranc}{{\text{e}}_{\text{j}}}}\)`.  As the variance inflation factor increases, so does the variance of the regression coefficient, making it an unstable estimate.  Large VIF values are an indicator of multicollinearity.  VIF of 10 or higher indicates severe multicollinearity for the corresponding predictor variable.  Some think this value is too lenient and instead recommend a cutoff value of 4.
+
+---
+
+## Multicollinearity
+
+### Measures of the Degree of Multicollinearity
+
+  - Condition Indices and Variance-Decomposition Proportions: These are results from a process known as singular value decomposition (SVD). Condition Number (CN) = `\(\sqrt {\frac{{{\lambda _{\max }}}}{{{\lambda _{\min }}}}}\)`  
+  
+    - Condition Index (CI) = `\(\sqrt{\frac{{{\lambda }_{\max }}}{{{\lambda }_{i}}}}\)`  
+  
+    - Rule of thumb for CI: 0-10, weak dependency; 11-30, moderate dependency; &gt;30, strong dependency.  CI is best used together with the variance-decomposition proportions.  Variance-decomposition proportions are the proportions of variance of the intercept (a) and each of the regression coefficient (b) association with each CI. 
+
+
+
+---
+
+## Multicollinearity
+
+### Measures of the Degree of Multicollinearity
+
+
+```r
+mydata &lt;- import("data/profs.sav")
+mymodel &lt;- lm(salary ~ time + cits, data = mydata)
+#library(car)
+vif(mymodel)
+```
+
+```
+##     time     cits 
+## 1.161517 1.161517
+```
+
+
+---
+
+## Multicollinearity
+
+### Problems of Multicollinearity
+
+  - Unstable regression coefficients that are associated with large standard errors.  
+
+`\({{t}_{1}}=\frac{{{b}_{1}}-0}{S{{E}_{1}}}\tilde{\ }df=n-k-1\)`	where `\(S{{E}_{1}}=\frac{s{{d}_{res}}}{\sqrt{\sum{x_{1}^{2}(1-r_{12}^{2})}}}\)` where `\({sd_{res}}\)` is the standard deviation of the residuals, and the denominator is the square root of the product of the sum of squares of X scores and the variance not shared between X1 and X2, `\(1-{r_{12}^{2}}\)`.  Smaller standard errors represent better estimation of the true population parameters using our sample estimates of `\({{b}_{1}}\)` and `\({{b}_{2}}\)`, meaning that they won’t vary much from sample to sample.  All other things being equal, as the correlation between X1 and X2 increases, the standard error increases, thus, decreasing our likelihood of a significant finding.  
+
+   - Another problem is difficulty when interpreting regression coefficients due to the shared variance between X1 and X2.  
+
+
+
+---
+
+## Multiple Regression and Patterns of Association
+
+Complete Independence in Multiple Regression
+
+When the predictors are all independent (not correlated), the following relationship holds:
+
+`\({{R}^{2}}=r_{Y1}^{2}+r_{Y2}^{2}+\cdots +r_{Yk}^{2}\)`.  The sum of the squared correlations between each independent variable and the criterion sum up to the multiple regression model’s R Square.  
+
+.pull-left[
+![Complete Independence](images/complete_independence.png)
+
+`\({{r}_{Y1}}=.5\)`	`\({{r}_{Y2}}=.5\)`	`\({{r}_{X1X2}}=0.0\)`
+]
+
+.pull-right[
+Recall:  `\({{R}^{2}}=\frac{r_{Y1}^{2}+r_{Y2}^{2}-2{{r}_{Y1}}{{r}_{Y2}}{{r}_{12}}}{1-r_{12}^{2}}\)`
+
+`\(a=r_{Y1}^{2}=sr_{1}^{2}=\beta _{1}^{2}\)`	and 	`\(b=r_{Y2}^{2}=sr_{2}^{2}=\beta _{2}^{2}\)`
+
+Recall:  `\(s{{r}_{1}}=\frac{{{r}_{Y1}}-{{r}_{Y2}}{{r}_{12}}}{\sqrt{1-r_{12}^{2}}}\)`	`\(s{{r}_{2}}=\frac{{{r}_{Y2}}-{{r}_{Y1}}{{r}_{12}}}{\sqrt{1-r_{12}^{2}}}\)`
+
+
+`\({{\beta }_{1}}=\frac{{{r}_{Y1}}-{{r}_{Y2}}{{r}_{12}}}{1-r_{12}^{2}}\)`	`\({{\beta }_{2}}=\frac{{{r}_{Y2}}-{{r}_{Y1}}{{r}_{12}}}{1-r_{12}^{2}}\)`
+]
+
+In this case, the squared semi-partial correlation for each predictor is equal to the squared value of its correlation with the dependent variable and the squared value of its associated standardized regression coefficient.
+
+
+---
+
+## MR and Patterns of Association
+
+Partial Redundancy
+
+![Partial Redundancy](images/partial_redundancy.png)
+
+An indication of this occurrence is when `\({{r}_{Y1}}&gt;{{r}_{Y2}}{{r}_{12}}\)` and `\({{r}_{Y2}}&gt;{{r}_{Y1}}{{r}_{12}}\)`.  The semi-partial correlation and the standardized partial regression coefficient for each predictor will be smaller than its correlation with the dependent/criterion variable.  
+
+
+---
+
+## MR and Patterns of Association
+
+Complete Redundancy
+
+![Complete Redundancy](images/complete_redundancy.png)
+
+This does not necessarily mean that X1 and X2 are perfectly correlated.  It implies that adding X2 to a regression containing X1 does not increase `\({{R}^{2}}\)` at all.  A predictor variable may correlate highly with the criterion, but this correlation becomes zero when controlling for the other predictor variable.  
+
+
+---
+
+## MR and Patterns of Association
+
+Suppression in Multiple Regression
+
+  - Suppression is present when either `\({{r}_{Y1}}&lt;{{r}_{Y2}}{{r}_{12}}\)` or `\({{r}_{Y2}}&lt;{{r}_{Y1}}{{r}_{12}}\)`, or when the correlation between independent variables is negative and the correlations between each predictor and the criterion are positive.  The standardized partial regression coefficient for each predictor will be larger than its correlation with the dependent/criterion variable and one of them may become negative.  
+  
+  - The relationship between the independent variables is hiding (suppressing) their real relationships with the dependent variable, which would be larger or possibly of opposite sign if the independent variables were not correlated.  The inclusion of the suppressor in the regression equation removes (suppresses) the unwanted variance in X1, in effect, and enhances the relationship between X1 and Y.  It removes the irrelevant variance that it shares with the independent variable and not with the dependent variable.
+
+  - If a variable with a positive correlation or a correlation of zero with the dependent variable has a significantly negative partial regression coefficient, it is a suppressor variable.  
+
+
+---
+
+## MR and Patterns of Association
+
+Summary
+
+&lt;table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Relationship Between Predictors &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Possible Effects on Statistics &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 1px solid"&gt; Complete Independence &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; border-bottom: 1px solid"&gt; `\(r_{Y1}^2 = sr_1^2 = \beta _1^2\)` and `\(r_{Y2}^2 = sr_2^2 = \beta _2^2\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 1px solid"&gt; Partial Redundancy &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; border-bottom: 1px solid"&gt; `\(sr_1\&amp;amp; {\beta _1} &amp;lt; {r_{Y1}}\)` and `\(sr_2\&amp;amp; {\beta _2} &amp;lt; {r_{Y2}}\)`;  `\({r_{Y1}} &amp;gt; {r_{Y2}}{r_{12}}\)` and `\({r_{Y2}} &amp;gt; {r_{Y1}}{r_{12}}\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 1px solid"&gt; Complete Redundancy &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; border-bottom: 1px solid"&gt; `\(s{r_1}\&amp;amp; {\beta _1} \approx 0\)` and `\(s{r_2}\&amp;amp; {\beta _2} &amp;gt; 0\)`; OR `\(s{r_1}\&amp;amp; {\beta _1} &amp;gt; 0\)` and `\(s{r_2}\&amp;amp; {\beta _2} \approx 0\)` and both predictors highly correlated with criterion, &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Suppression &lt;/td&gt;
+   &lt;td style="text-align:left;width: 30em; "&gt; `\({\beta _1} &amp;gt; {r_{Y1}}\)`, and `\({\beta _2} &amp;gt; {r_{Y2}}\)`; `\({\beta _1}\)` or `\({\beta _2}\)` may become negative even if correlation with criterion is positive;
+correlation between predictors is negative and correlation between each predictor and criterion is positive;
+correlation between predictor and criterion is zero but has a significant negative partial regression coefficient. &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+### Statistical paradoxes
+**Suppression** is a statistical paradox. The classical definition of suppression is that a potential covariate that is unrelated to the outcome variable (i.e. has a bivariate correlation of zero) increases the overall model fit within regression (as assessed by `\(R_2\)`, for instance) when this covariate is added to the model. This seems counter-intuitive. Two other famous statistical paradoxes are: 
+
+- **Simpson's Paradox:** An association between two variables in a population emerges, disappears or reverses when the population is divided into subpopulations. 
+
+- **Lord's paradox:** The relationship between a continuous outcome and a categorical variable being reversed when an additional continuous covariate is introduced to the analysis. 
+
+These paradoxes are not problematic from the perspective of mathematics and probability theory but can be surprising for many people. 
+
+Statistical modeling techniques such as [structural equation modeling](https://zewang.netlify.app/books/sem/_book/) and **multilevel modeling** can help understand these paradoxes. To dig deeper, you probably want to read or take a course on _causal inference_.
+
+
+---
+
+## Regression Diagnostics
+
+Outliers Diagnostics
+
+**Outliers**:  One or more atypical points that do not fit with the data. 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; case &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; time &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; pubs &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 48 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 30 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 37 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Regression Diagnostics
+
+Just skimming the data, case number 6 appears to be an outlier.  
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; case &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; time &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; pubs &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 48 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 30 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 37 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+## Regression Diagnostics
+
+Outliers Diagnostics
+ 
+
+
+
+&lt;img src="Week-7_files/figure-html/regression-outlier-out-1.png" width="50%" /&gt;
+
+
+---
+
+## Regression Diagnostics
+
+Outliers Diagnostics
+
+Three characteristics of badly behaved data:
+  - Leverage:  How unusual is the case in terms of its values on the independent (predictor) variable?
+  
+  - Discrepancy:  Distance between predicted and observed values on the outcome variable.
+  
+  - Influence:  Reflects amount that regression coefficients would change if the outlier were removed from the data set.
+
+
+---
+
+## Regression Diagnostics
+
+Outliers Diagnostics
+
+**Leverage**:  Reflects only the case’s standing on the set of independent (predictor) variables.  For each case, leverage tells us how far observed values for the case are from the mean values on the set of independent variables.
+
+--
+
+*FYI*:	For one independent variable, leverage = `\({{h}_{i}}=\frac{1}{n}+\frac{{{({{X}_{i}}-\bar{X})}^{2}}}{\sum{{{x}^{2}}}}\)` where  `\({{h}_{i}}\)` is the leverage for case i, n is the number of cases, `\({{X}_{i}}\)` is the score for case i on the predictor variable, `\(\bar{X}\)` is the mean of X, and `\(\sum{{{x}^{2}}}\)`is the sum over the n cases of the squared deviations of `\({{X}_{i}}\)` from the mean.  For more than one independent variable, leverage = `\(\mathbf{H}=\mathbf{X}{{(\mathbf{{X}'X})}^{-\mathbf{1}}}\mathbf{{X}'}\)` where X is the n x (k + 1) matrix of X values.  These can range from 1/n to 1.
+
+--
+  - Cases with leverage values greater than 2-3 times the average value are considered to have high leverage
+
+
+```r
+model &lt;- lm(pubs ~ time)
+hi &lt;- hatvalues(model)
+hi[(hi &gt; 3 * mean(hi))] 
+```
+
+```
+##         6 
+## 0.9044069
+```
+
+---
+
+## Regression Diagnostics
+
+Outliers Diagnostics
+
+**Discrepancy**: Extremity on the dependent variable.  Distance between the predicted and observed values on the dependent variable. Use Studentized Residuals. 
+
+The `outlierTest` function from the `car` package tests the single largest residual for significance as an outlier. If it isn't significant, there are no outliers in the data. If it is significant, you must delete it and rerun the test to see if others are present.
+
+
+```r
+rstudent(model) # studentized residuals
+##           1           2           3           4           5           6 
+## -0.17131041 -1.28478010 -1.39891896 -0.21829507 -0.64134592 -3.29427276 
+##           7           8           9          10          11          12 
+##  1.37772714  2.35025411 -0.83472973  0.11829003  0.69147074  0.05234216 
+##          13          14          15 
+## -0.72571300  0.49473073  1.30864113
+# library(car)
+outlierTest(model)
+## No Studentized residuals with Bonferroni p &lt; 0.05
+## Largest |rstudent|:
+##    rstudent unadjusted p-value Bonferroni p
+## 6 -3.294273          0.0064084     0.096126
+```
+
+---
+
+## Regression Diagnostics
+
+Outliers Diagnostics - **Discrepancy**
+
+  - In large samples, cases with studentized deleted residuals greater than ± 3 or ± 4 are considered to have large discrepancy.
+  
+  - In small samples, cases with studentized deleted residuals greater than ± 2 are considered to have large discrepancy.
+
+
+---
+
+## Regression Diagnostics
+
+Outliers Diagnostics
+
+**Influence**:  Combines information from measures of leverage and discrepancy to inform us how the regression equation would change if a case were removed from the data set.
+
+**Cook's D**: A measure of how much the residuals of all cases would change if a particular case were excluded from the calculation of the regression coefficients. 
+
+
+*FYI*:  Cook’s `\({{D}_{i}}=\frac{\sum{{{({\hat Y}-{{{{\hat Y}}}_{(i)}})}^{2}}}}{(k+1){{MS}_{res}}}\)` where `\({\hat Y}\)` is the predicted value of Y with all the cases included, `\({{{\hat Y}'}_{(i)}}\)` is the predicted value of Y with case i deleted, k is the number of independent variables, and `\({{MS}_{Res}}\)` is the Mean Square residual with all the cases included.  Thus, it compares the predicted value of Y with case i included and deleted for all cases in the data set.  These differences are squared and then summed.  The denominator serves to standardize the value.  Values range upward from its potential minimum value of zero.  The value will always be positive. 
+
+  - Case with Cook's D values greater than 1 or \[4/(n - k - 1)\] are considered high influential observations. 
+
+
+---
+
+## Regression Diagnostics
+
+Outliers Diagnostics - Cook's D
+
+
+
+```r
+di &lt;- cooks.distance(model)
+summary(di)
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+##  0.000123  0.005616  0.021811  1.984229  0.072340 29.203927
+di[di &gt;1]
+##        6 
+## 29.20393
+di[di &gt; 4/(length(pubs)-1-1)]
+##        6 
+## 29.20393
+```
+
+
+---
+
+## Regression Diagnostics
+
+Additional Influence Measures:
+
+  - Standardized difference in fit. Indicates how much the predicted value for case i would change if case i were deleted from the data set. 
+  - Standardized DFBETA. Compares regression coefficients when case i is included versus not included in the data set.    
+  - Use `?influence.measures` to see more 
+
+
+
+---
+
+## Regression Diagnostics
+
+Sources of Outliers
+
+  1. Error of execution of the research procedure (e.g., interviewer misread questions; experimenter delivered wrong treatment).
+  2. Inaccurate measurement of the dependent variable (e.g., equipment failed).
+  3. Errors in recording or keying of the data (e.g., wrote down wrong response; data entered into computer incorrectly).
+  4. Errors in calculation of the measures (e.g., incorrectly add up number of responses).
+  5. Nonattentive participants (e.g., participant fatigue, illness).
+  6. Rare cases (e.g., outlying observations are correct; represent a valid but rare observation in the population).
+
+
+---
+
+## Regression Diagnostics
+
+Remedies
+
+Contaminated outlying data points (discussed in 1 through 5 above) are easy to correct.  Correct, delete, or replace them as is appropriate.  It is when you encounter rare cases it becomes more difficult.
+
+  - Option 1.  Delete the outlier cases and reanalyze the remaining data.  The regression coefficients typically won’t change much, hopefully.  In this case, researchers typically discuss findings with the outlier included, but do mention (sometimes in a footnote) the results with outliers deleted and the nature of the outliers.  If the results do change drastically when deleting outlying cases, researchers may need to use other options.
+
+  - Option 2.  Correct specification of the model needs to be ensured (e.g., does another variable need to be included to fit the data better? Is there a curvilinear relationship? Does an interaction term need to be included?).
+
+  - Option 3.  Transformation of the data. Transforming variables can also sometimes help with violation of normality, linearity and homoscedasticity.
+
+  - Option 4.  Robust regression procedures, such as Least Absolute Deviation estimation or Least Trimmed Squares estimation.  
+
+
+
+---
+
+## Curvilinear Regression
+
+Curvilinear regression analysis is the modeling of nonlinear relationships between predictor variables and the criterion.
+
+  - Linear regression refers to the regression models that take the form: `\(Y=a+{{b}_{1}}{{X}_{1}}+{{b}_{2}}{{X}_{2}}+...+{{b}_{k}}{{X}_{k}}\)`
+ 
+  - More formally, the regression model above is said to be linear in the parameters (or linear in the coefficients), where the parameters refer to the intercept and coefficients, `\(a\)`, `\({{b}_{1}}\)`, `\({{b}_{2}}\)`, …, `\({{b}_{k}}\)`. If a regression equation is linear in the parameters, then the predicted Y value is a linear combination of the predictor variables.
+
+  - There are four broad classes of approaches to examining nonlinear relationships in multiple regression. Polynomial regression is traditional and commonly used in behavioral sciences. Second is the use of monotonic nonlinear transformations such as logarithms or exponents. Third is nonlinear regression in which the central point of the analysis is estimation of complex (nonlinear) relationships among variables that may be implied by theory. Fourth are nonparametric regression approaches.
+
+
+---
+
+## Curvilinear Regression
+
+**Polynomial Regression**
+
+  - Power polynomials are a convenient method of fitting curves. In a polynomial regression equation, the predictor is raised to one or more powers. The highest power to which a predictor variable is raised is known as the “degree” or “order” of the polynomial equation.
+
+Linear:  `\({\hat Y}=a+{{b}_{1}}X\)`
+
+Quadratic:  `\({\hat Y}=a+{{b}_{1}}X+{{b}_{2}}{{X}^{2}}\)`
+
+Cubic:  `\({\hat Y}'=a+{{b}_{1}}X+{{b}_{2}}{{X}^{2}}+{{b}_{3}}{{X}^{3}}\)`
+
+Quartic:  `\({\hat Y}=a+{{b}_{1}}X+{{b}_{2}}{{X}^{2}}+{{b}_{3}}{{X}^{3}}+{{b}_{4}}{{X}^{4}}\)`
+
+Quintic:  `\({\hat Y}=a+{{b}_{1}}X+{{b}_{2}}{{X}^{2}}+{{b}_{3}}{{X}^{3}}+{{b}_{4}}{{X}^{4}}+{{b}_{5}}{{X}^{5}}\)`
+
+  - The order, or degree of the polynomial indicates the number of bends in the regression curve. 
+
+  - The highest possible degree that a given model may take is (g-1), where g is the number of distinct values of the predictor variable.
+
+---
+
+## Curvilinear Regression
+
+**Polynomial Regression**
+
+  - The researcher is usually interested in identifying the highest-order model that fully describes the data. A regression model can be built that comprises of polynomial equations of increasing order until going further doesn’t account for a significant amount of incremental variance in the criterion variable (i.e., adding a higher-order term doesn’t contribute significantly to overall prediction above and beyond all lower order terms that are already in the model). However, from a research perspective, the nonlinear curve fitting with power polynomials should make substantive sense. Theory should guide the choice and for the most part theory in social sciences predicts quadratic, and at most cubic relationships. In addition, coefficients of higher order polynomials (above cubic) are difficulty to interpret.
+
+
+---
+
+## Curvilinear Regression
+
+**Polynomial Regression**
+
+  1. Center the (continuous) predictor variables. Lower order coefficients in higher order regression equations only have meaningful interpretation if the variable with which we are working has a meaningful zero. By centering ( `\(X - \bar X\)`), zero on the predictor variable is its mean. DO NOT CENTER THE DEPENDENT VARIABLE.
+
+  2. In order that higher order terms have meaning, all lower order terms must be included, since higher order terms are reflective of the specific level of curvature they represent only if all lower order terms are partialed out.
+
+  3. Ploynomial regression is carried out as an ordinary hierarchical regression analysis.
+
+
+---
+
+## Curvilinear Regression
+
+**Polynomial Regression**
+
+
+```r
+mydata$newtime &lt;- mydata$time - mean(mydata$time)
+mymodel2 &lt;- lm(salary ~ newtime + cits + I(newtime^2), data = mydata)
+summary(mymodel2)
+```
+
+```
+## 
+## Call:
+## lm(formula = salary ~ newtime + cits + I(newtime^2), data = mydata)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -14925.6  -4293.6   -527.9   3908.2  22528.9 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  46350.421   2524.930  18.357  &lt; 2e-16 ***
+## newtime       1085.629    298.989   3.631 0.000599 ***
+## cits           212.495     57.155   3.718 0.000455 ***
+## I(newtime^2)    -4.579     36.862  -0.124 0.901573    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7102 on 58 degrees of freedom
+## Multiple R-squared:  0.4909,	Adjusted R-squared:  0.4646 
+## F-statistic: 18.64 on 3 and 58 DF,  p-value: 1.377e-08
+```
+
+---
+
+## Curvilinear Regression
+
+**Polynomial Regression**
+
+  - What if the `time` variable was not centered?
+  
+
+---
+
+### Useful Functions and Symbols Commonly Used in R When Fitting Linear Models
+&lt;table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Useful Functions in R When Fitting Linear Models&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Function &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Action &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; summary() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Displays detailed results for the fitted model &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; coefficients() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Lists the model parameters (intercept and slopes) for the fitted model &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; confint() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Provides confidence intervals for teh model parameters (95% by default) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; fitted() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Lists the predicted values in a fitted model &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; residuals() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Lists the residual values in a fitted model &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; anova() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Generates an ANOVA table for a fitted model, or an ANOVA table comparing two or more fitted models &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; vcov() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Lists the covariance matrix for model parameters &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; AIC() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Prints Akaike's Information Criterion &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; plot() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Generates diagnostic plots for evaluating the fit of a model &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; predict() &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Uses a fitted model to predict response values for a new dataset &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+&lt;table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Symbols Commonly Use in R Formulas&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Symbol &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Usage &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; ~ &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Separates response variables on the left from the explanatory varialbes on the right. For example, a prediction of y from x, z, and w would be coded y ~ x + z + w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Separates predictor variables. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; : &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Denotes an interaction between predictor variables. A prediction of y from x, z, and the interaction between x and z would be coded y ~ x + z + x:z. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; * &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; A shortcut for denoting all possibel interactions. The code y ~ x*z*w expands to y ~ x + z + w + x:z + x:w + z:w + x:z:w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; ^ &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Denotes interactions up to a specified degree. The code y ~ (x + z + w)^2 expands to y ~ x + z + w + x:z + x:w + z:w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; . &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; A placeholder for all other variables in the data frame except the dependent variable. For example, if a data frame contained the varibels x, y, z, and w, then the code y ~ . would expands to y ~ x + z + w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; A minus sign removes a variable from teh equation. For example, y ~ (x + z + w)^2 - x:w expands to y ~ x + z + w + x:z + z:w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; -1 &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Supresses the intercept. For example, the formula y ~ x -1 fits a regression of y on x, and forces the line through the origin at x=0. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; I() &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Elements within the parentheses are interpreted arithmetically. For example, y ~ x + (z + w)^2 would expand to y ~ x + z + w + z:w. In contrast, y ~ x + I(z + w)^2 would expand to y ~ x + h, where h is a new variable created by squaring the sum of z and w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; function &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Mathematical functions cna be used in formulas. For example, log(y) ~ x + z + w would predict log(y) from x, z, and w &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

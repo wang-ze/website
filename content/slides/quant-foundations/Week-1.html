@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ESC_PS 8850:  Quantitative Foundations in Educational Research</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ze Wang" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# ESC_PS 8850: <br>Quantitative Foundations in Educational Research
+## <br/>Monday, 4:00pm-6:30pm; Zoom and Middlebush Hall 8
+### Ze Wang
+### University of Missouri
+### <code>2021-8-23</code>
+
+---
+
+layout: true
+
+&lt;div class = 'my-header'&gt;&lt;span&gt;ESC_PS 8850 Quant Foundations&lt;/span&gt;&lt;/div&gt;
+
+&lt;div class = 'my-footer'&gt;&lt;span&gt;wangze@missouri.edu
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+Ze Wang, Ph.D.&lt;/span&gt;&lt;/div&gt; 
+
+
+---
+class: center, middle
+
+# .blue[Week 1]
+&lt;!-- # &lt;span style = "color: blue;"&gt;Week 1&lt;/span&gt; --&gt;
+&lt;!-- use HTML syntax to changing the formating of words --&gt;
+&lt;!-- use Ctrl + Shift + C to comment out text. --&gt;
+
+## Course introduction
+
+## Review of basic statistics
+
+
+
+
+
+
+---
+
+# Course Introdcuction
+
+## [Canvas Course Site](https://umsystem.instructure.com/courses/6574)
+
+## [Syllabus](https://umsystem.instructure.com/courses/6574/assignments/syllabus)
+
+## Introduce yourself to class
+  - Name
+  - Department/Program
+  - Year in program
+  - Stats/Research methods classes taken
+  - Familiarity with software (R, SAS, SPSS, STATA, etc.)
+  - Something interesting about you
+
+---
+
+## Review of basic statistics
+
+### *Populations and Samples*
+
+   - **Population**:  The set of all individuals/units/cases of interest in a particular study
+   
+   - **Sample**:  A set of cases selected from a population, usually intended to represent the population in a research study
+   
+---
+
+## Review of basic statistics
+
+### *Parameters and Statistics*
+  - **Parameter**: A characteristic of a population.  Usually represented using greek symbols (e.g., `\(\mu\)` ).
+  
+  - **Statistic**: A characteristic of a sample.  Usually represented using roman symbols (e.g., `\(\bar{X}\)` ).
+
+---
+
+## Review of basic statistics
+
+### *Categorical/Qualitative Versus Quantitative Variables*
+
+  - Categorical/Qualitative Variables:  Cases are differentiated in terms of two or more categories (e.g., gender, hair color, ethnicity)
+  
+  - Quantitative Variables:  Cases are differentiated in terms of the quantities of an attribute they possess (e.g., age, height, weight, ability)
+
+---
+
+## Review of basic statistics
+
+### *Measurement*
+
+  - The use of any rule to assign numbers to cases so as to represent the category or presence or absence or quantity of some attribute possessed by each case.
+
+---
+
+## Review of basic statistics
+
+### *Levels of Measurement*
+
+   - **Nominal:**  Cases are classified into mutually exclusive exhaustive unordered categories.  Categories may be numerically labeled, but the numbers have no more meaning than names (e.g., Gender:  Male=0, Female=1).  Cases can be distinguished as being the same as or different from one another on the attribute of interest, but NOT as being/having more or less of the attribute.
+   
+   - **Ordinal:**  Cases can be identified as being the same as or different, and as being/having more or less of the attribute, however, numerically equal distances on the scale DO NOT necessarily represent equal distances on the dimension underlying the scale.  (e.g., Order in which athletes complete a 50m race as a measure of how long it takes the athlete to complete 50m).
+
+---
+
+## Review of basic statistics
+
+### *Levels of Measurement*
+   - **Interval:**  Cases can be identified as being the same as or different, as being/having more or less of the attribute, and differences between measurements can be compared.  Interval scales have the added property that numerically equal distances on the scale represent equal distances on the dimension underlying the scale (e.g., temperature in Fahrenheit, scores on intelligent tests).
+    
+   - **Ratio:**  Cases can be identified as being the same as or different, as being/having more or less of the attribute, differences between measurements, numerically equal distances on the scale represent equal distances on the dimension underlying the scale, and there is a true zero point or complete absence of the attribute being measured.  Most physical measurements can be considered at this level (e.g., length in inches, time in seconds, weight in pounds, years, dollars, number in a group).
+
+---
+class: center, middle
+
+### *Levels of Measurement*
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Level &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Classify &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Order &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Equal Distances &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; True Zero &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Nominal &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ordinal &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Interval &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ratio &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+## Review of basic statistics
+
+### *Statistics and Variable Distributions*
+  - Min (minimum): lowest score in the data set
+  
+  - Max (maximum):  highest score in the data set
+  
+  -	Mean:  Just add up all the data points in your data set and divide by the total number of data points.
+    
+      `$$\bar{X}=\frac{\sum\limits_{i=1}^{N}{{{X}_{i}}}}{N}$$`
+---
+
+## Review of basic statistics
+
+### *Statistics and Variable Distributions*
+  - Median:  The Middle Score (50th percentile).
+  
+  - Mode:  Most Frequent Score
+  
+  - Range:  Max -  Min
+  
+  - Variance:  Represents the average deviation around the mean.  Subtract the mean value of the variable of interest from each data point, square each of those differences, sum each of those squared differences, and divide by the total number of data points minus 1.  The N – 1 allows for a more realistic value of the population value.  Dividing by N alone underestimates the population variance.
+    
+     Var = `\(s_{x}^{2}\ =\frac{\sum\limits_{i=1}^{N}{{{({{X}_{i}}-\bar{X})}^{2}}}}{N-1}\)`
+     
+  - Standard Deviation:  The square root of the variance
+     SD = `\({{s}_{x}}=\sqrt{s_{x}^{2}}\)`
+
+---
+
+## Review of basic statistics
+
+### *Statistics and Variable Distributions*
+  -	Normal Curve
+    -	Area is set to 1.
+    - Theoretical distribution that reflects the probabilities of a normally distributed set of scores in a population.
+
+.center[
+&lt;img src ="images/Figure3.4.png" width="50%"&gt;
+]
+---
+
+## Review of basic statistics
+
+### *Statistics and Variable Distributions*
+
+.pull-left[
+.small[
+  - Skewness:  Type of Asymmetry
+    -	Negative Skew (negative value):  
+        -	Fewer low scores than high scores
+        -	Asymmetric with long left tail
+        
+    -	No Skew (value of zero):
+        -	As many low scores as high scores
+        
+    -	Positive Skew (positive value):
+        -	Fewer high scores than low scores
+        -	Asymmetric with long right tail
+]
+]
+
+.pull-right[
+&lt;img src ="images/Skewness.png" width="100%"&gt;
+]
+
+---
+
+## Review of basic statistics
+
+### *Statistics and Variable Distributions*
+
+.pull-left[
+  -	Kurtosis:  Peakedness/Flatness
+      -	Platykurtosis (negative value):  
+        -	Hardly peaked
+        
+      -	Mesokurtosis (value of zero):
+        -	Moderately peaked
+        
+      -	Leptokurtosis (positive value):
+        -	Extremely peaked
+]
+
+.pull-right[
+&lt;img src ="images/Kurtosis.jpg"&gt;
+]
+
+---
+
+## Review of basic statistics
+
+### *Statistics and Variable Distributions*
+
+  -	Standard Scores:
+      -	Raw score is expressed as a deviation from the mean in which this deviation is expressed in units of the standard deviation.
+      
+      -	Special property:  can compare scores across distributions which have different measurement scales.
+      
+      - 	`\(z=\frac{{{X}_{i}}-\bar{X}}{{{s}_{x}}}\)`:  Subtract the mean value of the variable of interest from each data point and divide by the standard deviation for the variable of interest.
+          -	z scores vary from about -3 to +3.
+          -	Mean is zero and standard deviation is 1.
+
+
+---
+
+## Review of basic statistics
+
+### *Sampling Distribution*
+
+  - Central Limit Theorem:  if the shape of the distribution of scores in the population is unknown, as sample size increases, the sampling distribution of means will tend toward normality and have a mean that equals the mean of the population.
+  
+  - The standard deviation of the sampling distribution means allows us to determine the probability of how close any obtained sample mean is to the population mean.  The size of the standard deviation of the sampling distribution is an indication of the amount of error that could be incurred in assuming that the mean calculated from our sample data is the same mean that would be found in the population and is called sampling error.
+  
+  - The standard deviation of the sampling distribution of means is more commonly called the standard error of the mean:
+    `$${{s}_{{\bar{x}}}}=\frac{{{s}_{x}}}{\sqrt{N}}$$`
+
+
+---
+
+## Review of basic statistics
+
+### *Confidence Intervals*
+
+  - Within what limits around my obtained sample value can I be reasonably confident that the population value lies?
+  
+  - The interval enclosed by these limits is called a confidence interval.
+
+---
+
+## Review of basic statistics
+
+### *Confidence Intervals*
+
+  - The larger the interval, the larger the sampling error.
+    -	Example:  If we obtained a sample mean of IQ scores that was 110 from a sample of 121, we could determine the probability of how close this sample mean is to the population mean.  
+    - 95% Confidence Interval:  `\(110\pm 1.96({{s}_{{\bar{x}}}})\)`.  NOTE:  This is a rough estimate using the 1.96, which corresponds to a z score above and below the mean that encompasses 95% of the cases.  To be more accurate, you would use a t value of 1.98 with n – 1 degrees of freedom (120): `\(110\pm 1.98({{s}_{{\bar{x}}}})\)`.
+    - 99% Confidence Interval:  `\(110\pm 2.58({{s}_{{\bar{x}}}})\)`.  NOTE:  Again, this is a rough estimate using the 2.58, which corresponds to a z score above and below the mean that encompasses 99% of the cases.  To be more accurate, you would use a t value of 2.617 with n – 1 degrees of freedom (120):  `\(110\pm 2.617({{s}_{{\bar{x}}}})\)`.
+    - If our standard error of the mean is 5, then we can be 95% confident that the true population mean falls between 100.2 and 119.8: `\(110\pm 1.96(5)=110\pm 9.8\)`.  
+    - OR More accurately using the t value, we can be 95% confident that the true population mean falls between 100.1 and 119.9: `\(110\pm 1.98(5)=110\pm 9.9\)`.
+
+
+---
+
+## Review of basic statistics
+
+### *Hypothesis Testing*
+
+  - Null Hypothesis:  statement that statistical differences among groups or relationships between variables have occurred for no reason other than by sampling error or chance (e.g., `\(\mu 1=\mu 2\)`  or  `\(\mu 1-\mu 2=0\)`; `\(\rho=0\)`).
+  
+  - Research Hypothesis:  represents the actual prediction being made.  Also called scientific or alternative hypothesis (e.g., `\(\mu 1 \ne \mu 2\)`  or  `\(\mu 1-\mu 2 \ne 0\)`; `\(\rho \ne 0\)`).  Research hypothesis is supported or not supported on the basis of the probability that the null hypothesis is true.  
+
+---
+
+## Review of basic statistics
+
+### *Hypothesis Testing*
+
+  - When testing hypotheses, we obtain estimates of a specified parameter from one or more samples.  We use a statistical test to determine if the difference between two groups or that the relationship between two variables is greater than that which would be expected by chance.
+  
+  - The research hypothesis is either supported or not supported on the basis of the probability that the null hypothesis is true.  A probability of p &lt; .05 or p &lt; .01, for example, would indicate that the observed difference could occur less than 5 times or 1 time out of 100, respectively, if the null hypothesis were true in the population.  Probabilities at or below these levels are typically taken as grounds for rejecting the null hypothesis.
+
+---
+
+## Review of basic statistics
+
+### *Hypothesis Testing*
+
+  - Type I error:  Rejecting the null hypothesis when it is actually true.  Also referred to as alpha in which .05 or .01 are levels of alpha when they indicate the probability the researcher is willing to accept being wrong when a finding is said to be significant. 
+  
+  - Type II error:  Failing to reject the null hypothesis when it is false.  Also referred to as beta.
+  
+  - As alpha decreases (from .05 to .01), the researcher is more certain of correctly failing to reject a true null hypothesis, but is more likely to fail to reject the null hypothesis when it is false
+
+
+---
+
+## Review of basic statistics
+
+### *Power*
+  - 1-beta = power.
+  
+  - Expressed in probabilities (.00 to .99).  The number of times out of 100 a statistically significant finding will be detected when the null hypothesis is false.
+    - Sample size and alpha level affect power.
+    - As sample size increases, power increases.
+    - As alpha level decreases, power decreases.
+    - As power increases, the probability of Type II error becomes lower (thus, 1-beta).
+
+---
+
+## Review of basic statistics
+
+### *Power*
+
+#### .center[Outcomes of Hypothesis Testing]
+
+.center[
+&lt;img src ="images/Table3.1_no_title.png" width="70%"&gt;
+]
+
+---
+
+
+## Review of basic statistics
+
+### *Power*
+
+#### .center[Probabilities of Outcomes of Hypothesis Testing]
+ 
+.center[
+&lt;img src ="images/Table3.2_no_title.png" width="50%"&gt;
+]
+  
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
