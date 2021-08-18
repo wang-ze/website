@@ -139,3 +139,4 @@ blogdown::check_site() # run all check_*() functions
 [difference between "_index.md" and "index.md"] (https://discourse.gohugo.io/t/what-is-the-difference-between-index-md-and-index-md/10330/11)
 **_index.md is for when you have multiple pages under a folder like post or when you want to add metadata to a taxonomy term**.
 
+in Terminal, use "git add -A" to stage all changes before committing

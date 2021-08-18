@@ -11,11 +11,15 @@ links:
 - icon: door-open
   icon_pack: fas
   name: website
-  url: "https://missouri.instructure.com/courses/40825"
+  url: "https://umsystem.instructure.com/courses/6574"
 - icon: book-open
   icon_pack: fas
   name: booksite
   url: "/books/quant-foundations/_book"
+- icon: fa-presentation
+  icon_pack: far
+  name: slide
+  url: "/slides/quant-foundations"
 # - icon: github
 #   icon_pack: fab
 #   name: materials

@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ESC_PS 8850:  Quantitative Foundations in Educational Research</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ze Wang" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# ESC_PS 8850: <br>Quantitative Foundations in Educational Research
+## <br/>Monday, 4:00pm-6:30pm; online
+### Ze Wang
+### University of Missouri
+### 2021-9-13
+
+---
+
+layout: true
+
+&lt;div class = 'my-header'&gt;&lt;span&gt;ESC_PS 8850 Quant Foundations&lt;/span&gt;&lt;/div&gt;
+
+&lt;div class = 'my-footer'&gt;&lt;span&gt;wangze@missouri.edu
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+Ze Wang, Ph.D.&lt;/span&gt;&lt;/div&gt; 
+
+
+---
+class: center, middle
+
+
+
+
+
+# .blue[Week 3]
+
+## Correlation
+---
+
+```r
+library(rio); library(ggplot2); library(psych); library(Hmisc) 
+```
+
+---
+
+### Variance and Covariance
+
+  - Statistical techniques are used to help explain the variation in variables.  
+
+  - Variance is an expression that indicates the amount of spread or dispersion of scores in a distribution.  Variance is the average of the squared deviations around the mean.
+
+  - Researchers are typically interested in the covariation among variables (e.g., What happens to the likelihood of success in a graduate program as students’ IQs vary?; What happens to high school drop out rate as parental income varies?).  How do two variables co-vary with each other?
+
+
+  - Recall the formula for Variance:    
+  `$$\text{VAR}=s_{x}^{2}\ =\frac{\sum\limits_{i=1}^{N}{{{({{X}_{i}}-\bar{X})}^{2}}}}{N-1}=\frac{\sum{{{x}^{2}}}}{N-1}=\frac{\sum\limits_{i=1}^{N}{({{X}_{i}}-\bar{X})({{X}_{i}}-\bar{X})}}{N-1}$$`
+  
+---
+
+### Variance and Covariance
+
+Variance of a variable can be thought of as its covariance with itself.  Covariation of a set of scores from its mean.   `$$\text{Covariance}={{s}_{xy}}=\frac{\sum\limits_{i=1}^{N}{({{X}_{i}}-\bar{X})({{Y}_{i}}-\bar{Y})}}{N-1}=\frac{\sum{xy}}{N-1}$$`
+
+
+Covariation of 2 sets of scores from their respective means.
+
+---
+
+### Variance and Covariance
+
+The covariance of X and Y scores may be expressed independently of their respective standard deviations by dividing by the product of their respective standard deviations.  This standardizes the deviation scores and puts them on the same scale with the same standard deviation.  This places the covariance of X and Y on a scale from -1.0 to +1.0 and gives us an index of the relationship between X and Y that is not affected by the differences in the individual variability of X and Y.  This index is the Pearson Product-Moment Correlation:
+
+
+`$${{r}_{xy}}=\frac{\sum\limits_{i=1}^{N}{({{X}_{i}}-\bar{X})({{Y}_{i}}-\bar{Y})/(N-1)}}{{{s}_{x}}{{s}_{y}}}=\frac{\sum{xy/(N-1)}}{{{s}_{x}}{{s}_{y}}}$$` 
+where `\(x=(X-\bar{X})\)` and `\(y=(Y-\bar{Y})\)`; and `\({{s}_{x}}\)` and `\({{s}_{y}}=\)` the standard deviation of X and Y, respectively.
+
+---
+
+### Pearson Product-Moment Correlation (Pearson Correlation)
+
+An index that measures on a scale from -1.0 to +1.0 the degree to which two groups of scores are related.  Expressed as a proportion of the maximum amount of variation possible that is due to the association of X and Y.
+
+`$${{r}_{xy}}=\frac{\sum\limits_{i=1}^{N}{({{X}_{i}}-\bar{X})({{Y}_{i}}-\bar{Y})/(N-1)}}{{{s}_{x}}{{s}_{y}}}$$`
+
+
+---
+
+### Pearson Correlation
+
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(X\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(Y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(X-\bar X\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(Y-\bar Y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((X - \bar X)^2\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((Y - \bar Y)^2\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\((X - \bar X)(Y - \bar Y)\)` &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -3.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -2.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -3.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.07 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.92 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.65 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.04 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.20 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.77 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-bottom: 1px solid"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 5.43 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 3.14 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 29.48 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 9.86 &lt;/td&gt;
+   &lt;td style="text-align:right;border-bottom: 1px solid"&gt; 17.05 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(\Sigma\)` &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65.68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 35.57 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`\(\bar X = 4.57\)`, `\(\bar Y = 3.86\)`, `\(s_x = 3.31\)`, `\(s_y = 2.03\)`
+
+`$${{r}_{xy}}=\frac{\sum\limits_{i=1}^{N}{({{X}_{i}}-\bar{X})({{Y}_{i}}-\bar{Y})/(N-1)}}{{{s}_{x}}{{s}_{y}}}=\frac{35.57/(7-1)}{(3.31)(2.03)}=\frac{5.93}{6.72}=.88$$`
+
+---
+
+### Pearson Correlation
+
+  - Positive relationship:  [As X increases, Y increases] OR [As X decreases, Y decreases].  Same direction of movement. 
+
+  - Negative relationship:  [As X increases, Y decreases] OR [As X decreases, Y increases].  Opposite directions of movement.
+
+  - Strength of the relationship between two variables is not represented by the sign of the correlation, but is represented by the absolute value of the correlation coefficient (i.e., 0 represents no relationship; the closer the correlation is to either -1.0 or +1.0, the stronger the relationship).
+
+  - A correlation does not imply causation.  A correlation only indicates that an association or a relationship between two variables exists.
+
+
+  - For the Pearson Product-Moment Correlation to accurately reflect the correlation in the population, both X and Y must be continuous variables and normally distributed in the population.
+
+
+---
+
+### Pearson Correlation
+
+#### Test that the population correlation equals zero.
+
+- Null Hypothesis: `\({{\rho }_{xy}}=0\)`
+
+- Alternative Hypothesis: `\({{\rho }_{xy}}\ne 0\)`.
+
+- Significance testing of the correlation coefficient can be done using several approaches. 
+
+- t statistic: `\(t=\frac{{{r}_{xy}}\sqrt{n-2}}{\sqrt{1-r_{xy}^{2}}}\)` with *df* = n - 2.
+
+- Critical value at alpha = .05 obtained from Distribution of *t* Table:  2.571.(In R, use `qt(0.975, 5)`). Our obtained *t*-value (4.19) is greater than the critical value (2.571), thus we reject the null that the correlation is equal to zero.  There is a strong, positive, and significant relationship between the two variables, *r*(5) = .88, *p* &lt; .05.
+
+- Use Excel function T.DIST.2T to obtain the probability that we will observe a more extreme correlation coefficient than that from the data, if `\({{\rho }_{xy}}=0\)`.
+
+- In Excel, type “=T.DIST.2T(4.19,5)” (without quotation marks) in an empty cell, and hit “Enter” on your keyboard. Excel will give a value of .008572, which is less than alpha = .05.
+(NOTE: in Excel 2007 or earlier versions, type “=TDIST(4.19,5,2)”)
+
+---
+
+### Pearson Correlation
+
+#### Test that the population correlation equals zero.
+
+
+```r
+x &lt;- c(1, 1, 3, 4, 6, 7, 10)
+y &lt;- c(1, 3, 2, 5, 4, 5, 7)
+cor.test(x,y)
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  x and y
+## t = 4.1455, df = 5, p-value = 0.008949
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.3768242 0.9821977
+## sample estimates:
+##       cor 
+## 0.8801279
+```
+
+---
+
+### Pearson Correlation
+
+#### Check normality 
+
+
+```r
+shapiro.test(x)
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  x
+## W = 0.93761, p-value = 0.6173
+```
+
+```r
+shapiro.test(y)
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  y
+## W = 0.97777, p-value = 0.948
+```
+
+
+---
+
+### Pearson Correlation
+
+#### scattplot for linearity using `plot()`
+
+
+```r
+plot(x,y)
+abline(lm(y ~ x))
+```
+
+&lt;img src="Week-3_files/figure-html/unnamed-chunk-5-1.png" width="50%" /&gt;
+
+
+---
+
+### Pearson Correlation
+
+#### scattplot for linearity using `ggplot()`
+
+.pull-left[
+
+```r
+df &lt;- data.frame(x,y)
+ggplot(data = df, mapping = aes(x = x, y = y)) + 
+  geom_point(color = "red", size = 2) +
+  geom_smooth(method = "lm", se = FALSE)
+```
+]
+
+.pull-right[
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+&lt;img src="Week-3_files/figure-html/pearson-correlation-out-1.png" width="80%" /&gt;
+]
+---
+
+### Pearson Correlation
+
+![scatterplot of relationships](images\figure6.1.png)
+
+---
+
+### Pearson Correlation
+
+#### Factors that affect the Pearson Correlation
+  - Outliers
+  - Heterogeneous Subsamples
+  - Curvilinear Relationships
+  - Restriction of Range
+
+---
+
+### Pearson Correlation
+
+##### Restriction of Range
+
+&lt;img src="Week-3_files/figure-html/unnamed-chunk-6-1.png" width="50%" /&gt;
+
+---
+
+### Pearson Correlation
+
+#### Test that the population correlation equals a certain value.
+
+- Null Hypothesis:  `\({{\rho }_{xy}}={{\rho }_{0}}\)`, where `\({{\rho }_{0}}\)` is a specified value.
+
+- Alternative Hypothesis:  `\({{\rho }_{xy}}\ne {{\rho }_{0}}\)`.
+
+- Fisher’s Z transformation: 
+`$${{z}_{r}}=\frac{1}{2}\ln \frac{1+r}{1-r}$$`
+
+`$$\text{S}{{\text{E}}_{Z}}=\frac{1}{\sqrt{n-3}}$$`
+`$$z=\frac{z_{r}^{{}}-z_{{{\rho }_{0}}}^{{}}}{S{{E}_{z}}}$$`
+---
+
+### Pearson Correlation
+
+#### Test that the population correlation equals a certain value.
+
+Example:
+
+`$$\begin{align}
+  &amp; {{r}_{xy}}=.66\quad \quad {{z}_{r}}=\frac{1}{2}\ln \frac{1+.66}{1-.66}=0.7928\quad \quad S{{E}_{z}}=\frac{1}{\sqrt{30-3}}=0.19245 \\ 
+	 &amp; {{\rho }_{0}}=.85\quad \quad z_{{{\rho }_{0}}}^{{}}=\frac{1}{2}\ln \frac{1+.85}{1-.85}=1.2562\quad \quad  \\ 
+	\end{align}$$`
+	
+`\(z=\frac{0.7928-1.2562}{0.19245}=-2.41\)`	with a *z* critical value of `\(\pm 1.96\)` at alpha = .05.  
+
+
+The obtained *z* value (-2.41) exceeds the critical two-tailed *z* value (1.96) at alpha = .05 (In R, use `qnorm(0.975)`), thus, we reject the null that the population correlation is equal to .85.
+
+---
+
+### Pearson Correlation
+
+#### Test that the population correlation equals a certain value.
+
+Confidence interval for `\({{\rho }_{xy}}\)`
+Obtain 100(1-α)% confidence interval for the Fisher’s Z transformed parameter: 
+
+`$${{z}_{r}}\pm {{z}_{1-\alpha /2}}\text{S}{{\text{E}}_{z}}=0.7928\pm 1.96*0.19245$$`
+which is (0.416, 1.170).
+
+
+Transfer Fisher’s Z statistics to correlations
+
+`$${{L}_{\rho }}=\frac{{{e}^{2{{L}_{z}}}}-1}{{{e}^{2{{L}_{z}}}}+1}=\frac{{{e}^{2(0.416)}}-1}{{{e}^{2(0.416)}}+1}=0.394$$`
+
+`$${{U}_{\rho }}=\frac{{{e}^{2{{U}_{z}}}}-1}{{{e}^{2{{U}_{z}}}}+1}=\frac{{{e}^{2(1.170)}}-1}{{{e}^{2(1.170)}}+1}=0.824$$`
+
+The 95% confidence interval for `\({{\rho }_{xy}}\)` is (0.394, 0.824)
+
+
+---
+
+### Pearson Correlation
+
+#### Test that the population correlation equals a certain value.
+
+
+```r
+n &lt;- 30
+r &lt;- .66
+rho &lt;- .85
+pnorm(fisherz(r), mean = fisherz(rho), sd = 1/sqrt(n-3)) * 2 # two-sided p value
+```
+
+```
+## [1] 0.0160586
+```
+
+
+
+```r
+r.test(n = 30, .66) # Is the population correlation significantly different from 0?
+```
+
+```
+## Correlation tests 
+## Call:r.test(n = 30, r12 = 0.66)
+## Test of significance of a  correlation 
+##  t value 4.65    with probability &lt; 7.2e-05
+##  and confidence interval  0.39 0.82
+```
+
+
+---
+
+### Pearson Correlation
+
+#### Test that two population correlations are equal.
+
+- Null Hypothesis:  `\({{\rho }_{1}}-{{\rho }_{2}}=0\)` OR `\({{\rho }_{1}}={{\rho }_{2}}\)`
+
+- Alternative Hypothesis:  `\({{\rho }_{1}}-{{\rho }_{2}}\ne 0\)` OR `\({{\rho }_{1}}\ne {{\rho }_{2}}\)`
+
+Example:	
+
+Male:		n = 86,	`\(r_{xy} = .75\)`,	`\(z_{xy} = .973\)`
+
+Female:	n = 95,	`\(r_{xy} = .82\)`,	`\(z_{xy} = 1.157\)`
+
+
+`$$z=\frac{z_{m}^{{}}-z_{f}^{{}}}{\sqrt{1/({{n}_{m}}-3)+1/({{n}_{f}}-3)}}=\frac{.973-1.157}{\sqrt{1/(86-3)+1/(95-3)}}=-1.21$$`
+
+The obtained *z* value does not exceed the z critical value of `\(\pm1.96\)`, thus, we fail to reject the null that the population correlations are equal.
+
+
+---
+
+### Pearson Correlation
+
+#### Test that two population correlations are equal.
+
+
+```r
+r12 &lt;- .75
+r34 &lt;- .82
+n1 &lt;- 86
+n2 &lt;- 95
+r.test(n = n1, r12 = r12, r34 = r34, n2 = n2)
+```
+
+```
+## Correlation tests 
+## Call:r.test(n = n1, r12 = r12, r34 = r34, n2 = n2)
+## Test of difference between two independent correlations 
+##  z value 1.21    with probability  0.22
+```
+
+---
+
+### Variations of the Pearson Product-Moment Correlation
+
+  - **Point Biserial Correlation**
+  - **Biserial Correlation**
+  - **Spearman Rank**
+  - **Phi Coefficient**
+  - **Tetrachoric Correlation**
+  - **Polychoric Correlation**
+  - **Chi-Square**
+  - **Pearson's Chi-Square**
+
+
+---
+
+#### Point Biserial Correlation
+
+Used to assess the relationship between two variables when one variable is at the interval/ratio level of measurement and the 2nd variable is dichotomous (true dichotomy: male vs. female; first born vs. last born; mammal vs. non-mammal).
+
+
+Example: Student’s total test score and a single item from another test that is scored right or wrong. Code the dichotomous variable as 0 (e.g., wrong) or 1 (e.g., right) and calculate the Pearson product-moment correlation.
+
+
+`$${{r}_{pb}}=\frac{({{{\bar{Y}}}_{1}}-{{{\bar{Y}}}_{0}})\sqrt{PQ}}{{{s}_{Y}}}$$`
+
+where 
+- `\({\bar Y_1}\)` is the mean of Y scores for those coded as 1
+
+- `\({\bar Y_0}\)` is the mean of Y scores for those coded as 0
+
+- `\(P\)` is the mean of the X(0,1) coded scores. 
+- `\(Q=1-P\)`
+- `\(s_Y\)` is the standard deviation of the Y(continuous) scores with *n* in the denominator instead of *n-1*.
+
+---
+
+#### Point Biserial Correlation
+
+Significance testing of the point biserial correlation
+
+`\(t=\frac{{{r}_{pb}}\sqrt{n-2}}{\sqrt{1-r_{pb}^{2}}}\)` with *df* = n-2.
+
+Sign of the correlation depends on whether the group with the higher mean on Y was assigned a low (0) or high (1) coding.
+
+The point biserial correlation is mathematically equivalent to the Pearson correlation between a continuous and a dichotomous variable.
+
+---
+
+#### Point Biserial Correlation
+
+.pull-left[
+
+```r
+x &lt;- c(65, 58, 52, 49, 57, 58) # total test score
+y &lt;- rep(c(0,1),each = 3) # item score
+cor.test(x,y)
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  x and y
+## t = -0.77782, df = 4, p-value = 0.4801
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.9071701  0.6362620
+## sample estimates:
+##        cor 
+## -0.3624623
+```
+]
+
+.pull-right[
+A negative correlation means that those that got the item wrong tended to perform better on the test. 
+Weird item!
+]
+
+
+---
+
+#### Biserial Correlation
+
+Used to assess the relationship between two variables when one variable is at the interval/ratio level of measurement and the 2nd variable is a continuous dichotomy (not a true dichotomy, but a forced dichotomy).
+
+Example: Scores on an achievement test and IQ score coded as low or high.
+
+
+`\({{r}_{b}}=\frac{({{{\bar{Y}}}_{1}}-{{{\bar{Y}}}_{0}})PQ}{h({{s}_{Y}})}={{r}_{pb}}\frac{\sqrt{PQ}}{h}\)`
+
+where *h* is the height of the standard normal curve at which its area is divided into *P* and *Q* portions. 
+
+---
+
+#### Biserial Correlation
+
+Sign of the correlation depends on whether the group with the higher mean on Y was assigned a low (0) or high (1) coding.  
+
+The biserial correlation may be taken as an estimate of the Pearson product-moment correlation that would have been obtained if the X variable was continuous with a normal distribution.
+
+The biserial will always exceed the corresponding point biserial correlation.
+
+
+---
+
+#### Biserial Correlation
+
+.pull-left[
+
+```r
+x &lt;- c(65, 58, 52, 49, 57, 58) # achievement test score
+y &lt;- rep(c(0,1),each = 3) # IQ score coded as low or high
+biserial(x,y)
+```
+
+```
+##            [,1]
+## [1,] -0.4146982
+```
+]
+
+.pull-right[
+A negative correlation means that those with higher IQ  scores tended to have lower achievement test score. Weird!
+]
+
+
+---
+
+#### Spearman's Rank/Spearman's Correlation/Spearman's rho
+
+Nonparametric version of the Pearson product-moment correlation. Based on the ranks of the data rather than the actual values.  
+  - Both variables are ranked variables.
+  - Used with ordinal data or interval data with non-normal distributions. 
+  - Sign of the coefficient indicates direction of the relationship.
+
+
+`\({{r}_{s}}=1-\frac{6\sum{{{d}^{2}}}}{n({{n}^{2}}-1)}\)`, where *d* is the difference in ranks of the pair for an object or individual and *n* is the sample size.
+
+
+•	Significance testing of the correlation coefficient:  
+
+`\(t=\frac{{{r}_{s}}\sqrt{n-2}}{\sqrt{1-r_{s}^{2}}}\)` with *df* = *n* -2.
+
+
+---
+
+#### Spearman's Rank/Spearman's Correlation/Spearman's rho
+
+
+```r
+x &lt;- c(3, 4, 5, 10, 13)
+y &lt;- c(12, 5, 6, 4, 3)
+corr.test(x, y, method = "spearman")
+```
+
+```
+## Call:corr.test(x = x, y = y, method = "spearman")
+## Correlation matrix 
+## [1] -0.9
+## Sample Size 
+## [1] 5
+## Probability values  adjusted for multiple tests. 
+## [1] 0.04
+## 
+##  To see confidence intervals of the correlations, print with the short=FALSE option
+```
+
+---
+
+#### Phi Coefficient
+
+Used to assess the relationship between two variables when both are true dichotomous variables.
+
+Example:  Gender (male vs. female) and performance on a test item (right vs. wrong).
+
+If the 0, 1 coding is arbitrary, the sign of the Phi coefficient is meaningless.
+
+You can use Phi, but it is more common to use the chi-square statistic which tests the association between 2 variables.  However, chi-square does not work well when using small samples.
+
+The phi coefficient is mathematically equivalent to the Pearson correlation between two dichotomous variables.
+
+
+---
+
+#### Phi Coefficient
+
+.pull-left[
+
+```r
+gender &lt;- rep(c(0,1), each = 7)
+item &lt;- c(0,0,0,1,1,1,1,0,0,1,1,1,1,1)
+corr.test(gender,item)
+```
+
+```
+## Call:corr.test(x = gender, y = item)
+## Correlation matrix 
+## [1] 0.15
+## Sample Size 
+## [1] 14
+## Probability values  adjusted for multiple tests. 
+## [1] 0.61
+## 
+##  To see confidence intervals of the correlations, print with the short=FALSE option
+```
+]
+
+.pull-right[
+&lt;table&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;text-align: center;"&gt; Male/Incorrect &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;text-align: center;"&gt; Female/Incorrect &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;text-align: center;"&gt; A, 3 &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;text-align: center;"&gt; B, 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;text-align: center;"&gt; Male/Correct &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;text-align: center;"&gt; Female/Correct &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;text-align: center;"&gt; C, 4 &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;text-align: center;"&gt; D, 5 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+`$${{r}_{\varphi }}=\frac{BC-AD}{\sqrt{(A+B)(C+D)(A+C)(B+D)}}$$`
+
+
+`$$t=\frac{{{r}_{xy}}\sqrt{n-2}}{\sqrt{1-r_{xy}^{2}}}$$` with *df* = *n* -2.
+
+
+
+---
+
+#### Phi Coefficient
+
+
+```r
+phi(c(3,2,4,5))
+```
+
+```
+## [1] 0.15
+```
+There is a weak, positive, and non-significant relationship between gender and performance on a test item. `\({{r}_{\varphi }} = .149\)`, *p* = .61.
+
+
+---
+
+#### Tetrachoric Correlation
+
+Used to assess the relationship between two variables when both are dichotomous (not a true dichotomy, but a forced dichotomy). 
+
+Example:  IQ scores (low vs. high) and GPA (low vs. high).
+
+Assume the underlying distributions of the variables are normally distributed.
+
+Use the `tetrachoric()` function of the `psych()` package.
+
+---
+
+#### Polychoric Correlation
+
+Used to assess the relationship between two variables when both are ordered (ordinal; ranked) categories (forced categories).
+
+Example:  IQ scores (low, medium, high) and GPA (low, medium, high).
+
+Assume the underlying distributions of the variables are normally distributed. 
+
+Use the `polychoric()` function of the `psych()` package.
+
+
+
+---
+
+#### Chi-Square
+
+Tests the hypothesis that two categorical variables are independent, without indicating strength or direction of the relationship.
+
+  - General Varieties:
+    -   Pearson Chi-Square
+    - Likelihood-Ratio Chi-Square
+    
+  - More varieties for 2 X 2 tables:
+    - Fisher’s exact test
+    - Yates’ corrected chi-square
+
+They are for analysis of categorical data! (See Chapter 18 of the textbook.)
+
+
+---
+
+### Summary of Measures of Association
+
+&lt;table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Summary of Measures of Association&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Correlation Coefficient &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; X Variable &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Y Variable &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Pearson product-moment &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; continuous &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; continuous &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Point Biserial &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; continuous &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; true dichotomy &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Biserial &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; continuous &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; forced dichotomy &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Phi &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; true dichotomy &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; true dichotomy &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Tetrachoric &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; forced dichotomy &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; forced dichotomy &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Polychoric &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; forced polytomy &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; forced polytomy &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spearman's Rank &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ranked &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ranked &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Pearson Chi-Square &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; categorical &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; categorical &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### Example
+
+Use the `import` function of the `rio` package to import data
+
+
+```r
+install.packages("rio")
+```
+
+
+```r
+library(rio)
+```
+
+Download the `BSGUSAM6.sav` dataset from Canvas and save it in the `data` folder of your R project directory.
+
+Import the data into R
+
+
+```r
+mydata &lt;- import("data/BSGUSAM6.sav")
+```
+
+
+---
+
+#### Change Variable names and create a smaller dataset to work with
+
+
+```r
+nrow(mydata)
+```
+
+```
+## [1] 10221
+```
+
+```r
+# length(mydata) # number of variables in a data frame
+# ncol(mydata)
+# names(mydata) # variable names
+names(mydata)[names(mydata) == "ITSEX"] &lt;- "gender"
+names(mydata)[names(mydata) == "BSMMAT01"] &lt;- "math" # math score
+names(mydata)[names(mydata) == "BSBGHER"] &lt;- "resource" # education resource
+names(mydata)[names(mydata) == "BSBGSCM"] &lt;- "confidence" # confidence in math
+names(mydata)[names(mydata) == "BSBGSVM"] &lt;- "value" # valuing math
+names(mydata)[names(mydata) == "BSBGSSB"] &lt;- "belonging" # sense of belonging
+var &lt;- c("gender", "math", "resource", "confidence", "value", "belonging")
+
+# randomly select 100 observations to create a smaller dataset
+set.seed(12345)
+dat2 &lt;- mydata[sample(1:nrow(mydata), 100, replace = FALSE), var]
+```
+
+
+---
+
+#### Change `gender` to a categorical variable
+
+#### Change the `levels` of the `gender` variable
+
+
+```r
+dat2$gender_c &lt;- factor(dat2$gender)
+levels(dat2$gender_c) &lt;- c("f", "m")
+```
+
+
+---
+
+### Pearson Correlation
+
+
+```r
+var &lt;- c("gender", "math", "resource", "confidence", "value", "belonging") 
+cor(dat2[,var], use = "pairwise.complete.obs") # For numeric variables only.
+```
+
+```
+##                 gender       math    resource confidence       value belonging
+## gender      1.00000000 0.03027932 -0.07073987  0.1683247  0.01025990 0.1442499
+## math        0.03027932 1.00000000  0.41100725  0.4955436  0.18665310 0.3324972
+## resource   -0.07073987 0.41100725  1.00000000  0.1807074 -0.03450959 0.0952008
+## confidence  0.16832470 0.49554358  0.18070739  1.0000000  0.41989447 0.3502129
+## value       0.01025990 0.18665310 -0.03450959  0.4198945  1.00000000 0.3341423
+## belonging   0.14424992 0.33249719  0.09520080  0.3502129  0.33414234 1.0000000
+```
+
+```r
+                                               # "gender" is still a numeric variable!
+                                               # Missing values removed
+round(cor(dat2[,var], use = "pairwise.complete.obs"), 2) # round to 2 decimal places
+```
+
+```
+##            gender math resource confidence value belonging
+## gender       1.00 0.03    -0.07       0.17  0.01      0.14
+## math         0.03 1.00     0.41       0.50  0.19      0.33
+## resource    -0.07 0.41     1.00       0.18 -0.03      0.10
+## confidence   0.17 0.50     0.18       1.00  0.42      0.35
+## value        0.01 0.19    -0.03       0.42  1.00      0.33
+## belonging    0.14 0.33     0.10       0.35  0.33      1.00
+```
+
+
+---
+
+### Pearson Correlation
+
+#### Correlation between two variables
+
+Correlation between two variables, hypothesis test, and confidence interval
+
+
+```r
+cor.test(dat2$confidence, dat2$math)
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  dat2$confidence and dat2$math
+## t = 5.619, df = 97, p-value = 1.839e-07
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.3304593 0.6312069
+## sample estimates:
+##       cor 
+## 0.4955436
+```
+
+---
+
+### Pearson Correlation
+
+#### Correlations for all bivariate relationships
+
+Load the `Hmisc` package using `library(Hmisc)`
+
+Need to coerce from dataframe to matrix to get both a correlation matrix and p-values
+
+
+```r
+df &lt;- as.matrix(dat2[,var]) # numeric variables only
+rcorr(df)
+```
+
+```
+##            gender math resource confidence value belonging
+## gender       1.00 0.03    -0.07       0.17  0.01      0.14
+## math         0.03 1.00     0.41       0.50  0.19      0.33
+## resource    -0.07 0.41     1.00       0.18 -0.03      0.10
+## confidence   0.17 0.50     0.18       1.00  0.42      0.35
+## value        0.01 0.19    -0.03       0.42  1.00      0.33
+## belonging    0.14 0.33     0.10       0.35  0.33      1.00
+## 
+## n
+##            gender math resource confidence value belonging
+## gender        100  100      100         99    99        99
+## math          100  100      100         99    99        99
+## resource      100  100      100         99    99        99
+## confidence     99   99       99         99    99        99
+## value          99   99       99         99    99        99
+## belonging      99   99       99         99    99        99
+## 
+## P
+##            gender math   resource confidence value  belonging
+## gender            0.7649 0.4843   0.0958     0.9197 0.1543   
+## math       0.7649        0.0000   0.0000     0.0643 0.0008   
+## resource   0.4843 0.0000          0.0735     0.7345 0.3486   
+## confidence 0.0958 0.0000 0.0735              0.0000 0.0004   
+## value      0.9197 0.0643 0.7345   0.0000            0.0007   
+## belonging  0.1543 0.0008 0.3486   0.0004     0.0007
+```
+
+---
+
+### Pearson Correlation
+
+Check normaility 
+
+
+```r
+var &lt;- c("math", "resource", "confidence", "value", "belonging")
+
+for (i in seq_along(var)) {
+  shapiro.test(dat2[,names(dat2) == var[i]])
+}
+```
+
+---
+
+### Pearson Correlation
+
+Check linearity
+
+
+```r
+plot(dat2$confidence, dat2$math)
+abline(lm(math ~ confidence, data =dat2), col = "red")
+```
+
+&lt;img src="Week-3_files/figure-html/unnamed-chunk-26-1.png" width="45%" /&gt;
+
+??? 
+use `knitr::purl("Week 3.Rmd", documentation = 0)` to generate R script named `"Week 3.R"`.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
