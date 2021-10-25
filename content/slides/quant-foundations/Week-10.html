@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ESC_PS 8850:  Quantitative Foundations in Educational Research</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ze Wang" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# ESC_PS 8850: <br>Quantitative Foundations in Educational Research
+## <br/>Monday, 4:00pm-6:30pm; online
+### Ze Wang
+### University of Missouri
+### 2021-11-1
+
+---
+
+layout: true
+
+&lt;div class = 'my-header'&gt;&lt;span&gt;ESC_PS 8850 Quant Foundations&lt;/span&gt;&lt;/div&gt;
+
+&lt;div class = 'my-footer'&gt;&lt;span&gt;wangze@missouri.edu
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+Ze Wang, Ph.D.&lt;/span&gt;&lt;/div&gt; 
+
+
+---
+class: center, middle
+
+
+
+
+
+
+
+# .blue[Week 10]
+
+## .blue[ANOVA]
+
+---
+
+```r
+library(rio); library(ggplot2); library(QuantPsyc); library(psych); library(car); library(memisc)
+```
+
+---
+
+### Historical Background
+
+- Regression models and ANOVA developed in different research areas  and address different questions
+
+- **Regression models**
+  - Emerged in biology and psychology at the end of the 19th century as  scientists studied the correlation of human’s attributes and  characteristics.
+  
+  - For example: Sir Francis Galton described the  “regression to the mean” phenomenon while  studying the height of parents and their adult  children (i.e., short parents’ children tended to  be shorter than the average but they tended to  be taller than their parents).
+
+  - Aim: Explaining/predicting/forecasting data  and determining the relative contribution of  each independent variable to the prediction.
+
+
+---
+
+### Historical Background
+
+- Regression models and ANOVA developed in different research areas  and address different questions
+
+- **Analysis of Variance (ANOVA)**
+
+   - Emerged in agricultural sciences in the early 20th century.
+   
+   - William S. Gosset (pseudonym: “Student”) proposed the t-test for the comparison of means of two (experimental) groups.
+   
+   - Sir Ronald A. Fisher proposed ANOVA to compare means from any number of experimental conditions without increase in Type I error.
+   
+   - Aim: Evaluate whether mean scores of a dependent variable significantly differ across (experimental) conditions. ANOVA is the ideal technique for many psychological areas.
+  
+---
+
+###  The General Linear Model (GLM)
+
+- Many statistic textbooks in education and social sciences describe regression models and ANOVA as distinct and independent statistical concepts.
+
+- The General Linear Model (GLM) is the overarching method that includes regression and ANOVA.
+
+- The GLM conception is that observed data can be described in terms of a particular model and some error, 
+
+.center[
+`\(data = model + error\)`
+]
+
+  where the *model* term represents the hypothesis of interest; and the *error* term describes other (unconsidered) influences.
+
+- The relative size of model and error components can be used to judge how well the model describes the data.
+
+
+---
+
+###  The General Linear Model (GLM)
+
+- .red[**General**] refers to the fact that GLM can be used to analyze continuous independent variables (as in regression analysis) and categorical independent variables (e.g., groups; as in ANOVA).
+
+- .red[**Linear**] means that linearity is assumed in terms of model parameters (not necessarily in terms of variables)
+
+  - Examples of linear models:
+  
+    `\({Y_i} = \alpha  + \beta {X_i} + {\varepsilon _i}\)`
+    
+    `\({Y_i} = \alpha  + \beta X_i^2 + {\varepsilon _i}\)`
+
+---
+
+### One-Way ANOVA (for Single Factor Designs)
+
+It answer the question: Are there significant differences between mean scores of a  dependent variable across a number of groups (e.g., experimental conditions)?
+
+
+
+
+---
+
+### One-Way ANOVA (for Single Factor Designs)
+
+#### True Experiment
+
+- An experiment that enables a researcher to test a hypothesized relationship between an independent variable and a dependent variable by manipulating the independent variable.
+
+- True experiments are characterized by:
+  1. manipulation by the researcher of one or more independent variables
+  
+  2. use of controls such as the random assignment of participants to experimental conditions to   
+     minimize the effects of nuisance variables
+     
+  3. careful observation or measurement of one or more dependent variables
+  
+  *[1 and 2 are necessary for a true experiment]*
+
+
+---
+
+### One-Way ANOVA (for Single Factor Designs)
+
+#### Quasi-Experiment
+
+- A study in which at least one independent variable is manipulated, but participants are not randomly assigned to groups.
+
+- Some studies do not meet the requirements of a true experiment.  Due to ethical reasons or other relevant reasons, a researcher cannot always conduct a true experiment.  
+
+- **Example**: If you want to know the effect of attending half-day daycare vs. attending full-day daycare, it is probably unlikely to randomly assign participants (e.g., parents may need to work so half-day daycare is not an option). 
+
+- *Organismic Variable* (also called Subject Variables)
+
+  - They refer to already-existing characteristics of the subjects participating in the study (e.g., gender, age, intelligence, physical or psychiatric disorder, any personality attribute you can name).
+  - When using organismic variables in a study, the researcher cannot manipulate them directly but must select participants for the different conditions by virtue of the characteristics they already have.
+  - Other examples are Race/Ethnicity, ADHD, Introversion/Extroversion, Depression, SES
+
+  
+---
+
+### One-Way ANOVA (for Single Factor Designs)
+
+It answer the question: Are there significant differences between mean scores of a  dependent variable across a number of groups (e.g., experimental conditions)?
+
+- Statistical Hypotheses:
+
+  - Null Hypothesis: `\({H_0}:{\mu _1} = {\mu _2} = {\mu _3} = ... = {\mu _k}\)` (The group means are equal in the population, where *k* is the number of groups)
+  
+  - Alternative Hypothesis: At least two of the `\({\mu _j}\)` (group means) are different in the population.
+  
+
+---
+
+### One-Way ANOVA (for Single Factor Designs)
+
+- **Basic Idea of ANOVA**
+
+  - An *F* -statistic is used to determine whether significant differences in means  exist.
+  
+  - In traditional ANOVA, *F* -statistic is the ratio of between group variance  and within group variance.
+  
+  - The distribution of the *F*-statistics (with known degrees of freedom) is  known, when the null hypothesis is correct.
+  
+  - The probability that the observed (or more extreme) differences are due to  chance (i.e., sampling variation) can be determined by comparing the  distribution of *F*-statistics under `\({H_0}\)` and the observed *F*-statistic.
+  
+  - If this probability is sufficiently small, then the null hypothesis is rejected.
+  
+---
+
+### One-Way ANOVA (for Single Factor Designs)
+
+Why not simply compare the group means two at a time using the *t* test for independent samples?
+
+Why not compare the following?: 
+1. `\({\mu _1} = {\mu _2}\)`
+2. `\({\mu _1} = {\mu _3}\)`
+3. `\({\mu _2} = {\mu _3}\)`
+
+Besides the extra time that it takes, especially as the number of groups (*k*) increase, the reason we do no conduct several *t* tests is because of **TYPE I ERROR INFLATION**.
+
+---
+
+### One-Way ANOVA (for Single Factor Designs)
+
+**TYPE I ERROR INFLATION** 
+
+- When we set alpha ( `\(\alpha\)`) equal to .05, we are willing to risk being wrong 5% of the time when we reject the null hypothesis  ( `\({H_0}\)`).  With just two group means to compare, there is just 1 *t* statistic calculation.  We would compare our observed/obtained *t* value with the critical *t* value to see if our observed/obtained *t* value fell in the critical region for rejecting the null ( `\({H_0}\)`).  With alpha set at .05, the critical *t* value was originally determined by taking the sampling distribution of *t* for the appropriate df and locating the *t* value such that the proportion of the total number of *t* values that were equal to or more extreme than it equaled .05.  That is, if we were randomly sampling one *t* score from the *t* distribution, the probability it would be greater than or equal to the critical *t* value is .05.  Now what happens when we do an experiment involving many *t* comparisons, such as the 3 described above?  We are no longer sampling 1 *t* value from the *t* distribution, but 3.  The probability of getting *t* values greater than the critical *t* obviously goes up.  It is no longer equal to .05.  The probability of making a Type I error has gone up as a result of doing an experiment with many groups and analyzing the data with more than one comparison.
+
+
+- *Overall Alpha* for a set of tests is defined as the maximum risk one is willing to take in making at least one false rejection when the null is true (i.e., all the population means are equal in One-Way ANOVA), resulting in a Type I error.  
+Overall `\(\alpha  \approx r\alpha\)` (It's actually equal to `\(1-{(1 - \alpha )^3}\)`), where *r* is the number of tests being done.  
+
+---
+
+### One-Way ANOVA (for Single Factor Designs)
+
+**TYPE I ERROR INFLATION** 
+
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Number of Groups &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Number of `\(t\)` tests [$k(k-1)/2$] &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Approximate Overall `\(\alpha\)` [$ \alpha \approx r\alpha$] &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3(3-1)/2 = 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 * 5 = .15 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4(4-1)/2 = 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 * .05 = .30 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5(5-1)/2 = 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 * .05 = .50 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6(6-1)/2 = 15 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 15 * .05 = .75 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+With 3 tests, we have an approximate 15% chance of making at least 1 Type I error.  The risk increases as the number of groups increase.   
+
+
+---
+
+### One-Way ANOVA (for Single Factor Designs)
+
+It answer the question: Are there significant differences between mean scores of a  dependent variable across a number of groups (e.g., experimental conditions)?
+
+- Statistical Hypotheses:
+
+  - Null Hypothesis: `\({H_0}:{\mu _1} = {\mu _2} = {\mu _3} = ... = {\mu _k}\)` (The group means are equal in the population, where *k* is the number of groups)
+  
+  - Alternative Hypothesis: At least two of the `\({\mu j}\)` (group means) are different in the population.
+  
+---
+
+### One-Way ANOVA (for Single Factor Designs)
+
+- **Basic Idea of ANOVA**
+
+  - An *F* -statistic is used to determine whether significant differences in means  exist.
+  
+  - In traditional ANOVA, the *F* -statistic is the ratio of between group variance  and within group variance.
+  
+  - The distribution of the *F*-statistics (with known degrees of freedom) is  known, when the null hypothesis is correct.
+  
+  - The probability that the observed (or more extreme) differences are due to  chance (i.e., sampling variation) can be determined by comparing the  distribution of *F*-statistics under `\({H_0}\)` and the observed *F*-statistic.
+  
+  - If this probability is sufficiently small, then the null hypothesis is rejected.
+  
+
+---
+
+### One-Way ANOVA
+
+**Empirical Example**: Reading achievement of 15 children for three  experimental training conditions (A = control, B = non-parental training, and C = parental training).
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Condition A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Condition B &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Condition C &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 40.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 48.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44.00 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 33.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 43.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 46.00 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 34.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 51.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 42.00 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 35.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 46.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 54.00 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 43.00 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: black !important;"&gt; Mean &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: black !important;"&gt; 37.20 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: black !important;"&gt; 45.20 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: black !important;"&gt; 45.80 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: black !important;"&gt; Grand Mean: &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: black !important;"&gt; SD &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: black !important;"&gt; 4.66 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: black !important;"&gt; 4.97 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: black !important;"&gt; 4.82 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: black !important;"&gt; 42.73 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+- Null Hypothesis: There are no significant means differences across conditions  (i.e., there are no training effects).
+
+- Alternative Hypothesis: There are significant mean differences across  conditions (i.e., there are some training effects).
+
+
+---
+
+### One-Way ANOVA
+
+- **Variance Partitioning** (It’s all about the Variance). Traditinal ANOVA partitions the total variation of observed data into between-group  and within-group components.
+
+- **Total Sum of Squares**: Equals the sum of squared deviations of individual data points around the overall mean (i.e., the grand mean) and serves as an indicator for the total variance of the dependent variable.
+
+- **Between-group Sum of Squares**: Equals the sum of squared deviations of the group means around the overall mean and serves as an indicator for the variance associated  with group membership.
+
+- **Within-group Sum of Squares**: Equals the sum of squared deviations of individual data  points around the group means and serves as an indicator for the unexplained variances  existing within groups.
+
+
+---
+
+### One-Way ANOVA
+
+&lt;img src="images/one_way_ANOVA_example_figure.png" width="80%" /&gt;
+
+---
+
+### One-Way ANOVA
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+&lt;caption&gt;ANOVA Table for One-Way ANOVA&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Source of Variaton &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sum of Squares &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Degrees of Freedom &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Mean Squares &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; `\(F\)` Statistic &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; Between-group (model) &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(SS_b = \sum\limits_{j = 1}^k {{n_j}{{({\mu _j} - \mu )}^2}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(df = k-1\)` &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `$$MS _b = {SS_b} \over {k - 1}$$` &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(F = {MS _b} \over {MS _w}\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; Within-group (error) &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(SS_w = \sum\limits_{j = 1}^k {\sum\limits_{i = 1}^{n _j} {{({y _ij} - \mu _j)}^2}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(df = N-k\)` &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `$$MS _w = {SS _w} \over {N-k}$$` &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(SS_t = \sum\limits_{j = 1}^k {\sum\limits_{i=1}^{n _j} {{({y _ij} - \mu)}^2}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(df = N-1\)` &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+### One-Way ANOVA
+
+- The total sum of squares equals the between-group sum of squares plus the within-group sum of squares, i.e., 
+`\(S{S_t} = S{S_b} + S{S_w}\)`
+
+- Dividing these sums of squares by their respective degrees of freedom (*df*) makes these statistics more accurate estimates of the variability they represent in the population. The resulting value is referred to as the Mean Square or MS because it represents the mean of a particular sum of squares, which will be an unbiased estimate of the population variance.  
+
+- Using `\(M{S_b}\)` and `\(M{S_w}\)`, we can caluate the *F* ratio to test the null hypothesis that the group means are equal.
+
+  `\(F = \frac{{M{S_b}}}{{M{S_w}}}\)`
+
+- The coefficient of determination is defined as `\({R^2} = \frac{{S{S_b}}}{{S{S_t}}}\)`
+
+
+---
+
+### One-Way ANOVA
+
+**Example:** Reading achievement of 15 children for three experimental training conditions (A = control, B = non-parental training, C = parental training)
+
+
+```r
+reading &lt;- import("data/reading.txt")
+head(reading)
+```
+
+```
+##   group reading
+## 1     1      40
+## 2     1      33
+## 3     1      34
+## 4     1      35
+## 5     1      44
+## 6     2      48
+```
+
+```r
+reading$group.f &lt;- as.factor(reading$group)
+levels(reading$group.f) &lt;- c("A", "B", "C")
+*mymodel &lt;- aov(reading ~ group.f, data=reading)
+summary(mymodel)
+```
+
+```
+##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
+## group.f      2  230.5   115.3   4.968 0.0268 *
+## Residuals   12  278.4    23.2                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+
+---
+
+### One-Way ANOVA
+
+#### Pairwise Comparisons
+
+- Note that a significant *F*-test simply means that there are significant differences somewhere among means. No statements are made concerning which means differ.
+
+- Planned or post-hoc comparisons are necessary to locate the source of a significant *F*-test.
+
+- Planned Comparisons are those comparisons that are planned in advance of data collection. For example, in an experiment with two treatment groups and one control group (see empirical example), one may only want to compare the treatment groups with the control group (without comparing the treatment groups).
+
+- Post-hoc comparisons are those comparisons withouth specific a priori theory (rather exploratory approach).
+
+
+
+---
+
+### One-Way ANOVA
+
+#### Planned Comparisons
+
+- Each mean that reflects the planned hypothesis is weighted (i.e., numbers such as 0, 1, 1/2, etc).
+
+- At least two of the means have to have nonzero weights.
+
+- Groups with a weight of zero are left out of the comparison.
+
+- Means that are contrasted with each other are assigned weights with opposite signs.
+
+- The weights must sum to zero, i.e., `\(\sum {{w_i} = 0}\)`
+
+---
+
+### One-Way ANOVA
+
+#### Planned Comparisons
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Constrasts &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Group A: Control &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Group B: Non-parental Training &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Group C: Parental Training &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(\sum{w _i}\)` &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; control vs. average of training &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; -0.5 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; -0.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; non-parental vs. parental training &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; -1.0 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; 1.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; contraol vs non-parental training &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; -1.0 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; 0.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; control vs. parental training &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; 0.0 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 10em; border-left:1px solid;border-right:1px solid;"&gt; -1.0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### One-Way ANOVA
+
+#### Planned Comparisons
+
+
+```r
+c1 &lt;- c(1, -1/2, -1/2) # compares control vs. mean of both treatments groups
+c2 &lt;- c(0, -1, 1) # compares means of treatment groups
+contrasts(reading$group.f) &lt;- cbind(c1, c2) # add a "contrasts" attribute to  "reading$group.f" 
+mymodel2 &lt;- model.c &lt;- aov(reading ~ group.f, data=reading)
+summary(mymodel2, split = list(group.f = list("Control vs Treatment" = 1,  "Treatment1 vs Treatment2" = 2)))
+```
+
+```
+##                                     Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+## group.f                              2  230.5   115.3   4.968 0.02679 * 
+##   group.f: Control vs Treatment      1  229.6   229.6   9.898 0.00844 **
+##   group.f: Treatment1 vs Treatment2  1    0.9     0.9   0.039 0.84716   
+## Residuals                           12  278.4    23.2                   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+
+---
+
+### One-Way ANOVA
+
+#### Post-hoc Pairwise Comparisons
+
+- For example, for three groups one obtains three pairwise  comparisons: A vs. B, A vs. C, and B vs. C
+
+- The probability of not committing a Type I Error in three  comparisons is `\({(1 - \alpha )^3}\)` with `\(\alpha\)` being the nominal significance  level.
+
+- The probability that at least one of the three comparisons commits a Type I Error is `\(1-{(1 - \alpha )^3}\)`. E.g., using `\(\alpha = 0.05\)`, we get an actual `\(\alpha\)` of 0.143.
+
+- Thus, when more than two groups are compared, a correction  for multiple comparisons must be used to avoid Type I Error  inflation.
+
+
+---
+
+### One-Way ANOVA
+
+#### Post-hoc Pairwise Comparisons - Bonferroni Correction
+
+- Simplest method to adjust the nominal significance level.
+
+- Given a significance level of `\(\alpha\)`, the *p*-value of each of *k* tests must be smaller than `\(\alpha /k\)`.
+
+- For example, if *k* =	3 and `\(\alpha = 0.05\)`: `\(\alpha * = \frac{{0.05}}{3} = 0.017\)`
+
+
+---
+
+### One-Way ANOVA
+
+#### Post-hoc Pairwise Comparisons - Bonferroni Correction
+
+
+```r
+pairwise.t.test(reading$reading, reading$group.f, p.adjust="bonferroni")
+```
+
+```
+## 
+## 	Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  reading$reading and reading$group.f 
+## 
+##   A     B    
+## B 0.066 -    
+## C 0.046 1.000
+## 
+## P value adjustment method: bonferroni
+```
+
+---
+
+### One-Way ANOVA
+
+#### Post-hoc Pairwise Comparisons - Tukey‘s Honest Significant Difference (HSD)
+
+
+- One of the most commonly used multiple comparison procedures.
+
+- Performs all possible pairwise contrasts, where `\({H_0}:{\mu _i} = {\mu _j}\)` for all `\(i \ne j\)`.
+
+- One of the most conservative procedures: Thus, low probability of Type I Error and less power.
+
+
+---
+
+### One-Way ANOVA
+
+#### Post-hoc Pairwise Comparisons - Tukey‘s Honest Significant Difference (HSD)
+
+
+```r
+mymodel3 &lt;-aov(reading ~ group.f, data = reading)
+TukeyHSD(mymodel3)
+```
+
+```
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = reading ~ group.f, data = reading)
+## 
+## $group.f
+##     diff        lwr       upr     p adj
+## B-A  8.0 -0.1271377 16.127138 0.0537998
+## C-A  8.6  0.4728623 16.727138 0.0380034
+## C-B  0.6 -7.5271377  8.727138 0.9788785
+```
+
+---
+
+### One-Way ANOVA
+
+#### ANOVA Assumptions
+
+- **Independence of observations**: Observations are assumed to be randomly sampled from a pre-defined target population.
+  - Each participant’s score on the dependent variable is not affected by other participants in the same treatment group
+
+- **Normality**: The dependent variable (or the residuals) are assumed to be normally distributed in each sub-population (i.e., in each experimental cell).
+  - Visual displays of the data for each group (e.g., with histograms, QQ plots); 
+  - Descriptive statistics (e.g., skewness and kurtosis); 
+  - Use the Shapiro-Wilk test
+
+- **Variance homogeneity**: The variance is assumed to be the same for each sub-population.
+  - more on following slides...
+
+---
+
+### One-Way ANOVA
+
+#### ANOVA Assumptions
+
+- **Homogeneity of variance**: The variance is assumed to be the same for each sub-population.
+
+  - The *F* test performs acceptably when this assumption is violated if groups are equal in size or if the number in the largest group/the number in the smallest group &lt; 1.5.  It becomes a problem when group sizes are extremely unequal (largest/smallest &gt; 1.5) and the assumption is violated.  
+  
+  - If larger variances are associated with small groups, the *F* test is liberal, meaning that the null is rejected falsely too often (i.e., greater than 5% of the time; actual `\(\alpha\)` &gt; nominal `\(\alpha\)`).
+  
+  - If larger variances are associated with large groups, the F test is conservative, meaning that the null is rejected falsely much less than 5% of the time (actual `\(\alpha\)` &lt; nominal `\(\alpha\)`).  While this may not appear to be a problem, you tend to lose power with smaller alpha levels.
+  
+  - In R, use the `bartlett.test` function from the `stats` package or the `leveneTest` function from the `car` package to test the homogeneity assumption.
+  
+  - The null hypothesis for Levene's test and the Bartlett's test is that the variances in different groups are equal. You DO NOT want to reject the null hypothesis.
+
+---
+
+### One-Way ANOVA
+
+#### ANOVA Assumptions
+
+- **Homogeneity of variance**:
+
+.blue[Bartlett's test]
+
+```r
+bartlett.test(reading ~ group.f, data = reading)
+```
+
+```
+## 
+## 	Bartlett test of homogeneity of variances
+## 
+## data:  reading by group.f
+## Bartlett's K-squared = 0.015081, df = 2, p-value = 0.9925
+```
+
+.blue[Levene's test]
+
+```r
+leveneTest(reading ~ group.f, data = reading)
+```
+
+```
+## Levene's Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  2  0.0363 0.9645
+##       12
+```
+  
+
+---
+
+### One-Way ANOVA
+
+#### ANOVA Assumptions
+
+- **Homogeneity of variance**:
+
+What to do when the homogeneity of variance assumption is violated?
+
+- Run an ANOVA that does not assume equal variances, such as the Kruskal-Wallis test.  
+  - The Kruskal-Wallis test is a nonparametric test that is used with an independent groups design employing k samples.  It is used as a substitute for the parametric one-way ANOVA when the assumptions of that test are seriously violated.  The Kruskal-Wallis test does not assume normality, nor homogeneity of variance, as does the parametric ANOVA, and requires only ordinal scaling of the dependent variable (ranked data for the dependent variable).  It is used when violations of normality and/or homogeneity of variance are extreme, or when interval or ratio scaling are not met by the data.  
+
+- Use a more stringent alpha level (e.g., .01, .001)
+
+- Conduct a variance stabilizing transformation (e.g., square root or natural log) to the dependent variable
+
+---
+
+### One-Way ANOVA
+
+#### Robustness
+
+- Robustness refers to the insensitivity of a statistical procedure against violations of model assumptions.
+
+- *Nominal alpha* (level of significance) is the level set by the experimenter and is the percent of time one is rejecting falsely when the null hypothesis is true and all assumptions are met.  
+
+- *Actual alpha* is the percent of time one is rejecting falsely if 1 or more of the assumptions is violated.  
+
+- A test is *robust* if the actual alpha is very close to the nominal alpha.
+
+
+---
+
+### One-Way ANOVA
+
+#### Robustness
+
+- Robustness refers to the insensitivity of a statistical procedure against violations of model assumptions.
+
+- Type I Error Robustness: A statistical procedure is said to be robust, if the procedure is able to protect the nominal significance level (e.g., `\(\alpha = 0.05\)`).
+
+- The ANOVA *F* -test is Type I Error robust against violations of the normality and variance homogeneity assumption (in particular, in balanced designs, i.e., equal sample sizes across conditions).
+
+- However, Wilcox (1995) cautions that skewed distributions or distributions with high kurtosis lower the power of the ANOVA *F* -test to detect true mean differences.
+
+- Wilcox (2012) suggests modern statistical techniques (e.g., bootstrapping) and Conover and Iman (1981) suggest rank transformations as potential remedies.
+
+
+---
+
+### One-Way ANOVA Using GLM Approach
+
+- The model underlying the (traditional) ANOVA can be written as:
+ `\({y_i} = \mu  + {\tau _j} + {\varepsilon _{i}}\)`
+ 
+ where `\(\mu\)` is a constant representing the DV free of any group effects, `\(\tau _j\)` is the effect of the *j*th group, and 
+ `\({\varepsilon _i}\)` is the individual error
+ 
+- The ANOVA model can also be written as a multiple regression model:
+`\({y_i} = \alpha  + \sum\limits_j^{k - 1} {{\beta _j}{x_{ij}} + } {\varepsilon _i}\)`
+
+where `\(\alpha\)` is a constant representing the DV free of any group effects; `\(\beta_j\)`'s are regression coefficients for the coded variables `\(x_{ij}\)`; and {\varepsilon _i} is the individual error.
+
+- We have used the GLM approached before when we had regression models with categorical predictors. 
+
+  - With *k* groups, we only need (*k*-1) coded variables. 
+  - Dummy coding and effect coding are often used coding schemes.
+  - Choose a reference group for coding 
+
+- ANOVA is a special case of multiple linear regression! 
+
+---
+
+### One-Way ANOVA Using GLM Approach
+
+.pull-left[
+**Dummy Coding **
+
+In R, dummy coding is called "treatment contrasts" (this is the default). the first group is used as the reference group by default.
+
+
+
+```r
+reading &lt;- import("data/reading.txt")
+reading$group.f &lt;- as.factor(reading$group)
+levels(reading$group.f) &lt;- c("A", "B", "C")
+contrasts(reading$group.f) # group A is the reference group
+##   B C
+## A 0 0
+## B 1 0
+## C 0 1
+*mymodel4 &lt;- lm(reading ~ group.f, data=reading)
+summary(mymodel4)$coefficients
+##             Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept)     37.2   2.154066 17.269666 7.682923e-10
+## group.fB         8.0   3.046309  2.626129 2.213323e-02
+## group.fC         8.6   3.046309  2.823088 1.537161e-02
+```
+]
+
+.pull-right[
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; `\(y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(\beta _0\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(x_B\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(x_C\)` &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 34 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 35 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 51 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 42 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 54 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+### One-Way ANOVA Using GLM Approach
+
+**Dummy Coding **
+The reference group can be changed.
+
+
+```r
+*contrasts(reading$group.f) &lt;- contr.treatment(n = 3, base = 2)
+contrasts(reading$group.f) # 2nd group is the reference group
+```
+
+```
+##   1 3
+## A 1 0
+## B 0 0
+## C 0 1
+```
+
+```r
+mymodel5 &lt;- lm(reading ~ group.f, data=reading) 
+summary(mymodel5)$coefficients
+```
+
+```
+##             Estimate Std. Error    t value     Pr(&gt;|t|)
+## (Intercept)     45.2   2.154066 20.9835732 7.957511e-11
+## group.f1        -8.0   3.046309 -2.6261287 2.213323e-02
+## group.f3         0.6   3.046309  0.1969596 8.471556e-01
+```
+
+```r
+coef(mymodel5)
+```
+
+```
+## (Intercept)    group.f1    group.f3 
+##        45.2        -8.0         0.6
+```
+
+---
+
+### One-Way ANOVA Using GLM Approach
+
+.pull-left[
+**Effect Coding **
+In R, effect coding is called "sum contrasts" (i.e., contrasts sum up to zero)
+
+
+```r
+# library(memisc) # use the modified version of the contr.sum() function from the "memisc" group
+contrasts(reading$group.f) &lt;- contr.sum(n = 3, base = 1) # 1st group is the reference group
+contrasts(reading$group.f)
+##    2  3
+## A -1 -1
+## B  1  0
+## C  0  1
+mymodel6 &lt;- lm(reading ~ group.f, data=reading) 
+summary(mymodel6)$coefficients
+##              Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 42.733333   1.243651 34.361207 2.350226e-13
+## group.f2     2.466667   1.758787  1.402481 1.861089e-01
+## group.f3     3.066667   1.758787  1.743626 1.067619e-01
+coef(mymodel6)
+## (Intercept)    group.f2    group.f3 
+##   42.733333    2.466667    3.066667
+```
+]
+
+.pull-right[
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; `\(y\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(\beta _0\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(x_B\)` &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; `\(x_C\)` &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 34 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 35 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 51 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 42 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 54 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+### One-Way ANOVA Using GLM Approach
+
+**Effect Coding **
+
+
+```r
+# library(memisc)
+contrasts(reading$group.f) &lt;- contr.sum(n = 3, base = 2) # 2nd group is the reference group
+contrasts(reading$group.f)
+```
+
+```
+##    1  3
+## A  1  0
+## B -1 -1
+## C  0  1
+```
+
+```r
+mymodel7 &lt;- lm(reading ~ group.f, data=reading) 
+summary(mymodel7)$coefficients
+```
+
+```
+##              Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 42.733333   1.243651 34.361207 2.350226e-13
+## group.f1    -5.533333   1.758787 -3.146107 8.435697e-03
+## group.f3     3.066667   1.758787  1.743626 1.067619e-01
+```
+
+```r
+coef(mymodel7)
+```
+
+```
+## (Intercept)    group.f1    group.f3 
+##   42.733333   -5.533333    3.066667
+```
+
+
+---
+
+### One-Way ANOVA Using GLM Approach
+
+Use the function `anova()` to get the traditional ANOVA table. 
+
+
+```r
+anova(mymodel4)
+```
+
+```
+## Analysis of Variance Table
+## 
+## Response: reading
+##           Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+## group.f    2 230.53  115.27  4.9684 0.02679 *
+## Residuals 12 278.40   23.20                  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+Note that the coding scheme does not affect the ANOVA statistics. 
+
+
+```r
+anova(mymodel5); anova(mymodel6); anova(mymodel7)
+```
+
+
+---
+
+### Symbols Commonly Use in R Formulas
+
+
+&lt;table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Symbols Commonly Use in R Formulas&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Symbol &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Usage &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; ~ &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Separates response variables on the left from the explanatory varialbes on the right. For example, a prediction of y from x, z, and w would be coded y ~ x + z + w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Separates predictor variables. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; : &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Denotes an interaction between predictor variables. A prediction of y from x, z, and the interaction between x and z would be coded y ~ x + z + x:z. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; * &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; A shortcut for denoting all possibel interactions. The code y ~ x*z*w expands to y ~ x + z + w + x:z + x:w + z:w + x:z:w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; ^ &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Denotes interactions up to a specified degree. The code y ~ (x + z + w)^2 expands to y ~ x + z + w + x:z + x:w + z:w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; . &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; A placeholder for all other variables in the data frame except the dependent variable. For example, if a data frame contained the varibels x, y, z, and w, then the code y ~ . would expands to y ~ x + z + w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; A minus sign removes a variable from teh equation. For example, y ~ (x + z + w)^2 - x:w expands to y ~ x + z + w + x:z + z:w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; -1 &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Supresses the intercept. For example, the formula y ~ x -1 fits a regression of y on x, and forces the line through the origin at x=0. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; I() &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Elements within the parentheses are interpreted arithmetically. For example, y ~ x + (z + w)^2 would expand to y ~ x + z + w + z:w. In contrast, y ~ x + I(z + w)^2 would expand to y ~ x + h, where h is a new variable created by squaring the sum of z and w. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-right:1px solid;"&gt; function &lt;/td&gt;
+   &lt;td style="text-align:left;width: 40em; "&gt; Mathematical functions cna be used in formulas. For example, log(y) ~ x + z + w would predict log(y) from x, z, and w &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### A Blog on ANOVA in R
+
+[ANOVA in R](https://www.statsandr.com/blog/anova-in-r/)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

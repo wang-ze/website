@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ESC_PS 8850:  Quantitative Foundations in Educational Research</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ze Wang" />
+    <meta name="date" content="2021-10-25" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# ESC_PS 8850: <br>Quantitative Foundations in Educational Research
+## <br/>Monday, 4:00pm-6:30pm; online
+### Ze Wang
+### University of Missouri
+### 2021-10-25
+
+---
+
+layout: true
+
+&lt;div class = 'my-header'&gt;&lt;span&gt;ESC_PS 8850 Quant Foundations&lt;/span&gt;&lt;/div&gt;
+
+&lt;div class = 'my-footer'&gt;&lt;span&gt;wangze@missouri.edu
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+Ze Wang, Ph.D.&lt;/span&gt;&lt;/div&gt; 
+
+
+---
+class: center, middle
+
+
+
+
+
+
+
+
+# .blue[Week 9]
+
+## .blue[Binary Logistic Regression]
+
+---
+
+
+```r
+library(ggplot2); library(rio); library(QuantPsyc); library(psych); library(car); library(reshape)
+```
+
+---
+#### Which analysis technique to use?
+
+&lt;img src="images/logistic_regression_analysis_strategies.png" width="80%" /&gt;
+
+
+---
+
+### Logistic Regression
+
+Binary logistic regression is a form of regression which is used when the DV is a dichotomy and the IVs are of any type. It belongs to **generalized** linear models.
+
+- For a binary DV, we have two possible outcomes. Let's take a look at the `UCBAdmissions` dataset built into R. 
+
+
+```r
+# View(UCBAdmissions)
+class(UCBAdmissions) # the dataset is a table
+```
+
+```
+## [1] "table"
+```
+
+```r
+dat &lt;- as.data.frame(UCBAdmissions) # convert the table to a data frame
+class(dat)
+```
+
+```
+## [1] "data.frame"
+```
+
+```r
+dat &lt;- reshape::untable(df = dat[, !names(dat) %in% c("Freq")], num=dat$Freq)
+# View(dat)
+```
+
+---
+
+### Logistic Regression
+
+Let's answer the question: Is there a relationship between gender and admission? Alternatively, do males have a higher chance of being admitted than females? For now, let's also recode the variables Admit and Gender to be numeric variables with "0"s and "1"s. For the Admit variable, Admitted = 1, Rejected = 0. For the Gender varable, 1 = Female, 0 = Male. 
+
+
+
+```r
+contingency_table1 &lt;- table(dat$Gender, dat$Admit) # contingency table. row is Gender; column is Admit
+addmargins(contingency_table1)
+prop.table(contingency_table1) # cell percentages
+prop.table(contingency_table1, 1) # row percentages
+prop.table(contingency_table1, 2) # column percentages
+```
+
+```
+##         
+##          Admitted Rejected  Sum
+##   Male       1198     1493 2691
+##   Female      557     1278 1835
+##   Sum        1755     2771 4526
+##         
+##           Admitted  Rejected
+##   Male   0.2646929 0.3298719
+##   Female 0.1230667 0.2823685
+##         
+##           Admitted  Rejected
+##   Male   0.4451877 0.5548123
+##   Female 0.3035422 0.6964578
+##         
+##           Admitted  Rejected
+##   Male   0.6826211 0.5387947
+##   Female 0.3173789 0.4612053
+```
+
+---
+
+### Logistic Regression
+
+
+```r
+dat$Admit &lt;- ifelse(dat$Admit=="Admitted", 1, 0)
+dat$Gender &lt;- ifelse(dat$Gender=="Female", 1, 0)
+contingency_table2 &lt;- table(dat$Gender, dat$Admit) # contingency table. row is Gender; column is Admit
+addmargins(contingency_table2)
+ggplot(dat, aes(x=Gender, y=Admit, color = Gender)) + 
+  geom_jitter(width=0, height=0.1) +
+  geom_smooth(method = "lm") +
+  theme(legend.position = "none")
+```
+
+&lt;img src="Week-9_files/figure-html/unnamed-chunk-7-1.png" width="35%" /&gt;
+
+```
+##      
+##          0    1  Sum
+##   0   1493 1198 2691
+##   1   1278  557 1835
+##   Sum 2771 1755 4526
+```
+
+
+---
+
+### Logistic Regression
+
+- **Probability** of an Event 
+ - Event = Being admitted to college
+ - Probability of the event P(Admitted) = 0.6
+ 
+- **Odds** of an Event
+  - Odds is the relative chance of an event
+  - Odds of being admitted = `\(\frac{{P(Admitted)}}{{1 - P(Admitted)}} = \frac{{.6}}{{.4}} = 1.5\)`
+
+- If you know the probability of an event, you can get the odds and vice versa.
+
+---
+
+### Logistic Regression
+
+- **Logit** = Log-Ods of an Event
+  - Logit is the *logarithm* of the odds. Logit = log(odds)
+  - Odds of being admitted = `\(\frac{{P(Admitted)}}{{1 - P(Admitted)}} = \frac{{.6}}{{.4}} = 1.5\)`
+  - Logit of being admitted = 
+  `\({\log _e}(Odds(Admitted)) = {\log _e}(1.5) = .405\)`
+
+- If you know the one of the three: probability, odds, and logit, you can get the values for the other two.
+
+---
+
+### Logistic Regression
+
+#### Logarithm Rules
+
+`$${\log _b}(XY) = {\log _b}(X) + {\log _b}(Y)$$`
+`$${\log _b}(\frac{X}{Y}) = {\log _b}(X) - {\log _b}(Y)$$`
+`$${\log _b}({X^k}) = k{\log _b}(X)$$`
+`$${\log _b}(1) = 0$$`
+`$${\log _b}(b) = 1$$`
+
+`$${\log _b}({b^k}) = k$$`
+`$${b^{{{\log }_b}(k)}} = k$$`
+
+
+
+
+
+---
+
+### Logistic Regression
+
+#### Logarithm Rules
+
+Given `\({\log _e}(A) = 1.5\)`, what is *A*?
+
+`\(A = {e^{{{\log }_e}(A)}} = {e^{1.5}} = {(2.718282)^{1.5}}\)` where `\(e\)` is a mathematical constant often called  Euler's (pronounced "Oiler") number.
+
+In R,
+
+
+```r
+exp(1.5)
+```
+
+```
+## [1] 4.481689
+```
+
+---
+
+### Logistic Regression
+
+#### Logarithm Rules
+
+Given logit = 3, what is the odds?
+
+logit = `\({\log _e}(Odds) = 3\)`
+
+`\(Odds = {e^3}\)`
+
+
+```r
+exp(3)
+```
+
+```
+## [1] 20.08554
+```
+
+---
+
+### Logistic Regression Equation
+
+**Regular OLS Regression**
+`$$Y = a + bX + e$$`
+`$$\hat Y = a + bX$$`
+
+**Logistic Regression**
+`$${\rm{logit}} = a + bX$$`
+`$$Odds = {e^{(a + bX)}}$$`
+`$$P(Y = 1) = \frac{{{e^{a + bX}}}}{{1 + {e^{a + bX}}}} = \frac{1}{{1 + {e^{ - (a + bX)}}}}$$`
+---
+
+### Logistic Regression Equation
+
+
+```r
+*model &lt;- glm(Admit ~ Gender, family = binomial, data = dat)
+summary(model)
+```
+
+```
+## 
+## Call:
+## glm(formula = Admit ~ Gender, family = binomial, data = dat)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.0855  -1.0855  -0.8506   1.2722   1.5442  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -0.22013    0.03879  -5.675 1.38e-08 ***
+## Gender      -0.61035    0.06389  -9.553  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 6044.3  on 4525  degrees of freedom
+## Residual deviance: 5950.9  on 4524  degrees of freedom
+## AIC: 5954.9
+## 
+## Number of Fisher Scoring iterations: 4
+```
+
+---
+
+### Logistic Regression Equation
+
+
+```r
+dat$prob &lt;- fitted(model)
+head(dat)
+```
+
+```
+##     Admit Gender Dept      prob
+## 1       1      0    A 0.4451877
+## 1.1     1      0    A 0.4451877
+## 1.2     1      0    A 0.4451877
+## 1.3     1      0    A 0.4451877
+## 1.4     1      0    A 0.4451877
+## 1.5     1      0    A 0.4451877
+```
+
+---
+
+### Logistic Regression Coefficients
+
+&lt;img src="images/logistic_regression_coefficient_gender.png" width="721" /&gt;
+
+
+`\({\log _e}(\frac{{P(Admitted)}}{{1 - P(Admitted)}}) =  - 0.22 - 0.61*Gender\)`
+
+- The outcome is the logit!
+- Which group (male vs. female) has a higher logit value?
+- How to interprete?
+  - "The logit of the female group is 0.61 lower than the logit of the male group."
+- What does this mean?
+
+---
+
+### Logistic Regression Coefficients
+
+&lt;img src="images/logistic_regression_coefficient_gender.png" width="721" /&gt;
+
+`\(- 0.61 = {\rm{logit}}(Female) - {\rm{logit}}(Male)\)`
+
+`\({\rm{         }} = {\log _e}[Odds(Female)] - {\log _e}[Odds(Male)]\)`
+
+`\({\rm{         }} = {\log _e}[\frac{{Odds(Female)}}{{Odds(Male)}}]\)`
+
+
+Therefore, `\(\frac{{Odds(Female)}}{{Odds(Male)}} = \exp (- 0.61) = 0.54\)`
+
+This is called **Odds Ratio**. Odds Ratio is the ratio of odds of a comparison/treatment group to that of the reference/control group.
+
+**Note**: For the `UCBAdmissions` data, if you conduct a binary logistic regression model for each department separately, you may reach different conclusions regarding gender differences in college admissions. Google .blue[_Simpson's paradox_] to learn more.
+
+---
+
+### Similarities and Differences Between Binary Logistic Regression and OLS Regression
+
+#### Similarities
+
+- IVs can be continuous, categorical, or a combination of continuous and categorical variables.
+- Many of the essential concepts in OLS regression still apply to logistic regression. 
+  - Model comparison and selection
+  - Assumptions (Independence of Errors, Linearity, Multicollinearity; but **NOT** Normality)
+  - Diagnostics (Leverage, Discrepancy, Influence)
+
+
+#### Differences
+
+- DV is categorical in logistic regression
+- The DV in logistic regression follows a Binomial distribution for which you can specify a link function (logit and probit are two commonly used link functions)
+- The estimation method for logistic regression is maximum likelihood, rather than OLS.
+
+
+---
+
+### Binary Logistic Regression Example
+
+[The Framingham Heart Study](https://en.wikipedia.org/wiki/Framingham_Heart_Study)
+
+- DV : Coronary Heart Disease (TenYearCHD, yes=1; no=0) status was collected 10 years after the first exam. 
+
+- IVs were collected in the first data collection
+  - Demographic factors
+      - male(male = 1, female = 0)
+      - age (in years)
+      - education (Some high school=1, high school/GED=2; some college/vocational school=3; college=4)
+  - Behavioral risk factors
+      - currentSmoker (smoker=1, non smoker=0)
+      - cigsPerDay
+---
+
+### Binary Logistic Regression Example
+
+[The Framingham Heart Study](https://en.wikipedia.org/wiki/Framingham_Heart_Study)
+
+  - Medical history risk factors
+      - BPmeds (On blood pressure medication at time of first exam)
+      - prevalentStroker (Previously had a stroke)
+      - prevalentHyp (Current hypertension/high blood pressure)
+      - diabetes (currently has diabetes)
+      
+  - Risk factors from first examination
+      - totChol (Total cholesterol, mg/dL) 
+      - sysBP (Systolic blood pressure)
+      - diaBP (Diastolic blood pressure)
+      - BMI (Body Mass Index, weight (kg)/height (m^2))
+      - heartRate (Heart rate, beats/minute)
+      - glucose (Blood glucose level, mg/dL)
+  
+
+---
+
+### Binary Logistic Regression Example
+
+[The Framingham Heart Study](https://en.wikipedia.org/wiki/Framingham_Heart_Study)
+
+```r
+dat &lt;- import("data/framingham.csv")
+model &lt;- glm(TenYearCHD ~ age, family = binomial, data = dat)
+summary(model)
+```
+
+```
+## 
+## Call:
+## glm(formula = TenYearCHD ~ age, family = binomial, data = dat)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.0386  -0.6261  -0.4580  -0.3695   2.4493  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -5.561090   0.283746  -19.60   &lt;2e-16 ***
+## age          0.074650   0.005265   14.18   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 3612.2  on 4239  degrees of freedom
+## Residual deviance: 3396.6  on 4238  degrees of freedom
+## AIC: 3400.6
+## 
+## Number of Fisher Scoring iterations: 5
+```
+
+
+---
+
+### Binary Logistic Regression Example
+&lt;img src="images/logistic_regression_coefficient_CHD_age.png" width="741" /&gt;
+
+**Odds Ratios and Confidence Intervals**
+
+```r
+exp(model$coefficients)
+```
+
+```
+## (Intercept)         age 
+## 0.003844584 1.077507075
+```
+
+```r
+exp(confint(model))
+```
+
+```
+##                   2.5 %      97.5 %
+## (Intercept) 0.002190705 0.006664767
+## age         1.066517962 1.088765650
+```
+
+- One year increase in age is related to 0.075 increase in the logit of having CHD
+- Given logit = 0.075, we obtain exp(0.055) = 1.08
+- One year increase in age changes the odds of CHD from 1 to 1.08
+
+---
+
+### Binary Logistic Regression Example
+
+**To Obtain Probabilities**
+
+```r
+*dat$prob &lt;- fitted(model)
+df_low_prob &lt;- dat[dat$age &lt; 40, ]
+df_mid_prob &lt;- dat[dat$age &gt;45 &amp; dat$age &lt;55, ]
+df_high_prob &lt;- dat[dat$age &gt;65,]
+ggplot(dat, aes(x=age, y=prob)) +
+  geom_point() +
+  geom_smooth(data = df_low_prob, method = "lm", se = FALSE, color = "red") + 
+  geom_smooth(data = df_mid_prob, method = "lm", se = FALSE, color = "red") +
+  geom_smooth(data = df_high_prob, method = "lm", se = FALSE, color = "red")
+```
+
+&lt;img src="Week-9_files/figure-html/unnamed-chunk-17-1.png" width="30%" /&gt;
+
+**The relationship between age and CHD is positive but not linear.**
+
+
+---
+### Binary Logistic Regression Example
+
+#### Assess the Model - Model Chi-Square
+
+How much better does the model predict the outcome variable, compared to a baseline model?
+
+- **log-likelihood** of the model. Analogous to the residual sum of squares in OLS regression
+- **deviance** = -2 X log-likelihood. It has a chi-square distribution.
+- **model chi-square statistic**. Difference between the deviance of the baseline model and the deviance of the current model.
+
+
+```r
+# summary(model)
+model.chisq &lt;- model$null.deviance - model$deviance
+chisq.df &lt;- model$df.null - model$df.residual
+(chisq.prob &lt;- 1 - pchisq(model.chisq, chisq.df)) # right tailed
+```
+
+```
+## [1] 0
+```
+
+---
+### Binary Logistic Regression Example
+
+#### Assess the Model - `\({R^2}\)`
+
+
+```r
+logisticPseudoR2s &lt;- function(LogModel) {
+  dev &lt;- LogModel$deviance
+  nullDev &lt;- LogModel$null.deviance
+  modelN &lt;- length(LogModel$fitted.values)
+  R.1 &lt;- 1-dev/nullDev
+  R.cs &lt;- 1-exp(-(nullDev-dev)/modelN)
+  R.n &lt;- R.cs/(1-(exp(-(nullDev/modelN))))
+  cat("PseudoR^2 for logistic regression\n")
+  cat("Hosmer &amp; Lemeshow R^2: ", round(R.1, 3), "\n")
+  cat("Cox &amp; Snell R^2: ", round(R.cs, 3), "\n")
+  cat("Naelkerke R^2: ", round(R.n, 3), "\n")
+}
+logisticPseudoR2s(model)
+```
+
+```
+## PseudoR^2 for logistic regression
+## Hosmer &amp; Lemeshow R^2:  0.06 
+## Cox &amp; Snell R^2:  0.05 
+## Naelkerke R^2:  0.086
+```
+
+
+---
+### Binary Logistic Regression Example
+
+#### Diagnostics
+
+
+```r
+dat$leverage &lt;- hatvalues(model) # leverage
+dat$studentized.residuals &lt;- rstudent(model) # discrepancy
+dat$cooks.d &lt;- cooks.distance(model)  # influence
+dat$leverage[(dat$leverage &gt; 3 * mean(dat$leverage))] 
+```
+
+```
+##   [1] 0.001661901 0.001459850 0.001459850 0.001661901 0.001459850 0.001459850
+##   [7] 0.001661901 0.001661901 0.001459850 0.001661901 0.001880347 0.001661901
+##  [13] 0.001661901 0.001880347 0.001459850 0.001459850 0.001661901 0.001459850
+##  [19] 0.001661901 0.001661901 0.001661901 0.001459850 0.001880347 0.001459850
+##  [25] 0.001459850 0.001459850 0.001661901 0.001661901 0.001661901 0.001459850
+##  [31] 0.001661901 0.001661901 0.001880347 0.001661901 0.001459850 0.001459850
+##  [37] 0.001880347 0.001459850 0.001459850 0.001661901 0.001661901 0.001661901
+##  [43] 0.001661901 0.001661901 0.001459850 0.002362781 0.001459850 0.001459850
+##  [49] 0.001661901 0.001459850 0.001459850 0.001661901 0.001459850 0.001661901
+##  [55] 0.001880347 0.001459850 0.001661901 0.001459850 0.001459850 0.001459850
+##  [61] 0.001459850 0.001459850 0.001661901 0.001661901 0.001880347 0.001661901
+##  [67] 0.001661901 0.001459850 0.001880347 0.001661901 0.001880347 0.001661901
+##  [73] 0.001661901 0.001880347 0.001661901 0.001661901 0.001661901 0.001880347
+##  [79] 0.001459850 0.002114350 0.001661901 0.002362781 0.001661901 0.001459850
+##  [85] 0.002114350 0.002114350 0.001459850 0.001459850 0.001880347 0.001459850
+##  [91] 0.001661901 0.001880347 0.001661901 0.001459850 0.001880347 0.002114350
+##  [97] 0.001661901 0.001661901 0.001880347 0.001880347 0.001661901 0.001880347
+## [103] 0.001661901 0.001459850 0.001459850 0.002114350 0.002114350 0.001661901
+## [109] 0.002114350 0.001880347
+```
+
+```r
+dat$studentized.residuals[abs(dat$studentized.residuals) &gt;3]
+```
+
+```
+## numeric(0)
+```
+
+```r
+dat$cooks.d[dat$cooks.d&gt;1]
+```
+
+```
+## numeric(0)
+```
+
+
+---
+### Binary Logistic Regression Example
+
+#### Diagnostics
+
+
+```r
+dat$studentized.residuals[(abs(dat$studentized.residuals) &gt; 3)]
+```
+
+```
+## numeric(0)
+```
+
+```r
+outlierTest(model)
+```
+
+```
+## No Studentized residuals with Bonferroni p &lt; 0.05
+## Largest |rstudent|:
+##     rstudent unadjusted p-value Bonferroni p
+## 782 2.451316           0.014234           NA
+```
+
+```r
+dat$cooks.d[dat$cooks.d &gt;1]
+```
+
+```
+## numeric(0)
+```
+
+---
+### Binary Logistic Regression Example
+
+#### Assumptions - Linearity
+
+
+```r
+*dat$log.age.Int &lt;- log(dat$age)*dat$age
+*model.linearity &lt;- glm(TenYearCHD ~ age + dat$log.age.Int, data = dat, family = binomial())
+summary(model.linearity)
+```
+
+```
+## 
+## Call:
+## glm(formula = TenYearCHD ~ age + dat$log.age.Int, family = binomial(), 
+##     data = dat)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -0.9096  -0.6538  -0.4639  -0.3403   2.5935  
+## 
+## Coefficients:
+##                  Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)     -13.45767    3.46917  -3.879 0.000105 ***
+## age               0.83681    0.33290   2.514 0.011947 *  
+## dat$log.age.Int  -0.15396    0.06721  -2.291 0.021975 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 3612.2  on 4239  degrees of freedom
+## Residual deviance: 3391.2  on 4237  degrees of freedom
+## AIC: 3397.2
+## 
+## Number of Fisher Scoring iterations: 5
+```
+
+---
+### Binary Logistic Regression Example
+
+#### Assumptions - Independence of errors
+
+
+```r
+dwt(model)
+```
+
+```
+##  lag Autocorrelation D-W Statistic p-value
+##    1      0.02687873      1.946162   0.072
+##  Alternative hypothesis: rho != 0
+```
+
+
+---
+
+### Binary Logistic Regression Example
+
+More Predictors
+
+
+```r
+dat$edu.c &lt;- factor(dat$education)
+levels(dat$edu.c) &lt;- c("some high school", "high school/GED", "some college/vocational", "college")
+model2 &lt;- glm(TenYearCHD ~ age + male + sysBP + edu.c, family = binomial, data = dat)
+summary(model2)
+```
+
+```
+## 
+## Call:
+## glm(formula = TenYearCHD ~ age + male + sysBP + edu.c, family = binomial, 
+##     data = dat)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.5951  -0.5995  -0.4423  -0.3124   2.8506  
+## 
+## Coefficients:
+##                               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                  -7.427112   0.379871 -19.552  &lt; 2e-16 ***
+## age                           0.058923   0.005893   9.999  &lt; 2e-16 ***
+## male                          0.612284   0.093217   6.568 5.09e-11 ***
+## sysBP                         0.017947   0.002002   8.967  &lt; 2e-16 ***
+## edu.chigh school/GED         -0.179544   0.114138  -1.573    0.116    
+## edu.csome college/vocational -0.100398   0.136901  -0.733    0.463    
+## edu.ccollege                 -0.007083   0.151157  -0.047    0.963    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 3522.6  on 4134  degrees of freedom
+## Residual deviance: 3186.8  on 4128  degrees of freedom
+##   (105 observations deleted due to missingness)
+## AIC: 3200.8
+## 
+## Number of Fisher Scoring iterations: 5
+```
+
+
+---
+
+### Binary Logistic Regression Example
+
+#### Check Multicollinearity Among IVs
+
+
+```r
+vif(model2)
+```
+
+```
+##           GVIF Df GVIF^(1/(2*Df))
+## age   1.167782  1        1.080640
+## male  1.054028  1        1.026659
+## sysBP 1.144721  1        1.069916
+## edu.c 1.077856  3        1.012574
+```
+
+---
+
+### Binary Logistic Regression Example
+
+&lt;img src="images/logistic_regression_coefficients_CHD.png" width="80%" /&gt;
+
+**Odds Ratios and Confidence Intervals**
+
+```r
+exp(model2$coefficients)
+```
+
+```
+##                  (Intercept)                          age 
+##                 0.0005949034                 1.0606932534 
+##                         male                        sysBP 
+##                 1.8446390825                 1.0181093723 
+##         edu.chigh school/GED edu.csome college/vocational 
+##                 0.8356510686                 0.9044777525 
+##                 edu.ccollege 
+##                 0.9929417559
+```
+
+
+---
+
+### Binary Logistic Regression Example
+
+&lt;img src="images/logistic_regression_coefficients_CHD.png" width="80%" /&gt;
+
+**Odds Ratios and Confidence Intervals**
+
+```r
+exp(confint(model2))
+```
+
+```
+##                                     2.5 %      97.5 %
+## (Intercept)                  0.0002801087 0.001242352
+## age                          1.0485587804 1.073069542
+## male                         1.5372823946 2.215676632
+## sysBP                        1.0141309942 1.022122846
+## edu.chigh school/GED         0.6670598320 1.043750212
+## edu.csome college/vocational 0.6888360992 1.178746245
+## edu.ccollege                 0.7343253293 1.329077617
+```
+
+---
+
+### Binary Logistic Regression Example
+&lt;img src="images/logistic_regression_coefficients_CHD.png" width="80%" /&gt;
+
+- Coefficient for "male". 
+  - A male is more likely to have CHD than a female adjusting for the effects of other variables.
+  - The odds of having CHD for a male is predicted to be 1.85 ( `\({e^{0.612}}\)`) times the odds of of having CHD for a female, holding the other variables constant.
+  
+- Coefficient for "age".
+  - The older the person grew, the more likely the person would have CHD.
+  - The odds of having CHD is predicted to increase by a factor of 1.06 ( `\({e^{0.0589}}\)`) with one year increase in age, holding the other variables constant.
+  
+---
+
+### Binary Logistic Regression Example
+
+&lt;img src="images/logistic_regression_coefficients_CHD.png" width="80%" /&gt;
+
+- Coefficients for the coded dummy variables for education.
+  - None of them was statistically significant. Education level was not statistically significantly associated with the odds of having CHD, holding the other variables constant. 
+  - *If* they were statistically significant, a person who finished high school is less likely to have CHD than a person who only had some high school eduation, holding the other variables constant. The odds of having CHD for a person who finished high school is predicted to decrease by a factor of 0.835( `\({e^{-.180}}\)`) than a person who only had some high school education, holding the other variables constant.
+  - The coefficients for the dummy variables compare one group's odds of having CHD with the odds of the reference group (i.e., those with some high school education). 
+  
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
