@@ -375,8 +375,8 @@ In a two-way ANOVA, there are two main effects (the effect of one factor that is
 
 ### Factorial ANOVA
 
-&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
-&lt;caption&gt;ANOVA Table for Two-Way ANOVA&lt;/caption&gt;
+&lt;table class=" lightable-classic table table-striped" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;'&gt;
+&lt;caption style="font-size: initial !important;"&gt;ANOVA Table for Two-Way ANOVA&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; Source of Variaton &lt;/th&gt;
@@ -388,39 +388,39 @@ In a two-way ANOVA, there are two main effects (the effect of one factor that is
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; Factor A &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(SSQ_A = {nK}\sum\limits_{j = 1}^J {{({\mu _j} - \mu)}^2}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(J-1\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(MS _A = {{SSQ_A} \over {J - 1}}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(F = {{MS _A} \over {MS _E}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Factor A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(SSQ_A = {nK}\sum\limits_{j = 1}^J {{({\mu _j} - \mu)}^2}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(J-1\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(MS _A = {{SSQ_A} \over {J - 1}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(F = {{MS _A} \over {MS _E}}\)` &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; Factor B &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(SSQ_B = {nJ}\sum\limits_{k = 1}^K {{({\mu _k} - \mu)}^2}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(K-1\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(MS _B = {{SSQ _B} \over {K-1}}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(F = {{MS _B} \over {MS_E}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Factor B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(SSQ_B = {nJ}\sum\limits_{k = 1}^K {{({\mu _k} - \mu)}^2}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(K-1\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(MS _B = {{SSQ _B} \over {K-1}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(F = {{MS _B} \over {MS_E}}\)` &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; Interaction (A `\(\times\)` B &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(SSQ_{AB} = n\sum\limits_{j}^J {\sum\limits_{k}^K {{({\mu _{jk}} - {\mu _j} - {\mu _k} + {\mu})}^2}}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\((J-1)(K-1)\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(MS _{AB} = {{SSQ _{AB}} \over {(J-1)(K-1)}}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(F = {{MS _{AB}} \over {MS_E}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Interaction (A `\(\times\)` B) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(SSQ_{AB} = n\sum\limits_{j}^J {\sum\limits_{k}^K {{({\mu _{jk}} - {\mu _j} - {\mu _k} + {\mu})}^2}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\((J-1)(K-1)\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(MS _{AB} = {{SSQ _{AB}} \over {(J-1)(K-1)}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(F = {{MS _{AB}} \over {MS_E}}\)` &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; Error &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(SSQ_E = \sum\limits_{i}^{n} {\sum\limits_{j}^J {\sum\limits_{k}^K {{({\mu _{ijk}} - {\mu _jk})}^2}}}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(JK(n-1)\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(MS _B = {{SSQ _E} \over {JK(n-1)}}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Error &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(SSQ_E = \sum\limits_{i}^{n} {\sum\limits_{j}^J {\sum\limits_{k}^K {{({\mu _{ijk}} - {\mu _jk})}^2}}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(JK(n-1)\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(MS _E = {{SSQ _E} \over {JK(n-1)}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; Total &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(SSQ_y = \sum\limits_{i}^{n} {\sum\limits_{j}^J {\sum\limits_{k}^K {{({\mu _{ijk}} - {\mu})}^2}}}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt; `\(nJK-1\)` &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;border-left:1px solid;border-right:1px solid;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(SSQ_y = \sum\limits_{i}^{n} {\sum\limits_{j}^J {\sum\limits_{k}^K {{({\mu _{ijk}} - {\mu})}^2}}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(nJK-1\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -936,15 +936,15 @@ confint(out)
 ## 
 ## Fit: aov(formula = reading ~ -1 + training, data = dat)
 ## 
-## Quantile = 2.5219
+## Quantile = 2.5195
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##            Estimate lwr      upr     
-## B - A == 0   9.5000   1.4407  17.5593
-## C - A == 0   4.6250  -3.4343  12.6843
-## C - B == 0  -4.8750 -12.9343   3.1843
+## B - A == 0   9.5000   1.4483  17.5517
+## C - A == 0   4.6250  -3.4267  12.6767
+## C - B == 0  -4.8750 -12.9267   3.1767
 ```
 
 
@@ -1075,10 +1075,10 @@ summary(glht(model2, linfct=rbind(K1, K2)))
 ## 
 ## Linear Hypotheses:
 ##                 Estimate Std. Error t value Pr(&gt;|t|)  
-## B - A == 0         9.500      3.246   2.927   0.0296 *
+## B - A == 0         9.500      3.246   2.927   0.0295 *
 ## C - A == 0         4.625      3.246   1.425   0.4506  
 ## C - B == 0        -4.875      3.246  -1.502   0.4065  
-## girl - boy == 0    1.583      2.650   0.597   0.9184  
+## girl - boy == 0    1.583      2.650   0.597   0.9185  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## (Adjusted p values reported -- single-step method)
