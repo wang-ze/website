@@ -1,0 +1,3040 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ESC_PS 9710:   Structural Equation Modeling</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ze Wang" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# ESC_PS 9710: <br> Structural Equation Modeling
+## <br/>Tuesday &amp; Thursday, 12:30pm-1:45pm; Strickland Hall Room 313
+### Ze Wang
+### University of Missouri
+### 2022/1/18 &amp; 2022/1/20
+
+---
+
+layout: true
+
+&lt;div class = 'my-header'&gt;&lt;span&gt;ESC_PS 9710 SEM&lt;/span&gt;&lt;/div&gt;
+
+&lt;div class = 'my-footer'&gt;&lt;span&gt;wangze@missouri.edu
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+Ze Wang, Ph.D.&lt;/span&gt;&lt;/div&gt; 
+
+
+---
+class: center, middle
+
+# .blue[Week 1]
+
+## Introduction to Class
+
+## Use R and RStudio for Basic Statistics
+
+## Variance, Covariance, Correlation, Causation
+
+## Data Issues
+
+
+
+---
+
+# Course Introdcuction
+
+## [Canvas Course Site](https://umsystem.instructure.com/courses/54155)
+
+## [Syllabus](https://umsystem.instructure.com/courses/54155/assignments/syllabus)
+
+## Introduce yourself to class
+  - Name
+  - Department/Program
+  - Year in program
+  - Stats/Research methods classes taken
+  - Familiarity with software (R, SAS, SPSS, MPlus, STATA, etc.)
+  - Something interesting about you
+
+---
+## R and RStudio
+
+#### Statistical Analysis Software for Data Modeling
+  - SPSS
+  - SAS
+  - STATA
+  
+#### Data Oriented Programming Languages
+  - Python
+  - R
+
+#### Specialized Software for Structural Equation Modeling
+   - Mplus
+   - Amos
+   - EQS
+   - LISREL
+      
+
+???
+Data modeling software typically expect that data are already nicely organized in columns and rows.
+
+Progamming languages has control and power of managing and analyzing data. There are also other programming languages such as Julia.
+
+---
+## R and RStudio
+
+#### Install R and RStudio
+
+Install R
+
+[CRAN](https://cran.r-project.org/)
+
+[RStudio](https://rstudio.com/)
+
+Open R Studio and you will see a window with four panes. You can change the appearances and layout of the panes.
+
+- R script
+- R console
+- Environment/History/Connections/Tutorial
+- Files/Plots/Packages...
+
+???
+RStudio is free and open source
+
+RStudio environment
+RStudio is an IDE (Integrated Development Environment) for R
+RStudio has be to installed after R is installed
+Go to Tools -&gt; Global Options -&gt; Appearance to change the appearance.
+
+---
+## R and RStudio
+
+Try `plot(iris)` in Rstudio
+
+.pull-left[
+
+```r
+plot(iris)
+```
+]
+
+.pull-right[
+![](Lecture-1_files/figure-html/iris-plot-out-1.png)&lt;!-- --&gt;
+]
+
+???
+The iris flower data set is a multivariate data set introduced by the British statistician Ronald Fisher. The dataset is included when you install R.
+
+---
+## R and RStudio
+
+#### Create an R Project in RStudio
+
+  - Create a `data` folder for data
+  - Create a `code` folder for R codes
+  - Create an `output` folder for R outputs
+
+
+???
+Create an R Project in RStudio
+An R project saves a relative base. 
+An R Project file helps organize files in this course
+
+---
+
+### Entering Data in R
+
+
+```r
+2+2 # press cmd/ctrol enter
+```
+
+```
+## [1] 4
+```
+
+
+```r
+1:20 # sequence
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+```
+
+
+```r
+print("Hello World!")
+```
+
+```
+## [1] "Hello World!"
+```
+
+---
+
+### Assign Value
+
+
+```r
+a &lt;- 5 # use &lt;-, not =
+3 -&gt; b # can go other way, but sily
+c &lt;- d &lt;- e &lt;- 2 # multiple assignments
+```
+
+### Multiple values
+
+```r
+x &lt;- c (5, 3, 6, 9) # c means combine or concatenate
+x
+```
+
+```
+## [1] 5 3 6 9
+```
+
+
+```r
+(y &lt;- c(1, 3, 0, 10)) # Surround command with parentheses to also print
+```
+
+```
+## [1]  1  3  0 10
+```
+
+---
+
+### Sequences
+
+
+```r
+0:5 # 0 through 5
+```
+
+```
+## [1] 0 1 2 3 4 5
+```
+
+```r
+5:0 # 5 through 0
+```
+
+```
+## [1] 5 4 3 2 1 0
+```
+
+```r
+seq(5) # 1 to 5
+```
+
+```
+## [1] 1 2 3 4 5
+```
+
+```r
+seq(5, 0, by = -2) # count down by 2 
+```
+
+```
+## [1] 5 3 1
+```
+
+---
+
+### Math
+
+
+```r
+x + y       # Adds corresponding elements in x and y
+```
+
+```
+## [1]  6  6  6 19
+```
+
+```r
+x * 2       # Multiplies each element in x by 2
+```
+
+```
+## [1] 10  6 12 18
+```
+
+```r
+2^4         # Powers/exponents
+```
+
+```
+## [1] 16
+```
+
+```r
+sqrt(36)    # Squareroot
+```
+
+```
+## [1] 6
+```
+
+```r
+log(100)    # Natural log: base e (2.71828...)
+```
+
+```
+## [1] 4.60517
+```
+
+```r
+log10(100)  # Base 10 log
+```
+
+```
+## [1] 2
+```
+
+---
+
+### .blue[Data types in R]
+
+#### numeric
+
+```r
+(n1 &lt;- 3)
+```
+
+```
+## [1] 3
+```
+
+```r
+typeof(n1)
+```
+
+```
+## [1] "double"
+```
+
+```r
+(n2 &lt;- 2.5)
+```
+
+```
+## [1] 2.5
+```
+
+```r
+typeof(n2)
+```
+
+```
+## [1] "double"
+```
+
+---
+
+### .blue[Data types in R]
+
+#### character
+
+```r
+(c1 &lt;- "c")
+```
+
+```
+## [1] "c"
+```
+
+```r
+typeof(c1)
+```
+
+```
+## [1] "character"
+```
+
+```r
+(c2 &lt;- "a string of text")
+```
+
+```
+## [1] "a string of text"
+```
+
+```r
+typeof(c2)
+```
+
+```
+## [1] "character"
+```
+
+---
+
+### .blue[Data types in R]
+
+#### logical
+
+```r
+(l1 &lt;- TRUE) # must use uppercase
+```
+
+```
+## [1] TRUE
+```
+
+```r
+typeof(l1)
+```
+
+```
+## [1] "logical"
+```
+
+```r
+(l2 &lt;- F) # must use uppercase
+```
+
+```
+## [1] FALSE
+```
+
+```r
+typeof(l2)
+```
+
+```
+## [1] "logical"
+```
+
+---
+
+### .blue[Data Structures in R]
+
+#### vector
+
+```r
+(v1 &lt;- c(1, 2, 3, 4, 5))
+```
+
+```
+## [1] 1 2 3 4 5
+```
+
+```r
+is.vector(v1)
+```
+
+```
+## [1] TRUE
+```
+
+```r
+(v2 &lt;- c("a", "b", "c"))
+```
+
+```
+## [1] "a" "b" "c"
+```
+
+```r
+is.vector(v2)
+```
+
+```
+## [1] TRUE
+```
+
+```r
+(v3 &lt;- c(TRUE, TRUE, FALSE, FALSE, TRUE))
+```
+
+```
+## [1]  TRUE  TRUE FALSE FALSE  TRUE
+```
+
+```r
+is.vector(v3)
+```
+
+```
+## [1] TRUE
+```
+
+??? 
+a vector is a one-dimensional collections of numbers, character, or logical/Boolean values.
+The elements in a vector has to be the same. If not, R will convert the type to the least restricted.
+In R, a single value (i.e., a scalar) is still a vector
+
+
+---
+
+### .blue[Data Structures in R]
+
+#### matrix
+
+matrix is two-dimensional
+
+
+```r
+(m1 &lt;- matrix(c(T, T, F, F, T, F), nrow = 2))
+```
+
+```
+##      [,1]  [,2]  [,3]
+## [1,] TRUE FALSE  TRUE
+## [2,] TRUE FALSE FALSE
+```
+
+```r
+(m2 &lt;- matrix(c("a", "b", 
+               "c", "d"), 
+               nrow = 2,
+               byrow = T)) # default is FALSE
+```
+
+```
+##      [,1] [,2]
+## [1,] "a"  "b" 
+## [2,] "c"  "d"
+```
+
+
+---
+
+### .blue[Data Structures in R]
+
+#### array
+
+an array can be more than two dimensions
+
+
+```r
+(a1 &lt;- array(c( 1:24), c(4, 3, 2))) # four rows, three columns, and two tables
+```
+
+```
+## , , 1
+## 
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3]
+## [1,]   13   17   21
+## [2,]   14   18   22
+## [3,]   15   19   23
+## [4,]   16   20   24
+```
+
+---
+
+### .blue[Data Structures in R]
+
+#### data frame
+
+combines vectors of the same length
+
+
+```r
+Numeric   &lt;- c(1, 2, 3)
+Character &lt;- c("a", "b", "c")
+Logical   &lt;- c(T, F, T)
+
+(df1 &lt;- cbind(Numeric, Character, Logical))  # Coerces all values to most basic data type
+```
+
+```
+##      Numeric Character Logical
+## [1,] "1"     "a"       "TRUE" 
+## [2,] "2"     "b"       "FALSE"
+## [3,] "3"     "c"       "TRUE"
+```
+
+```r
+(df2 &lt;- as.data.frame(cbind(Numeric, Character, Logical))) # Makes a data frame with three different data types
+```
+
+```
+##   Numeric Character Logical
+## 1       1         a    TRUE
+## 2       2         b   FALSE
+## 3       3         c    TRUE
+```
+
+```r
+(df3 &lt;- data.frame(Numeric, Character, Logical)) # The right way!
+```
+
+```
+##   Numeric Character Logical
+## 1       1         a    TRUE
+## 2       2         b   FALSE
+## 3       3         c    TRUE
+```
+
+
+---
+
+### .blue[Data Structures in R]
+
+#### list
+
+a list can have anything
+
+```r
+o1 &lt;- c(1, 2, 3)
+o2 &lt;- c("a", "b", "c", "d")
+o3 &lt;- c(T, F, T, T, F)
+
+(list1 &lt;- list(o1, o2, o3))
+```
+
+```
+## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+## [1] "a" "b" "c" "d"
+## 
+## [[3]]
+## [1]  TRUE FALSE  TRUE  TRUE FALSE
+```
+
+
+---
+
+### .blue[Data Structures in R]
+
+#### list
+
+a list can have anything
+
+```r
+o1 &lt;- c(1, 2, 3)
+o2 &lt;- c("a", "b", "c", "d")
+o3 &lt;- c(T, F, T, T, F)
+
+(list2 &lt;- list(o1, o2, o3, list1))  # Lists within lists!
+```
+
+```
+## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+## [1] "a" "b" "c" "d"
+## 
+## [[3]]
+## [1]  TRUE FALSE  TRUE  TRUE FALSE
+## 
+## [[4]]
+## [[4]][[1]]
+## [1] 1 2 3
+## 
+## [[4]][[2]]
+## [1] "a" "b" "c" "d"
+## 
+## [[4]][[3]]
+## [1]  TRUE FALSE  TRUE  TRUE FALSE
+```
+
+---
+
+### .blue[Data Structures in R]
+
+#### Are you confused about data types and structures in R?
+
+Hadley Wickham had a good description of the relationships between different types&lt;br/&gt; 
+in his [**Advanced R** book](https://adv-r.hadley.nz/). 
+
+**matrices** and **arrays** are vectors with the `dim` attribute.
+
+A **factor** is a vector that can contain only predefined values.&lt;br/&gt;
+Factors are integer vectors with the`class` and `levels` attributes.
+
+**Data frames** are built on top of lists and therefore have the `list` type.
+
+---
+## Data in R and RStudio
+
+#### the `datasets` package
+
+already installed when the `base` package is installed but needs to be loaded.
+
+
+```r
+library(datasets)
+```
+
+---
+## Data in R and RStudio
+
+#### the `datasets` package
+
+Check what datasets are available and check specific datasets
+
+
+```r
+?datasets
+?iris
+?UCBAdmissions
+?Titanic
+```
+
+
+
+---
+## Data in R and RStudio
+
+#### Import and export data
+
+Use the [`rio`](https://cran.r-project.org/web/packages/rio/index.html) package 
+
+The `import` and `export` functions work with different data types.
+
+
+```r
+install.packages("rio")
+```
+
+
+```r
+library(rio)
+```
+
+---
+## Data in R and RStudio
+
+#### Import and export data
+
+Download the `BSGUSAM6.sav` dataset from Canvas and save it in the `data` folder of your R project directory.
+
+Import the data into R
+
+
+```r
+mydata &lt;- import("data/BSGUSAM6.sav")
+head(mydata)
+```
+
+```
+##   IDCNTRY IDBOOK IDSCHOOL IDCLASS IDSTUD IDGRADE ITSEX ITADMINI ITLANG BSBG01
+## 1     840      4        1     103  10301       8     1        1      1      1
+## 2     840      5        1     103  10302       8     2        1      1      2
+## 3     840      6        1     103  10303       8     2        1      1      2
+## 4     840      7        1     103  10304       8     2        1      1      2
+## 5     840      8        1     103  10305       8     2        1      1      2
+## 6     840      9        1     103  10306       8     2        1      1      2
+##   BSBG03 BSBG04 BSBG05 BSBG06A BSBG06B BSBG06C BSBG06D BSBG06E BSBG06F BSBG06G
+## 1      1      2      5       1       1       1       1       1       1       1
+## 2      2      3      3       1       1       1       1       1       1       1
+## 3      2      2      3       1       1       2       1       1       1       1
+## 4      1      2      4       1       1       1       1       1       1       1
+## 5      1      3      4       1       2       1       1       1       1       1
+## 6      1      3      4       1       1       1       1       1       2       1
+##   BSBG06H BSBG06I BSBG06J BSBG06K BSBG07A BSBG07B BSBG08 BSBG09A BSBG09B
+## 1       1      NA      NA      NA       7       5      5       1       1
+## 2       1      NA      NA      NA       7       8      6       1       1
+## 3       1      NA      NA      NA       2       2      5       2       2
+## 4       1      NA      NA      NA       7       3      6       1       1
+## 5       1      NA      NA      NA       7       8      6       1       1
+## 6       1      NA      NA      NA       5       3      5       1       1
+##   BSBG10A BSBG10B BSBG11 BSBG12 BSBG13A BSBG13B BSBG13C BSBG14A BSBG14B BSBG14C
+## 1       1      NA      1      3       1       3       1       2       1       2
+## 2       1      NA      4      2       4       3       4       2       1       2
+## 3       2       3      4      1       3       3       4       2       1       2
+## 4       1      NA      4      2       1       2       1       2       1       1
+## 5       1      NA      4      2       1       1       4       1       1       2
+## 6       1      NA      3      2       1       1       1       1       2       1
+##   BSBG14D BSBG14E BSBG14F BSBG15A BSBG15B BSBG15C BSBG15D BSBG15E BSBG15F
+## 1       2       1       1       2       1       2       2       2       3
+## 2       1       1       1       3       2       2       1       2       1
+## 3       2       1       1       2       3       2       1       3       2
+## 4       1       1       2       2       1       1       1       3       3
+## 5       2       1       1       3       4       2       2       3       2
+## 6       1       1       1       1       1       2       1       1       1
+##   BSBG15G BSBG16A BSBG16B BSBG16C BSBG16D BSBG16E BSBG16F BSBG16G BSBG16H
+## 1       1       1       1       1       4       4       4       1       4
+## 2       2       2       1       4       3       4       4       4       4
+## 3       2       4       4       4       4       4       4       4       4
+## 4       1       4       4       4       4       4       4       4       4
+## 5       1       3       4       3       2       4       4       2       4
+## 6       1       3       4       3       4       4       4       4       4
+##   BSBG16I BSBM17A BSBM17B BSBM17C BSBM17D BSBM17E BSBM17F BSBM17G BSBM17H
+## 1       4       1       4       4       1       1       1       1       1
+## 2       4       1       4       1       3       1       1       1       3
+## 3       4       1       4       4       1       1       1       1       1
+## 4       4       1       4       4       1       1       2       1       1
+## 5       4       2       1       4       1       1       2       2       3
+## 6       4       1       2       2       1       1       3       2       2
+##   BSBM17I BSBM18A BSBM18B BSBM18C BSBM18D BSBM18E BSBM18F BSBM18G BSBM18H
+## 1       1       1       1       1       1       1       1       1       1
+## 2       1       1       1       3       2       1       1       1       1
+## 3       1       2       2       2       3       2       2       3       1
+## 4       1       1       1       1       2       1       1       2       1
+## 5       2       1       2       2       3       2       1       3       1
+## 6       2       1       2       1       1       1       1       1       1
+##   BSBM18I BSBM18J BSBM19A BSBM19B BSBM19C BSBM19D BSBM19E BSBM19F BSBM19G
+## 1       1       1       1       4       4       1       4       1       2
+## 2       1       1       1       4       4       1       4       1       1
+## 3       1       1       1       4       4       1       4       1       2
+## 4       1       1       1       4       4       1       3       2       1
+## 5       1       1       1       4       2       2       4       3       2
+## 6       1       1       1       2       2       2       1       1       1
+##   BSBM19H BSBM19I BSBM20A BSBM20B BSBM20C BSBM20D BSBM20E BSBM20F BSBM20G
+## 1       4       4       1       1       1       1       1       1       1
+## 2       4       4       1       1       2       1       1       1       1
+## 3       4       4       1       1       1       1       1       1       1
+## 4       4       4       1       2       3       3       2       1       2
+## 5       3       4       1       1       1       1       4       1       1
+## 6       3       2       1       1       1       1       1       1       1
+##   BSBM20H BSBM20I BSBS21A BSBS21B BSBS21C BSBS21D BSBS21E BSBS21F BSBS21G
+## 1       1       1       1       2       1       2       2       1       1
+## 2       1       1       4       3       1       3       1       3       1
+## 3       1       1       2       3       3       2       2       1       1
+## 4       1       2       2       3       3       1       2       3       1
+## 5       1       1       1       2       4       1       1       2       1
+## 6       1       1       1       2       4       1       1       1       1
+##   BSBS21H BSBS21I BSBS22A BSBS22B BSBS22C BSBS22D BSBS22E BSBS22F BSBS22G
+## 1       1       2       1       1       1       1       1       1       1
+## 2       1       1       1       1       3       2       1       1       1
+## 3       4       4       4       1       1       2       1       1       3
+## 4       1       3       1       2       3       1       2       1       3
+## 5       1       1       1       1       1       1       1       1       3
+## 6       1       1       1       1       1       1       1       1       1
+##   BSBS22H BSBS22I BSBS22J BSBS23A BSBS23B BSBS23C BSBS23D BSBS23E BSBS23F
+## 1       1       1       1       2       2       2       2       2       2
+## 2       1       1       1       1       4       4       1       2       2
+## 3       1       3       3       2       3       3       1       3       3
+## 4       4       4       4       3       2       3       2       3       3
+## 5       1       1       2       2       3       3       2       3       3
+## 6       1       1       1       1       3       4       1       1       1
+##   BSBS23G BSBS23H BSBS24A BSBS24B BSBS24C BSBS24D BSBS24E BSBS24F BSBS24G
+## 1       2       2       1       1       1       3       3       2       3
+## 2       4       3       1       2       3       1       1       1       1
+## 3       3       3       4       4       3       3       3       3       3
+## 4       3       3       1       2       3       3       4       1       3
+## 5       4       4       1       1       1       1       3       1       1
+## 6       4       4       1       1       1       1       1       1       1
+##   BSBS24H BSBS24I BSBM25AA BSBS25AB BSBM25BA BSBS25BB BSBM26AA BSBS26AB
+## 1       1       1        4        4        3        3        2        3
+## 2       2       1        2        4        2        3        3        3
+## 3       3       2       NA        3        2        2        3        3
+## 4       1       1        4        2        1        4        3        3
+## 5       1       1        3        2        3        3        3        3
+## 6       1       1        1        1        2        2        1        1
+##   BSBM26BA BSBS26BB BSBB21 BSBB22A BSBB22B BSBB22C BSBB22D BSBB22E BSBB22F
+## 1        2        2     NA      NA      NA      NA      NA      NA      NA
+## 2        1        1     NA      NA      NA      NA      NA      NA      NA
+## 3        1        1     NA      NA      NA      NA      NA      NA      NA
+## 4        1        1     NA      NA      NA      NA      NA      NA      NA
+## 5        1        1     NA      NA      NA      NA      NA      NA      NA
+## 6        3        3     NA      NA      NA      NA      NA      NA      NA
+##   BSBB22G BSBB22H BSBB22I BSBB23A BSBB23B BSBB23C BSBB23D BSBB23E BSBB23F
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 3      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 4      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 5      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 6      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBB23G BSBB23H BSBB23I BSBB23J BSBB24A BSBB24B BSBB24C BSBB24D BSBB24E
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 3      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 4      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 5      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 6      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBB24F BSBB24G BSBB24H BSBE25 BSBE26A BSBE26B BSBE26C BSBE26D BSBE26E
+## 1      NA      NA      NA     NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA     NA      NA      NA      NA      NA      NA
+## 3      NA      NA      NA     NA      NA      NA      NA      NA      NA
+## 4      NA      NA      NA     NA      NA      NA      NA      NA      NA
+## 5      NA      NA      NA     NA      NA      NA      NA      NA      NA
+## 6      NA      NA      NA     NA      NA      NA      NA      NA      NA
+##   BSBE26F BSBE26G BSBE26H BSBE26I BSBE27A BSBE27B BSBE27C BSBE27D BSBE27E
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 3      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 4      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 5      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 6      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBE27F BSBE27G BSBE27H BSBE27I BSBE27J BSBE28A BSBE28B BSBE28C BSBE28D
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 3      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 4      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 5      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 6      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBE28E BSBE28F BSBE28G BSBE28H BSBC29 BSBC30A BSBC30B BSBC30C BSBC30D
+## 1      NA      NA      NA      NA     NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA     NA      NA      NA      NA      NA
+## 3      NA      NA      NA      NA     NA      NA      NA      NA      NA
+## 4      NA      NA      NA      NA     NA      NA      NA      NA      NA
+## 5      NA      NA      NA      NA     NA      NA      NA      NA      NA
+## 6      NA      NA      NA      NA     NA      NA      NA      NA      NA
+##   BSBC30E BSBC30F BSBC30G BSBC30H BSBC30I BSBC31A BSBC31B BSBC31C BSBC31D
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 3      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 4      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 5      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 6      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBC31E BSBC31F BSBC31G BSBC31H BSBC31I BSBC31J BSBC32A BSBC32B BSBC32C
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 3      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 4      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 5      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 6      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBC32D BSBC32E BSBC32F BSBC32G BSBC32H BSBP33 BSBP34A BSBP34B BSBP34C
+## 1      NA      NA      NA      NA      NA     NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA     NA      NA      NA      NA
+## 3      NA      NA      NA      NA      NA     NA      NA      NA      NA
+## 4      NA      NA      NA      NA      NA     NA      NA      NA      NA
+## 5      NA      NA      NA      NA      NA     NA      NA      NA      NA
+## 6      NA      NA      NA      NA      NA     NA      NA      NA      NA
+##   BSBP34D BSBP34E BSBP34F BSBP34G BSBP34H BSBP34I BSBP35A BSBP35B BSBP35C
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 3      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 4      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 5      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 6      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBP35D BSBP35E BSBP35F BSBP35G BSBP35H BSBP35I BSBP35J BSBP36A BSBP36B
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 3      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 4      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 5      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 6      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBP36C BSBP36D BSBP36E BSBP36F BSBP36G BSBP36H BSBS37A BSBS37B BSBS37C
+## 1      NA      NA      NA      NA      NA      NA       1       1       1
+## 2      NA      NA      NA      NA      NA      NA       1       2       3
+## 3      NA      NA      NA      NA      NA      NA       4       4       3
+## 4      NA      NA      NA      NA      NA      NA       1       2       3
+## 5      NA      NA      NA      NA      NA      NA       1       1       1
+## 6      NA      NA      NA      NA      NA      NA       1       1       1
+##   BSBS37D BSBS37E BSBS37F BSBS37G BSBS37H BSBS37I BSBM38AA BSBB38AB BSBE38AC
+## 1       3       3       2       3       1       1        4       NA       NA
+## 2       1       1       1       1       2       1        2       NA       NA
+## 3       3       3       3       3       3       2       NA       NA       NA
+## 4       3       4       1       3       1       1        4       NA       NA
+## 5       1       3       1       1       1       1        3       NA       NA
+## 6       1       1       1       1       1       1        1       NA       NA
+##   BSBC38AD BSBP38AE BSBM38BA BSBB38BB BSBE38BC BSBC38BD BSBP38BE BSBM39AA
+## 1       NA       NA        3       NA       NA       NA       NA        2
+## 2       NA       NA        2       NA       NA       NA       NA        3
+## 3       NA       NA        2       NA       NA       NA       NA        3
+## 4       NA       NA        1       NA       NA       NA       NA        3
+## 5       NA       NA        3       NA       NA       NA       NA        3
+## 6       NA       NA        2       NA       NA       NA       NA        1
+##   BSBS39AB BSBM39BA BSBS39BB ITACCOMM1 IDPOP IDGRADER BSDAGE   TOTWGT   HOUWGT
+## 1        3        2        2         0     2        2  13.92 191.4986 0.535255
+## 2        3        1        1         1     2        2  13.92 191.4986 0.535255
+## 3        3        1        1         0     2        2  14.17 191.4986 0.535255
+## 4        3        1        1         0     2        2  14.08 191.4986 0.535255
+## 5        3        1        1         0     2        2  13.58 191.4986 0.535255
+## 6        1        3        3         0     2        2  14.92 191.4986 0.535255
+##     SENWGT  WGTADJ1 WGTADJ2  WGTADJ3  WGTFAC1 WGTFAC2 WGTFAC3 JKZONE JKREP
+## 1 0.026184 1.102564       1 1.045454 36.91851     4.5       1     25     0
+## 2 0.026184 1.102564       1 1.045454 36.91851     4.5       1     25     0
+## 3 0.026184 1.102564       1 1.045454 36.91851     4.5       1     25     0
+## 4 0.026184 1.102564       1 1.045454 36.91851     4.5       1     25     0
+## 5 0.026184 1.102564       1 1.045454 36.91851     4.5       1     25     0
+## 6 0.026184 1.102564       1 1.045454 36.91851     4.5       1     25     0
+##   BSMMAT01 BSMMAT02 BSMMAT03 BSMMAT04 BSMMAT05 BSSSCI01 BSSSCI02 BSSSCI03
+## 1 514.4249 505.7916 519.7016 531.0448 542.1232 490.0679 474.9255 521.2601
+## 2 587.6541 579.3172 562.0366 550.9720 568.2771 571.5391 535.8830 558.9193
+## 3 582.5530 553.8961 568.8929 601.2752 561.2372 578.6590 537.2204 539.1486
+## 4 507.9202 501.7667 498.4307 504.9045 499.1313 482.5266 486.8510 458.3177
+## 5 534.9643 547.8417 530.0570 555.7876 541.7867 481.1485 562.9311 547.3016
+## 6 465.7001 466.2036 471.4720 455.1264 495.3281 441.0656 482.5480 464.8267
+##   BSSSCI04 BSSSCI05 BSMALG01 BSMALG02 BSMALG03 BSMALG04 BSMALG05 BSMDAT01
+## 1 493.9883 513.8363 514.5657 503.5694 540.7127 495.9604 516.0884 538.7014
+## 2 559.8913 592.2060 575.0255 603.4856 589.0744 516.0658 602.3520 545.7862
+## 3 554.4267 595.6564 536.3994 571.9173 546.2875 580.7545 556.1213 520.7423
+## 4 500.5331 447.5260 535.4770 559.9691 557.5171 562.6083 565.1616 522.2348
+## 5 592.3494 515.5064 546.1143 524.4993 522.3668 592.0320 496.7551 514.8368
+## 6 454.8657 412.7378 472.1293 525.4568 463.9400 488.8906 509.0792 442.5408
+##   BSMDAT02 BSMDAT03 BSMDAT04 BSMDAT05 BSMNUM01 BSMNUM02 BSMNUM03 BSMNUM04
+## 1 555.5254 504.2005 553.7694 508.4274 512.7626 511.1604 487.0292 490.3130
+## 2 573.8504 579.5864 490.1844 609.3757 562.7668 579.2757 594.9696 548.4110
+## 3 545.0447 560.4399 543.5468 573.4616 559.8293 554.7385 554.7358 558.1594
+## 4 497.0542 510.6246 499.4244 500.5316 502.1371 495.8519 521.6734 493.1293
+## 5 545.1285 476.3765 567.9709 574.5654 543.2431 521.8433 478.0420 574.2754
+## 6 457.3836 411.2564 422.0801 446.5689 469.7669 502.9884 454.0207 470.3216
+##   BSMNUM05 BSMGEO01 BSMGEO02 BSMGEO03 BSMGEO04 BSMGEO05 BSSCHE01 BSSCHE02
+## 1 471.9762 516.0974 497.4462 494.0238 468.7053 434.6766 475.5856 554.9979
+## 2 630.5318 619.2435 573.1298 605.8552 496.3814 623.6547 615.6122 598.3530
+## 3 557.2428 502.6782 529.7007 528.5452 569.4454 544.5521 510.4086 577.7530
+## 4 498.2721 504.6364 476.8790 470.2734 401.0903 512.6186 469.9160 453.8128
+## 5 519.9903 539.5216 497.5373 471.6813 547.6054 493.4724 525.4584 507.0137
+## 6 476.0215 435.3671 467.7997 380.4694 416.6649 432.5002 434.9534 429.4238
+##   BSSCHE03 BSSCHE04 BSSCHE05 BSSEAR01 BSSEAR02 BSSEAR03 BSSEAR04 BSSEAR05
+## 1 479.4414 509.9053 516.8859 454.3833 540.0875 446.0872 465.3053 540.4619
+## 2 644.2855 558.5238 587.9128 600.9338 563.4683 620.5797 570.7632 591.3771
+## 3 549.6627 574.3281 505.9812 520.4854 606.4051 550.5335 531.3236 518.6654
+## 4 353.3545 466.5605 437.0600 488.0666 481.3105 416.3076 501.8247 485.1233
+## 5 515.7768 548.3468 560.0529 525.0011 517.2544 540.5345 500.9261 550.2473
+## 6 431.4651 390.3606 432.0369 446.8156 445.5385 516.5442 438.4384 497.9894
+##   BSSBIO01 BSSBIO02 BSSBIO03 BSSBIO04 BSSBIO05 BSSPHY01 BSSPHY02 BSSPHY03
+## 1 497.7536 534.3983 529.7410 507.6892 570.4911 456.0079 513.4090 480.3403
+## 2 601.0626 567.6580 611.6534 563.5830 543.3118 550.5409 533.1618 577.5741
+## 3 489.1730 562.7209 540.2104 486.1814 543.8964 512.8647 576.7962 539.6040
+## 4 512.5046 464.0440 422.4500 454.0869 541.7351 494.0712 493.3819 396.5317
+## 5 599.3432 544.3701 560.2039 534.5284 577.4599 570.9045 571.6330 569.1614
+## 6 480.6014 516.8171 500.5425 434.2963 475.7211 458.5583 466.3409 454.5830
+##   BSSPHY04 BSSPHY05 BSMKNO01 BSMKNO02 BSMKNO03 BSMKNO04 BSMKNO05 BSMAPP01
+## 1 467.8219 543.4946 529.0403 558.7877 503.6952 492.9102 538.8042 500.4389
+## 2 527.0618 575.5149 593.5888 550.6020 577.6243 567.9767 564.5701 574.4144
+## 3 474.0271 547.0075 580.6290 551.4807 634.5300 600.6989 583.2510 568.3010
+## 4 474.1629 491.8602 568.2446 531.0122 562.0284 522.1211 562.6174 515.4454
+## 5 517.7279 603.0218 552.6742 549.8165 523.2070 568.6005 534.2732 550.4759
+## 6 393.6076 457.8505 469.5999 420.6744 548.7870 485.5037 514.5162 450.0371
+##   BSMAPP02 BSMAPP03 BSMAPP04 BSMAPP05 BSMREA01 BSMREA02 BSMREA03 BSMREA04
+## 1 519.0317 510.1606 497.2687 489.3579 484.6627 494.2266 504.5591 518.4353
+## 2 568.5675 547.7672 556.5969 539.5741 552.9415 572.1910 584.6759 601.2263
+## 3 532.8442 599.3487 575.4223 555.7450 545.9483 552.2613 552.7828 554.7051
+## 4 495.5714 543.8031 478.3810 509.4742 503.0272 543.4817 538.6374 489.0575
+## 5 546.0054 477.6519 521.6472 506.0888 520.2370 527.3024 468.1141 507.2453
+## 6 395.7142 499.6097 461.2294 465.0718 440.9430 381.8148 491.2872 466.7363
+##   BSMREA05 BSSKNO01 BSSKNO02 BSSKNO03 BSSKNO04 BSSKNO05 BSSAPP01 BSSAPP02
+## 1 493.1853 488.4110 491.6673 524.3182 507.8949 502.7248 549.3676 512.9106
+## 2 551.5208 593.9882 545.3113 591.2581 584.1462 577.5074 571.8668 570.2205
+## 3 557.2223 560.0992 528.6823 482.9655 436.0836 527.8839 564.4218 543.0794
+## 4 492.9718 542.0462 460.5679 506.6179 524.8551 556.8707 482.7610 433.2082
+## 5 480.7962 554.4995 570.6546 613.7022 595.7053 562.2321 499.6515 508.2823
+## 6 449.7889 490.8851 433.4400 425.7377 500.6404 492.3770 494.3310 446.1732
+##   BSSAPP03 BSSAPP04 BSSAPP05 BSSREA01 BSSREA02 BSSREA03 BSSREA04 BSSREA05
+## 1 519.5156 526.0618 495.4574 503.3588 492.6981 507.1144 500.9916 470.2027
+## 2 584.9571 590.2473 547.1351 582.2200 565.3724 556.9847 570.5423 560.6985
+## 3 490.6061 468.5462 554.2932 567.4135 531.5965 487.9621 499.7038 543.0034
+## 4 472.0035 475.1830 518.3139 511.8467 465.9825 478.8464 516.4290 509.4187
+## 5 573.3311 584.4958 508.7885 540.2297 525.3280 559.6446 546.4610 517.2662
+## 6 435.1153 527.0732 469.6722 457.5478 414.3200 406.9278 487.4108 438.7918
+##   BSMIBM01 BSMIBM02 BSMIBM03 BSMIBM04 BSMIBM05 BSSIBM01 BSSIBM02 BSSIBM03
+## 1        3        3        3        3        3        3        2        3
+## 2        4        4        4        4        4        4        3        4
+## 3        4        4        4        4        4        4        3        3
+## 4        3        3        3        3        3        3        3        2
+## 5        3        3        3        4        3        3        4        3
+## 6        2        2        2        2        3        2        3        2
+##   BSSIBM04 BSSIBM05  BSBGHER BSDGHER  BSBGSSB BSDGSSB   BSBGSB BSDGSB  BSBGSLM
+## 1        3        3 10.91822       2  8.98361       2  7.59182      2 13.97818
+## 2        4        4 11.62212       2  8.98361       2  8.78408      2 10.68282
+## 3        4        4  8.97690       2  8.30564       2 12.78394      1 13.97818
+## 4        3        2 10.91822       2  9.39043       2 12.78394      1 12.80770
+## 5        4        3 11.62212       2  7.74446       2  8.78408      2 10.25863
+## 6        2        2 10.91822       2 11.94384       1 10.24057      1 10.25863
+##   BSDGSLM  BSBGEML BSDGEML  BSBGSCM BSDGSCM  BSBGSVM BSDGSVM  BSBGSLS BSDGSLS
+## 1       1 13.60365       1 14.10390       1 13.65262       1  9.58043       2
+## 2       2 11.13328       1 15.92523       1 12.14660       1  8.90626       2
+## 3       1  9.33228       2 14.10390       1 13.65262       1  8.90626       2
+## 4       1 11.61366       1 13.22022       1  9.06690       2  9.58043       2
+## 5       2  9.83140       2 11.13293       2 10.81825       1 11.09720       1
+## 6       2 12.28584       1 10.13034       2 13.65262       1 11.57742       1
+##    BSBGESL BSDGESL  BSBGSCS BSDGSCS  BSBGSVS BSDGSVS BSBGSLB BSDGSLB BSBGEBL
+## 1 12.94849       1  9.12033       3  9.90677       2      NA      NA      NA
+## 2 10.86204       1 11.98495       1 10.71378       1      NA      NA      NA
+## 3  9.03371       2  9.90101       2  7.39377       3      NA      NA      NA
+## 4  8.09420       3  9.12033       3  9.22038       2      NA      NA      NA
+## 5 10.86204       1 10.17585       2 11.45997       1      NA      NA      NA
+## 6 12.94849       1 13.46826       1 13.15815       1      NA      NA      NA
+##   BSDGEBL BSBGSCB BSDGSCB BSBGSLE BSDGSLE BSBGEEL BSDGEEL BSBGSCE BSDGSCE
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 3      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 4      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 5      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 6      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSBGSLC BSDGSLC BSBGECL BSDGECL BSBGSCC BSDGSCC BSBGSLP BSDGSLP BSBGEPL
+## 1      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 2      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 3      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 4      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 5      NA      NA      NA      NA      NA      NA      NA      NA      NA
+## 6      NA      NA      NA      NA      NA      NA      NA      NA      NA
+##   BSDGEPL BSBGSCP BSDGSCP BSDG06S BSDGEDUP BSDMLOWP BSDSLOWP BSDMWKHW BSDSWKHS
+## 1      NA      NA      NA       2        1        2        2        3        3
+## 2      NA      NA      NA       2        1        2        2        3        3
+## 3      NA      NA      NA       2        4        2        2       NA        3
+## 4      NA      NA      NA       2        1        2        2        3        2
+## 5      NA      NA      NA       2        1        2        2        3        2
+## 6      NA      NA      NA       2        2        2        2        3        3
+##   BSDBWKHB BSDCWKHC BSDPWKHP BSDEWKHE VERSION
+## 1       NA       NA       NA       NA       4
+## 2       NA       NA       NA       NA       4
+## 3       NA       NA       NA       NA       4
+## 4       NA       NA       NA       NA       4
+## 5       NA       NA       NA       NA       4
+## 6       NA       NA       NA       NA       4
+```
+
+---
+## Data in R and RStudio
+
+#### Import and export data
+
+Export the data 
+
+
+```r
+export(mydata, file = "data/dataset_example.csv")
+export(mydata, file = "data/dataset_example.xlsx")
+```
+
+
+???
+There are a few other packages available: `foreign`, `haven`
+The example data is the USA student dataset of TIMSS 2015. 
+
+---
+
+#### Check the data
+
+
+```r
+str(mydata)
+```
+
+```
+## 'data.frame':	10221 obs. of  436 variables:
+##  $ IDCNTRY  : num  840 840 840 840 840 840 840 840 840 840 ...
+##   ..- attr(*, "label")= chr "Country ID - Numeric Code"
+##   ..- attr(*, "format.spss")= chr "F6.0"
+##   ..- attr(*, "labels")= Named num 1e+06
+##   .. ..- attr(*, "names")= chr "Omitted or invalid"
+##  $ IDBOOK   : num  4 5 6 7 8 9 10 11 13 14 ...
+##   ..- attr(*, "label")= chr "Booklet ID"
+##   ..- attr(*, "format.spss")= chr "F2.0"
+##   ..- attr(*, "labels")= Named num [1:16] 0 1 2 3 4 5 6 7 8 9 ...
+##   .. ..- attr(*, "names")= chr [1:16] "No booklet assigned as student is excluded" "Booklet 01" "Booklet 02" "Booklet 03" ...
+##  $ IDSCHOOL : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "School ID"
+##   ..- attr(*, "format.spss")= chr "F4.0"
+##   ..- attr(*, "labels")= Named num 9999
+##   .. ..- attr(*, "names")= chr "Omitted or invalid"
+##  $ IDCLASS  : num  103 103 103 103 103 103 103 103 103 103 ...
+##   ..- attr(*, "label")= chr "Class ID"
+##   ..- attr(*, "format.spss")= chr "F6.0"
+##   ..- attr(*, "labels")= Named num 1e+06
+##   .. ..- attr(*, "names")= chr "Omitted or invalid"
+##  $ IDSTUD   : num  10301 10302 10303 10304 10305 ...
+##   ..- attr(*, "label")= chr "Student ID"
+##   ..- attr(*, "format.spss")= chr "F8.0"
+##   ..- attr(*, "labels")= Named num 1e+08
+##   .. ..- attr(*, "names")= chr "Omitted or invalid"
+##  $ IDGRADE  : num  8 8 8 8 8 8 8 8 8 8 ...
+##   ..- attr(*, "label")= chr "Grade ID"
+##   ..- attr(*, "format.spss")= chr "F2.0"
+##   ..- attr(*, "labels")= Named num [1:9] 3 4 5 6 7 8 9 10 99
+##   .. ..- attr(*, "names")= chr [1:9] "Grade 3" "Grade 4" "Grade 5" "Grade 6" ...
+##  $ ITSEX    : num  1 2 2 2 2 2 1 1 2 1 ...
+##   ..- attr(*, "label")= chr "Sex of Students"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Female" "Male" "Omitted or invalid"
+##  $ ITADMINI : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "Test Administrator Position"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:4] 1 2 3 9
+##   .. ..- attr(*, "names")= chr [1:4] "National Center Staff" "Teacher from School" "Other" "Omitted or invalid"
+##  $ ITLANG   : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "Language of Testing"
+##   ..- attr(*, "format.spss")= chr "F2.0"
+##   ..- attr(*, "labels")= Named num [1:73] 1 2 3 4 5 7 8 9 10 11 ...
+##   .. ..- attr(*, "names")= chr [1:73] "English" "Spanish" "French" "Afrikaans" ...
+##  $ BSBG01   : num  1 2 2 2 2 2 1 1 2 1 ...
+##   ..- attr(*, "label")= chr "GEN\\SEX OF STUDENT"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Girl" "Boy" "Omitted or invalid"
+##  $ BSBG03   : num  1 2 2 1 1 1 2 1 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\OFTEN SPEAK &lt;LANG OF TEST&gt; AT HOME"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Always" "Almost always" "Sometimes" "Never" ...
+##  $ BSBG04   : num  2 3 2 2 3 3 1 4 1 5 ...
+##   ..- attr(*, "label")= chr "GEN\\AMOUNT OF BOOKS IN YOUR HOME"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:6] 1 2 3 4 5 9
+##   .. ..- attr(*, "names")= chr [1:6] "0–10 books" "11–25 books" "26–100 books" "101–200 books" ...
+##  $ BSBG05   : num  5 3 3 4 4 4 3 4 2 5 ...
+##   ..- attr(*, "label")= chr "GEN\\DIGITAL INFORMATION DEVICES"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:6] 1 2 3 4 5 9
+##   .. ..- attr(*, "names")= chr [1:6] "None" "1-3 devices" "4-6 devices" "7-10 devices" ...
+##  $ BSBG06A  : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\HOME POSSESS\\COMPUTER TABLET OWN"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG06B  : num  1 1 1 1 2 1 1 1 2 1 ...
+##   ..- attr(*, "label")= chr "GEN\\HOME POSSESS\\COMPUTER TABLET SHARED"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG06C  : num  1 1 2 1 1 1 2 1 2 1 ...
+##   ..- attr(*, "label")= chr "GEN\\HOME POSSESS\\STUDY DESK"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG06D  : num  1 1 1 1 1 1 2 1 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\HOME POSSESS\\OWN ROOM"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG06E  : num  1 1 1 1 1 1 2 1 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\HOME POSSESS\\INTERNET CONNECTION"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG06F  : num  1 1 1 1 1 2 1 2 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\HOME POSSESS\\OWN MOBILE PHONE"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG06G  : num  1 1 1 1 1 1 2 1 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\HOME POSSESS\\GAMING SYSTEM"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG06H  : num  1 1 1 1 1 1 1 1 2 1 ...
+##   ..- attr(*, "label")= chr "GEN\\HOME POSSESS\\&lt;COUNTRY SPECIFIC&gt;"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG06I  : num  NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, "label")= chr "GEN\\HOME POSSESS\\&lt;COUNTRY SPECIFIC&gt;"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG06J  : num  NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, "label")= chr "GEN\\HOME POSSESS\\&lt;COUNTRY SPECIFIC&gt;"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG06K  : num  NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, "label")= chr "GEN\\HOME POSSESS\\&lt;COUNTRY SPECIFIC&gt;"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG07A  : num  7 7 2 7 7 5 2 5 6 6 ...
+##   ..- attr(*, "label")= chr "GEN\\HIGHEST LVL OF EDU OF MOTHER"
+##   ..- attr(*, "format.spss")= chr "F2.0"
+##   ..- attr(*, "labels")= Named num [1:9] 1 2 3 4 5 6 7 8 99
+##   .. ..- attr(*, "names")= chr [1:9] "Some Primary or Lower secondary or did not go to school" "Lower secondary" "Upper secondary" "Post-secondary, non-tertiary" ...
+##  $ BSBG07B  : num  5 8 2 3 8 3 2 5 5 6 ...
+##   ..- attr(*, "label")= chr "GEN\\HIGHEST LVL OF EDU OF FATHER"
+##   ..- attr(*, "format.spss")= chr "F2.0"
+##   ..- attr(*, "labels")= Named num [1:9] 1 2 3 4 5 6 7 8 99
+##   .. ..- attr(*, "names")= chr [1:9] "Some Primary or Lower secondary or did not go to school" "Lower secondary" "Upper secondary" "Post-secondary, non-tertiary" ...
+##  $ BSBG08   : num  5 6 5 6 6 5 5 4 5 5 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW FAR IN EDU DO YOU EXPECT TO GO"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:7] 1 2 3 4 5 6 9
+##   .. ..- attr(*, "names")= chr [1:7] "Finish Lower secondary" "Finish Upper secondary" "Finish Post-secondary, non-tertiary" "Finish Short-cycle tertiary" ...
+##  $ BSBG09A  : num  1 1 2 1 1 1 2 1 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\MOTHER BORN IN &lt;COUNTRY&gt;"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:4] 1 2 3 9
+##   .. ..- attr(*, "names")= chr [1:4] "Yes" "No" "I don't know" "Omitted or invalid"
+##  $ BSBG09B  : num  1 1 2 1 1 1 2 1 3 1 ...
+##   ..- attr(*, "label")= chr "GEN\\FATHER BORN IN &lt;COUNTRY&gt;"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:4] 1 2 3 9
+##   .. ..- attr(*, "names")= chr [1:4] "Yes" "No" "I don't know" "Omitted or invalid"
+##  $ BSBG10A  : num  1 1 2 1 1 1 2 1 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\BORN IN &lt;COUNTRY&gt;"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG10B  : num  NA NA 3 NA NA NA 3 NA NA NA ...
+##   ..- attr(*, "label")= chr "GEN\\BORN IN &lt;COUNTRY&gt;\\AGE CAME TO COUNTRY"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 6 9
+##   .. ..- attr(*, "names")= chr [1:5] "Older than 10 years old" "5 to 10 years old" "Younger than 5 years old" "Logically not applicable" ...
+##  $ BSBG11   : num  1 4 4 4 4 3 4 3 1 3 ...
+##   ..- attr(*, "label")= chr "GEN\\ABOUT HOW OFTEN ABSENT FROM SCHOOL"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Once a week or more" "Once every two weeks" "Once a month" "Never or almost never" ...
+##  $ BSBG12   : num  3 2 1 2 2 2 1 1 2 1 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN BREAKFAST ON SCHOOL DAYS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Every day" "Most days" "Sometimes" "Never or almost never" ...
+##  $ BSBG13A  : num  1 4 3 1 1 1 1 4 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN USE COMPUTER TABLET\\HOME"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Every day or almost every day" "Once or twice a week" "Once or twice a month" "Never or almost never" ...
+##  $ BSBG13B  : num  3 3 3 2 1 1 2 4 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN USE COMPUTER TABLET\\SCHOOL"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Every day or almost every day" "Once or twice a week" "Once or twice a month" "Never or almost never" ...
+##  $ BSBG13C  : num  1 4 4 1 4 1 4 4 1 2 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN USE COMPUTER TABLET\\OTHER"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Every day or almost every day" "Once or twice a week" "Once or twice a month" "Never or almost never" ...
+##  $ BSBG14A  : num  2 2 2 2 1 1 1 1 2 2 ...
+##   ..- attr(*, "label")= chr "GEN\\INTERNET USE\\ACCESS TEXTBOOKS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG14B  : num  1 1 1 1 1 2 1 1 2 1 ...
+##   ..- attr(*, "label")= chr "GEN\\INTERNET USE\\ACCESS ASSIGNMENTS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG14C  : num  2 2 2 1 2 1 1 2 2 1 ...
+##   ..- attr(*, "label")= chr "GEN\\INTERNET USE\\COLLABORATE WITH CLASSMATES"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG14D  : num  2 1 2 1 2 1 2 1 2 2 ...
+##   ..- attr(*, "label")= chr "GEN\\INTERNET USE\\COMMUNICATE WITH TEACHER"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG14E  : num  1 1 1 1 1 1 1 1 2 2 ...
+##   ..- attr(*, "label")= chr "GEN\\INTERNET USE\\FIND INFO TO AID IN MATH"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG14F  : num  1 1 1 2 1 1 1 1 2 1 ...
+##   ..- attr(*, "label")= chr "GEN\\INTERNET USE\\FIND INFO TO AID IN SCIENCE"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:3] 1 2 9
+##   .. ..- attr(*, "names")= chr [1:3] "Yes" "No" "Omitted or invalid"
+##  $ BSBG15A  : num  2 3 2 2 3 1 2 2 2 2 ...
+##   ..- attr(*, "label")= chr "GEN\\AGREE\\BEING IN SCHOOL"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBG15B  : num  1 2 3 1 4 1 1 1 2 1 ...
+##   ..- attr(*, "label")= chr "GEN\\AGREE\\SAFE AT SCHOOL"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBG15C  : num  2 2 2 1 2 2 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\AGREE\\BELONG AT SCHOOL"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBG15D  : num  2 1 1 1 2 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "GEN\\AGREE\\LIKE TO SEE CLASSMATES"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBG15E  : num  2 2 3 3 3 1 3 1 3 2 ...
+##   ..- attr(*, "label")= chr "GEN\\AGREE\\FAIR TEACHERS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBG15F  : num  3 1 2 3 2 1 1 1 2 1 ...
+##   ..- attr(*, "label")= chr "GEN\\AGREE\\PROUD TO GO TO THIS SCHOOL"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBG15G  : num  1 2 2 1 1 1 1 1 2 1 ...
+##   ..- attr(*, "label")= chr "GEN\\AGREE\\LEARN A LOT"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBG16A  : num  1 2 4 4 3 3 4 4 1 3 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN\\MADE FUN OF"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "At least once a week" "Once or twice a month" "A few times a year" "Never" ...
+##  $ BSBG16B  : num  1 1 4 4 4 4 4 4 4 4 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN\\LEFT OUT OF GAMES"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "At least once a week" "Once or twice a month" "A few times a year" "Never" ...
+##  $ BSBG16C  : num  1 4 4 4 3 3 4 4 4 4 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN\\SPREAD LIES ABOUT ME"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "At least once a week" "Once or twice a month" "A few times a year" "Never" ...
+##  $ BSBG16D  : num  4 3 4 4 2 4 3 4 4 3 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN\\STOLE STH FROM ME"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "At least once a week" "Once or twice a month" "A few times a year" "Never" ...
+##  $ BSBG16E  : num  4 4 4 4 4 4 4 4 4 4 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN\\HURT BY OTHERS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "At least once a week" "Once or twice a month" "A few times a year" "Never" ...
+##  $ BSBG16F  : num  4 4 4 4 4 4 4 4 4 4 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN\\FORCE TO DO STH"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "At least once a week" "Once or twice a month" "A few times a year" "Never" ...
+##  $ BSBG16G  : num  1 4 4 4 2 4 4 4 4 4 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN\\EMBARRASSING INFO"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "At least once a week" "Once or twice a month" "A few times a year" "Never" ...
+##  $ BSBG16H  : num  4 4 4 4 4 4 4 4 4 4 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN\\POSTED EMBARRASSING THINGS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "At least once a week" "Once or twice a month" "A few times a year" "Never" ...
+##  $ BSBG16I  : num  4 4 4 4 4 4 4 4 4 4 ...
+##   ..- attr(*, "label")= chr "GEN\\HOW OFTEN\\THREATENED"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "At least once a week" "Once or twice a month" "A few times a year" "Never" ...
+##  $ BSBM17A  : num  1 1 1 1 2 1 3 2 3 2 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\ENJOY LEARNING MATHEMATICS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM17B  : num  4 4 4 4 1 2 3 4 1 3 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\WISH HAVE NOT TO STUDY MATH"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM17C  : num  4 1 4 4 4 2 2 4 1 3 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\MATH IS BORING"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM17D  : num  1 3 1 1 1 1 3 2 4 2 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\LEARN INTERESTING THINGS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM17E  : num  1 1 1 1 1 1 4 2 4 2 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\LIKE MATHEMATICS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM17F  : num  1 1 1 2 2 3 4 3 4 2 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\LIKE NUMBERS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM17G  : num  1 1 1 1 2 2 4 3 4 3 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\LIKE MATH PROBLEMS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM17H  : num  1 3 1 1 3 2 4 2 4 2 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\LOOK FORWARD TO MATH CLASS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM17I  : num  1 1 1 1 2 2 4 2 4 2 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\FAVORITE SUBJECT"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM18A  : num  1 1 2 1 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\TEACHER EXPECTS TO DO"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM18B  : num  1 1 2 1 2 2 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\TEACHER IS EASY TO UNDERSTAND"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM18C  : num  1 3 2 1 2 1 2 1 4 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\INTERESTED IN WHAT TCHR SAYS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM18D  : num  1 2 3 2 3 1 2 1 4 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\INTERESTING THINGS TO DO"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM18E  : num  1 1 2 1 2 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\TEACHER CLEAR ANSWERS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM18F  : num  1 1 2 1 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\TEACHER EXPLAINS GOOD"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM18G  : num  1 1 3 2 3 1 1 1 1 2 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\TEACHER SHOWS LEARNED"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM18H  : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\DIFFERENT THINGS TO HELP"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM18I  : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\TELLS HOW TO DO BETTER"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM18J  : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\TEACHER LISTENS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM19A  : num  1 1 1 1 1 1 2 1 4 2 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\USUALLY DO WELL IN MATH"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM19B  : num  4 4 4 4 4 2 2 4 1 3 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\MATHEMATICS IS MORE DIFFICULT"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM19C  : num  4 4 4 4 2 2 1 4 1 3 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\MATHEMATICS NOT MY STRENGTH"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM19D  : num  1 1 1 1 2 2 3 1 4 3 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\LEARN QUICKLY IN MATHEMATICS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM19E  : num  4 4 4 3 4 1 1 4 1 3 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\MAT MAKES NERVOUS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM19F  : num  1 1 1 2 3 1 4 2 4 3 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\GOOD AT WORKING OUT PROBLEMS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM19G  : num  2 1 2 1 2 1 4 3 4 3 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\I AM GOOD AT MATHEMATICS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM19H  : num  4 4 4 4 3 3 2 4 1 2 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\MATHEMATICS HARDER FOR ME"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM19I  : num  4 4 4 4 4 2 1 4 1 3 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\MAT MAKES CONFUSED"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM20A  : num  1 1 1 1 1 1 2 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\MATHEMATICS WILL HELP ME"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM20B  : num  1 1 1 2 1 1 2 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\NEED MAT TO LEARN OTHER THINGS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM20C  : num  1 2 1 3 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\NEED MATH TO GET INTO &lt;UNI&gt;"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM20D  : num  1 1 1 3 1 1 2 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\NEED MAT TO GET THE JOB I WANT"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM20E  : num  1 1 1 2 4 1 4 2 1 2 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\JOB INVOLVING MATHEMATICS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM20F  : num  1 1 1 1 1 1 2 2 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\GET AHEAD IN THE WORLD"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM20G  : num  1 1 1 2 1 1 2 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\MORE JOB OPPORTUNITIES"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM20H  : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\PARENTS THINK MATH IMPORTANT"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBM20I  : num  1 1 1 2 1 1 2 1 1 1 ...
+##   ..- attr(*, "label")= chr "MATH\\AGREE\\IMPORTANT TO DO WELL IN MATH"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBS21A  : num  1 4 2 2 1 1 3 2 1 1 ...
+##   ..- attr(*, "label")= chr "SCI\\AGREE\\ENJOY LEARNING SCIENCE"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBS21B  : num  2 3 3 3 2 2 3 4 1 4 ...
+##   ..- attr(*, "label")= chr "SCI\\AGREE\\WISH HAVE NOT TO STUDY SCIENCE"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBS21C  : num  1 1 3 3 4 4 1 2 1 4 ...
+##   ..- attr(*, "label")= chr "SCI\\AGREE\\SCIENCE IS BORING"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##  $ BSBS21D  : num  2 3 2 1 1 1 1 1 1 2 ...
+##   ..- attr(*, "label")= chr "SCI\\AGREE\\LEARN INTERESTING THINGS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "labels")= Named num [1:5] 1 2 3 4 9
+##   .. ..- attr(*, "names")= chr [1:5] "Agree a lot" "Agree a little" "Disagree a little" "Disagree a lot" ...
+##   [list output truncated]
+```
+
+
+---
+
+#### Check the data
+
+
+```r
+typeof(mydata)
+```
+
+```
+## [1] "list"
+```
+
+```r
+class(mydata)
+```
+
+```
+## [1] "data.frame"
+```
+
+```r
+dim(mydata) # alternatively, use `nrow()` and `ncol()`
+```
+
+```
+## [1] 10221   436
+```
+
+```r
+length(mydata) # number of variables in a data frame
+```
+
+```
+## [1] 436
+```
+
+
+---
+
+#### Rename a few variables and get variable summmary
+
+
+```r
+# names(mydata) # variable names
+names(mydata)[names(mydata) == "ITSEX"] &lt;- "gender"
+names(mydata)[names(mydata) == "BSMMAT01"] &lt;- "math" # math score
+names(mydata)[names(mydata) == "BSBGHER"] &lt;- "resource" # education resource
+names(mydata)[names(mydata) == "BSBGSCM"] &lt;- "confidence" # confidence in math
+names(mydata)[names(mydata) == "BSBGSVM"] &lt;- "value" # valuing math
+names(mydata)[names(mydata) == "BSBGSSB"] &lt;- "belonging" # sense of belonging
+var &lt;- c("gender", "math", "resource", "confidence", "value", "belonging")
+dat1 &lt;- mydata[, var] # only include selected variables
+dat1 &lt;- na.omit(dat1) # remove rows with missing data
+summary(dat1)
+```
+
+```
+##      gender           math          resource        confidence    
+##  Min.   :1.000   Min.   :248.2   Min.   : 4.232   Min.   : 3.196  
+##  1st Qu.:1.000   1st Qu.:460.5   1st Qu.: 9.623   1st Qu.: 8.999  
+##  Median :1.000   Median :520.3   Median :10.918   Median :10.130  
+##  Mean   :1.494   Mean   :517.2   Mean   :10.800   Mean   :10.280  
+##  3rd Qu.:2.000   3rd Qu.:575.6   3rd Qu.:11.622   3rd Qu.:11.431  
+##  Max.   :2.000   Max.   :762.2   Max.   :13.884   Max.   :15.925  
+##      value          belonging     
+##  Min.   : 2.999   Min.   : 3.048  
+##  1st Qu.: 8.555   1st Qu.: 8.306  
+##  Median : 9.994   Median : 9.390  
+##  Mean   : 9.981   Mean   : 9.580  
+##  3rd Qu.:11.371   3rd Qu.:11.055  
+##  Max.   :13.653   Max.   :13.622
+```
+
+---
+
+#### Change `gender` to a categorical variable
+
+
+```r
+typeof(dat1$gender)
+```
+
+```
+## [1] "double"
+```
+
+```r
+class(dat1$gender)
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+dat1$gender_c &lt;- factor(dat1$gender)
+typeof(dat1$gender_c)
+```
+
+```
+## [1] "integer"
+```
+
+```r
+class(dat1$gender_c)
+```
+
+```
+## [1] "factor"
+```
+
+```r
+dat1$gender_c
+```
+
+```
+##    [1] 1 2 2 2 2 2 1 1 2 1 2 1 2 1 1 1 2 2 1 1 2 2 1 1 2 1 1 2 1 2 1 1 1 1 1 1 2
+##   [38] 1 2 2 2 2 1 2 2 1 1 1 2 2 2 1 2 2 1 1 2 2 2 1 2 2 2 2 1 2 2 1 2 2 1 1 2 2
+##   [75] 2 1 1 2 1 1 2 1 2 1 2 1 1 1 1 1 2 1 2 1 1 2 1 2 2 2 2 2 2 2 2 1 1 1 1 2 1
+##  [112] 2 2 2 2 2 1 1 2 2 2 2 2 1 2 1 2 1 2 1 2 2 1 2 1 2 1 1 1 2 1 2 1 1 1 2 2 1
+##  [149] 1 2 2 2 1 2 1 2 2 2 2 2 1 1 2 1 1 1 2 1 2 1 2 2 1 2 2 2 1 2 2 2 2 2 1 2 1
+##  [186] 1 2 1 1 2 2 1 2 1 1 1 2 2 2 1 1 2 1 1 1 2 2 2 1 1 1 1 2 1 2 1 1 1 2 1 2 2
+##  [223] 1 2 2 1 2 1 1 1 2 2 2 1 2 1 1 1 2 2 2 1 2 1 2 2 2 1 2 2 1 1 1 2 1 1 2 2 2
+##  [260] 2 1 2 1 1 1 1 1 1 1 2 1 1 1 2 1 1 1 2 1 2 1 2 2 1 2 1 1 2 1 2 1 1 2 2 2 1
+##  [297] 2 2 1 2 2 1 1 2 2 2 1 1 2 2 1 2 2 2 1 2 1 1 1 2 2 1 2 2 2 1 2 2 2 1 2 2 2
+##  [334] 2 2 1 2 1 1 1 1 1 2 2 1 2 2 1 2 1 2 2 2 1 2 1 1 1 2 1 1 2 2 2 1 1 2 2 1 2
+##  [371] 1 2 2 2 1 2 1 1 1 2 1 1 2 1 2 1 1 1 2 1 2 1 2 2 2 1 1 1 2 2 1 1 2 1 2 2 2
+##  [408] 1 2 1 2 1 1 2 2 2 2 2 1 2 1 2 1 1 2 2 1 2 1 1 1 1 2 2 1 2 2 2 2 1 1 1 1 2
+##  [445] 2 1 1 2 2 1 1 1 1 1 1 2 1 2 1 1 1 1 1 2 2 1 1 2 2 1 2 1 1 1 1 1 2 2 2 1 2
+##  [482] 1 2 1 1 1 1 1 2 1 2 2 2 2 2 1 2 1 1 2 1 1 2 2 1 2 1 1 1 1 1 2 2 2 1 2 1 2
+##  [519] 1 1 1 1 2 1 1 1 2 1 1 2 1 1 1 2 1 1 2 2 1 2 2 1 1 1 2 1 2 2 1 1 2 1 1 1 2
+##  [556] 2 1 2 1 1 1 1 2 2 2 1 2 2 2 2 2 1 1 1 2 2 2 1 2 1 2 2 2 1 2 1 1 1 2 2 1 2
+##  [593] 1 1 2 1 1 2 1 1 1 2 1 2 2 2 1 1 1 2 1 1 2 2 2 1 2 1 1 2 2 2 2 2 2 2 2 2 1
+##  [630] 2 1 2 1 1 2 1 1 1 1 1 2 2 1 1 1 1 1 1 1 2 1 2 2 2 2 1 2 2 1 1 1 1 1 2 2 1
+##  [667] 1 1 2 1 2 2 2 1 2 1 2 1 1 2 2 1 1 2 2 2 1 1 2 1 1 2 2 2 2 1 1 1 1 2 2 1 2
+##  [704] 2 1 2 1 1 1 2 2 1 1 1 1 1 1 2 1 1 2 1 1 1 2 2 1 1 1 2 1 2 1 2 1 1 2 2 2 1
+##  [741] 2 2 2 1 2 2 1 1 2 1 1 2 1 2 2 2 1 2 1 2 2 1 1 1 2 2 2 1 1 2 1 1 2 1 1 2 2
+##  [778] 1 2 2 1 2 2 1 1 1 2 1 1 2 1 2 1 2 1 1 2 2 1 1 1 2 1 1 1 1 1 1 1 2 2 2 2 2
+##  [815] 1 2 2 1 2 1 2 1 2 2 2 2 1 2 1 1 2 2 2 1 1 2 1 1 1 2 2 1 2 2 1 2 2 2 1 2 1
+##  [852] 2 2 2 2 2 2 2 1 2 1 1 2 2 1 1 1 1 1 2 2 1 2 1 2 1 2 1 1 2 1 2 2 1 2 2 2 1
+##  [889] 2 2 2 2 1 2 2 2 2 1 2 1 1 2 2 1 2 2 2 2 1 1 1 1 2 2 2 1 1 2 2 1 1 2 1 1 2
+##  [926] 1 2 1 2 2 2 1 1 1 1 2 2 1 1 2 1 1 2 1 1 1 1 1 1 2 2 2 2 1 1 2 2 1 1 1 1 2
+##  [963] 1 2 1 2 2 2 2 2 2 2 2 1 2 1 2 1 1 1 2 1 1 1 1 1 1 2 1 1 1 2 1 2 2 2 2 1 2
+## [1000] 1 1 2 1 2 1 2 1 2 2 2 1 1 1 2 2 2 2 2 1 2 1 1 1 1 1 2 1 2 1 1 1 1 1 2 1 2
+## [1037] 1 2 2 1 1 1 2 2 2 1 1 1 2 1 2 1 2 1 2 1 2 2 2 2 1 2 2 1 2 2 1 2 1 2 1 1 2
+## [1074] 2 2 1 1 2 2 2 1 2 2 2 2 2 2 2 1 2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 2
+## [1111] 2 2 2 1 1 1 2 2 2 2 2 1 2 2 2 2 2 1 1 1 2 1 2 1 1 1 1 1 2 1 1 1 1 1 2 2 2
+## [1148] 2 1 2 1 1 2 1 1 1 2 1 2 2 2 1 2 2 1 1 2 1 1 2 1 2 2 1 2 2 2 2 2 1 1 1 2 1
+## [1185] 1 2 2 1 2 1 1 1 1 2 1 1 2 2 1 2 1 2 1 2 1 1 2 1 1 1 2 2 1 2 1 1 2 2 2 2 1
+## [1222] 1 2 2 1 1 1 1 2 2 1 1 1 2 1 2 2 2 2 2 1 2 2 1 2 2 1 2 2 2 2 1 2 1 2 2 1 1
+## [1259] 2 2 1 2 1 2 1 2 2 2 2 2 2 1 2 1 2 1 1 1 2 2 1 1 2 2 1 2 1 2 1 1 2 2 2 2 2
+## [1296] 1 1 2 1 1 1 1 2 2 2 2 1 2 1 1 2 2 1 2 1 1 1 1 1 2 2 2 2 2 2 2 1 1 2 2 1 1
+## [1333] 1 2 1 2 1 1 1 1 2 1 2 1 2 2 2 2 1 2 1 2 2 2 2 2 1 1 1 2 1 2 2 2 2 1 2 2 1
+## [1370] 1 2 1 1 2 1 2 1 2 2 1 1 1 2 2 2 2 2 1 1 2 1 1 2 1 2 2 2 2 1 1 2 1 1 1 2 1
+## [1407] 2 2 1 1 2 2 2 2 2 2 2 2 1 2 2 1 2 1 1 1 1 1 2 2 2 1 2 1 1 1 2 1 2 2 1 1 2
+## [1444] 1 2 1 2 2 2 1 1 1 2 2 2 1 1 2 1 1 2 1 1 1 1 1 2 1 2 2 1 1 1 2 2 2 1 1 2 1
+## [1481] 2 2 2 1 2 1 1 2 1 1 2 1 2 1 2 1 2 1 1 2 2 2 2 2 1 1 2 2 1 2 2 2 1 1 2 1 1
+## [1518] 1 2 1 1 1 2 1 1 2 1 1 1 1 1 2 1 1 1 1 1 1 2 2 2 1 1 2 2 2 2 1 1 2 2 1 2 2
+## [1555] 2 2 2 2 2 2 1 2 1 1 2 2 2 2 1 2 1 2 1 1 2 2 1 1 1 2 1 1 1 1 1 1 2 1 1 1 2
+## [1592] 1 1 2 1 1 2 1 1 2 2 1 2 1 1 2 1 2 1 2 1 1 2 2 1 2 1 1 1 1 1 1 1 2 2 1 1 1
+## [1629] 2 1 1 1 1 2 1 1 2 1 1 1 1 1 1 2 1 1 2 1 2 1 2 2 2 1 1 1 2 1 1 1 2 1 1 2 2
+## [1666] 1 1 1 1 1 1 1 1 1 1 2 1 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 1 1 1 2 1 1 1 1 2
+## [1703] 2 2 2 2 2 1 2 2 2 1 2 1 1 1 1 2 1 2 2 1 2 2 2 1 1 2 2 1 2 2 1 1 2 2 1 1 2
+## [1740] 2 2 1 2 2 2 1 1 1 2 2 2 1 2 1 2 1 2 2 2 2 1 1 2 2 1 1 1 2 1 2 1 1 2 1 1 2
+## [1777] 2 1 2 1 1 1 2 2 2 1 1 1 2 2 1 2 1 2 2 2 2 2 2 2 2 1 1 2 1 2 1 2 2 1 1 2 1
+## [1814] 1 1 1 1 1 1 2 1 1 2 2 1 1 1 2 1 1 2 1 1 1 1 2 1 1 2 2 1 2 2 2 2 1 1 1 1 1
+## [1851] 1 1 1 2 1 1 2 2 1 2 1 1 2 2 1 1 1 2 1 1 1 2 1 2 2 1 2 2 1 1 2 2 2 1 1 2 2
+## [1888] 1 1 1 2 1 1 2 1 1 2 2 2 1 1 2 2 1 1 1 2 1 2 2 1 2 1 2 1 1 1 2 2 1 2 2 1 2
+## [1925] 1 1 1 2 2 1 2 1 2 2 1 2 1 1 2 2 1 1 1 1 1 2 2 1 2 1 1 2 2 1 2 1 2 2 1 2 1
+## [1962] 1 1 1 1 2 2 1 1 1 2 2 2 1 1 2 2 2 1 1 2 1 1 1 2 1 2 1 1 1 2 2 2 1 1 1 1 1
+## [1999] 2 2 1 2 2 1 2 1 2 2 2 2 2 1 2 2 2 1 2 1 1 1 2 2 1 2 2 2 2 2 1 2 2 2 1 1 2
+## [2036] 1 2 2 1 1 2 1 1 2 1 2 2 2 1 1 1 2 2 2 2 2 2 2 2 1 1 2 1 2 1 2 2 1 2 2 1 1
+## [2073] 1 1 1 1 1 2 2 1 1 1 1 2 1 2 2 1 2 1 2 2 2 1 2 2 1 2 2 1 1 1 1 1 2 2 2 2 2
+## [2110] 2 2 1 2 2 1 1 2 2 1 1 1 1 2 1 1 2 2 2 1 2 1 1 2 1 1 1 1 1 1 2 2 2 1 1 2 2
+## [2147] 2 1 2 2 2 2 2 1 2 1 1 2 1 1 1 1 1 2 2 1 2 2 1 1 2 1 2 2 1 2 1 2 2 1 2 2 2
+## [2184] 2 2 2 2 1 2 1 2 2 2 2 1 1 1 2 2 2 1 1 2 1 2 2 2 1 1 2 1 1 2 1 1 1 2 2 2 2
+## [2221] 1 2 2 2 2 2 1 2 2 1 2 1 1 2 2 2 1 2 2 1 1 1 1 1 2 1 1 2 2 2 2 1 1 1 1 1 1
+## [2258] 2 1 1 2 1 1 2 1 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 1 2 1 2 2 2 2 2 2 1 2 1
+## [2295] 2 2 1 2 1 1 1 1 1 1 1 1 2 2 2 2 1 1 1 1 1 1 2 1 1 1 2 1 2 1 2 1 2 2 1 1 1
+## [2332] 2 2 2 1 1 2 1 2 1 2 2 2 1 1 2 1 2 1 2 2 1 1 2 2 1 1 2 2 1 2 1 1 2 2 1 2 2
+## [2369] 1 2 1 1 2 2 1 2 1 1 1 2 1 1 2 1 1 1 1 1 2 1 2 1 1 2 1 2 2 1 2 1 2 2 1 2 2
+## [2406] 2 1 2 1 1 1 2 2 2 2 1 1 1 1 2 1 1 1 1 2 1 1 2 2 2 1 1 1 1 2 2 2 2 1 1 2 2
+## [2443] 2 2 2 1 1 2 2 1 1 1 1 2 1 1 2 1 1 1 2 1 2 1 1 2 1 2 1 2 1 1 1 1 2 1 1 1 1
+## [2480] 1 1 1 1 1 1 2 1 1 1 1 2 2 2 2 2 1 2 2 1 2 1 2 2 2 1 1 1 2 2 2 2 2 1 2 1 2
+## [2517] 1 2 2 1 2 1 2 1 1 2 2 2 1 1 1 2 1 2 2 2 1 2 1 2 1 2 1 2 2 1 2 1 1 1 1 1 1
+## [2554] 2 1 1 2 2 1 2 1 2 1 2 2 1 2 2 2 2 2 1 2 1 1 2 1 2 1 1 1 1 2 1 1 1 1 2 1 1
+## [2591] 2 2 2 2 1 1 1 2 2 2 1 2 1 1 1 1 2 2 1 1 2 2 1 1 1 1 1 2 1 1 1 1 1 2 1 2 2
+## [2628] 2 2 2 2 2 2 2 2 1 2 1 1 1 1 1 2 2 2 2 1 2 1 2 2 2 1 1 1 1 2 1 2 2 2 2 1 1
+## [2665] 2 1 2 2 2 1 2 2 2 2 1 2 1 1 1 2 2 1 1 1 2 2 1 1 1 1 2 2 2 1 2 2 1 2 2 1 1
+## [2702] 2 2 2 2 2 2 1 1 1 1 1 1 2 1 2 2 2 2 1 1 2 1 1 1 2 2 1 2 1 2 2 1 2 1 2 1 1
+## [2739] 1 1 2 2 1 2 1 2 2 1 2 1 2 2 1 1 1 1 2 2 2 1 1 2 2 1 1 1 2 1 1 2 1 2 1 1 1
+## [2776] 2 2 1 1 1 1 1 1 1 1 2 1 1 1 2 2 1 1 1 2 1 1 2 2 2 2 2 2 2 2 1 1 1 2 2 2 1
+## [2813] 2 2 2 1 2 2 2 2 2 1 1 2 1 1 2 1 2 2 2 1 2 2 1 1 1 2 2 1 1 1 2 1 1 1 2 1 1
+## [2850] 2 1 1 1 1 2 2 1 2 1 1 2 2 2 1 1 1 1 1 1 1 2 2 2 1 2 2 2 1 1 1 1 2 2 2 2 2
+## [2887] 2 1 1 1 2 1 2 1 1 2 1 2 1 1 1 2 1 1 2 2 2 2 2 1 1 2 1 1 2 2 1 2 2 1 2 1 1
+## [2924] 1 1 2 2 2 1 1 1 1 2 1 2 2 1 2 2 2 2 1 1 2 2 1 2 2 1 2 2 2 2 2 2 1 2 1 1 1
+## [2961] 2 2 2 1 2 1 1 2 1 1 2 1 1 1 1 1 2 2 2 1 2 1 2 2 2 2 2 1 2 1 2 2 1 1 2 1 2
+## [2998] 1 2 2 2 2 1 1 2 2 2 2 2 2 1 2 1 2 2 1 1 1 2 1 2 1 1 2 2 2 1 2 2 2 2 1 2 1
+## [3035] 2 2 1 1 2 2 2 2 1 2 2 2 2 2 1 2 2 1 1 1 1 1 1 1 2 1 1 2 2 1 1 2 2 2 2 1 1
+## [3072] 1 2 2 1 1 1 2 2 1 2 1 1 2 1 1 1 2 1 2 2 2 2 1 1 2 1 1 2 2 1 1 1 2 1 2 1 1
+## [3109] 1 2 2 2 1 1 2 1 1 1 2 2 1 1 2 1 1 2 2 1 1 1 1 2 2 1 1 2 2 1 2 2 1 1 1 2 1
+## [3146] 1 1 2 2 1 2 1 2 2 1 1 2 1 1 1 2 1 1 2 1 2 2 1 1 2 1 1 1 2 2 1 2 1 2 1 1 1
+## [3183] 1 2 2 2 1 2 2 2 1 2 2 1 1 1 1 1 2 1 1 1 2 2 2 1 2 1 2 2 1 1 2 2 2 2 2 1 1
+## [3220] 2 2 1 2 1 2 1 2 1 2 1 1 2 1 2 1 2 1 1 1 1 1 1 2 2 1 1 2 2 2 1 2 2 1 1 1 2
+## [3257] 1 1 1 2 1 2 1 2 1 1 2 2 2 1 1 1 1 1 2 2 1 1 1 1 1 1 1 2 1 2 2 1 1 1 2 1 2
+## [3294] 1 1 1 2 1 2 1 2 1 1 1 2 1 1 2 1 1 1 1 1 2 1 1 2 1 1 1 1 1 2 2 2 2 1 2 1 1
+## [3331] 1 2 1 2 2 1 2 2 1 2 2 2 1 2 1 2 1 2 1 2 1 2 1 2 2 1 2 1 1 2 2 2 2 2 1 2 2
+## [3368] 1 2 2 2 1 1 1 1 1 2 2 2 1 2 2 2 1 2 2 1 1 1 1 2 2 1 1 2 2 1 1 1 2 1 2 2 1
+## [3405] 2 2 2 1 1 2 2 1 1 2 1 1 1 1 1 1 1 1 1 2 2 1 1 2 1 2 2 1 1 2 1 1 1 2 2 2 2
+## [3442] 1 2 1 2 1 2 1 2 2 2 2 2 1 2 1 1 1 2 2 2 2 1 2 1 1 2 2 2 1 2 2 1 1 1 2 2 2
+## [3479] 2 1 2 1 1 2 1 2 2 2 2 1 1 2 1 2 2 2 2 2 1 1 2 2 2 2 1 2 2 2 2 1 1 1 1 1 1
+## [3516] 2 2 2 1 1 2 2 2 1 2 1 1 1 2 2 2 1 1 2 1 2 2 1 1 2 1 1 2 2 1 1 1 2 1 1 1 1
+## [3553] 2 1 2 2 2 1 2 2 2 2 2 1 1 2 2 1 2 1 1 1 1 1 1 2 2 1 1 2 2 1 1 2 2 2 1 1 2
+## [3590] 1 1 1 1 1 1 2 1 1 1 1 2 1 1 1 2 2 1 2 1 2 1 1 2 1 2 1 2 1 2 2 2 1 1 1 2 1
+## [3627] 2 1 1 2 1 2 2 2 1 1 1 1 2 2 1 1 1 2 2 2 1 1 1 2 1 2 1 1 1 1 1 2 2 2 1 1 2
+## [3664] 1 1 1 2 2 2 2 2 2 2 2 2 1 1 1 1 2 1 1 2 2 1 1 1 2 2 1 1 1 2 1 1 2 2 1 1 2
+## [3701] 2 1 1 1 1 2 2 1 2 2 2 2 2 2 1 2 1 2 2 1 2 2 2 1 2 2 1 2 2 1 1 2 1 2 1 1 1
+## [3738] 2 1 2 2 2 1 2 1 1 1 1 2 2 1 2 2 2 1 1 2 1 2 1 1 1 1 1 2 2 1 1 1 2 2 2 2 2
+## [3775] 2 2 2 2 1 2 1 1 1 2 1 1 1 2 2 2 1 2 2 1 1 2 2 1 1 1 1 2 2 2 2 1 2 1 1 1 1
+## [3812] 1 1 2 2 1 2 2 1 2 1 2 2 1 1 2 1 1 1 2 2 1 2 2 2 1 1 1 2 1 1 1 2 2 1 2 2 2
+## [3849] 1 1 2 1 2 1 1 1 1 1 2 2 1 1 2 2 2 1 2 1 2 1 1 2 2 1 1 1 1 1 2 2 1 1 2 2 2
+## [3886] 2 1 2 2 2 1 1 2 2 2 1 2 2 1 1 1 2 2 2 1 2 2 1 2 2 1 2 1 2 2 2 2 1 1 1 2 1
+## [3923] 1 2 1 2 1 2 1 1 1 1 2 1 1 1 1 2 2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2
+## [3960] 1 2 1 1 1 1 1 2 2 1 2 1 2 2 2 1 1 1 1 2 1 2 2 2 1 2 2 2 2 2 1 2 1 2 2 2 1
+## [3997] 1 2 2 1 2 1 1 1 1 2 2 2 2 1 2 1 1 2 2 2 2 1 2 2 1 1 1 1 2 1 1 1 2 2 2 1 2
+## [4034] 2 1 2 1 1 1 2 1 2 2 2 2 2 1 1 1 1 1 1 2 1 2 2 2 1 1 1 1 2 2 1 2 1 1 2 1 2
+## [4071] 2 1 2 2 1 1 2 1 1 2 2 1 1 1 1 1 2 1 1 1 1 2 2 2 2 1 2 2 1 2 1 2 1 1 2 2 2
+## [4108] 2 2 2 1 1 2 2 2 1 1 1 2 1 1 1 1 1 1 1 1 2 2 2 2 2 2 1 2 2 2 2 2 1 1 1 1 2
+## [4145] 1 2 2 2 1 1 2 1 1 2 2 2 1 1 1 2 2 1 2 2 1 2 2 1 2 2 1 1 2 2 2 2 1 2 1 2 1
+## [4182] 2 1 1 1 1 1 1 2 1 1 1 1 1 2 2 1 1 2 1 1 2 1 1 1 1 2 2 2 1 2 1 2 2 1 1 1 1
+## [4219] 2 1 1 1 1 2 1 1 2 2 1 1 1 1 2 1 1 2 2 2 1 2 2 1 2 2 2 1 1 1 1 1 2 1 1 2 1
+## [4256] 2 1 1 1 2 2 1 1 1 1 1 1 2 2 1 2 1 1 1 1 1 1 1 2 1 2 1 1 1 1 2 1 2 2 2 2 1
+## [4293] 1 2 1 1 2 2 2 1 1 1 2 1 1 2 2 2 1 2 2 1 1 1 1 1 1 1 2 1 2 2 1 1 1 2 2 1 1
+## [4330] 2 2 1 2 1 1 2 2 2 2 1 2 2 2 2 1 2 1 2 2 2 2 2 1 1 1 2 2 1 1 2 1 2 2 2 1 1
+## [4367] 1 1 2 1 1 2 2 2 2 2 1 1 1 1 2 2 1 1 2 1 2 1 1 2 2 2 1 2 1 1 2 1 2 2 1 1 1
+## [4404] 2 1 1 1 1 2 1 2 2 2 2 1 1 2 1 1 2 1 1 1 1 1 1 1 2 1 2 1 2 1 2 1 2 1 1 2 1
+## [4441] 2 2 1 1 1 1 2 1 2 2 2 1 2 2 2 1 1 2 2 2 1 1 1 2 2 1 2 2 1 1 2 1 1 2 1 1 1
+## [4478] 1 2 1 2 1 1 1 1 1 2 2 2 1 2 2 1 2 2 2 1 1 1 1 2 2 1 2 2 2 2 1 2 2 1 2 2 1
+## [4515] 1 1 1 1 2 1 1 2 2 2 1 2 2 2 1 1 2 1 2 1 2 2 1 1 1 1 2 1 1 2 2 1 1 2 1 1 2
+## [4552] 1 2 1 2 1 2 1 1 1 2 2 2 2 2 1 2 2 2 2 1 2 2 2 1 1 1 1 2 2 1 1 1 2 1 2 1 2
+## [4589] 1 1 2 1 1 1 1 2 1 2 2 1 2 1 1 1 2 1 1 2 1 1 1 2 2 2 2 1 1 2 2 1 1 1 2 1 2
+## [4626] 1 2 2 1 1 2 1 1 1 2 1 2 1 1 2 1 2 1 1 2 2 1 1 1 2 1 2 2 1 1 1 1 1 1 2 1 2
+## [4663] 2 2 2 2 2 2 2 2 2 2 1 1 2 1 1 2 1 1 1 2 1 1 1 2 1 2 1 2 1 2 2 2 2 2 1 1 1
+## [4700] 1 2 2 2 2 2 2 1 1 1 2 2 1 1 1 1 2 2 1 1 2 1 2 2 2 2 1 2 1 1 2 1 2 1 2 2 2
+## [4737] 1 2 1 1 1 2 2 1 2 2 2 1 1 2 2 1 1 2 1 2 1 1 1 1 2 1 1 1 2 2 2 1 2 1 2 1 2
+## [4774] 1 1 1 2 1 2 1 1 1 2 2 2 2 1 1 2 2 1 1 1 1 2 1 2 1 2 2 1 1 1 2 1 2 1 2 1 2
+## [4811] 1 1 2 2 1 1 2 1 1 2 1 2 2 2 2 2 2 1 2 1 2 1 1 1 2 1 1 2 2 1 2 2 2 2 1 2 1
+## [4848] 1 2 2 1 2 2 2 2 2 1 2 2 2 1 1 2 1 1 1 2 2 1 2 2 1 1 1 1 2 2 2 2 2 2 2 1 2
+## [4885] 1 1 1 2 1 1 2 2 2 2 2 1 2 1 2 1 2 2 1 1 2 1 2 2 1 2 2 1 1 2 1 2 1 2 2 1 2
+## [4922] 1 2 1 2 1 2 1 2 2 2 1 1 2 2 1 1 1 1 2 1 2 1 1 2 2 1 1 2 2 2 2 1 2 1 1 2 2
+## [4959] 2 1 1 2 2 1 2 2 1 1 2 2 1 1 2 1 2 2 1 2 1 2 1 1 2 2 2 1 1 1 1 2 2 1 2 2 2
+## [4996] 1 1 1 2 2 1 1 1 2 1 1 1 1 1 2 1 2 1 1 2 1 1 2 1 2 2 1 2 1 2 2 1 1 2 1 2 1
+## [5033] 2 1 1 2 1 2 1 2 1 1 1 2 1 2 2 1 1 2 1 2 2 1 2 2 2 2 2 1 2 1 2 2 1 2 2 1 2
+## [5070] 2 2 2 1 2 2 2 1 1 2 2 1 2 2 1 2 2 2 1 1 1 2 2 2 2 2 2 2 2 1 1 2 1 1 1 2 1
+## [5107] 2 1 2 1 1 1 2 2 1 2 1 2 2 2 1 1 2 2 2 2 1 1 2 2 2 1 2 1 1 2 2 1 2 1 1 2 1
+## [5144] 2 2 1 1 2 2 1 1 1 2 2 1 1 2 2 2 1 2 2 1 1 2 2 1 1 1 2 1 2 1 2 1 1 1 2 1 2
+## [5181] 1 2 1 1 1 1 2 1 1 2 1 2 2 2 2 1 1 1 2 2 2 1 1 2 2 2 1 1 1 1 2 2 2 1 1 2 1
+## [5218] 2 1 1 2 2 2 2 1 1 1 2 2 1 2 2 1 2 2 2 2 2 2 1 2 1 2 1 1 1 1 1 1 2 1 1 1 1
+## [5255] 1 2 1 2 1 2 1 1 2 1 1 2 2 1 1 2 1 2 1 1 2 1 2 1 1 2 2 1 2 2 2 1 2 2 2 1 2
+## [5292] 2 2 2 1 1 1 2 1 2 2 1 1 2 2 1 2 2 2 1 2 2 1 2 1 1 2 1 1 2 2 1 2 1 1 2 1 2
+## [5329] 2 1 1 1 1 2 2 2 2 2 2 1 1 2 2 1 1 2 1 2 1 1 1 2 1 1 2 1 1 2 2 2 2 1 1 1 2
+## [5366] 1 1 1 2 1 1 2 2 2 2 2 2 2 1 1 1 1 1 1 2 1 2 1 2 1 2 1 1 1 2 1 1 1 1 2 1 1
+## [5403] 1 1 2 2 1 2 1 2 1 2 1 1 2 2 2 1 2 1 2 2 1 1 2 1 2 2 1 2 2 1 2 2 2 1 1 2 2
+## [5440] 2 1 1 1 2 1 2 1 2 2 2 1 1 1 2 1 1 2 2 1 1 2 2 2 1 2 1 1 2 2 1 1 2 1 2 1 2
+## [5477] 2 2 2 2 1 2 2 1 2 1 1 2 2 1 1 1 1 2 2 1 2 1 1 2 2 2 2 2 2 2 1 1 1 2 1 2 1
+## [5514] 1 2 1 1 1 1 2 2 2 1 2 2 2 2 1 1 1 2 1 2 2 2 2 1 2 1 1 1 2 2 2 1 2 2 1 2 2
+## [5551] 2 1 1 2 1 1 1 2 1 2 1 2 2 1 1 2 2 1 1 2 1 2 1 1 1 2 1 2 1 2 1 2 2 2 2 1 2
+## [5588] 1 2 2 1 1 2 1 2 1 2 2 1 1 2 1 2 1 1 2 2 1 2 1 2 2 2 1 2 2 2 2 2 2 1 2 2 1
+## [5625] 2 2 1 1 2 1 2 2 1 1 1 2 1 1 2 2 1 1 2 2 1 1 2 1 2 1 2 2 2 1 2 2 2 2 1 1 1
+## [5662] 1 1 1 1 1 1 2 2 2 2 1 1 2 1 1 1 1 2 1 1 1 1 1 1 2 1 1 2 1 2 1 1 1 1 2 1 1
+## [5699] 2 2 1 2 1 1 1 2 1 2 1 2 1 1 1 1 2 1 2 2 2 2 1 2 1 2 1 2 2 1 2 1 2 1 2 2 2
+## [5736] 1 2 1 1 2 1 2 1 2 1 2 2 2 2 1 2 1 2 2 2 2 2 1 2 2 2 1 2 1 2 2 1 1 2 2 1 1
+## [5773] 1 1 1 1 2 1 2 1 2 2 2 1 1 2 1 1 1 1 2 1 1 1 1 2 1 2 2 1 2 1 2 2 2 1 1 1 2
+## [5810] 1 1 2 2 1 1 2 1 1 2 1 2 1 2 2 1 2 2 2 1 1 2 1 2 2 1 2 2 1 1 2 1 2 1 1 2 2
+## [5847] 1 2 1 1 1 1 1 2 2 1 2 1 1 1 2 2 2 2 1 2 1 2 1 1 2 2 1 1 2 2 1 1 2 2 1 2 1
+## [5884] 1 1 1 2 1 1 2 2 1 1 2 2 1 1 1 2 1 1 2 1 2 2 1 1 1 1 2 2 2 1 1 2 2 2 2 2 2
+## [5921] 1 1 1 1 1 1 1 2 1 1 2 2 2 1 2 2 2 1 2 2 1 1 2 1 1 1 2 1 2 1 2 1 2 1 1 1 2
+## [5958] 2 2 2 1 2 2 2 2 1 1 2 2 2 2 2 2 1 2 2 2 2 1 1 1 1 1 2 2 2 1 2 2 2 1 1 1 2
+## [5995] 2 2 2 2 2 1 2 2 2 1 2 2 2 1 1 1 2 2 2 2 1 2 1 2 2 2 2 1 2 2 2 1 1 1 1 1 2
+## [6032] 1 2 2 1 1 2 2 1 2 2 2 2 2 2 2 2 2 1 2 2 1 1 2 2 2 1 2 2 1 1 1 1 1 2 2 2 2
+## [6069] 2 2 1 2 1 1 1 2 2 2 2 1 2 1 1 2 2 2 1 2 1 2 2 1 2 1 2 1 1 1 1 2 2 2 1 2 2
+## [6106] 1 1 2 1 2 2 2 2 1 2 2 1 1 2 1 2 2 1 1 2 1 2 1 1 1 2 2 2 1 2 2 2 2 1 1 2 1
+## [6143] 1 1 2 2 1 1 1 1 1 1 2 1 2 1 1 1 1 1 1 2 2 2 1 1 1 1 2 1 2 2 1 1 1 2 2 2 1
+## [6180] 2 1 2 2 1 1 1 1 2 1 2 2 2 1 1 2 1 2 1 2 1 2 2 2 1 1 1 2 1 2 1 2 1 2 2 2 2
+## [6217] 2 1 1 1 2 2 1 2 2 1 1 1 2 2 1 1 2 1 1 2 2 1 1 2 1 1 1 1 1 1 1 2 2 2 2 1 2
+## [6254] 1 2 2 2 2 2 1 1 2 2 1 1 1 2 2 1 1 1 1 1 2 2 1 1 1 1 2 2 2 1 2 1 2 1 2 2 2
+## [6291] 1 2 2 2 2 1 1 2 2 1 2 2 2 2 1 2 1 2 1 1 2 1 1 2 2 2 1 1 2 1 2 1 2 1 1 1 2
+## [6328] 1 2 2 2 1 2 2 1 1 1 2 1 1 1 2 1 1 2 1 1 1 2 2 1 1 2 1 2 1 1 2 1 2 1 2 1 2
+## [6365] 1 1 2 1 1 2 1 2 2 2 1 1 2 1 1 1 1 1 1 1 2 1 1 2 1 1 2 1 2 2 1 1 2 2 2 1 1
+## [6402] 2 2 2 1 2 2 2 1 2 1 1 2 1 2 1 1 2 1 2 2 2 1 1 1 2 2 2 2 2 2 2 2 1 1 1 1 2
+## [6439] 1 1 1 1 2 2 1 1 2 1 1 2 1 1 2 2 1 1 1 1 1 2 1 1 2 1 1 1 2 1 2 1 2 2 2 1 2
+## [6476] 1 2 1 2 1 1 2 2 1 1 2 2 1 2 2 1 1 1 1 2 2 1 2 1 1 2 1 1 2 2 2 2 2 1 2 2 1
+## [6513] 2 2 1 2 2 1 2 1 2 1 2 1 2 1 2 1 1 2 1 1 2 2 2 1 2 1 2 2 2 2 2 2 2 2 2 1 2
+## [6550] 2 2 2 1 2 2 1 2 1 2 2 1 2 1 1 1 1 1 2 2 2 1 2 1 1 1 1 2 2 1 1 2 1 1 1 2 2
+## [6587] 1 2 1 2 2 2 1 2 2 1 1 1 2 1 2 1 1 2 2 2 2 1 1 1 1 2 2 2 2 1 2 1 1 1 2 1 2
+## [6624] 1 1 2 1 1 1 2 2 2 2 2 1 2 1 1 1 1 1 2 2 2 2 2 2 2 1 2 2 1 2 1 1 2 2 2 2 2
+## [6661] 1 1 1 2 2 1 2 1 2 1 2 1 2 2 2 1 2 2 2 1 2 1 2 2 2 1 2 1 2 1 2 1 2 1 1 2 1
+## [6698] 2 1 2 1 1 2 2 2 2 1 1 1 2 2 1 1 1 1 1 1 1 1 2 1 2 1 1 2 1 1 1 1 2 2 1 1 2
+## [6735] 1 1 1 1 1 1 2 1 1 1 1 1 1 2 1 1 1 1 2 1 1 1 1 2 1 2 2 2 1 1 1 1 1 2 1 2 2
+## [6772] 1 1 1 2 2 1 2 2 2 1 2 1 2 1 2 2 1 2 2 2 2 2 1 1 1 2 2 2 2 1 1 2 1 2 1 1 2
+## [6809] 2 1 1 2 1 2 2 2 2 1 2 1 2 1 2 2 1 2 1 2 1 1 1 2 1 2 1 2 2 2 2 1 2 1 1 2 1
+## [6846] 1 2 2 1 1 1 2 2 2 2 1 2 2 2 2 2 2 2 2 1 2 1 2 2 1 2 2 1 2 2 2 1 1 2 2 2 2
+## [6883] 1 1 1 2 1 2 1 1 2 2 1 1 2 1 2 1 2 2 2 1 2 1 1 1 1 2 1 2 1 2 2 1 1 1 1 1 2
+## [6920] 1 2 1 1 1 1 1 2 2 2 2 2 2 1 1 1 2 2 1 2 1 1 2 1 2 1 1 2 2 2 1 1 1 2 2 2 1
+## [6957] 2 1 2 1 1 1 2 2 2 1 2 1 2 2 1 2 1 2 2 2 2 2 1 1 2 1 1 2 1 1 2 1 2 2 2 1 2
+## [6994] 1 2 1 2 1 2 1 1 1 2 2 1 1 2 1 1 1 1 2 1 2 1 2 1 2 1 2 1 2 1 1 2 1 2 1 2 1
+## [7031] 1 1 2 2 2 2 1 1 2 1 1 2 2 2 1 1 2 1 1 2 1 2 1 2 2 2 2 1 2 1 1 1 1 1 2 2 1
+## [7068] 2 2 2 1 2 2 1 2 1 2 2 1 2 1 1 2 2 2 2 2 1 2 2 2 1 1 2 2 1 2 2 1 2 2 2 2 2
+## [7105] 1 2 2 2 1 1 1 1 1 1 2 1 2 2 1 1 1 1 1 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 1
+## [7142] 1 1 2 1 2 1 2 1 2 1 1 1 2 1 1 1 1 1 1 2 1 1 2 2 2 2 1 2 1 2 2 1 1 1 2 2 1
+## [7179] 2 1 1 2 2 1 2 1 1 1 2 2 1 1 1 1 1 2 1 1 1 2 1 2 2 2 2 2 2 2 2 2 2 2 2 1 2
+## [7216] 1 2 2 2 1 2 1 1 1 1 2 1 1 2 1 1 1 1 2 1 2 1 1 1 2 1 2 1 1 2 2 1 2 1 2 2 1
+## [7253] 2 1 1 2 1 1 2 1 2 1 2 1 1 1 1 1 2 1 1 1 1 2 2 2 2 2 2 1 1 2 2 1 1 2 2 1 2
+## [7290] 1 2 2 2 2 1 1 2 1 1 2 2 2 1 1 1 1 1 2 2 2 1 1 1 1 1 1 2 2 2 1 1 2 1 2 2 1
+## [7327] 2 1 2 1 2 1 2 1 1 2 2 2 1 2 1 2 1 2 1 1 1 1 2 1 2 2 2 2 1 2 1 2 2 2 2 2 1
+## [7364] 2 1 1 1 2 2 2 1 2 1 2 1 1 1 2 2 2 2 2 1 1 2 2 2 1 1 1 2 1 2 1 2 2 1 2 1 2
+## [7401] 1 2 2 1 1 2 1 2 2 2 2 1 2 2 1 1 1 2 2 1 1 1 1 2 1 1 2 2 2 2 1 1 2 2 1 1 2
+## [7438] 2 2 2 2 2 2 2 2 1 2 1 2 1 2 2 1 2 1 1 2 2 2 2 2 2 2 2 2 1 2 1 1 2 1 2 2 2
+## [7475] 1 2 2 1 1 2 1 1 1 1 1 1 1 2 2 2 2 1 2 2 1 2 1 1 1 2 1 2 2 2 1 1 1 1 2 2 2
+## [7512] 1 1 2 2 1 2 1 1 2 1 2 2 2 1 2 1 1 1 1 2 2 2 1 2 2 1 1 1 1 1 1 2 2 1 1 2 2
+## [7549] 1 1 2 1 1 2 2 2 1 1 1 2 1 1 1 1 1 1 1 1 1 1 2 1 2 1 2 1 1 1 2 2 1 1 1 1 2
+## [7586] 2 1 1 2 2 2 1 1 1 1 1 1 1 1 1 1 1 2 1 2 2 2 1 1 2 2 2 2 1 1 1 2 2 1 2 1 2
+## [7623] 2 2 1 1 1 2 2 1 2 1 2 1 1 2 2 2 1 2 2 2 2 2 2 1 2 1 2 2 1 1 1 2 2 2 1 1 1
+## [7660] 1 2 2 1 2 2 2 2 1 1 1 1 1 2 2 1 1 1 1 1 2 2 1 2 2 2 1 2 1 2 2 2 2 1 2 2 2
+## [7697] 2 2 1 2 2 1 1 1 2 1 1 1 2 2 2 2 2 2 2 1 1 1 1 1 2 2 2 2 2 2 2 1 2 2 1 2 1
+## [7734] 1 1 2 1 1 2 2 1 2 1 1 1 2 2 1 2 1 2 2 2 1 2 1 1 1 1 2 1 2 1 1 1 2 2 1 1 1
+## [7771] 2 2 1 2 1 1 2 2 2 1 1 2 2 2 1 1 2 1 1 2 2 2 2 1 1 2 1 1 1 2 2 1 1 1 2 2 1
+## [7808] 2 1 1 2 2 1 1 1 1 1 1 2 1 1 2 1 2 1 2 1 2 1 2 1 1 2 1 2 1 1 2 2 2 2 2 1 2
+## [7845] 1 1 2 1 1 2 1 2 2 1 2 2 2 1 1 1 1 2 1 1 2 1 1 1 1 2 1 2 2 1 2 2 2 2 1 2 1
+## [7882] 1 2 2 2 2 2 2 2 1 1 1 1 2 2 2 2 1 1 2 1 2 2 2 2 1 2 1 1 1 1 1 2 1 2 1 1 2
+## [7919] 1 1 2 2 1 2 2 2 1 2 2 1 1 1 1 2 1 2 2 1 2 1 1 1 1 1 1 1 1 1 2 2 2 1 2 1 1
+## [7956] 2 2 2 1 2 1 1 1 1 1 2 2 2 1 1 1 2 2 1 2 2 2 2 2 1 2 1 1 2 1 2 1 2 1 1 1 1
+## [7993] 2 1 1 1 1 1 1 2 1 1 1 1 2 1 1 2 1 1 1 2 2 2 1 2 2 2 1 2 1 1 2 2 1 2 2 1 1
+## [8030] 2 1 2 2 2 1 1 1 2 1 1 1 2 2 2 2 2 2 2 2 2 2 1 1 2 2 2 2 1 2 2 1 2 1 1 2 2
+## [8067] 2 1 1 1 1 1 1 2 2 1 1 1 2 1 1 1 2 2 1 1 1 2 2 1 1 1 1 1 2 1 1 2 1 2 1 2 1
+## [8104] 1 2 1 1 1 1 2 1 2 2 2 2 1 2 2 2 2 2 2 1 2 2 1 1 2 1 1 2 1 2 2 1 2 1 2 1 2
+## [8141] 1 2 1 1 1 1 2 2 2 2 1 1 1 2 1 1 2 2 2 1 1 1 1 2 1 1 2 1 2 1 1 1 2 1 1 1 2
+## [8178] 2 2 2 1 2 2 2 2 2 1 1 2 1 1 2 1 1 1 2 1 2 1 2 1 2 1 1 1 1 1 2 1 2 2 2 2 1
+## [8215] 2 1 1 2 2 1 2 1 2 1 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 2 1 1 1
+## [8252] 1 2 2 1 1 2 2 2 2 2 1 1 2 2 2 2 2 1 1 1 1 2 1 2 1 2 1 2 1 1 2 1 2 1 1 1 2
+## [8289] 1 1 1 1 1 1 2 2 2 1 2 2 2 2 2 2 1 2 1 2 2 2 1 1 1 1 1 1 2 1 1 1 1 1 2 2 2
+## [8326] 2 2 1 1 1 1 1 1 2 2 2 2 2 1 2 1 2 2 1 1 1 2 1 1 1 1 2 1 2 2 1 1 2 2 1 2 1
+## [8363] 2 2 2 1 1 1 2 1 2 1 1 2 2 2 1 2 2 1 2 2 2 2 2 1 1 1 2 2 1 2 2 1 2 2 1 1 1
+## [8400] 1 1 2 2 1 2 1 2 1 1 2 1 1 2 2 2 1 2 2 2 2 2 1 2 2 1 2 1 2 1 1 1 2 2 1 1 2
+## [8437] 2 1 1 1 1 2 2 2 2 2 2 1 2 1 2 1 1 2 1 1 2 2 1 1 1 2 2 1 1 2 2 1 2 2 1 2 2
+## [8474] 2 1 2 1 1 2 1 1 2 1 1 1 2 2 1 2 2 1 1 1 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2
+## [8511] 2 2 2 2 1 2 2 1 2 2 2 1 2 1 2 1 1 1 2 2 2 2 2 1 1 2 1 1 1 1 2 2 1 1 2 1 1
+## [8548] 1 2 1 2 2 1 2 1 1 1 1 1 2 2 1 1 1 1 1 2 1 2 2 1 1 1 2 1 2 1 2 1 1 1 2 1 2
+## [8585] 2 1 1 1 1 1 1 2 1 2 2 2 2 2 1 1 2 1 2 2 2 2 2 2 1 2 2 1 1 1 2 2 1 1 2 1 1
+## [8622] 2 1 1 2 1 1 2 2 2 1 2 2 1 1 1 1 1 1 2 1 2 2 2 1 1 2 1 2 1 2 2 1 2 1 2 2 1
+## [8659] 2 2 2 1 2 1 2 1 2 2 2 1 2 1 2 2 1 1 1 1 2 1 2 2 2 2 2 1 2 2 2 2 2 1 2 1 1
+## [8696] 2 2 2 2 2 2 1 2 1 1 1 1 2 1 2 2 2 2 2 2 2 1 1 1 1 1 1 2 1 2 1 2 2 1 1 2 1
+## [8733] 2 1 1 1 1 1 1 1 2 2 1 2 1 1 2 1 1 2 1 1 1 1 2 2 1 2 1 2 2 1 2 1 2 1 2 2 1
+## [8770] 1 2 2 2 2 2 1 1 2 2 2 2 1 1 1 1 2 1 1 1 1 2 1 1 2 1 2 2 1 2 2 1 1 1 1 2 2
+## [8807] 1 1 1 2 2 1 2 2 2 2 1 1 2 2 1 2 2 1 2 1 1 2 2 2 1 2 1 1 2 1 1 1 1 2 2 2 2
+## [8844] 2 1 1 2 2 1 2 1 1 1 1 2 2 1 1 1 1 1 2 2 1 2 2 2 1 1 2 2 1 1 2 1 1 1 2 2 1
+## [8881] 2 1 1 2 2 1 1 1 2 2 1 1 2 1 1 2 2 2 1 2 2 1 2 2 2 1 2 2 2 2 1 1 1 1 1 1 1
+## [8918] 1 2 1 2 2 1 2 1 1 2 1 1 2 2 2 2 1 1 2 2 2 1 1 1 2 2 2 2 1 1 2 2 1 1 1 1 2
+## [8955] 1 1 1 1 2 2 2 2 1 1 2 1 1 2 1 2 1 1 2 1 2 1 1 2 1 1 1 1 1 2 1 1 1 2 2 2 2
+## [8992] 2 1 2 2 1 1 1 2 1 1 1 1 1 2 1 1 1 2 1 2 1 2 2 1 2 2 2 1 1 2 2 2 1 1 1 1 2
+## [9029] 1 1 2 2 1 1 1 2 1 1 2 2 2 1 1 2 1 2 1 2 2 2 2 1 1 2 1 1 1 1 1 1 2 2 1 1 2
+## [9066] 1 2 2 2 2 1 1 2 2 2 1 1 1 1 2 2 2 1 1 1 2 1 2 2 2 2 2 1 1 2 2 1 1 2 2 1 2
+## [9103] 1 1 1 2 1 1 1 2 2 1 1 1 1 1 2 2 2 1 2 2 1 1 2 2 2 1 1 2 2 1 1 1 1 2 2 2 1
+## [9140] 2 2 1 1 2 2 2 1 1 2 1 2 2 2 2 1 1 1 1 1 1 1 2 2 1 2 1 1 1 2 2 2 2 2 1 1 1
+## [9177] 1 1 2 1 2 2 1 2 1 1 2 2 1 1 1 1 2 1 1 2 1 1 1 2 2 1 1 1 2 1 1 1 2 1 1 1 1
+## [9214] 2 1 1 1 2 1 1 1 2 1 2 2 1 1 1 1 1 1 2 2 1 2 1 2 1 1 1 1 1 1 1 1 1 1 1 1 2
+## [9251] 1 2 2 2 2 2 1 2 1 1 2 2 1 1 2 2 1 2 1 2 1 2 2 1 1 1 1 1 1 2 1 2 1 2 2 1 1
+## [9288] 2 1 2 1 1 2 2 2 1 2 2 1 1 1 2 1 2 1 1 1 2 1 2 1 2 1 2 1 2 1 2 1 1 2 2 2 1
+## [9325] 2 2 2 1 1 1 2 2 2 1 2 1 2 1 1 2 1 2 2 1 2 1 1 2 1 2 2 1 1 2 1 2 1 1 1 2 2
+## [9362] 1 1 1 2 2 2 2 2 1 2 2 1 2 1 1 2 1 1 1 1 2 2 2 1 2 1 1 2 1 2 1 1 1 2 1 2 2
+## [9399] 1 1 2 2 1 1 2 1 1 1 1 1 1 1 2 2 2 1 1 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [9436] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 1 2 2 1 2 2 1 1 1 2 1
+## [9473] 1 2 1 2 1 2 2 2 1 1 2 1 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 2 2 2 2 2 2
+## [9510] 2 1 1 1 1 1 1 1 1 1 1 2 2 2 2 1 1 1 2 2 1 1 1 2 1 2 2 2 1 2 2 1 1 1 1 2 1
+## [9547] 1 1 2 2 2 2 1 2 2 1 2 1 2 1 2 2 2 1 1 2 2 1 2 2 2 2 1 1 2 2 1 1 2 2 1 1 2
+## [9584] 2 1 1 1 1 1 1 1 1 1 1 1 2 2 1 1 1 2 1 1 2 2 1 2 1 2 1 1 2 1 2 1 1 2 1 2 1
+## [9621] 1 2 2 1 2 2 1 1 2 1 2 2 2 2 2 2 1 2 2 2 1 1 1 1 2 1 2 2 2 2 2 1 1 2 2 1 1
+## [9658] 1 1 2 2 2 2 1 1 1 1 1 1 2 1 1 2 2 2 2 1 2 1 1 2 1 2 1 2 2 2 1 1 1 2 1 2 2
+## [9695] 1 2 2 2 1 2 2 2 2 1 1 2 2 1 1 1 2 2 1 2 1 2 2 1 1 1 2 2 1 2 2 1 2 1 2 1 1
+## [9732] 2 1 2 2 2 2 1 1 2 2 2 2 2 1 1 2 2 1 1 2 1 1 1 1 1 1 1 2 2 2 2 2 1 1 2 2 2
+## [9769] 1 1 2 2 2 1 2 1 2 2 2 2 1 2 1 1 2 1 1 2 1 2 1 1 1 1 2 1 1 1 1 1 2 1 2 1 2
+## [9806] 2 1 1 1 1 2 1 1 1 2 2 1 2 2 2 1 2 2 1 2 2 2 2 1 1 2 1 2 2 1 1 2 1 2 1 2 2
+## [9843] 1 1 1 1 2 2 2 2 1 2 1 1 2 1 2 1 2 1 2 1 2 1 1 1 1 2 1 2 1 2 2 2 2 1 1 2 1
+## [9880] 1 2 1 1 1 1 1 1 1 1 1 2 2 1 2 1 1 2 2 2 2 1 2 1 2 1 2 1 1 2 1 2 2 1 1 1 2
+## [9917] 1 1 2 2 1 2 1 1 1 2 1 1 1 1 2 2 1 1 1 1 1 2 2 1 2 2 1 1 1 2 2 2 1 1 1 2 2
+## [9954] 1 1 1 1
+## Levels: 1 2
+```
+
+---
+
+### Change the `levels` of the `gender` variable
+
+
+```r
+levels(dat1$gender_c) &lt;- c("f", "m")
+dat1$gender_c
+```
+
+```
+##    [1] f m m m m m f f m f m f m f f f m m f f m m f f m f f m f m f f f f f f m
+##   [38] f m m m m f m m f f f m m m f m m f f m m m f m m m m f m m f m m f f m m
+##   [75] m f f m f f m f m f m f f f f f m f m f f m f m m m m m m m m f f f f m f
+##  [112] m m m m m f f m m m m m f m f m f m f m m f m f m f f f m f m f f f m m f
+##  [149] f m m m f m f m m m m m f f m f f f m f m f m m f m m m f m m m m m f m f
+##  [186] f m f f m m f m f f f m m m f f m f f f m m m f f f f m f m f f f m f m m
+##  [223] f m m f m f f f m m m f m f f f m m m f m f m m m f m m f f f m f f m m m
+##  [260] m f m f f f f f f f m f f f m f f f m f m f m m f m f f m f m f f m m m f
+##  [297] m m f m m f f m m m f f m m f m m m f m f f f m m f m m m f m m m f m m m
+##  [334] m m f m f f f f f m m f m m f m f m m m f m f f f m f f m m m f f m m f m
+##  [371] f m m m f m f f f m f f m f m f f f m f m f m m m f f f m m f f m f m m m
+##  [408] f m f m f f m m m m m f m f m f f m m f m f f f f m m f m m m m f f f f m
+##  [445] m f f m m f f f f f f m f m f f f f f m m f f m m f m f f f f f m m m f m
+##  [482] f m f f f f f m f m m m m m f m f f m f f m m f m f f f f f m m m f m f m
+##  [519] f f f f m f f f m f f m f f f m f f m m f m m f f f m f m m f f m f f f m
+##  [556] m f m f f f f m m m f m m m m m f f f m m m f m f m m m f m f f f m m f m
+##  [593] f f m f f m f f f m f m m m f f f m f f m m m f m f f m m m m m m m m m f
+##  [630] m f m f f m f f f f f m m f f f f f f f m f m m m m f m m f f f f f m m f
+##  [667] f f m f m m m f m f m f f m m f f m m m f f m f f m m m m f f f f m m f m
+##  [704] m f m f f f m m f f f f f f m f f m f f f m m f f f m f m f m f f m m m f
+##  [741] m m m f m m f f m f f m f m m m f m f m m f f f m m m f f m f f m f f m m
+##  [778] f m m f m m f f f m f f m f m f m f f m m f f f m f f f f f f f m m m m m
+##  [815] f m m f m f m f m m m m f m f f m m m f f m f f f m m f m m f m m m f m f
+##  [852] m m m m m m m f m f f m m f f f f f m m f m f m f m f f m f m m f m m m f
+##  [889] m m m m f m m m m f m f f m m f m m m m f f f f m m m f f m m f f m f f m
+##  [926] f m f m m m f f f f m m f f m f f m f f f f f f m m m m f f m m f f f f m
+##  [963] f m f m m m m m m m m f m f m f f f m f f f f f f m f f f m f m m m m f m
+## [1000] f f m f m f m f m m m f f f m m m m m f m f f f f f m f m f f f f f m f m
+## [1037] f m m f f f m m m f f f m f m f m f m f m m m m f m m f m m f m f m f f m
+## [1074] m m f f m m m f m m m m m m m f m f f m f f f f f f f f f f f f f f m f m
+## [1111] m m m f f f m m m m m f m m m m m f f f m f m f f f f f m f f f f f m m m
+## [1148] m f m f f m f f f m f m m m f m m f f m f f m f m m f m m m m m f f f m f
+## [1185] f m m f m f f f f m f f m m f m f m f m f f m f f f m m f m f f m m m m f
+## [1222] f m m f f f f m m f f f m f m m m m m f m m f m m f m m m m f m f m m f f
+## [1259] m m f m f m f m m m m m m f m f m f f f m m f f m m f m f m f f m m m m m
+## [1296] f f m f f f f m m m m f m f f m m f m f f f f f m m m m m m m f f m m f f
+## [1333] f m f m f f f f m f m f m m m m f m f m m m m m f f f m f m m m m f m m f
+## [1370] f m f f m f m f m m f f f m m m m m f f m f f m f m m m m f f m f f f m f
+## [1407] m m f f m m m m m m m m f m m f m f f f f f m m m f m f f f m f m m f f m
+## [1444] f m f m m m f f f m m m f f m f f m f f f f f m f m m f f f m m m f f m f
+## [1481] m m m f m f f m f f m f m f m f m f f m m m m m f f m m f m m m f f m f f
+## [1518] f m f f f m f f m f f f f f m f f f f f f m m m f f m m m m f f m m f m m
+## [1555] m m m m m m f m f f m m m m f m f m f f m m f f f m f f f f f f m f f f m
+## [1592] f f m f f m f f m m f m f f m f m f m f f m m f m f f f f f f f m m f f f
+## [1629] m f f f f m f f m f f f f f f m f f m f m f m m m f f f m f f f m f f m m
+## [1666] f f f f f f f f f f m f m m m m m m m m m f m m m m m m f f f m f f f f m
+## [1703] m m m m m f m m m f m f f f f m f m m f m m m f f m m f m m f f m m f f m
+## [1740] m m f m m m f f f m m m f m f m f m m m m f f m m f f f m f m f f m f f m
+## [1777] m f m f f f m m m f f f m m f m f m m m m m m m m f f m f m f m m f f m f
+## [1814] f f f f f f m f f m m f f f m f f m f f f f m f f m m f m m m m f f f f f
+## [1851] f f f m f f m m f m f f m m f f f m f f f m f m m f m m f f m m m f f m m
+## [1888] f f f m f f m f f m m m f f m m f f f m f m m f m f m f f f m m f m m f m
+## [1925] f f f m m f m f m m f m f f m m f f f f f m m f m f f m m f m f m m f m f
+## [1962] f f f f m m f f f m m m f f m m m f f m f f f m f m f f f m m m f f f f f
+## [1999] m m f m m f m f m m m m m f m m m f m f f f m m f m m m m m f m m m f f m
+## [2036] f m m f f m f f m f m m m f f f m m m m m m m m f f m f m f m m f m m f f
+## [2073] f f f f f m m f f f f m f m m f m f m m m f m m f m m f f f f f m m m m m
+## [2110] m m f m m f f m m f f f f m f f m m m f m f f m f f f f f f m m m f f m m
+## [2147] m f m m m m m f m f f m f f f f f m m f m m f f m f m m f m f m m f m m m
+## [2184] m m m m f m f m m m m f f f m m m f f m f m m m f f m f f m f f f m m m m
+## [2221] f m m m m m f m m f m f f m m m f m m f f f f f m f f m m m m f f f f f f
+## [2258] m f f m f f m f m f m m m m m m m m m m m m m f m f m f m m m m m m f m f
+## [2295] m m f m f f f f f f f f m m m m f f f f f f m f f f m f m f m f m m f f f
+## [2332] m m m f f m f m f m m m f f m f m f m m f f m m f f m m f m f f m m f m m
+## [2369] f m f f m m f m f f f m f f m f f f f f m f m f f m f m m f m f m m f m m
+## [2406] m f m f f f m m m m f f f f m f f f f m f f m m m f f f f m m m m f f m m
+## [2443] m m m f f m m f f f f m f f m f f f m f m f f m f m f m f f f f m f f f f
+## [2480] f f f f f f m f f f f m m m m m f m m f m f m m m f f f m m m m m f m f m
+## [2517] f m m f m f m f f m m m f f f m f m m m f m f m f m f m m f m f f f f f f
+## [2554] m f f m m f m f m f m m f m m m m m f m f f m f m f f f f m f f f f m f f
+## [2591] m m m m f f f m m m f m f f f f m m f f m m f f f f f m f f f f f m f m m
+## [2628] m m m m m m m m f m f f f f f m m m m f m f m m m f f f f m f m m m m f f
+## [2665] m f m m m f m m m m f m f f f m m f f f m m f f f f m m m f m m f m m f f
+## [2702] m m m m m m f f f f f f m f m m m m f f m f f f m m f m f m m f m f m f f
+## [2739] f f m m f m f m m f m f m m f f f f m m m f f m m f f f m f f m f m f f f
+## [2776] m m f f f f f f f f m f f f m m f f f m f f m m m m m m m m f f f m m m f
+## [2813] m m m f m m m m m f f m f f m f m m m f m m f f f m m f f f m f f f m f f
+## [2850] m f f f f m m f m f f m m m f f f f f f f m m m f m m m f f f f m m m m m
+## [2887] m f f f m f m f f m f m f f f m f f m m m m m f f m f f m m f m m f m f f
+## [2924] f f m m m f f f f m f m m f m m m m f f m m f m m f m m m m m m f m f f f
+## [2961] m m m f m f f m f f m f f f f f m m m f m f m m m m m f m f m m f f m f m
+## [2998] f m m m m f f m m m m m m f m f m m f f f m f m f f m m m f m m m m f m f
+## [3035] m m f f m m m m f m m m m m f m m f f f f f f f m f f m m f f m m m m f f
+## [3072] f m m f f f m m f m f f m f f f m f m m m m f f m f f m m f f f m f m f f
+## [3109] f m m m f f m f f f m m f f m f f m m f f f f m m f f m m f m m f f f m f
+## [3146] f f m m f m f m m f f m f f f m f f m f m m f f m f f f m m f m f m f f f
+## [3183] f m m m f m m m f m m f f f f f m f f f m m m f m f m m f f m m m m m f f
+## [3220] m m f m f m f m f m f f m f m f m f f f f f f m m f f m m m f m m f f f m
+## [3257] f f f m f m f m f f m m m f f f f f m m f f f f f f f m f m m f f f m f m
+## [3294] f f f m f m f m f f f m f f m f f f f f m f f m f f f f f m m m m f m f f
+## [3331] f m f m m f m m f m m m f m f m f m f m f m f m m f m f f m m m m m f m m
+## [3368] f m m m f f f f f m m m f m m m f m m f f f f m m f f m m f f f m f m m f
+## [3405] m m m f f m m f f m f f f f f f f f f m m f f m f m m f f m f f f m m m m
+## [3442] f m f m f m f m m m m m f m f f f m m m m f m f f m m m f m m f f f m m m
+## [3479] m f m f f m f m m m m f f m f m m m m m f f m m m m f m m m m f f f f f f
+## [3516] m m m f f m m m f m f f f m m m f f m f m m f f m f f m m f f f m f f f f
+## [3553] m f m m m f m m m m m f f m m f m f f f f f f m m f f m m f f m m m f f m
+## [3590] f f f f f f m f f f f m f f f m m f m f m f f m f m f m f m m m f f f m f
+## [3627] m f f m f m m m f f f f m m f f f m m m f f f m f m f f f f f m m m f f m
+## [3664] f f f m m m m m m m m m f f f f m f f m m f f f m m f f f m f f m m f f m
+## [3701] m f f f f m m f m m m m m m f m f m m f m m m f m m f m m f f m f m f f f
+## [3738] m f m m m f m f f f f m m f m m m f f m f m f f f f f m m f f f m m m m m
+## [3775] m m m m f m f f f m f f f m m m f m m f f m m f f f f m m m m f m f f f f
+## [3812] f f m m f m m f m f m m f f m f f f m m f m m m f f f m f f f m m f m m m
+## [3849] f f m f m f f f f f m m f f m m m f m f m f f m m f f f f f m m f f m m m
+## [3886] m f m m m f f m m m f m m f f f m m m f m m f m m f m f m m m m f f f m f
+## [3923] f m f m f m f f f f m f f f f m m f f m f f f f f f f f f f f f m m m m m
+## [3960] f m f f f f f m m f m f m m m f f f f m f m m m f m m m m m f m f m m m f
+## [3997] f m m f m f f f f m m m m f m f f m m m m f m m f f f f m f f f m m m f m
+## [4034] m f m f f f m f m m m m m f f f f f f m f m m m f f f f m m f m f f m f m
+## [4071] m f m m f f m f f m m f f f f f m f f f f m m m m f m m f m f m f f m m m
+## [4108] m m m f f m m m f f f m f f f f f f f f m m m m m m f m m m m m f f f f m
+## [4145] f m m m f f m f f m m m f f f m m f m m f m m f m m f f m m m m f m f m f
+## [4182] m f f f f f f m f f f f f m m f f m f f m f f f f m m m f m f m m f f f f
+## [4219] m f f f f m f f m m f f f f m f f m m m f m m f m m m f f f f f m f f m f
+## [4256] m f f f m m f f f f f f m m f m f f f f f f f m f m f f f f m f m m m m f
+## [4293] f m f f m m m f f f m f f m m m f m m f f f f f f f m f m m f f f m m f f
+## [4330] m m f m f f m m m m f m m m m f m f m m m m m f f f m m f f m f m m m f f
+## [4367] f f m f f m m m m m f f f f m m f f m f m f f m m m f m f f m f m m f f f
+## [4404] m f f f f m f m m m m f f m f f m f f f f f f f m f m f m f m f m f f m f
+## [4441] m m f f f f m f m m m f m m m f f m m m f f f m m f m m f f m f f m f f f
+## [4478] f m f m f f f f f m m m f m m f m m m f f f f m m f m m m m f m m f m m f
+## [4515] f f f f m f f m m m f m m m f f m f m f m m f f f f m f f m m f f m f f m
+## [4552] f m f m f m f f f m m m m m f m m m m f m m m f f f f m m f f f m f m f m
+## [4589] f f m f f f f m f m m f m f f f m f f m f f f m m m m f f m m f f f m f m
+## [4626] f m m f f m f f f m f m f f m f m f f m m f f f m f m m f f f f f f m f m
+## [4663] m m m m m m m m m m f f m f f m f f f m f f f m f m f m f m m m m m f f f
+## [4700] f m m m m m m f f f m m f f f f m m f f m f m m m m f m f f m f m f m m m
+## [4737] f m f f f m m f m m m f f m m f f m f m f f f f m f f f m m m f m f m f m
+## [4774] f f f m f m f f f m m m m f f m m f f f f m f m f m m f f f m f m f m f m
+## [4811] f f m m f f m f f m f m m m m m m f m f m f f f m f f m m f m m m m f m f
+## [4848] f m m f m m m m m f m m m f f m f f f m m f m m f f f f m m m m m m m f m
+## [4885] f f f m f f m m m m m f m f m f m m f f m f m m f m m f f m f m f m m f m
+## [4922] f m f m f m f m m m f f m m f f f f m f m f f m m f f m m m m f m f f m m
+## [4959] m f f m m f m m f f m m f f m f m m f m f m f f m m m f f f f m m f m m m
+## [4996] f f f m m f f f m f f f f f m f m f f m f f m f m m f m f m m f f m f m f
+## [5033] m f f m f m f m f f f m f m m f f m f m m f m m m m m f m f m m f m m f m
+## [5070] m m m f m m m f f m m f m m f m m m f f f m m m m m m m m f f m f f f m f
+## [5107] m f m f f f m m f m f m m m f f m m m m f f m m m f m f f m m f m f f m f
+## [5144] m m f f m m f f f m m f f m m m f m m f f m m f f f m f m f m f f f m f m
+## [5181] f m f f f f m f f m f m m m m f f f m m m f f m m m f f f f m m m f f m f
+## [5218] m f f m m m m f f f m m f m m f m m m m m m f m f m f f f f f f m f f f f
+## [5255] f m f m f m f f m f f m m f f m f m f f m f m f f m m f m m m f m m m f m
+## [5292] m m m f f f m f m m f f m m f m m m f m m f m f f m f f m m f m f f m f m
+## [5329] m f f f f m m m m m m f f m m f f m f m f f f m f f m f f m m m m f f f m
+## [5366] f f f m f f m m m m m m m f f f f f f m f m f m f m f f f m f f f f m f f
+## [5403] f f m m f m f m f m f f m m m f m f m m f f m f m m f m m f m m m f f m m
+## [5440] m f f f m f m f m m m f f f m f f m m f f m m m f m f f m m f f m f m f m
+## [5477] m m m m f m m f m f f m m f f f f m m f m f f m m m m m m m f f f m f m f
+## [5514] f m f f f f m m m f m m m m f f f m f m m m m f m f f f m m m f m m f m m
+## [5551] m f f m f f f m f m f m m f f m m f f m f m f f f m f m f m f m m m m f m
+## [5588] f m m f f m f m f m m f f m f m f f m m f m f m m m f m m m m m m f m m f
+## [5625] m m f f m f m m f f f m f f m m f f m m f f m f m f m m m f m m m m f f f
+## [5662] f f f f f f m m m m f f m f f f f m f f f f f f m f f m f m f f f f m f f
+## [5699] m m f m f f f m f m f m f f f f m f m m m m f m f m f m m f m f m f m m m
+## [5736] f m f f m f m f m f m m m m f m f m m m m m f m m m f m f m m f f m m f f
+## [5773] f f f f m f m f m m m f f m f f f f m f f f f m f m m f m f m m m f f f m
+## [5810] f f m m f f m f f m f m f m m f m m m f f m f m m f m m f f m f m f f m m
+## [5847] f m f f f f f m m f m f f f m m m m f m f m f f m m f f m m f f m m f m f
+## [5884] f f f m f f m m f f m m f f f m f f m f m m f f f f m m m f f m m m m m m
+## [5921] f f f f f f f m f f m m m f m m m f m m f f m f f f m f m f m f m f f f m
+## [5958] m m m f m m m m f f m m m m m m f m m m m f f f f f m m m f m m m f f f m
+## [5995] m m m m m f m m m f m m m f f f m m m m f m f m m m m f m m m f f f f f m
+## [6032] f m m f f m m f m m m m m m m m m f m m f f m m m f m m f f f f f m m m m
+## [6069] m m f m f f f m m m m f m f f m m m f m f m m f m f m f f f f m m m f m m
+## [6106] f f m f m m m m f m m f f m f m m f f m f m f f f m m m f m m m m f f m f
+## [6143] f f m m f f f f f f m f m f f f f f f m m m f f f f m f m m f f f m m m f
+## [6180] m f m m f f f f m f m m m f f m f m f m f m m m f f f m f m f m f m m m m
+## [6217] m f f f m m f m m f f f m m f f m f f m m f f m f f f f f f f m m m m f m
+## [6254] f m m m m m f f m m f f f m m f f f f f m m f f f f m m m f m f m f m m m
+## [6291] f m m m m f f m m f m m m m f m f m f f m f f m m m f f m f m f m f f f m
+## [6328] f m m m f m m f f f m f f f m f f m f f f m m f f m f m f f m f m f m f m
+## [6365] f f m f f m f m m m f f m f f f f f f f m f f m f f m f m m f f m m m f f
+## [6402] m m m f m m m f m f f m f m f f m f m m m f f f m m m m m m m m f f f f m
+## [6439] f f f f m m f f m f f m f f m m f f f f f m f f m f f f m f m f m m m f m
+## [6476] f m f m f f m m f f m m f m m f f f f m m f m f f m f f m m m m m f m m f
+## [6513] m m f m m f m f m f m f m f m f f m f f m m m f m f m m m m m m m m m f m
+## [6550] m m m f m m f m f m m f m f f f f f m m m f m f f f f m m f f m f f f m m
+## [6587] f m f m m m f m m f f f m f m f f m m m m f f f f m m m m f m f f f m f m
+## [6624] f f m f f f m m m m m f m f f f f f m m m m m m m f m m f m f f m m m m m
+## [6661] f f f m m f m f m f m f m m m f m m m f m f m m m f m f m f m f m f f m f
+## [6698] m f m f f m m m m f f f m m f f f f f f f f m f m f f m f f f f m m f f m
+## [6735] f f f f f f m f f f f f f m f f f f m f f f f m f m m m f f f f f m f m m
+## [6772] f f f m m f m m m f m f m f m m f m m m m m f f f m m m m f f m f m f f m
+## [6809] m f f m f m m m m f m f m f m m f m f m f f f m f m f m m m m f m f f m f
+## [6846] f m m f f f m m m m f m m m m m m m m f m f m m f m m f m m m f f m m m m
+## [6883] f f f m f m f f m m f f m f m f m m m f m f f f f m f m f m m f f f f f m
+## [6920] f m f f f f f m m m m m m f f f m m f m f f m f m f f m m m f f f m m m f
+## [6957] m f m f f f m m m f m f m m f m f m m m m m f f m f f m f f m f m m m f m
+## [6994] f m f m f m f f f m m f f m f f f f m f m f m f m f m f m f f m f m f m f
+## [7031] f f m m m m f f m f f m m m f f m f f m f m f m m m m f m f f f f f m m f
+## [7068] m m m f m m f m f m m f m f f m m m m m f m m m f f m m f m m f m m m m m
+## [7105] f m m m f f f f f f m f m m f f f f f m m m m f f f f m m m m m m m m m f
+## [7142] f f m f m f m f m f f f m f f f f f f m f f m m m m f m f m m f f f m m f
+## [7179] m f f m m f m f f f m m f f f f f m f f f m f m m m m m m m m m m m m f m
+## [7216] f m m m f m f f f f m f f m f f f f m f m f f f m f m f f m m f m f m m f
+## [7253] m f f m f f m f m f m f f f f f m f f f f m m m m m m f f m m f f m m f m
+## [7290] f m m m m f f m f f m m m f f f f f m m m f f f f f f m m m f f m f m m f
+## [7327] m f m f m f m f f m m m f m f m f m f f f f m f m m m m f m f m m m m m f
+## [7364] m f f f m m m f m f m f f f m m m m m f f m m m f f f m f m f m m f m f m
+## [7401] f m m f f m f m m m m f m m f f f m m f f f f m f f m m m m f f m m f f m
+## [7438] m m m m m m m m f m f m f m m f m f f m m m m m m m m m f m f f m f m m m
+## [7475] f m m f f m f f f f f f f m m m m f m m f m f f f m f m m m f f f f m m m
+## [7512] f f m m f m f f m f m m m f m f f f f m m m f m m f f f f f f m m f f m m
+## [7549] f f m f f m m m f f f m f f f f f f f f f f m f m f m f f f m m f f f f m
+## [7586] m f f m m m f f f f f f f f f f f m f m m m f f m m m m f f f m m f m f m
+## [7623] m m f f f m m f m f m f f m m m f m m m m m m f m f m m f f f m m m f f f
+## [7660] f m m f m m m m f f f f f m m f f f f f m m f m m m f m f m m m m f m m m
+## [7697] m m f m m f f f m f f f m m m m m m m f f f f f m m m m m m m f m m f m f
+## [7734] f f m f f m m f m f f f m m f m f m m m f m f f f f m f m f f f m m f f f
+## [7771] m m f m f f m m m f f m m m f f m f f m m m m f f m f f f m m f f f m m f
+## [7808] m f f m m f f f f f f m f f m f m f m f m f m f f m f m f f m m m m m f m
+## [7845] f f m f f m f m m f m m m f f f f m f f m f f f f m f m m f m m m m f m f
+## [7882] f m m m m m m m f f f f m m m m f f m f m m m m f m f f f f f m f m f f m
+## [7919] f f m m f m m m f m m f f f f m f m m f m f f f f f f f f f m m m f m f f
+## [7956] m m m f m f f f f f m m m f f f m m f m m m m m f m f f m f m f m f f f f
+## [7993] m f f f f f f m f f f f m f f m f f f m m m f m m m f m f f m m f m m f f
+## [8030] m f m m m f f f m f f f m m m m m m m m m m f f m m m m f m m f m f f m m
+## [8067] m f f f f f f m m f f f m f f f m m f f f m m f f f f f m f f m f m f m f
+## [8104] f m f f f f m f m m m m f m m m m m m f m m f f m f f m f m m f m f m f m
+## [8141] f m f f f f m m m m f f f m f f m m m f f f f m f f m f m f f f m f f f m
+## [8178] m m m f m m m m m f f m f f m f f f m f m f m f m f f f f f m f m m m m f
+## [8215] m f f m m f m f m f m m m m m f f f f f f f f f f f f m f f f f f m f f f
+## [8252] f m m f f m m m m m f f m m m m m f f f f m f m f m f m f f m f m f f f m
+## [8289] f f f f f f m m m f m m m m m m f m f m m m f f f f f f m f f f f f m m m
+## [8326] m m f f f f f f m m m m m f m f m m f f f m f f f f m f m m f f m m f m f
+## [8363] m m m f f f m f m f f m m m f m m f m m m m m f f f m m f m m f m m f f f
+## [8400] f f m m f m f m f f m f f m m m f m m m m m f m m f m f m f f f m m f f m
+## [8437] m f f f f m m m m m m f m f m f f m f f m m f f f m m f f m m f m m f m m
+## [8474] m f m f f m f f m f f f m m f m m f f f m m m m m m m m f m m m m m m m m
+## [8511] m m m m f m m f m m m f m f m f f f m m m m m f f m f f f f m m f f m f f
+## [8548] f m f m m f m f f f f f m m f f f f f m f m m f f f m f m f m f f f m f m
+## [8585] m f f f f f f m f m m m m m f f m f m m m m m m f m m f f f m m f f m f f
+## [8622] m f f m f f m m m f m m f f f f f f m f m m m f f m f m f m m f m f m m f
+## [8659] m m m f m f m f m m m f m f m m f f f f m f m m m m m f m m m m m f m f f
+## [8696] m m m m m m f m f f f f m f m m m m m m m f f f f f f m f m f m m f f m f
+## [8733] m f f f f f f f m m f m f f m f f m f f f f m m f m f m m f m f m f m m f
+## [8770] f m m m m m f f m m m m f f f f m f f f f m f f m f m m f m m f f f f m m
+## [8807] f f f m m f m m m m f f m m f m m f m f f m m m f m f f m f f f f m m m m
+## [8844] m f f m m f m f f f f m m f f f f f m m f m m m f f m m f f m f f f m m f
+## [8881] m f f m m f f f m m f f m f f m m m f m m f m m m f m m m m f f f f f f f
+## [8918] f m f m m f m f f m f f m m m m f f m m m f f f m m m m f f m m f f f f m
+## [8955] f f f f m m m m f f m f f m f m f f m f m f f m f f f f f m f f f m m m m
+## [8992] m f m m f f f m f f f f f m f f f m f m f m m f m m m f f m m m f f f f m
+## [9029] f f m m f f f m f f m m m f f m f m f m m m m f f m f f f f f f m m f f m
+## [9066] f m m m m f f m m m f f f f m m m f f f m f m m m m m f f m m f f m m f m
+## [9103] f f f m f f f m m f f f f f m m m f m m f f m m m f f m m f f f f m m m f
+## [9140] m m f f m m m f f m f m m m m f f f f f f f m m f m f f f m m m m m f f f
+## [9177] f f m f m m f m f f m m f f f f m f f m f f f m m f f f m f f f m f f f f
+## [9214] m f f f m f f f m f m m f f f f f f m m f m f m f f f f f f f f f f f f m
+## [9251] f m m m m m f m f f m m f f m m f m f m f m m f f f f f f m f m f m m f f
+## [9288] m f m f f m m m f m m f f f m f m f f f m f m f m f m f m f m f f m m m f
+## [9325] m m m f f f m m m f m f m f f m f m m f m f f m f m m f f m f m f f f m m
+## [9362] f f f m m m m m f m m f m f f m f f f f m m m f m f f m f m f f f m f m m
+## [9399] f f m m f f m f f f f f f f m m m f f m f m m m m m m m m m m m m m m m m
+## [9436] m m m m m m m m m m m m m m m m m m m m m m f m m m f m m f m m f f f m f
+## [9473] f m f m f m m m f f m f m m m m m m m m m m m f f f f f f f f m m m m m m
+## [9510] m f f f f f f f f f f m m m m f f f m m f f f m f m m m f m m f f f f m f
+## [9547] f f m m m m f m m f m f m f m m m f f m m f m m m m f f m m f f m m f f m
+## [9584] m f f f f f f f f f f f m m f f f m f f m m f m f m f f m f m f f m f m f
+## [9621] f m m f m m f f m f m m m m m m f m m m f f f f m f m m m m m f f m m f f
+## [9658] f f m m m m f f f f f f m f f m m m m f m f f m f m f m m m f f f m f m m
+## [9695] f m m m f m m m m f f m m f f f m m f m f m m f f f m m f m m f m f m f f
+## [9732] m f m m m m f f m m m m m f f m m f f m f f f f f f f m m m m m f f m m m
+## [9769] f f m m m f m f m m m m f m f f m f f m f m f f f f m f f f f f m f m f m
+## [9806] m f f f f m f f f m m f m m m f m m f m m m m f f m f m m f f m f m f m m
+## [9843] f f f f m m m m f m f f m f m f m f m f m f f f f m f m f m m m m f f m f
+## [9880] f m f f f f f f f f f m m f m f f m m m m f m f m f m f f m f m m f f f m
+## [9917] f f m m f m f f f m f f f f m m f f f f f m m f m m f f f m m m f f f m m
+## [9954] f f f f
+## Levels: f m
+```
+
+---
+
+#### Compute frequencies for categorical variables
+
+Use `summary()`
+
+
+```r
+summary(dat1)
+```
+
+```
+##      gender           math          resource        confidence    
+##  Min.   :1.000   Min.   :248.2   Min.   : 4.232   Min.   : 3.196  
+##  1st Qu.:1.000   1st Qu.:460.5   1st Qu.: 9.623   1st Qu.: 8.999  
+##  Median :1.000   Median :520.3   Median :10.918   Median :10.130  
+##  Mean   :1.494   Mean   :517.2   Mean   :10.800   Mean   :10.280  
+##  3rd Qu.:2.000   3rd Qu.:575.6   3rd Qu.:11.622   3rd Qu.:11.431  
+##  Max.   :2.000   Max.   :762.2   Max.   :13.884   Max.   :15.925  
+##      value          belonging      gender_c
+##  Min.   : 2.999   Min.   : 3.048   f:5038  
+##  1st Qu.: 8.555   1st Qu.: 8.306   m:4919  
+##  Median : 9.994   Median : 9.390           
+##  Mean   : 9.981   Mean   : 9.580           
+##  3rd Qu.:11.371   3rd Qu.:11.055           
+##  Max.   :13.653   Max.   :13.622
+```
+
+---
+
+#### Compute frequencies for categorical variables
+
+Use `table()`
+
+
+```r
+table(dat1$gender_c)
+```
+
+```
+## 
+##    f    m 
+## 5038 4919
+```
+
+
+---
+
+#### Compute descriptives for quantitative variables
+
+Use `summary()`
+
+
+```r
+summary(dat1)
+```
+
+```
+##      gender           math          resource        confidence    
+##  Min.   :1.000   Min.   :248.2   Min.   : 4.232   Min.   : 3.196  
+##  1st Qu.:1.000   1st Qu.:460.5   1st Qu.: 9.623   1st Qu.: 8.999  
+##  Median :1.000   Median :520.3   Median :10.918   Median :10.130  
+##  Mean   :1.494   Mean   :517.2   Mean   :10.800   Mean   :10.280  
+##  3rd Qu.:2.000   3rd Qu.:575.6   3rd Qu.:11.622   3rd Qu.:11.431  
+##  Max.   :2.000   Max.   :762.2   Max.   :13.884   Max.   :15.925  
+##      value          belonging      gender_c
+##  Min.   : 2.999   Min.   : 3.048   f:5038  
+##  1st Qu.: 8.555   1st Qu.: 8.306   m:4919  
+##  Median : 9.994   Median : 9.390           
+##  Mean   : 9.981   Mean   : 9.580           
+##  3rd Qu.:11.371   3rd Qu.:11.055           
+##  Max.   :13.653   Max.   :13.622
+```
+
+---
+
+#### Compute descriptives for quantitative variables
+
+Use `describe()` from the `psych` package
+
+
+```r
+install.packages("psych")
+```
+
+
+```r
+library(psych)
+```
+
+
+```r
+help(psych)
+```
+
+---
+
+#### Compute descriptives for quantitative variables
+
+Use `describe()` from the `psych` package
+
+
+```r
+psych::describe(dat1) 
+```
+
+```
+##            vars    n   mean    sd median trimmed   mad    min    max  range
+## gender        1 9957   1.49  0.50   1.00    1.49  0.00   1.00   2.00   1.00
+## math          2 9957 517.21 81.75 520.32  518.16 85.06 248.22 762.23 514.01
+## resource      3 9957  10.80  1.66  10.92   10.77  1.83   4.23  13.88   9.65
+## confidence    4 9957  10.28  2.34  10.13   10.19  1.93   3.20  15.93  12.73
+## value         5 9957   9.98  2.00   9.99    9.94  2.04   3.00  13.65  10.65
+## belonging     6 9957   9.58  1.98   9.39    9.51  1.77   3.05  13.62  10.57
+## gender_c*     7 9957   1.49  0.50   1.00    1.49  0.00   1.00   2.00   1.00
+##             skew kurtosis   se
+## gender      0.02    -2.00 0.01
+## math       -0.10    -0.26 0.82
+## resource   -0.06    -0.04 0.02
+## confidence  0.28     0.72 0.02
+## value      -0.02     0.16 0.02
+## belonging   0.21     0.04 0.02
+## gender_c*   0.02    -2.00 0.01
+```
+
+---
+
+#### Compute descriptives for quantitative variables
+
+Use more basic functions
+
+
+```r
+attach(dat1) # save some typing
+mean(math, na.rm = TRUE)
+```
+
+```
+## [1] 517.2056
+```
+
+```r
+median(math, na.rm = TRUE)
+```
+
+```
+## [1] 520.3153
+```
+
+```r
+var(math, na.rm = TRUE)
+```
+
+```
+## [1] 6683.496
+```
+
+```r
+sd(math, na.rm = TRUE)
+```
+
+```
+## [1] 81.75265
+```
+
+```r
+quantile(math, na.rm = TRUE)
+```
+
+```
+##       0%      25%      50%      75%     100% 
+## 248.2235 460.4823 520.3153 575.5731 762.2316
+```
+
+```r
+detach(dat1)
+```
+
+
+---
+
+### Correlations between variables
+
+Pearson's Product Moment Correlation
+
+
+```r
+var &lt;- c("gender", "math", "resource", "confidence", "value", "belonging") 
+cor(dat1[,var], use = "pairwise.complete.obs") # For numeric variables only.
+```
+
+```
+##                  gender       math    resource confidence      value
+## gender      1.000000000 0.02259814 -0.02581907 0.07320231 0.03747509
+## math        0.022598137 1.00000000  0.39144359 0.42745426 0.16438481
+## resource   -0.025819068 0.39144359  1.00000000 0.14983533 0.10164144
+## confidence  0.073202313 0.42745426  0.14983533 1.00000000 0.37651939
+## value       0.037475087 0.16438481  0.10164144 0.37651939 1.00000000
+## belonging   0.009401596 0.22025392  0.15016222 0.28109701 0.36635639
+##              belonging
+## gender     0.009401596
+## math       0.220253920
+## resource   0.150162219
+## confidence 0.281097010
+## value      0.366356395
+## belonging  1.000000000
+```
+
+```r
+                                               # "gender" is still a numeric variable!
+                                               # Missing values removed
+round(cor(dat1[,var], use = "pairwise.complete.obs"), 2) # round to 2 decimal places
+```
+
+```
+##            gender math resource confidence value belonging
+## gender       1.00 0.02    -0.03       0.07  0.04      0.01
+## math         0.02 1.00     0.39       0.43  0.16      0.22
+## resource    -0.03 0.39     1.00       0.15  0.10      0.15
+## confidence   0.07 0.43     0.15       1.00  0.38      0.28
+## value        0.04 0.16     0.10       0.38  1.00      0.37
+## belonging    0.01 0.22     0.15       0.28  0.37      1.00
+```
+
+
+---
+
+### Correlations between variables
+
+Correlation between two variables, hypothesis test, and confidence interval
+
+
+```r
+cor.test(dat1$resource, dat1$math)
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  dat1$resource and dat1$math
+## t = 42.443, df = 9955, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.3746821 0.4079493
+## sample estimates:
+##       cor 
+## 0.3914436
+```
+
+---
+
+### Correlations between variables
+
+What if you want to get p-values for matrix?
+
+
+```r
+install.packages("Hmisc")
+```
+
+
+```r
+library(Hmisc)
+```
+
+```
+## Loading required package: lattice
+```
+
+```
+## Loading required package: survival
+```
+
+```
+## Loading required package: Formula
+```
+
+```
+## Loading required package: ggplot2
+```
+
+```
+## 
+## Attaching package: 'ggplot2'
+```
+
+```
+## The following objects are masked from 'package:psych':
+## 
+##     %+%, alpha
+```
+
+```
+## 
+## Attaching package: 'Hmisc'
+```
+
+```
+## The following object is masked from 'package:psych':
+## 
+##     describe
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     format.pval, units
+```
+
+---
+
+### Correlations between variables
+
+What if you want to get p-values for matrix?
+
+Need to coerce from dataframe to matrix to get both a correlation matrix and p-values
+
+
+```r
+df &lt;- as.matrix(dat1[,var]) # numeric variables only
+rcorr(df)
+```
+
+```
+##            gender math resource confidence value belonging
+## gender       1.00 0.02    -0.03       0.07  0.04      0.01
+## math         0.02 1.00     0.39       0.43  0.16      0.22
+## resource    -0.03 0.39     1.00       0.15  0.10      0.15
+## confidence   0.07 0.43     0.15       1.00  0.38      0.28
+## value        0.04 0.16     0.10       0.38  1.00      0.37
+## belonging    0.01 0.22     0.15       0.28  0.37      1.00
+## 
+## n= 9957 
+## 
+## 
+## P
+##            gender math   resource confidence value  belonging
+## gender            0.0241 0.0100   0.0000     0.0002 0.3482   
+## math       0.0241        0.0000   0.0000     0.0000 0.0000   
+## resource   0.0100 0.0000          0.0000     0.0000 0.0000   
+## confidence 0.0000 0.0000 0.0000              0.0000 0.0000   
+## value      0.0002 0.0000 0.0000   0.0000            0.0000   
+## belonging  0.3482 0.0000 0.0000   0.0000     0.0000
+```
+
+---
+## Calculating Variance and Covariance
+
+### Variance
+
+**population**: `$${{\sigma }_{\text{X}}}^{2}=\frac{\sum{{{(X-{{\mu }_{\text{X}}})}^{2}}}}{{{N}_{pop}}}=\frac{\sum{(X-{{\mu }_{\text{X}}})(X-{{\mu }_{\text{X}}})}}{{{N}_{pop}}}$$`
+
+**sample**:	`$${{s}_{X}}^{2}={{\hat{\sigma }}_{X}}^{2}=Var(X)=\frac{\sum{{{(X-\bar{X})}^{2}}}}{(n-1)}=\frac{\sum{(X-\bar{X})(X-\bar{X})}}{(n-1)}$$`
+
+
+---
+## Calculating Variance and Covariance
+
+### Covariance
+
+**population**: 
+`$${{\sigma }_{\text{XY}}}=\frac{\sum{(X-{{\mu }_{\text{X}}})(Y-{{\mu }_{\text{Y}}})}}{{{N}_{pop}}}$$`
+**sample**:	    `$${{s}_{XY}}={{\hat{\sigma }}_{XY}}=Cov(X,Y)=\frac{\sum{(X-\bar{X})(Y-\bar{Y})}}{(n-1)}$$`
+
+
+---
+## Calculating Variance and Covariance
+
+### Correlation
+
+**population**:  `$${{\rho }_{\text{XY}}}=\frac{{{\sigma }_{\text{XY}}}}{\sqrt{{{\sigma }_{\text{X}}}^{2}{{\sigma }_{\text{Y}}}^{2}}}$$`
+
+
+**sample**:	    `$${{r}_{\text{XY}}}={{\hat{\rho }}_{\text{XY}}}=\frac{Cov(X,Y)}{\sqrt{{{s}_{\text{X}}}^{2}{{s}_{\text{Y}}}^{2}}}$$`
+
+---
+## Calculating Variance and Covariance
+
+### Using Matrix Algebra
+
+Suppose we have a 5 by 2 data matrix **X** (2 variables and 5 participants, for example).
+`$$\begin{align}
+  &amp; \text{        X1    X2} \\ 
+ &amp; \mathbf{X}\text{=}\left[ \begin{matrix}
+   1 &amp; 3  \\
+   4 &amp; -5  \\
+   1 &amp; 7  \\
+   3 &amp; 2  \\
+   7 &amp; -1  \\
+\end{matrix} \right] \\ 
+\end{align}$$`
+
+---
+## Calculating Variance and Covariance
+
+### Using Matrix Algebra
+First, we’ll calculate the deviation score matrix Xd.
+
+`$${{\mathbf{X}}_{d}}\text{=}\mathbf{X-\bar{X}}=\left[ \begin{matrix}
+   1 &amp; 3  \\
+   4 &amp; -5  \\
+   1 &amp; 7  \\
+   3 &amp; 2  \\
+   7 &amp; -1  \\
+\end{matrix} \right]-\left[ \begin{matrix}
+   3.2 &amp; 1.2  \\
+   3.2 &amp; 1.2  \\
+   3.2 &amp; 1.2  \\
+   3.2 &amp; 1.2  \\
+   3.2 &amp; 1.2  \\
+\end{matrix} \right]=\left[ \begin{matrix}
+   -2.2 &amp; 1.8  \\
+   0.8 &amp; -6.2  \\
+   -2.2 &amp; 5.8  \\
+   -0.2 &amp; 0.8  \\
+   3.8 &amp; -2.2  \\
+\end{matrix} \right]$$`
+
+---
+## Calculating Variance and Covariance
+
+### Using Matrix Algebra
+
+Next, we multiple the transpose of `\({{\bf{X}}_{\bf{d}}}\)` ( `\({{\bf{X}}_{\bf{d}}}^{\bf{'}}\)` ) by `\({{\bf{X}}_{\bf{d}}}\)` itself using matrix operations. We will get the deviation SSCP (sums of squares and cross products) matrix.
+
+**Deviation SSCP matrix:**  
+`$${{\mathbf{X}}_{\mathbf{d}}}'{{\mathbf{X}}_{\mathbf{d}}}=\sum{{{x}_{i}}{{x}_{j}}=\left[ \begin{matrix}
+   \sum{x_{1}^{2}} &amp; \sum{{{x}_{1}}{{x}_{2}}}  \\
+   \sum{{{x}_{2}}{{x}_{1}}} &amp; \sum{x_{2}^{2}}  \\
+\end{matrix} \right]}=\left[ \begin{matrix}
+   24.8 &amp; -30.2  \\
+   -30.2 &amp; 80.8  \\
+\end{matrix} \right]$$`
+(Note: Lower case `\({{x}_{i}}\)`’s represent deviation scores.)
+
+---
+## Calculating Variance and Covariance
+
+### Using Matrix Algebra
+
+Since variance of X1 is `\(\frac{1}{N-1}\sum{x_{1}^{2}}\)` and the covariance between X1 and X2 is `\(\frac{1}{N-1}\sum{{{x}_{1}}{{x}_{2}}}\)`, the variance and covariance matrix (usually denoted by S) can be obtained by multiplying `\(\frac{1}{N-1}\)` to the deviation score **SSCP**:
+
+
+Variance and Covariance matrix: 
+`$$\mathbf{S}=\frac{1}{5-1}\left[ \begin{matrix}
+   24.8 &amp; -30.2  \\
+   -30.2 &amp; 80.8  \\
+\end{matrix} \right]=\left[ \begin{matrix}
+   6.2 &amp; -7.55  \\
+   -7.55 &amp; 20.2  \\
+\end{matrix} \right]$$`
+
+---
+## Calculating Variance and Covariance
+
+`$$\begin{array}{l}
+\begin{array}{*{20}{c}}
+{}&amp;{{{\rm{X}}_{\rm{1}}}}&amp;{{{\rm{X}}_{\rm{2}}}}&amp;{{{\rm{X}}_{\rm{3}}}}
+\end{array}\\
+\begin{array}{*{20}{c}}
+{{X_1}}\\
+{{X_2}}\\
+{{X_3}}
+\end{array}\left[ {\begin{array}{*{20}{c}}
+{Var({X_1})}&amp;{Cov({X_1},{X_2})}&amp;{Cov({X_1},{X_3})}\\
+{Cov({X_2},{X_1})}&amp;{Var({X_2})}&amp;{Cov({X_2},{X_3})}\\
+{Cov({X_3},{X_1})}&amp;{Cov({X_3},{X_2})}&amp;{Var({X_3})}
+\end{array}} \right]
+\end{array}$$`
+
+.pull-left[
+**Sample Covariance Matrix S**
+
+`$$\begin{array}{l}
+\begin{array}{*{20}{c}}
+{}&amp;{{{\rm{X}}_{\rm{1}}}}&amp;{{{\rm{X}}_{\rm{2}}}}&amp;{{{\rm{X}}_{\rm{3}}}}
+\end{array}\\
+\begin{array}{*{20}{c}}
+{{X_1}}\\
+{{X_2}}\\
+{{X_3}}
+\end{array}\left[ {\begin{array}{*{20}{c}}
+{s_1^2}&amp;{{s_{12}}}&amp;{{s_{13}}}\\
+{{s_{21}}}&amp;{s_2^2}&amp;{{s_{23}}}\\
+{{s_{31}}}&amp;{{s_{32}}}&amp;{s_3^2}
+\end{array}} \right]
+\end{array}$$`
+]
+
+.pull-right[
+**Sample Correlation R**
+`$$\begin{array}{l}
+\begin{array}{*{20}{c}}
+{}&amp;{{{\rm{X}}_{\rm{1}}}}&amp;{{{\rm{X}}_{\rm{2}}}}&amp;{{{\rm{X}}_{\rm{3}}}}
+\end{array}\\
+\begin{array}{*{20}{c}}
+{{X_1}}\\
+{{X_2}}\\
+{{X_3}}
+\end{array}\left[ {\begin{array}{*{20}{c}}
+1&amp;{{r_{12}}}&amp;{{r_{13}}}\\
+{{r_{21}}}&amp;1&amp;{{r_{23}}}\\
+{{r_{31}}}&amp;{{r_{32}}}&amp;1
+\end{array}} \right]
+\end{array}$$`
+]
+
+Elements in sample covariance matrix divided by `\({s_i}{s_j}\)` would result in the sample correlation matrix.
+
+Elements in sample correlation matrix multiplied by `\({s_i}{s_j}\)` would result in the sample covariance matrix.
+
+---
+## Correlation and Causation
+
+Correlation does not imply causation!
+
+In SEM, you specify a model(s).
+
+- This model represents your hypotheses about why the variables in your model are related 
+    - high anxiety causes low achievement (causal)
+    - anxiety and achievement are spuriously related due to their relationships with self-efficacy (non-causal)
+- So, **you (the researcher)** make hypotheses about causal relationships and noncausal relationships. 
+
+---
+## Correlation and Causation
+A hypothesized model that reproduces the original correlations well (fits) does not mean one has established causality. Failure to reject an SEM model does not prove that it is correct. Establishing causality is related to when and how the data were collected—design issues, not the type of analysis. To reasonably infer that X is a cause of Y, all the following conditions must be met:
+
+1.	There is time precedence; that is, X precedes Y in time.
+2.	The direction of the causal relation is correctly specified; that is, X causes Y instead of the reverse or that X and Y cause each other. (The latter refers to reciprocal causation).
+3.	The relation between X and Y does not disappear when external variables such as common causes of both are held constant (partialed out).
+
+
+---
+## Data Issues
+
+### What form should the data be in?
+
+In order to use a SEM program (AMOS, LISREL, Mplus, EQS, R `lavaan`, etc.) the data may begin in raw or matrix form. 
+ 
+**Raw data** should be used when the data are non-normal and an estimation technique is used that takes this into account.
+
+The matrices these programs can use are correlation or covariance. The diagonal of a **covariance matrix** includes the variance of the variable. Remember, the covariance between 2 variables equals:
+
+.pull-left[
+`\(Co{v_{xy}} = {r_{xy}}(S{D_x})(S{D_y})\)`
+]
+
+.pull-right[
+`\({r_{xy}} = \frac{{Co{v_{xy}}}}{{(S{D_x})(S{D_y})}}\)`
+]
+
+The diagonal of a **correlation matrix** equals 1 because the variables are standardized.
+
+
+---
+## Data Issues
+
+### What form should the data be in?
+
+For SEM, analyzing a covariance matrix instead of a correlation matrix is advised. This is because many estimation methods assume you are using unstandardized variables. Basically, standard inferential statistical theory applies only to the analysis of a covariance matrix—not correlation. The tests of significance may be incorrect if a correlation matrix is used. 
+
+If you have a correlation matrix and the standard deviations of the variables, the programs can produce the covariance matrix.
+
+---
+## Data Issues
+### Missing Data
+#### 1. Available Case Methods
+If you choose to delete subjects with missing data make sure that you do NOT use **pairwise deletion** when creating the covariance matrix. Listwise (each subject has a score on all variables) is a better choice than pairwise due to statistical issues. Using **pairwise deletion** means the covariances can be based on different numbers of people which can produce out of range values which can lead to a **non-positive definite matrix** or a matrix that has a **determinant** that is zero.  Since SEM program analyze matrices, both cause the computer program to “crash” or produce uninterpretable results. 
+
+Specifically, the determinant of a matrix represents the overall variance of the matrix. The determinant is calculated when one wants to divide in matrix algebra (invert a matrix). One can not invert a matrix if a determinant equals zero (or close to zero) because inversion requires dividing by the determinant. 
+
+---
+## Data Issues
+### Missing Data
+#### 2. Imputation Methods
+If listwise deletion leads to a large decrease in the sample size, consider the option of **Imputation of Missing Values**. This means you are substituting real values for missing values. This can be done in general-purpose statistical software such as SPSS, SAS, and R.
+
+---
+## Data Issues
+### Missing Data
+#### 3. Model-based Missing Data Techniques
+Missing values can be imputed using other variables. These techniques include the EM (expectation-maximization) algorithm and multiple imputation.
+
+---
+## Data Issues
+### Missing Data
+#### 4. Full Information Maximum Likelihood
+
+This method does not involve imputing/substituting missing values. Information from both complete data points and partial data points is used for model statistics.
+
+---
+## Data Issues
+### Multicollinearity
+When variables are highly correlated this can lead to a non-positive definite matrix. Extreme multicollinearity is seen if there is a **singularity** problem. Singularity means one of the variables is a combination of two or more of the other variables.
+
+The regression procedure can be used to assess multivariate multicollinearity. You would want high tolerance (e.g., &gt;.10) and low Variance Inflation Factor (VIF; e.g., &lt; 10)
+
+---
+## Data Issues
+#### Outliers
+
+One method of checking for **univariate outliers** is to look at the item’s frequency distribution and plot a histogram. Outliers may simply be due to data entry errors, which can be fixed. Always check this first.
+
+After checking for univariate outliers, check for **multivariate outliers**. Some do this by looking at bivariate scatterplots; however, this can be very time consuming if there are several observed variables and it does not examine if the case is a multivariate outlier based on all the variables.
+
+Mahalanobis distance can also be used to identify subjects who are multivariate outliers. This can be done via the regression procedure.
+
+---
+## Data Issues
+#### Normality
+
+Variables should be normally distributed (when using a model fitting estimation procedure such as ML but this is not necessary for OLS or other estimation techniques). The effects of nonnormality on ML-based results really depends on its extent; the greater the nonnormality, the greater the impact upon results. 
+
+Both **univariate normality** and **multivariate normality** need to be investigated  just as one has to do with outliers. 
+
+It's hard to detect multivariate normality. Fortunately, there are methods in SEM that do not require normaility.
+
+---
+## Data Issues
+#### Homoscedasticity
+
+Homoscedasticity means that the variability in scores for one variable is the same across the values of another variable. When multivariate normality is met, homoscedasticity is not violated. Heteroscedasticity is a problem because it decreases the predictability of one variable from another since the relationship is not consistent across all values. 
+
+---
+## Data Issues
+#### Linearity 
+For most part of this class, we will only deal with variables that have linear relationships. We will briefly introduce methods for nonlinear relationships (e.g., when variables are ordered categorical instead of continuous).
+
+---
+## SEM Family Tree
+&lt;img src="images/SEM-family-tree.png" width="40%" /&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
