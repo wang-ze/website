@@ -3,7 +3,7 @@ aliases: [sem]
 title: Structural Equation Modeling
 summary: ESC_PS 9710 Structural Equation Modeling course taught at the University of Missouri.
 abstract: ""
-date: "2021-05-6"
+date: "2022-01-06"
 image:
   caption: 'tree'
   focal_point: Smart
@@ -16,6 +16,10 @@ links:
   icon_pack: fas
   name: booksite
   url: "/books/sem/_book"
+- icon: file-powerpoint
+  icon_pack: fas
+  name: slides
+  url: /slides/sem
 # - icon: github
 #   icon_pack: fab
 #   name: materials
@@ -25,6 +29,7 @@ categories:
 - course
 tags:
 - course
+- Mplus
 - R
 - statistics
 - structural equation modeling
